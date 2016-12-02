@@ -43,7 +43,9 @@ function cleanOut(done: any) {
   del([
     join(OUT_DIR, 'src/**'),
     join(OUT_DIR, '**/*.*'),
-    '!' + join(OUT_DIR, '.git')
+    '!' + join(OUT_DIR, '.git'),
+    '!' + join(OUT_DIR, '.gitignore'),
+    '!' + join(OUT_DIR, '.npmignore')
   ]).then((paths) => {
     // util.log('Deleted', chalk.yellow(paths && paths.join(', ') || '-'));
     done();
