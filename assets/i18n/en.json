@@ -1,0 +1,17 @@
+{
+  "APP_TITLE" : "Charts",
+  "VERSION" : "Version",
+
+  "INTRODUCTION": "Introduction",
+  "LINE" : "Line chart",
+  "PIE"  : "Pie chart",
+  "DISCRETE_BAR"  : "Discrete Bar chart",
+  "MULTI_BAR"  : "Multi bar chart",
+  "MULTI_BAR_HORIZONTAL": "Multi bar horizontal chart",
+
+  "DATE_":"Operation date",
+  "MOVEMENT":"Movement",
+  "MOVEMENTTYPES":"Movement types",
+  "BALANCE": "Total Balance",
+  "AVERAGE": "Average Balance"
+}
