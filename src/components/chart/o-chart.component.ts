@@ -13,6 +13,7 @@ import {
 import { MdIcon, MdIconRegistry } from '@angular/material';
 import { OntimizeService, OTranslateService, OFormComponent, InputConverter, Util } from 'ontimize-web-ng2/ontimize';
 
+import * as d3 from 'd3';
 import * as nv from 'nvd3';
 import { nvD3 } from 'ng2-nvd3';
 
