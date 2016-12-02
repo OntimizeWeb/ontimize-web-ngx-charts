@@ -1,0 +1,29 @@
+<div layout="column" layout-align="center top" layout-margin>
+
+    <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()" layout-fill>
+        <div layout="row" layout-padding layout-align="center center">
+            <o-chart type="pie" flex="75" entity="EMovementTypesTotal"
+                x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
+        </div>
+        <div class="body-text-container" layout-padding>
+            <h2>Basic Usage</h2>
+            <p class="body-text">
+                Chart data are provided through an Ontimize service.
+            </p>
+        </div>
+    </example-comp>
+
+    <example-comp [comp-name]="getCustomDataId()" [files]="getCustomDataFiles()" layout-fill>
+        <div layout="row" layout-padding layout-align="center center">
+            <o-chart #pieChart type="pie" [data]="data" flex="75"></o-chart>
+        </div>
+        <div class="body-text-container" layout-padding>
+            <h3>Custom service </h3>
+            <p class="body-text">
+                Chart data are provided through an independent own service. In that case the service response
+                contains the data according to the architecture expected by the chart (see 'service data' tab)
+            </p>
+        </div>
+    </example-comp>
+
+</div>

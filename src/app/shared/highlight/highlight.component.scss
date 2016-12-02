@@ -1,0 +1,8 @@
+pre.no-margin{
+  margin: 0 !important;
+  white-space: pre;
+  code {
+    min-height: 300px;
+    margin: 0;
+  }
+}

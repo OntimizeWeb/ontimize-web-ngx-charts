@@ -1,0 +1,83 @@
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "DATE_": 1235490657851,
+      "MOVEMENT": 951,
+      "AVERAGE": 951,
+      "BALANCE": 951,
+      "MOVEMENTID": 7505
+    },
+    {
+      "DATE_": 1236110357961,
+      "MOVEMENT": -80,
+      "AVERAGE": 911,
+      "BALANCE": 871,
+      "MOVEMENTID": 7503
+    },
+    {
+      "DATE_": 1236402213822,
+      "MOVEMENT": 653,
+      "AVERAGE": 1115.3333333333333,
+      "BALANCE": 1524,
+      "MOVEMENTID": 7497
+    },
+    {
+      "DATE_": 1236611284898,
+      "MOVEMENT": -548,
+      "AVERAGE": 1080.5,
+      "BALANCE": 976,
+      "MOVEMENTID": 7499
+    },
+    {
+      "DATE_": 1242673437363,
+      "MOVEMENT": -949,
+      "AVERAGE": 869.8,
+      "BALANCE": 27,
+      "MOVEMENTID": 7504
+    },
+    {
+      "DATE_": 1245260962425,
+      "MOVEMENT": 552,
+      "AVERAGE": 821.3333333333334,
+      "BALANCE": 579,
+      "MOVEMENTID": 7496
+    },
+    {
+      "DATE_": 1246875825338,
+      "MOVEMENT": 432,
+      "AVERAGE": 848.4285714285714,
+      "BALANCE": 1011,
+      "MOVEMENTID": 7498
+    },
+    {
+      "DATE_": 1254322811810,
+      "MOVEMENT": 1756,
+      "AVERAGE": 1088.25,
+      "BALANCE": 2767,
+      "MOVEMENTID": 7500
+    },
+    {
+      "DATE_": 1254388791367,
+      "MOVEMENT": -169,
+      "AVERAGE": 1256,
+      "BALANCE": 2598,
+      "MOVEMENTID": 7506
+    },
+    {
+      "DATE_": 1255948329905,
+      "MOVEMENT": -23,
+      "AVERAGE": 1387.9,
+      "BALANCE": 2575,
+      "MOVEMENTID": 7501
+    }
+  ],
+  "sqlColumnTypes": {
+    "AVERAGE": 6,
+    "BALANCE": 6,
+    "MOVEMENT": 6,
+    "DATE_": 93,
+    "MOVEMENTID": 4
+  }
+}

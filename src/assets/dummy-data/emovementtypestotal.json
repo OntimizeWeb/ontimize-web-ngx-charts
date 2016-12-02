@@ -1,0 +1,31 @@
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "MOVEMENTTYPES": "Direct debit",
+      "MOVEMENT": 22
+    },
+    {
+      "MOVEMENTTYPES": "Banking fees",
+      "MOVEMENT": 103
+    },
+    {
+      "MOVEMENTTYPES": "Transfer",
+      "MOVEMENT": 264
+    },
+    {
+      "MOVEMENTTYPES": "Automatic Cash",
+      "MOVEMENT": 984
+    },
+    {
+      "MOVEMENTTYPES": "Salary",
+      "MOVEMENT": 1756
+    }
+  ],
+  "sqlColumnTypes": {
+    "MOVEMENTTYPES": 12,
+    "MOVEMENT": 6,
+    "MOVEMENTID": 4
+  }
+}
