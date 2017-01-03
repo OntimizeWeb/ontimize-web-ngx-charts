@@ -1,6 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
-
-import { HighlightJsService } from 'angular2-highlight-js';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'highlight-comp',
@@ -14,25 +12,38 @@ import { HighlightJsService } from 'angular2-highlight-js';
 })
 export class HighlightComponent {
 
-  protected templateContent: string = '';
-  protected templateType: string = '';
+  protected clipboard: any;
 
-  constructor(protected elRef: ElementRef,
-    protected service : HighlightJsService) {
-
+  constructor(protected elRef: ElementRef) {
   }
 
-  // ngOnInit() {
-  //   this.sampleContent = `
-  //     <o-button class="highlight" attr="flat" type="FLAT" label="FLAT" layout-padding></o-button>
-  //     <o-button attr="raised" type="RAISED" label="RAISED" layout-padding></o-button>
-  //     <o-button attr="floating" type="FLOATING" icon="add" layout-padding></o-button>`;
-  // }
+  ngOnInit() {
+    if (window['Clipboard'] && !this.clipboard) {
+      let copyBtn = this.elRef.nativeElement.querySelectorAll('button#copy-btn');
+      if (copyBtn.length) {
+        var self = this;
+        let element = copyBtn[0];
+        this.clipboard = new window['Clipboard'](element);
+        this.clipboard.on('success', function(e) {
+          self.showTooltip(e.trigger, 'Copied!');
+        });
+        // this.clipboard.on('error', function(e) {
+        //     console.log(e);
+        // });
+      }
 
-  // ngAfterViewInit() {
-  //   let code = this.elRef.nativeElement.querySelector('code.highlight');
-  //   //  this.service.highlight(code);
-  //   }
+    }
+  }
 
+  showTooltip(elem, msg) {
+    // TODO show tooltip (solve problem of repainting that does not show tooltip)
+    alert('Copied!');
+  }
+
+  ngOnDestroy() {
+    if (this.clipboard) {
+      this.clipboard.destroy();
+    }
+  }
 
 }
