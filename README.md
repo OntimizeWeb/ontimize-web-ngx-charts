@@ -15,7 +15,7 @@ here</a>
 First you need to install chart module dependencies (d3 and nvD3 libraries):
 ```sh
 npm install d3@3.5.6 nvd3@1.8.4 ng2-nvd3@1.1.3 --save
-````
+```
 
 Do not forget to add typings as well
 ```sh
@@ -24,7 +24,7 @@ typings install d3 nvd3 --ambient -DA
 
 After that, install the npm chart module:
 ```sh
-npm install npm-ontimize-web-ng2-charts --save
+npm install ontimize-web-ng2-charts --save
 ```
 
 ## Usage
