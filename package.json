@@ -13,6 +13,10 @@
     "nvD3"
   ],
   "author": "IMATIA S.L.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ng2-charts.git"
+  },
   "license": "Apache-2.0",
   "main": "o-chart.js",
   "typings": "o-chart.d.ts",
