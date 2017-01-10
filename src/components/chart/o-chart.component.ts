@@ -11,7 +11,10 @@ import {
 } from '@angular/core';
 
 import { MdIcon, MdIconRegistry } from '@angular/material';
-import { OntimizeService, OTranslateService, OFormComponent, InputConverter, Util } from 'ontimize-web-ng2/ontimize';
+import {
+  OntimizeService, dataServiceFactory,
+  OTranslateService, OFormComponent, InputConverter, Util
+} from 'ontimize-web-ng2/ontimize';
 
 import * as d3 from 'd3';
 import * as nv from 'nvd3';
@@ -40,6 +43,7 @@ export const CHART_TYPES = [
 ];
 
 const DEFAULT_INPUTS = [
+  'cHeight: chart-height',
   // type [string]: Defines the type of graph to be painted (Line, Pie, ...)
   'type',
   'xAxis: x-axis',
@@ -59,7 +63,11 @@ const DEFAULT_INPUTS = [
 
 @Component({
   selector: 'o-chart',
-  providers: [ChartService, MdIconRegistry],
+  providers: [
+    ChartService,
+    MdIconRegistry,
+    { provide: OntimizeService, useFactory: dataServiceFactory, deps:[Injector] }
+  ],
   inputs: [
     ...DEFAULT_INPUTS
   ],
@@ -81,8 +89,10 @@ export class OChartComponent implements OnInit {
   protected entity: string;
   protected service: string;
   protected columns: string;
-
   protected parentKeys: string;
+
+  @InputConverter()
+  protected cHeight: number = -1;
 
   @InputConverter()
   protected queryOnInit: boolean = true;
@@ -166,6 +176,10 @@ export class OChartComponent implements OnInit {
   getChartConfiguration(): ChartConfiguration {
     let chartConf = new ChartConfiguration();
     chartConf.type = this.type;
+
+    if (this.cHeight !== -1) {
+      chartConf.height = this.cHeight;
+    }
 
     chartConf.xLabel = this.xAxisLabel;
     chartConf.yLabel = this.yAxisLabel;
