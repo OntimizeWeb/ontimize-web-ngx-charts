@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observer } from 'rxjs/Observer';
 
@@ -47,17 +48,21 @@ export class PieComponent implements OnInit {
 
     let url = './assets/dummy-data/dummy-pie-data.json';
 
-    let innerObserver: Observer<any[]>;
-    let dataObservable = new Observable<any[]>(observer =>
-      innerObserver = observer
-    )
-
     var self = this;
-    this.http.get(url, { headers: headers })
-      .map(response => response.json()).subscribe(data => {
+    let innerObserver: any;
+    let dataObservable = Observable.create(observer =>
+      innerObserver = observer).share();
+
+    this.http
+      .get(url, { headers: headers })
+      // .map((res: any) => res.json())
+      .subscribe(res => {
+        let data: any = res.json();
         self.serviceResponse = JSON.stringify(data, undefined, 2);
         innerObserver.next(data.values);
-      }, error => console.log('Could not load data.'));
+      }, error => innerObserver.error(error));
+
+
     return dataObservable;
   }
 
@@ -102,7 +107,7 @@ export class PieComponent implements OnInit {
       },
       {
         'type': 'service data',
-        'data':  this.serviceResponse
+        'data': this.serviceResponse
       }
     ]
   }
