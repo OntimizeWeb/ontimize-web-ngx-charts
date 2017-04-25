@@ -10,12 +10,25 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "listFiles": true
+    "listFiles": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "es2015.iterable"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
+  "exclude": [
+    "node_modules"
+  ],
   "files": [
-    "o-charts.ts",
+    "o-chart.ts",
     "typings/browser.d.ts",
-    "tools/manual_typings/manual.typings.d.ts"
+    "tools/manual_typings/manual.typings.d.ts",
+    "node_modules/typescript/lib/lib.d.ts"
   ],
   "compileOnSave": false
 }
