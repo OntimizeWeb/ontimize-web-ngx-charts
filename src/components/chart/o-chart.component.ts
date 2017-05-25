@@ -18,7 +18,7 @@ import {
   OFormComponent,
   InputConverter,
   Util
-} from 'ontimize-web-ng2/ontimize';
+} from 'ontimize-web-ng2';
 
 import * as d3 from 'd3';
 import * as nv from 'nvd3';

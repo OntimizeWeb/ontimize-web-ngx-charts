@@ -1,4 +1,4 @@
-import { OTranslateService } from 'ontimize-web-ng2/ontimize';
+import { OTranslateService } from 'ontimize-web-ng2';
 
 export class ChartConfiguration {
   public type: string;
