@@ -1,34 +1,40 @@
 {
   "compilerOptions": {
+    "noImplicitReturns": true,
     "target": "es5",
-    "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
-    "noImplicitAny": false,
     "removeComments": true,
-    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "listFiles": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es2015",
-      "es2015.iterable"
+    "module": "es2015",
+    "declaration": true,
+    "outDir": "dist",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "types": [
+      "node"
     ],
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ],
+  "angularCompilerOptions": {
+    "skipMetadataEmit": false,
+    "strictMetadataEmit": true
+  },
   "files": [
-    "o-chart.ts",
-    "typings/browser.d.ts",
-    "tools/manual_typings/manual.typings.d.ts",
-    "node_modules/typescript/lib/lib.d.ts"
+    "index.ts",
+    "src/**"
   ],
   "compileOnSave": false
 }

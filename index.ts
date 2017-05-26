@@ -33,7 +33,6 @@ export * from './src/core';
 export * from './src/interfaces';
 export * from './src/services';
 
-
 /**
  * Collection of component directives.
  */

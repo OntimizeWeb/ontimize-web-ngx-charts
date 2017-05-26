@@ -10,7 +10,7 @@ import {
   Optional
 } from '@angular/core';
 
-import { MdIcon, MdIconRegistry } from '@angular/material';
+import { MdIconRegistry } from '@angular/material';
 import {
   OntimizeService,
   dataServiceFactory,
@@ -74,8 +74,8 @@ const DEFAULT_INPUTS = [
   inputs: [
     ...DEFAULT_INPUTS
   ],
-  templateUrl: '/chart/o-chart.component.html',
-  styleUrls: ['/chart/o-chart.component.css'],
+  template: require('./o-chart.component.html'),
+  styles: [require('./o-chart.component.scss')],
 })
 export class OChartComponent implements OnInit {
   public static DEFAULT_INPUTS = DEFAULT_INPUTS;

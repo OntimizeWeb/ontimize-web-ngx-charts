@@ -10,7 +10,7 @@ export function chartsProviders(args: any = {}): any {
  return [
    getChartServiceProvider()
  ];
-};
+}
 
 function getChartServiceProvider() {
   return [
