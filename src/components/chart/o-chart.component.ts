@@ -10,20 +10,22 @@ import {
   Optional
 } from '@angular/core';
 
-import { MdIcon, MdIconRegistry } from '@angular/material';
+import { MdIconRegistry } from '@angular/material';
 import {
-  OntimizeService, dataServiceFactory,
-  OTranslateService, OFormComponent, InputConverter, Util
-} from 'ontimize-web-ng2/ontimize';
+  OntimizeService,
+  dataServiceFactory,
+  OTranslateService,
+  OFormComponent,
+  InputConverter,
+  Util
+} from 'ontimize-web-ng2';
 
-import * as d3 from 'd3';
-import * as nv from 'nvd3';
 import { nvD3 } from 'ng2-nvd3';
 
 import { OChartFactory } from './o-chart.factory';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
-import { ChartService } from '../../services';
+import { ChartService } from '../../services/chart.service';
 import { ChartConfiguration } from '../../core/ChartConfiguration.class';
 
 
@@ -64,15 +66,14 @@ const DEFAULT_INPUTS = [
 @Component({
   selector: 'o-chart',
   providers: [
-    ChartService,
     MdIconRegistry,
-    { provide: OntimizeService, useFactory: dataServiceFactory, deps:[Injector] }
+    { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: [
     ...DEFAULT_INPUTS
   ],
-  templateUrl: '/chart/o-chart.component.html',
-  styleUrls: ['/chart/o-chart.component.css'],
+  template: require('./o-chart.component.html'),
+  styles: [require('./o-chart.component.scss')],
 })
 export class OChartComponent implements OnInit {
   public static DEFAULT_INPUTS = DEFAULT_INPUTS;
@@ -118,8 +119,8 @@ export class OChartComponent implements OnInit {
     protected elRef: ElementRef,
     protected injector: Injector) {
 
-    this.chartService = this.injector.get(ChartService);
     this.translateService = this.injector.get(OTranslateService);
+    this.chartService = this.injector.get(ChartService);
   }
 
   ngOnInit() {
@@ -289,7 +290,7 @@ export class OChartComponent implements OnInit {
   bindChartEvents(): void {
     var self = this;
     let chart = this.getChartService().chart;
-    if (chart) {
+    if (chart && chart.on) {
       chart.on('click', function (evt: any) {
         self.clickEvtEmitter.emit(evt);
       });
@@ -302,4 +303,3 @@ export class OChartComponent implements OnInit {
   }
 
 }
-
