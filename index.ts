@@ -6,23 +6,12 @@ import {
 import { CommonModule } from '@angular/common';
 
 import {
-  MdIconModule,
-  MdIconRegistry
+  // MdIconRegistry,
+  MdIconModule
 } from '@angular/material';
 
-// Importing d3 and nv packages
-import * as d3 from 'd3';
-import * as nv from 'nvd3';
-
-if (!d3) {
-  console.error('D3 library not found');
-}
-if (!nv) {
-  console.error('nvD3 library not found');
-}
-
-import { nvD3 } from 'ng2-nvd3';
 import { OChartComponent } from './src/components/chart/o-chart.component';
+import { OCHART_PROVIDERS } from './src/services';
 
 /**
  * Exports
@@ -31,29 +20,25 @@ export * from './src/components/chart/o-chart.component';
 export * from './src/components/chart/o-chart.factory';
 export * from './src/core';
 export * from './src/interfaces';
-export * from './src/services';
+export * from './src/services/chart.service';
 
-/**
- * Collection of component directives.
- */
-const OCHART_DIRECTIVES: any[] = [
-  OChartComponent,
-  nvD3
-];
+import 'd3';
+import 'nvd3';
+import { NvD3Module } from 'ng2-nvd3';
 
 @NgModule({
   imports: [
     CommonModule,
-    MdIconModule
+    MdIconModule,
+    NvD3Module
   ],
-  declarations: OCHART_DIRECTIVES,
+  declarations: [
+    OChartComponent
+  ],
   exports: [
-    OChartComponent,
-    nvD3
+    OChartComponent
   ],
-  providers: [
-    MdIconRegistry
-  ],
+  providers: OCHART_PROVIDERS,
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]

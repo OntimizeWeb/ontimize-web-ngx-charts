@@ -1,11 +1,6 @@
-import {
-  Injectable
-} from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { nvD3 } from 'ng2-nvd3';
-
 import { Margin } from '../core';
-
 
 @Injectable()
 export class ChartService {
@@ -23,7 +18,7 @@ export class ChartService {
   public set chartWrapper(chart: nvD3) {
     this._chartWrapper = chart;
     if (this._chartWrapper) {
-      this._chart = this._chartWrapper.chart;
+      this._chart = (this._chartWrapper as any).chart;
     }
   }
 

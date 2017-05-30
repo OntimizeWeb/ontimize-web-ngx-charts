@@ -1,23 +1,12 @@
-export * from './services/chart.service';
-
-import {
-  Injector
-} from '@angular/core';
-
+import { Injector } from '@angular/core';
+import { MdIconRegistry } from '@angular/material';
 import { ChartService } from './services/chart.service';
 
-export function chartsProviders(args: any = {}): any {
- return [
-   getChartServiceProvider()
- ];
-}
-
-function getChartServiceProvider() {
-  return [
-    {
-      provide: ChartService,
-      useFactory: () => new ChartService(),
-      deps: [Injector]
-    }
-  ];
-}
+export const OCHART_PROVIDERS: any = [
+  MdIconRegistry,
+  {
+    provide: ChartService,
+    useFactory: () => new ChartService(),
+    deps: [Injector]
+  }
+];

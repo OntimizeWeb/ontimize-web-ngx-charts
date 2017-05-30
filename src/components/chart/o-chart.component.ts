@@ -20,14 +20,12 @@ import {
   Util
 } from 'ontimize-web-ng2';
 
-import * as d3 from 'd3';
-import * as nv from 'nvd3';
 import { nvD3 } from 'ng2-nvd3';
 
 import { OChartFactory } from './o-chart.factory';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
-import { ChartService } from '../../services';
+import { ChartService } from '../../services/chart.service';
 import { ChartConfiguration } from '../../core/ChartConfiguration.class';
 
 
