@@ -13,7 +13,6 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ngcWebpack = require('ngc-webpack');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-
 /*
  * Webpack Constants
  */
@@ -31,10 +30,34 @@ module.exports = function (options) {
     entry: {
       'ontimize-web-ng2-charts': helpers.root('index.ts')
     },
+
     resolve: {
       extensions: ['.ts', '.js', '.html']
     },
-    externals: [/^\@angular\//, /^\@ngx-translate\//, /^\ontimize-web-ng2\//, /^\@rxjs\//],
+
+    // rest of config here
+    externals: [
+      {
+        'ng2-nvd3': {
+          root: ['ng2-nvd3'],
+          commonjs: 'ng2-nvd3',
+          commonjs2: 'ng2-nvd3',
+          amd: 'ng2-nvd3'
+        }
+      },
+      {
+        'ontimize-web-ng2': {
+          root: ['ontimize-web-ng2'],
+          commonjs: 'ontimize-web-ng2',
+          commonjs2: 'ontimize-web-ng2',
+          amd: 'ontimize-web-ng2'
+        }
+      },
+      /^\@angular\//,
+      /^\@ngx-translate\//,
+      /^\@rxjs\//
+    ],
+
     module: {
       rules: [
         {
@@ -51,11 +74,7 @@ module.exports = function (options) {
         {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
-          include: ['styles.scss'],
-          exclude: [
-            helpers.root('node_modules/ontimize-web-ng2'),
-            helpers.root('ontimize-web-ng2')
-          ]
+          include: ['styles.scss']
         },
         {
           test: /\.(ts|js)$/,
@@ -86,7 +105,9 @@ module.exports = function (options) {
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
-        jQuery: "jquery"
+        jQuery: "jquery",
+        d3 : "d3",
+        nv: "nvd3"
       }),
 
       new ContextReplacementPlugin(
@@ -95,7 +116,7 @@ module.exports = function (options) {
       ),
 
       new CopyWebpackPlugin([
-        // { from: 'config', to: '../config' },
+        { from: '.npmignore', to: '../' },
         { from: 'CHANGELOG.md', to: '../' },
         { from: 'LICENSE', to: '../' },
         { from: 'README.md', to: '../' },
