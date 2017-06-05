@@ -1,3 +1,7 @@
+## 2.0.0-rc.1
+### Bug Fixes
+* **Providers**: Fixing bugs in providers export functions.
+
 ## 2.0.0-rc.0
 #Features
 * **Styles**: including '*nvd3*' library styles. User will only need to import '*ontimize-web-ng2-charts*' '*styles.scss*' file.
