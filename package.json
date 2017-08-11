@@ -104,7 +104,7 @@
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
     "ntypescript": "^1.201609302242.1",
-    "ontimize-web-ng2": "file:..\\..\\ontimize-web-ng2-VERSIONS\\2.0.0-rc.7\\ontimize-web-ng2\\dist\\ontimize-web-ng2-2.0.0-rc.7.tgz",
+    "ontimize-web-ng2": "2.0.0-rc.7",
     "optimize-js-plugin": "0.0.4",
     "parse5": "^3.0.2",
     "protractor": "^5.1.1",
