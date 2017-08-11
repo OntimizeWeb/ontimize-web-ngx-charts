@@ -40,7 +40,7 @@ Configure third party dependencies like this:
 const cliSystemConfigPackages: any = {
 };
 // ontimize chart module
-cliSystemConfigPackages['ontimize-web-ng2-charts'] = { main: 'o-chart' };
+cliSystemConfigPackages['ontimize-web-ng2-charts'] = { main: 'index' };
 // third party dependencies
 cliSystemConfigPackages['d3'] = { main: 'd3.min' };
 cliSystemConfigPackages['nvd3'] = { main: 'build/nv.d3.min' };
@@ -78,7 +78,7 @@ module.exports = function(defaults) {
       'nvd3/build/*min.js',
       'ng2-nvd3/build/lib/*.js',
 
-      'ontimize-web-ng2-charts/**/*.css',
+      'ontimize-web-ng2-charts/**/*.(css|scss)',
       'nvd3/build/*.+(css|css.map)'
      ]
   });
@@ -88,7 +88,7 @@ module.exports = function(defaults) {
 Do not forget to include CSS style sheets
 
 ```sh
-<link rel="stylesheet" type="text/css" href="./vendor/nvd3/build/nv.d3.min.css"/>
+<link rel="stylesheet" type="text/css" href="./vendor/ontimize-web-ng2-charts/styles.scss"/>
 ```
 
 **app.module.ts**
@@ -96,7 +96,7 @@ Include the library chart module into your app.
 
 ```sh
 ...
-import { OChartModule } from 'ontimize-web-ng2-charts/o-chart';
+import { OChartModule } from 'ontimize-web-ng2-charts';
 ...
 
 @NgModule({
