@@ -1,16 +1,23 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'highlight-comp',
   moduleId: module.id,
-  styleUrls: ['highlight.component.css'],
+  styleUrls: ['highlight.component.scss'],
   templateUrl: 'highlight.component.html',
   inputs: [
     'templateContent: template-content',
     'templateType: template-type'
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
-export class HighlightComponent {
+export class HighlightComponent implements OnInit, OnDestroy {
 
   protected clipboard: any;
 
@@ -19,12 +26,12 @@ export class HighlightComponent {
 
   ngOnInit() {
     if (window['Clipboard'] && !this.clipboard) {
-      let copyBtn = this.elRef.nativeElement.querySelectorAll('button#copy-btn');
+      const copyBtn = this.elRef.nativeElement.querySelectorAll('button#copy-btn');
       if (copyBtn.length) {
-        var self = this;
-        let element = copyBtn[0];
+        const self = this;
+        const element = copyBtn[0];
         this.clipboard = new window['Clipboard'](element);
-        this.clipboard.on('success', function(e) {
+        this.clipboard.on('success', function (e) {
           self.showTooltip(e.trigger, 'Copied!');
         });
         // this.clipboard.on('error', function(e) {

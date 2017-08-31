@@ -1,57 +1,49 @@
 import { NgModule, Injector } from '@angular/core';
 
 import {
+  APP_CONFIG,
   ONTIMIZE_MODULES,
-  ONTIMIZE_DIRECTIVES,
-  ontimizeProviders,
-  ODialogComponent
-} from 'ontimize-web-ng2/ontimize';
-
-import { OChartModule } from 'ontimize-web-ng2-charts/o-chart';
+  ONTIMIZE_PROVIDERS
+} from 'ontimize-web-ng2';
 
 import { CONFIG } from './app.config';
 import { AppComponent } from './app.component';
-import { routing } from './app.routes';
-import { APP_DIRECTIVES } from './app.directives';
-import { NavigationBarService, CustomOntimizeService } from './shared';
 
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { AppRoutingModule } from './app-routing.module';
+import { MainModule } from './main/main.module';
 
-// Standard providers...
-let standardProviders = ontimizeProviders({
-  'config': CONFIG
-});
+import { NavigationBarService } from './shared/services/navigation-bar.service';
+import { CustomOntimizeService } from './shared/services/custom-ontimize.service';
+
+export function getCustomOntimizeServiceProvider(injector: Injector) {
+  return new CustomOntimizeService(injector);
+}
+
 // Defining custom providers (if needed)...
-let customProviders = [
+export const customProviders = [
   NavigationBarService,
   {
     provide: CustomOntimizeService,
+    useFactory: getCustomOntimizeServiceProvider,
     deps: [Injector]
   }
-
 ];
 
 @NgModule({
   imports: [
     ONTIMIZE_MODULES,
-    routing,
-    OChartModule,
-    HighlightJsModule
+    MainModule,
+    AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    ONTIMIZE_DIRECTIVES,
-    ...APP_DIRECTIVES
-  ],
-  entryComponents: [
-    ODialogComponent
+    AppComponent
   ],
   bootstrap: [
     AppComponent
   ],
   providers: [
-    ...standardProviders,
-    HighlightJsService,
+    { provide: APP_CONFIG, useValue: CONFIG },
+    ...ONTIMIZE_PROVIDERS,
     ...customProviders
   ]
 })

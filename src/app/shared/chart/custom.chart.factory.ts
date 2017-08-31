@@ -1,4 +1,4 @@
-import { OChartFactory, ChartConfiguration } from 'ontimize-web-ng2-charts/o-chart';
+import { OChartFactory, ChartConfiguration } from 'ontimize-web-ng2-charts';
 
 export class CustomChartFactory extends OChartFactory {
 

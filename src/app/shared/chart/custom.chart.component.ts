@@ -1,10 +1,10 @@
 import { Injector, forwardRef, ElementRef, OnInit, Optional, Inject } from '@angular/core';
-import { OComponent, OFormComponent } from 'ontimize-web-ng2/ontimize';
+import { OComponent, OFormComponent } from 'ontimize-web-ng2';
 
 import {
   OChartComponent, ChartService,
   ChartFactory, ChartDataAdapterFactory
-} from 'ontimize-web-ng2-charts/o-chart';
+} from 'ontimize-web-ng2-charts';
 
 import { CustomChartFactory } from './custom.chart.factory';
 
