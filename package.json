@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ng2-charts",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0-rc.3",
   "description": "An implementation of nvD3 for Ontimize Web Ng2",
   "scripts": {
     "preinstall": "npm config set package-lock false",
