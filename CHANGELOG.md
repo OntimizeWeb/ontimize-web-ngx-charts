@@ -1,3 +1,7 @@
+## 2.0.0-rc.3
+### Features
+* **ontimize-web-ng2-charts**: '*OChartModule*' is now AoT compatible.
+
 ## 2.0.0-rc.2
 
 ### DEPENDENCY UPDATES ###
