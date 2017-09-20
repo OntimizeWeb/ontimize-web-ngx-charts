@@ -2,6 +2,15 @@
 ### Features
 * **ontimize-web-ng2-charts**: '*OChartModule*' is now AoT compatible.
 
+### DEV-DEPENDENCY UPDATES ###
+* **Updated**:  ontimize-web-ng2@2.0.0-rc.8
+* **Updated**:  @angular/cli@1.3.2
+* **Updated**:  @ngx-translate/core@8.0.0
+* **Updated**:  @angular@4.3.6
+* **Updated**:  @angular/material@2.0.0-beta.10
+* **Updated**:  @angular/cdk@2.0.0-beta.10
+* **Updated**:  @angular/flex-layout@2.0.0-beta.9
+
 ## 2.0.0-rc.2
 
 ### DEPENDENCY UPDATES ###
