@@ -7,10 +7,12 @@ import {
   forwardRef,
   EventEmitter,
   ViewChild,
-  Optional
+  Optional,
+  NgModule
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { MdIconRegistry } from '@angular/material';
+import { MdIconRegistry, MdIconModule } from '@angular/material';
 import {
   OntimizeService,
   dataServiceFactory,
@@ -20,7 +22,9 @@ import {
   Util
 } from 'ontimize-web-ng2';
 
-import { nvD3 } from 'ng2-nvd3';
+import { nvD3, NvD3Module } from 'ng2-nvd3';
+import 'd3';
+import 'nvd3';
 
 import { OChartFactory } from './o-chart.factory';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
@@ -72,8 +76,8 @@ const DEFAULT_INPUTS = [
   inputs: [
     ...DEFAULT_INPUTS
   ],
-  template: require('./o-chart.component.html'),
-  styles: [require('./o-chart.component.scss')],
+  templateUrl: './o-chart.component.html',
+  styleUrls: ['./o-chart.component.scss']
 })
 export class OChartComponent implements OnInit {
   public static DEFAULT_INPUTS = DEFAULT_INPUTS;
@@ -98,7 +102,7 @@ export class OChartComponent implements OnInit {
   @InputConverter()
   protected queryOnInit: boolean = true;
 
-  protected options: any;
+  protected _options: any;
   protected dataArray: Object[] = [];
   protected dataService: any;
   protected yAxisArray: Array<string> = [];
@@ -174,6 +178,14 @@ export class OChartComponent implements OnInit {
     }
   }
 
+  get options() : any{
+    return this._options;
+  }
+
+  set options(value: any) {
+    this._options = value;
+  }
+
   getChartConfiguration(): ChartConfiguration {
     let chartConf = new ChartConfiguration();
     chartConf.type = this.type;
@@ -229,6 +241,10 @@ export class OChartComponent implements OnInit {
       }
       this.dataService.configureService(serviceCfg);
     }
+  }
+
+  getDataArray(): any {
+      return this.dataArray;
   }
 
   protected setDataArray(data: any): void {
@@ -301,5 +317,12 @@ export class OChartComponent implements OnInit {
   onClickEvent(onNext: (value: any) => void): Object {
     return this.clickEvtEmitter.subscribe(onNext);
   }
+}
 
+@NgModule({
+  imports: [CommonModule, NvD3Module, CommonModule, MdIconModule],
+  declarations: [OChartComponent],
+  exports: [OChartComponent]
+})
+export class OChartComponentModule {
 }

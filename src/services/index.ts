@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { MdIconRegistry } from '@angular/material';
-import { ChartService } from './services/chart.service';
+import { ChartService } from './chart.service';
 
 export function getChartServiceProvider() {
     return new ChartService();
