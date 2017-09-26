@@ -25,7 +25,7 @@ module.exports = function (options) {
       path: helpers.root('dist/bundles'),
       publicPath: '/',
       filename: '[name].umd.js',
-      library: 'ontimize-web-ng2-charts',
+      library: 'ontimize-web-ngx-charts',
       libraryTarget: 'umd'
     },
 
