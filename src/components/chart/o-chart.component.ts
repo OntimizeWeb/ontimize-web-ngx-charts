@@ -20,7 +20,7 @@ import {
   OFormComponent,
   InputConverter,
   Util
-} from 'ontimize-web-ng2';
+} from 'ontimize-web-ngx';
 
 import { nvD3, NvD3Module } from 'ng2-nvd3';
 import 'd3';

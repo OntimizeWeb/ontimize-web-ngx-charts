@@ -17,7 +17,7 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
  */
 const AOT = helpers.hasNpmFlag('aot');
 const METADATA = {
-  title: 'Ontimize web ng2 charts webpack',
+  title: 'Ontimize web charts webpack',
   baseUrl: '/',
   isDevServer: false
 };
@@ -27,7 +27,7 @@ module.exports = function (options) {
   return {
 
     entry: {
-      'ontimize-web-ng2-charts': helpers.root('tmp/index.ts')
+      'ontimize-web-ngx-charts': helpers.root('tmp/index.ts')
     },
 
     resolve: {
@@ -45,11 +45,11 @@ module.exports = function (options) {
         }
       },
       {
-        'ontimize-web-ng2': {
-          root: ['ontimize-web-ng2'],
-          commonjs: 'ontimize-web-ng2',
-          commonjs2: 'ontimize-web-ng2',
-          amd: 'ontimize-web-ng2'
+        'ontimize-web-ngx': {
+          root: ['ontimize-web-ngx'],
+          commonjs: 'ontimize-web-ngx',
+          commonjs2: 'ontimize-web-ngx',
+          amd: 'ontimize-web-ngx'
         }
       },
       /^\@angular\//,
