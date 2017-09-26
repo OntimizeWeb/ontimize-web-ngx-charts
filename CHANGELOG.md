@@ -1,3 +1,13 @@
+## 2.0.0
+
+### DEV-DEPENDENCY UPDATES ###
+* **Updated**:  ontimize-web-ng2@2.0.0
+
+### BREAKING CHANGES
+* **OChartModule**: '*ontimize-web-ng2-charts*' is now called '*ontimize-web-ngx-charts*'.
+
+**IMPORTANT: you must update your imports for changing '*ontimize-web-ng2-charts*' for '*ontimize-web-ngx-charts*'. This includes module and components import and '*styles.scss*' reference.
+
 ## 2.0.0-rc.3
 ### Features
 * **ontimize-web-ng2-charts**: '*OChartModule*' is now AoT compatible.
