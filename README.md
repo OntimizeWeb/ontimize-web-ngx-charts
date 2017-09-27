@@ -7,7 +7,7 @@ An implementation of nvD3 and d3 charts library for Ontimize Web.
 
 ## Examples
 
-Check out examples demo <a href="https://ontimizeweb.github.io/ontimize-web-ng2-charts" target="_blank" title="examples demo">
+Check out examples demo <a href="https://ontimizeweb.github.io/ontimize-web-ngx-charts" target="_blank" title="examples demo">
 here</a>
 
 ## Installation
