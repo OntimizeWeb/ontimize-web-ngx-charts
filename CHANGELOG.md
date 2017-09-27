@@ -1,3 +1,8 @@
+## 2.0.1
+
+* **ChartService**: exporting '*ChartService*' ([#8](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/8)) ([51516ab](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/51516ab))
+
+
 ## 2.0.0
 
 ### DEV-DEPENDENCY UPDATES ###
