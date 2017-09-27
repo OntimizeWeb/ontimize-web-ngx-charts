@@ -1,12 +1,6 @@
-// @import 'node_modules/ontimize-web-ng2/ontimize/components/theming/indigo-pink.scss';
-// @import 'node_modules/ontimize-web-ng2/ontimize/components/theming/deeppurple-amber.scss';
-// @import 'node_modules/ontimize-web-ng2/ontimize/components/theming/pink-bluegrey.scss';
-// @import 'node_modules/ontimize-web-ng2/ontimize/components/theming/purple-green.scss';
+@import 'node_modules/ontimize-web-ngx-theming/src/themes/ontimize.scss';
 
-
-@import 'my-custom-app-theme.scss';
-
-@import 'node_modules/ontimize-web-ng2/ontimize/components/theming/all-theme.scss';
+@import 'node_modules/ontimize-web-ngx/ontimize/components/theming/all-theme.scss';
 @include o-material-theme($theme);
 
 @import '../../app/main/main-theme.scss';

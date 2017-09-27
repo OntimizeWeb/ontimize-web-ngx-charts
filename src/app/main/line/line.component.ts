@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild, ElementRef } from '@angular/core';
 
-import { OntimizeService, OTranslateService } from 'ontimize-web-ng2';
-import { OChartComponent, ChartService, Margin } from 'ontimize-web-ng2-charts';
+import { OntimizeService, OTranslateService } from 'ontimize-web-ngx';
+import { OChartComponent, ChartService, Margin } from 'ontimize-web-ngx-charts';
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 
@@ -250,7 +250,7 @@ const BASIC_USAGE_CONF_HTML_DATA = `
 const BASIC_USAGE_CONF_TYPESCRIPT_DATA = `
 import { Component, ViewChild } from '@angular/core';
 
-import { OChartComponent, ChartService, Margin } from 'ontimize-web-ng2-charts';
+import { OChartComponent, ChartService, Margin } from 'ontimize-web-ngx-charts';
 
 declare var d3: any;
 
@@ -320,7 +320,7 @@ const SERIES_HTML_DATA = `
 const SERIES_TYPESCRIPT_DATA = `
 import { Component, OnInit } from '@angular/core';
 
-import { OChartComponent, ChartService } from 'ontimize-web-ng2-charts';
+import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
 
 declare var d3: any;
 

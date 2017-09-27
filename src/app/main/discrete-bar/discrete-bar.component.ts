@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 
-import { OntimizeService, OTranslateService, OFormComponent } from 'ontimize-web-ng2';
-import { OChartComponent } from 'ontimize-web-ng2-charts';
+import { OntimizeService, OTranslateService, OFormComponent } from 'ontimize-web-ngx';
+import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 
@@ -215,7 +215,7 @@ const CUSTOM_DATA_HTML_DATA = `
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component, OnInit, Injector } from '@angular/core';
 
-import { OntimizeService } from 'ontimize-web-ng2';
+import { OntimizeService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'discrete-bar',

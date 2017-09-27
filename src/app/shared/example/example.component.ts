@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewEncapsulation, EventEmitter, OnInit } from '@angular/core';
-import { InputConverter } from 'ontimize-web-ng2';
+import { InputConverter } from 'ontimize-web-ngx';
 
 
 @Component({

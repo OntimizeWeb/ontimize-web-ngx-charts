@@ -5,8 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observer } from 'rxjs/Observer';
 
-import { OTranslateService } from 'ontimize-web-ng2';
-import { OChartComponent } from 'ontimize-web-ng2-charts';
+import { OTranslateService } from 'ontimize-web-ngx';
+import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 
@@ -130,7 +130,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Observer } from 'rxjs/Observer';
 
-import { OChartComponent } from 'ontimize-web-ng2-charts';
+import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'pie',

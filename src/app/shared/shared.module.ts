@@ -6,8 +6,8 @@ import { HighlightComponent } from './highlight/highlight.component';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
-import { OntimizeWebModule } from 'ontimize-web-ng2';
-import { OChartModule } from 'ontimize-web-ng2-charts';
+import { OntimizeWebModule } from 'ontimize-web-ngx';
+import { OChartModule } from 'ontimize-web-ngx-charts';
 
 
 @NgModule({

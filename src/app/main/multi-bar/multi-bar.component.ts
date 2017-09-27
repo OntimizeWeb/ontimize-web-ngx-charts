@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild, ElementRef } from '@angular/core';
 
-import { OntimizeService, OTranslateService } from 'ontimize-web-ng2';
-import { OChartComponent, ChartService } from 'ontimize-web-ng2-charts';
+import { OntimizeService, OTranslateService } from 'ontimize-web-ngx';
+import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 
@@ -204,8 +204,8 @@ const CUSTOM_DATA_HTML_DATA = `
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 
-import { OntimizeService } from 'ontimize-web-ng2';
-import { OChartComponent, ChartService } from 'ontimize-web-ng2-charts';
+import { OntimizeService } from 'ontimize-web-ngx';
+import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'multi-bar',
