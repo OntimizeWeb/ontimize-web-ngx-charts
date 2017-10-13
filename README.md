@@ -1,117 +1,67 @@
 # Ontimize Web Charts
+
 An implementation of nvD3 and d3 charts library for Ontimize Web.
 
+
+* [Github repository](#github)
 * [Examples](#examples)
 * [Installation](#installation)
 * [Usage](#usage)
 
+## Github
+Ontimize Web Charts module is stored in [github](https://github.com/OntimizeWeb/ontimize-web-ngx-charts){:target="_blank"} where you can also see/add todos, bugs or feature requests in the [issues](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues){:target="_blank"} section.
+
 ## Examples
 
-Check out examples demo <a href="https://ontimizeweb.github.io/ontimize-web-ngx-charts" target="_blank" title="examples demo">
-here</a>
+Check out examples demo:
+<div>
+  <a href="https://ontimizeweb.github.io/ontimize-web-ngx-charts" target="_blank" class="btn btn--success">
+    <i class="fa fa-play"></i>
+    live demo
+  </a>
+</div>
+
 
 ## Installation
 
-First you need to install chart module dependencies (d3 and nvD3 libraries):
-```sh
-npm install d3@3.5.6 nvd3@1.8.4 ng2-nvd3@1.1.3 --save
-```
-
-Do not forget to add typings as well
-```sh
-typings install d3 nvd3 --ambient -DA
-````
-
-After that, install the npm chart module:
-```sh
-npm install ontimize-web-ng2-charts --save
+```bash
+  npm install ontimize-web-ngx-charts --save
 ```
 
 ## Usage
 
-Finally, you can use ontimize-web-ng2-charts in your Ontimize Web project.
+Finally, you can use ontimize-web-ngx-charts in your Ontimize Web project.
 
-### Configure third party dependencies and chart module (Angular-cli & SystemeJS)
+### Configure angular-cli.json dependencies
 
-Configure third party dependencies like this:
+You must add the module styles definition in your '*.angular-cli.json*' file styles array:
 
-**system-config.ts**
-```sh
-const cliSystemConfigPackages: any = {
-};
-// ontimize chart module
-cliSystemConfigPackages['ontimize-web-ng2-charts'] = { main: 'index' };
-// third party dependencies
-cliSystemConfigPackages['d3'] = { main: 'd3.min' };
-cliSystemConfigPackages['nvd3'] = { main: 'build/nv.d3.min' };
-cliSystemConfigPackages['ng2-nvd3'] = { main: 'ng2-nvd3' };
-
-// Apply the CLI SystemJS configuration.
-System.config({
-  map: {
-    ...
-
-    'ontimize-web-ng2-charts': 'vendor/ontimize-web-ng2-charts',
-
-    'd3': 'vendor/d3',
-    'nvd3': 'vendor/nvd3',
-    'ng2-nvd3': 'vendor/ng2-nvd3/build/lib',
-    },
-  packages: cliSystemConfigPackages
-});
-
-```
-
-**angular-cli-build.js**
-```sh
-var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
-
-module.exports = function(defaults) {
-  return new Angular2App(defaults, {
-    vendorNpmFiles: [
-      ....
-
-      'ontimize-web-ng2-charts/*.js',
-      'ontimize-web-ng2-charts/src/**/*.js',
-
-      'd3/*min.js',
-      'nvd3/build/*min.js',
-      'ng2-nvd3/build/lib/*.js',
-
-      'ontimize-web-ng2-charts/**/*.(css|scss)',
-      'nvd3/build/*.+(css|css.map)'
-     ]
-  });
-};
-```
-**index.html**
-Do not forget to include CSS style sheets
-
-```sh
-<link rel="stylesheet" type="text/css" href="./vendor/ontimize-web-ng2-charts/styles.scss"/>
-```
-
-**app.module.ts**
-Include the library chart module into your app.
-
-```sh
+```bash
 ...
-import { OChartModule } from 'ontimize-web-ng2-charts';
+"styles": [
+  ...
+  "../node_modules/ontimize-web-ngx-charts/styles.scss",
+  ....
+],
+...
+```
+
+### Import in an application module
+
+Include the library chart module into your app in the module where you want to use it.
+
+```bash
+...
+import { OChartModule } from 'ontimize-web-ngx-charts';
 ...
 
 @NgModule({
-  imports: [ ONTIMIZE_MODULES, routing, OChartModule],
-  declarations: [
-    AppComponent,
-    ONTIMIZE_DIRECTIVES,
-    ...APP_DIRECTIVES
+  imports: [
+    OChartModule,
+    /* other imports */
   ],
-  bootstrap: [ AppComponent ],
-  providers: [
-    ...standardProviders,
-    ...customProviders
-  ]
+  declarations: ...
+  providers: ...
 })
-export class AppModule { }
-
+export class ExampleModule { }
 ```
