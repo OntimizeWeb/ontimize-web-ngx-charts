@@ -8,13 +8,14 @@ import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { OChartModule } from 'ontimize-web-ngx-charts';
-
+import { CustomChartComponent, CustomChartComponentModule } from './chart/custom.chart.component';
 
 @NgModule({
   imports: [
     OntimizeWebModule,
     HighlightJsModule,
-    OChartModule
+    OChartModule,
+    CustomChartComponentModule
   ],
   declarations: [
     ExampleComponent,
@@ -24,7 +25,8 @@ import { OChartModule } from 'ontimize-web-ngx-charts';
     OntimizeWebModule,
     ExampleComponent,
     HighlightComponent,
-    OChartModule
+    OChartModule,
+    CustomChartComponentModule
   ],
   providers: [
     HighlightJsService,
