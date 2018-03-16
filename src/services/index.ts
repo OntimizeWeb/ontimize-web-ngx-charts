@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { ChartService } from './chart.service';
 
 export * from './chart.service';
@@ -9,7 +9,7 @@ export function getChartServiceProvider() {
 }
 
 export const OCHART_PROVIDERS: any = [
-  MdIconRegistry,
+  MatIconRegistry,
   {
     provide: ChartService,
     useFactory: getChartServiceProvider,
