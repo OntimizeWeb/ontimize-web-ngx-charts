@@ -1,11 +1,11 @@
 import { Injector } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
-import { ChartService } from './chart.service';
+import { ChartService } from './services/chart.service';
 
-export * from './chart.service';
+export * from './services/chart.service';
 
 export function getChartServiceProvider() {
-    return new ChartService();
+  return new ChartService();
 }
 
 export const OCHART_PROVIDERS: any = [

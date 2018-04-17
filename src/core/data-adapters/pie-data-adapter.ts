@@ -22,7 +22,7 @@ export class PieDataAdapter implements ChartDataAdapter {
     let result: Array<ChartPoint> = [];
     if (data && data.length) {
       var self = this;
-      data.forEach((item: any, index: number) => {
+      data.forEach((item: any, _index: number) => {
         let x = item[self.xAxis];
         if(self.chartConf.translateService) {
           x = self.chartConf.translateService.get(x);

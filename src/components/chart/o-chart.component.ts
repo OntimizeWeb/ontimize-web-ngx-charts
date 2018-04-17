@@ -71,6 +71,7 @@ const DEFAULT_INPUTS = [
   selector: 'o-chart',
   providers: [
     MatIconRegistry,
+    OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: [
@@ -178,7 +179,7 @@ export class OChartComponent implements OnInit {
     }
   }
 
-  get options() : any{
+  get options(): any {
     return this._options;
   }
 
@@ -244,7 +245,7 @@ export class OChartComponent implements OnInit {
   }
 
   getDataArray(): any {
-      return this.dataArray;
+    return this.dataArray;
   }
 
   protected setDataArray(data: any): void {
