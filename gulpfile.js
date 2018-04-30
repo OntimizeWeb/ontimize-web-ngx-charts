@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const sass = require('node-sass');
 const inlineTemplates = require('gulp-inline-ng2-template');
 const exec = require('child_process').exec;
-const htmlMinifier = require("html-minifier");/*!!!!*/
 const copyfiles = require('copyfiles');
 const cssimport = require("gulp-cssimport");
 const replace = require('gulp-replace');
@@ -14,7 +13,7 @@ const SCSS_CONF = {
   DIST: './dist'
 };
 
-gulp.task('charts.styles', (callback) => {
+gulp.task('styles', (callback) => {
   return gulp.src(SCSS_CONF.SRC)
   .pipe(cssimport({}))
     .pipe(gulp.dest(SCSS_CONF.DIST));

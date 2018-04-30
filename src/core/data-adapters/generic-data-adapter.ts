@@ -25,7 +25,7 @@ export class GenericDataAdapter implements ChartDataAdapter {
     if (data && data.length) {
       let seriesvalues = this.processSeriesValues(data);
       var self = this;
-      this.yAxis.forEach((axis: string, index: number) => {
+      this.yAxis.forEach((axis: string, _index: number) => {
         let serie: ChartSeries = {
           'key': 'series',
           'values': []
@@ -46,9 +46,9 @@ export class GenericDataAdapter implements ChartDataAdapter {
   processSeriesValues(data: Array<Object>): Object {
     let seriesvalues = {};
     var self = this;
-    data.forEach((item: any, index: number) => {
+    data.forEach((item: any, _index: number) => {
 
-      self.yAxis.forEach((axis: string, axisIndex: number) => {
+      self.yAxis.forEach((axis: string, _axisIndex: number) => {
         if (seriesvalues[axis] === undefined) {
           seriesvalues[axis] = [];
         }

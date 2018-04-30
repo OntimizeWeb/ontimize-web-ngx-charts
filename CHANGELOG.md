@@ -1,3 +1,14 @@
+## 3.0.0-rc.0 (2018-04-30)
+
+### PEER-DEPENDENCY UPDATES ###
+* **Updated**:  core-js@2.5.3
+* **Updated**:  rxjs@5.5.6
+* **Updated**:  zone.js@0.8.20
+* **Updated**:  lodash@4.17.4
+
+### Features
+* **OChartModule**: updating library for usign '*ontimize-web-ngx@3.0.0*', including update to Angular 5 and Angular Material 5 ([a462da9](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a462da9)) ([26dfd3d](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/26dfd3d))
+
 ## 2.0.1
 ### Bug Fixes
 * **ChartService**: exporting '*ChartService*' ([#8](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/8)) ([51516ab](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/51516ab))

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MdIconRegistry, MdIconModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule } from '@angular/material';
 import {
   OntimizeService,
   dataServiceFactory,
@@ -70,7 +70,8 @@ const DEFAULT_INPUTS = [
 @Component({
   selector: 'o-chart',
   providers: [
-    MdIconRegistry,
+    MatIconRegistry,
+    OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: [
@@ -178,7 +179,7 @@ export class OChartComponent implements OnInit {
     }
   }
 
-  get options() : any{
+  get options(): any {
     return this._options;
   }
 
@@ -244,7 +245,7 @@ export class OChartComponent implements OnInit {
   }
 
   getDataArray(): any {
-      return this.dataArray;
+    return this.dataArray;
   }
 
   protected setDataArray(data: any): void {
@@ -320,7 +321,7 @@ export class OChartComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [CommonModule, NvD3Module, CommonModule, MdIconModule],
+  imports: [CommonModule, NvD3Module, CommonModule, MatIconModule],
   declarations: [OChartComponent],
   exports: [OChartComponent]
 })
