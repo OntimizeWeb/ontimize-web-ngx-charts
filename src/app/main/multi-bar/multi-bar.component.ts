@@ -19,7 +19,7 @@ export class MultiBarComponent implements OnInit {
   protected yAxis: string = 'MOVEMENT';
   protected xAxis: string = 'DATE_';
 
-  protected data: Array<Object>;
+  data: Array<Object>;
   protected serviceResponse: string;
 
   constructor(protected injector: Injector,

@@ -15,7 +15,7 @@ export class DiscreteBarComponent implements OnInit {
   @ViewChild('oForm')
   protected oForm: OFormComponent;
 
-  protected data: Array<Object>;
+  data: Array<Object>;
 
   protected serviceResponse: string;
 

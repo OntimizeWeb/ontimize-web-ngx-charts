@@ -21,7 +21,7 @@ export class PieComponent implements OnInit {
   @ViewChild('pieChart')
   protected pieChart: OChartComponent;
 
-  protected data: Array<Object>;
+  data: Array<Object>;
   protected serviceResponse: string;
 
 

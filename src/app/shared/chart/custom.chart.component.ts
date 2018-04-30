@@ -1,5 +1,5 @@
 import { Injector, forwardRef, ElementRef, OnInit, Optional, Inject, Component, NgModule } from '@angular/core';
-import { MdIconRegistry, MdIconModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { OComponent, OFormComponent, OntimizeService, dataServiceFactory } from 'ontimize-web-ngx';
 
@@ -25,7 +25,7 @@ import { CustomChartFactory } from './custom.chart.factory';
 @Component({
   selector: 'custom-chart',
   providers: [
-    MdIconRegistry,
+    MatIconRegistry,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] },
     { provide: OChartComponent, useExisting: forwardRef(() => CustomChartComponent) }
   ],
@@ -59,7 +59,7 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [CommonModule, NvD3Module, CommonModule, MdIconModule],
+  imports: [CommonModule, NvD3Module, CommonModule, MatIconModule],
   declarations: [CustomChartComponent],
   exports: [CustomChartComponent]
 })

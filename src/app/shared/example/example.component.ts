@@ -24,8 +24,8 @@ import { InputConverter } from 'ontimize-web-ngx';
 export class ExampleComponent implements OnInit {
 
   public showSource = false;
-  protected compName = '';
-  protected orderedFiles: Array<string>;
+  compName = '';
+  orderedFiles: Array<string>;
   @InputConverter()
   collapsible: boolean = false;
   @InputConverter()

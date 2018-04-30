@@ -20,6 +20,8 @@ import {
 export class HighlightComponent implements OnInit, OnDestroy {
 
   protected clipboard: any;
+  templateContent: any;
+  templateType: any;
 
   constructor(protected elRef: ElementRef) {
   }
