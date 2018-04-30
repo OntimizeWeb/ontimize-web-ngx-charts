@@ -4,8 +4,6 @@
   "description": "An implementation of nvD3 for Ontimize Web Ng2",
   "scripts": {
     "preinstall": "npm config set package-lock false",
-    "xxx": "rimraf node_modules/ontimize-web-ngx* && npm install",
-    "pack": "npm run build && cd dist && npm pack && cd ..",
     "clean": "o-ngx-lib-builder clean",
     "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
@@ -23,8 +21,10 @@
     "url": "git@github.com:OntimizeWebf/ontimize-web-ngx-charts.git"
   },
   "license": "Apache-2.0",
-  "main": "./index.js",
+  "main": "./bundles/ontimize-web-ngx-charts.umd.js",
+  "metadata": "./index.metadata.json",
   "module": "./index.js",
+  "es2015": "./esm2015/ontimize-web-ngx-charts.js",
   "typings": "./index.d.ts",
   "dependencies": {
     "d3": "^3.5.6",
@@ -37,8 +37,8 @@
     "zone.js": "0.8.20"
   },
   "devDependencies": {
-    "ontimize-web-ngx": "file:C:\\workspace\\github\\ontimize-web-ng2-VERSIONS\\3.0.0-rc.0\\ontimize-web-ngx\\dist\\ontimize-web-ngx-3.0.0-rc.0.tgz",
-    "ontimize-web-ngx-library-tools": "file:C:\\workspace\\github\\TOOLS\\ontimize-web-ngx-library-tools\\ontimize-web-ngx-library-tools-1.0.0.tgz",
+    "ontimize-web-ngx": "3.0.0-rc.0",
+    "ontimize-web-ngx-library-tools": "1.0.0",
     "@angular/flex-layout": "5.0.0-beta.13",
     "@angular/material": "5.2.4",
     "@angular/material-moment-adapter": "5.2.4",
