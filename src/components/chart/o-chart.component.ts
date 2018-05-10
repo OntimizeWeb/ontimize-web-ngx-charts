@@ -59,6 +59,8 @@ const DEFAULT_INPUTS = [
   // x-axis-type [string][int | float | time ]. Default 'int'
   'xAxisDataType: x-data-type',
   'yAxisDataType: y-data-type',
+  'xAxisDataFormat: x-data-format',
+  'yAxisDataFormat: y-data-format',
   'data',
   'entity',
   'service',
@@ -91,6 +93,8 @@ export class OChartComponent implements OnInit {
   protected yAxisLabel: string;
   protected xAxisDataType: string;
   protected yAxisDataType: string;
+  protected xAxisDataFormat: string;
+  protected yAxisDataFormat: string;
   protected entity: string;
   protected service: string;
   protected columns: string;
@@ -198,7 +202,9 @@ export class OChartComponent implements OnInit {
     chartConf.yLabel = this.yAxisLabel;
 
     chartConf.xDataType = this.xAxisDataType;
+    chartConf.xDataFormat = this.xAxisDataFormat;
     chartConf.yDataType = this.yAxisDataType;
+    chartConf.yDataFormat = this.yAxisDataFormat;
 
     chartConf.xAxis = this.xAxis;
     chartConf.yAxis = this.yAxisArray;

@@ -9,7 +9,9 @@ export class ChartConfiguration {
   public yLabel: string;
 
   public xDataType: string;
+  public xDataFormat: string;
   public yDataType: string;
+  public yDataFormat: string;
 
   public xAxis: string;
   public yAxis: Array<string>;
