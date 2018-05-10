@@ -1,3 +1,10 @@
+## 2.0.3
+### Features
+* **o-chart**: new '*x-data-format*' and '*y-data-format*' inputs ([#14](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/14)) ([06560cc](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/06560cc))
+  * Its values depends on '*x-data-type*' and '*y-data-type*' inputs.
+    * 'time': formats specified in https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md. Default: '%x'
+    * 'float': any float format. Default: '.02f'
+
 ## 2.0.1
 ### Bug Fixes
 * **ChartService**: exporting '*ChartService*' ([#8](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/8)) ([51516ab](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/51516ab))
