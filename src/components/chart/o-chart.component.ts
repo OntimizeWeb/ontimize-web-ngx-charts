@@ -10,6 +10,7 @@ import { ChartService } from '../../services/chart.service';
 import { ChartConfiguration } from '../../core/ChartConfiguration.class';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
+import { isUndefined } from 'util';
 
 export const CHART_TYPES = [
   'line',
@@ -250,22 +251,24 @@ export class OChartComponent implements OnInit {
     this.queryData(filter);
   }
 
-  queryData(filter: Object = {}) {
+  queryData(filter: Object = {}, ovrrArgs?: any) {
     var self = this;
     if (this.dataService === undefined) {
       console.warn('No service configured! aborting query');
       return;
     }
-    this.dataService.query(filter, this.columnsArray, this.entity)
-      .subscribe(resp => {
-        if (resp.code === 0) {
-          self.onQueryResponse(resp);
-        } else {
-          console.log('error');
-        }
-      }, err => {
-        console.log(err);
-      });
+
+    let sqltypes = undefined;
+    if (Util.isDefined(ovrrArgs)) {
+      sqltypes = ovrrArgs.sqltypes;
+    }
+    this.dataService.query(filter, this.columnsArray, this.entity, sqltypes).subscribe(resp => {
+      if (resp.code === 0) {
+        self.onQueryResponse(resp);
+      } else {
+        console.log('error');
+      }
+    }, err => console.log(err));
   }
 
   protected onQueryResponse(resp: Object) {
