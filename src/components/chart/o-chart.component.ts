@@ -1,36 +1,15 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  Injector,
-  Inject,
-  forwardRef,
-  EventEmitter,
-  ViewChild,
-  Optional,
-  NgModule
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import {
-  OntimizeService,
-  dataServiceFactory,
-  OTranslateService,
-  OFormComponent,
-  InputConverter,
-  Util
-} from 'ontimize-web-ngx';
-
 import { nvD3, NvD3Module } from 'ng2-nvd3';
 import 'd3';
 import 'nvd3';
+import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util } from 'ontimize-web-ngx';
 
 import { OChartFactory } from './o-chart.factory';
-import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
-import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 import { ChartService } from '../../services/chart.service';
 import { ChartConfiguration } from '../../core/ChartConfiguration.class';
-
+import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
+import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 
 export const CHART_TYPES = [
   'line',
@@ -63,7 +42,8 @@ const DEFAULT_INPUTS = [
   'service',
   'columns',
   'parentKeys: parent-keys',
-  'queryOnInit: query-on-init'
+  'queryOnInit: query-on-init',
+  'queryOnBind: query-on-bind'
 ];
 
 @Component({
@@ -79,6 +59,7 @@ const DEFAULT_INPUTS = [
   styleUrls: ['./o-chart.component.scss']
 })
 export class OChartComponent implements OnInit {
+
   public static DEFAULT_INPUTS = DEFAULT_INPUTS;
   public static CHART_TYPES = CHART_TYPES;
 
@@ -94,12 +75,12 @@ export class OChartComponent implements OnInit {
   protected service: string;
   protected columns: string;
   protected parentKeys: string;
-
   @InputConverter()
   protected cHeight: number = -1;
-
   @InputConverter()
   protected queryOnInit: boolean = true;
+  @InputConverter()
+  protected queryOnBind: boolean = false;
 
   protected _options: any;
   protected dataArray: Object[] = [];
@@ -120,14 +101,13 @@ export class OChartComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector) {
-
+    protected injector: Injector
+  ) {
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
   }
 
   ngOnInit() {
-
     this.yAxisArray = Util.parseArray(this.yAxis);
 
     let pkArray = Util.parseArray(this.parentKeys);
@@ -145,7 +125,7 @@ export class OChartComponent implements OnInit {
       }
     }
 
-    if (this.form) {
+    if (this.form && this.queryOnBind) {
       var self = this;
       this.formDataSubcribe = this.form.onFormDataLoaded.subscribe(data => {
         self.onFormDataBind(data);
@@ -155,7 +135,6 @@ export class OChartComponent implements OnInit {
     this.configureChart();
     this.bindChartEvents();
     this.configureService();
-
   }
 
   ngAfterViewInit(): void {
@@ -310,18 +289,17 @@ export class OChartComponent implements OnInit {
         self.clickEvtEmitter.emit(evt);
       });
     }
-
   }
 
   onClickEvent(onNext: (value: any) => void): Object {
     return this.clickEvtEmitter.subscribe(onNext);
   }
+
 }
 
 @NgModule({
-  imports: [CommonModule, NvD3Module, CommonModule],
+  imports: [CommonModule, NvD3Module],
   declarations: [OChartComponent],
   exports: [OChartComponent]
 })
-export class OChartComponentModule {
-}
+export class OChartComponentModule { }
