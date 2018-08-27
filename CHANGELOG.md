@@ -1,3 +1,7 @@
+## 3.0.0-rc.2
+### Features
+* **o-chart**: New `query-on-bind` attribute ([505bf7c](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/505bf7c))
+
 ## 3.0.0-rc.1 (2018-07-02)
 ### Bug Fixes
 * **ontimize-web-ngx**: fixing bugs for updating to '*ontimize-web-ngx@3.0.0-rc.1*'
