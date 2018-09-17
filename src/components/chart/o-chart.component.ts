@@ -128,7 +128,7 @@ export class OChartComponent implements OnInit {
 
     if (this.form && this.queryOnBind) {
       var self = this;
-      this.formDataSubcribe = this.form.onFormDataLoaded.subscribe(data => {
+      this.formDataSubcribe = this.form.onDataLoaded.subscribe(data => {
         self.onFormDataBind(data);
       });
     }
