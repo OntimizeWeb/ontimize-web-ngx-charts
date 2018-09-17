@@ -1,3 +1,10 @@
+PEER-DEPENDENCY UPDATES
+## 3.1.0 (2018-09-17)
+### PEER-DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@3.1.0
+### Bug Fixes
+* **ontimize-web-ngx**: fixing bugs for updating to 'ontimize-web-ngx@3.1.0'
+
 ## 3.0.0 (2018-09-14)
 ### Features
 * **o-chart**: New `query-on-bind` attribute ([505bf7c](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/505bf7c))
