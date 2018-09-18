@@ -1,4 +1,7 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
+import { ChartConfiguration } from '../ChartConfiguration.class';
+import { PieChartConfiguration } from './PieChartConfiguration.class';
+import { MultiBarChartConfiguration } from './MultiBarChartConfiguration.class';
+import { LineChartConfiguration } from './LineChartConfiguration.class';
 
 declare var d3: any;
 
@@ -27,7 +30,17 @@ export class AbstractChartOptions {
 
   public getOptions(): Object {
     let opts = {
-      chart: this.getChartOptions()
+      chart: this.getChartOptions(),
+      title: {
+          enable: true,
+          text: "Title",
+          className: "h4"
+      },
+      caption : {
+        enable: true,
+        text: "prueba",
+        html: "<b>prueba</b>"
+      }
     };
     return opts;
   }
@@ -71,6 +84,10 @@ export class AbstractChartOptions {
     return function (d) { return d.y; };
   }
 
+  protected isArea(): any {
+    return function (d) { return d.area; };
+  }
+
   protected getXAxisConfiguration(): Object {
     let xAxis = {
       axisLabel: this.chartConf.xLabel ? this.chartConf.xLabel : ''
@@ -105,7 +122,30 @@ export class AbstractChartOptions {
         };
         break;
     }
+
     return formatter;
+  }
+
+  protected selectTickFormatter(type: string, scale: any) {
+    if (scale) {
+      switch (type) {
+        case 'int':
+          scale = function (d) {
+            return d3.format('d')(d);
+          };
+          break;
+        case 'float':
+          scale = function (d) {
+            return d3.format('.02f')(d);
+          };
+          break;
+        case 'time':
+          scale = function (d) {
+            return d3.time.format('%x')(new Date(d));
+          };
+          break;
+      }
+    }
   }
 
 }
