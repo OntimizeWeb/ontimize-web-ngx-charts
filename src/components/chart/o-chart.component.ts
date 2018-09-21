@@ -111,10 +111,16 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   ngOnInit() {
     super.initialize();
-
+ 
     this.yAxisArray = Util.parseArray(this.yAxis);
     if(Util.isDefined(this.state['type'])){
       this.type = this.state['type'];
+    }
+    if (this.form && this.queryOnBind) {
+      var self = this;
+      this.formDataSubcribe = this.form.onDataLoaded.subscribe(data => {
+        self.onFormDataBind(data);
+      });
     }
     this.configureChart();
     this.bindChartEvents();
