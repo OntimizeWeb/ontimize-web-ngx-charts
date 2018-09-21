@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { LineChartConfiguration } from './LineChartConfiguration.class';
 
 declare var d3: any;
@@ -22,13 +22,11 @@ export class LineChartOptions extends AbstractChartOptions {
       params = new LineChartConfiguration();
     }
     if (params.xDataType) {
-      this.selectTickFormatter(params.xDataType, params.xScale);
+      params.xAxis1.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
     }
     if (params.yDataType) {
-      this.selectTickFormatter(params.yDataType, params.yScale);
+      params.yAxis1.tickFormat = this.getTickFormatter(this.chartConf.yDataType);
     }
-    params.xAxis1.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
-    params.yAxis1.tickFormat = this.getTickFormatter(this.chartConf.yDataType);
     let chart = {
       type: this.getChartType(),
       x: this.getXValue(),
@@ -36,23 +34,20 @@ export class LineChartOptions extends AbstractChartOptions {
       xAxis: params.xAxis1.getAxisOptions(),
       yAxis: params.yAxis1.getAxisOptions(),
       height: this.getChartHeight(),
-      margin: this.getChartMargins(),
+      margin: params.margin.getMarginOptions(),
       duration: params.duration,
       legend: params.legend,
       legendPosition: params.legendPosition,
       showLegend: params.showLegend,
       showXAxis: params.showXAxis,
+      interactive: params.interactive,
       isArea: this.isArea(),
       showYAxis: params.showYAxis,
       focusEnable: params.focusEnable,
       focusShowAxisX: params.focusShowAxisX,
       focusShowAxisY: params.focusShowAxisY,
       rightAlignYAxis: params.rightAlignYAxis,
-      useInteractiveGuideLine: params.useInteractiveGuideLine,
-      xScale: params.xScale,
-      xDomain: null,
-      yScale: params.yScale,
-      yDomain: null
+      useInteractiveGuideline: params.useInteractiveGuideline,
     };
     return chart;
   }

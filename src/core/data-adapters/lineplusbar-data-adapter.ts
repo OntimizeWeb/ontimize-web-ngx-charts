@@ -1,7 +1,9 @@
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartSeries } from '../../interfaces/ChartData.interface';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartSeries, ChartPoint } from '../../interfaces/ChartData.interface';
+import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
 import { LinePlusBarFocusChartConfiguration } from '../chart-options/LinePlusBarFocusChartConfiguration.class';
+
+declare var d3: any;
 
 export class LinePlusBarDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
@@ -38,7 +40,13 @@ export class LinePlusBarDataAdapter implements ChartDataAdapter {
           key = self.chartConf.translateService.get(key);
         }
         serie['key'] = key;
-        serie['values'] = seriesvalues[axis];
+        if ((this.chartConf as LinePlusBarFocusChartConfiguration).to_zero && (this.chartConf as LinePlusBarFocusChartConfiguration).to_zero[_index]) {
+          serie['values'] = this.beautyResult(seriesvalues[axis], true);
+        } else if ((this.chartConf as LinePlusBarFocusChartConfiguration).to_previusValue && (this.chartConf as LinePlusBarFocusChartConfiguration).to_previusValue[_index]) {
+          serie['values'] = this.beautyResult(seriesvalues[axis], false);
+        } else {
+          serie['values'] = seriesvalues[axis];
+        }
 
         result.push(serie);
       });
@@ -63,5 +71,24 @@ export class LinePlusBarDataAdapter implements ChartDataAdapter {
       });
     });
     return seriesvalues;
+  }
+
+  //Function to create equispaced point in the chart
+  beautyResult(data: Array<any>, zeros: boolean): ChartPoint[] {
+    let values = [];
+    let day = 24 * 60 * 60 * 1000, previusPoint = data[0]['x'], previusValue = 0;
+    data.forEach((element) => {
+      while ((element['x'] - previusPoint) > day) {
+        previusPoint += day;
+        if (zeros)
+          values.push({ x: previusPoint, y: 0 });
+        else
+          values.push({ x: previusPoint, y: previusValue });
+      }
+      values.push(element);
+      previusPoint = element['x'];
+      previusValue = element['y'];
+    });
+    return values;
   }
 }

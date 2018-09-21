@@ -1,16 +1,8 @@
-import { ChartConfiguration } from '../ChartConfiguration.class';
-import { PieChartConfiguration } from './PieChartConfiguration.class';
-import { MultiBarChartConfiguration } from './MultiBarChartConfiguration.class';
-import { LineChartConfiguration } from './LineChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 
 declare var d3: any;
 
 export class AbstractChartOptions {
-
-  public static DEFAULT_TOP_MARGIN: number = 20;
-  public static DEFAULT_BOTTOM_MARGIN: number = 40;
-  public static DEFAULT_RIGHT_MARGIN: number = 40;
-  public static DEFAULT_LEFT_MARGIN: number = 60;
 
   protected chartConf: ChartConfiguration;
   protected type: string;
@@ -31,16 +23,6 @@ export class AbstractChartOptions {
   public getOptions(): Object {
     let opts = {
       chart: this.getChartOptions(),
-      title: {
-        enable: true,
-        text: 'Title',
-        className: 'h4'
-      },
-      caption: {
-        enable: true,
-        text: 'prueba',
-        html: '<b>prueba</b>'
-      }
     };
     return opts;
   }
@@ -49,7 +31,6 @@ export class AbstractChartOptions {
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      margin: this.getChartMargins(),
       x: this.getXValue(),
       y: this.getYValue(),
       xAxis: this.getXAxisConfiguration(),
@@ -64,16 +45,6 @@ export class AbstractChartOptions {
 
   protected getChartHeight(): number {
     return this.chartConf.height ? this.chartConf.height : 450;
-  }
-
-  protected getChartMargins() {
-    let margins = {
-      top: AbstractChartOptions.DEFAULT_TOP_MARGIN,
-      right: AbstractChartOptions.DEFAULT_RIGHT_MARGIN,
-      bottom: AbstractChartOptions.DEFAULT_BOTTOM_MARGIN,
-      left: AbstractChartOptions.DEFAULT_LEFT_MARGIN,
-    };
-    return margins;
   }
 
   protected getXValue(): any {
@@ -125,27 +96,4 @@ export class AbstractChartOptions {
 
     return formatter;
   }
-
-  protected selectTickFormatter(type: string, scale: any)  {
-    if (scale) {
-      switch (type) {
-        case 'int':
-          scale = function (d) {
-            return d3.format('d')(d);
-          };
-          break;
-        case 'float':
-          scale = function (d) {
-            return d3.format('.02f')(d);
-          };
-          break;
-        case 'time':
-          scale = function (d) {
-            return d3.time.format('%x')(new Date(d));
-          };
-          break;
-      }
-    }
-  }
-
 }

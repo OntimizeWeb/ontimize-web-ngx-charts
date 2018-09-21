@@ -7,33 +7,35 @@ import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OT
 
 import { OChartFactory } from './o-chart.factory';
 import { ChartService } from '../../services/chart.service';
-import { ChartConfiguration } from '../../core/ChartConfiguration.class';
+import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.class';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
-import { LineChartConfiguration } from '../../core/chart-options/LineChartConfiguration.class';
-import { PieChartConfiguration } from '../../core/chart-options/PieChartConfiguration.class';
-import { DonutChartConfiguration } from '../../core/chart-options/DonutChartConfiguration.class';
-import { DiscreteBarChartConfiguration } from '../../core/chart-options/DiscreteBarChartConfiguration.class';
-import { MultiBarChartConfiguration } from '../../core/chart-options/MultiBarChartConfiguration.class';
-// import { MultiBarDataAdapter } from '../../core/data-adapters/multibar-data-adapter';
-import { MultiBarHorizontalChartConfiguration } from '../../core/chart-options/MultiBarHorizontalChartConfiguration.class';
-import { ScatterChartConfiguration } from '../../core/chart-options/ScatterChartConfiguration.class';
-import { ScatterDataAdapter } from '../../core/data-adapters/scatter-data-adapter';
-// import { MultiBarHorizontalDataAdapter } from '../../core/data-adapters/multibar-horizontal-data-adapter';
-
+import {
+  PieChartConfiguration,
+  LineChartConfiguration,
+  ScatterChartConfiguration,
+  MultiBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration,
+  DonutChartConfiguration,
+  DiscreteBarChartConfiguration
+} from './../../core';
+import { LinePlusBarFocusChartConfiguration } from '../../core/chart-options/LinePlusBarFocusChartConfiguration.class';
+import { ForceDirectedGraphConfiguration } from '../../core/chart-options/ForceDirectedGraphConfiguration.class';
+import { CandlestickChartConfiguration } from '../../core/chart-options/CandlestickChartConfiguration.class';
+import { OHLCChartConfiguration } from '../../core/chart-options/OHLCChartConfiguration.class';
 export const CHART_TYPES = [
   'line',
   'discreteBar',
   'pie',
   'multiBar',
   'scatterChart',
-  // 'candlestickBarChart',
-  // 'ohlcBarChart',
-  // 'boxPlotChart',
+  'candlestickBarChart',
+  'ohlcBarChart',
+  'boxPlotChart',
   'donutChart',
   'multiBarHorizontalChart',
   'linePlusBarWithFocusChart',
-  // 'forceDirectedGraph'
+  'forceDirectedGraph'
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
@@ -99,7 +101,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
   protected translateService: OTranslateService;
-
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
@@ -111,6 +112,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.type === 'forceDirectedGraph') {
+      this.configureChart();
+      this.setData(null);
+      return;
+    }
     super.initialize();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
@@ -156,7 +162,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartConfiguration(): ChartConfiguration {
-    //let chartConf = new ChartConfiguration();
     let chartConf;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
@@ -183,6 +188,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'scatterChart':
           chartConf = new ScatterChartConfiguration();
           break;
+        case 'linePlusBarWithFocusChart':
+          chartConf = new LinePlusBarFocusChartConfiguration();
+          break;
+        case 'forceDirectedGraph':
+          chartConf = new ForceDirectedGraphConfiguration();
+          break;
+        case 'candlestickBarChart':
+          chartConf = new CandlestickChartConfiguration();
+          break;
+        case 'ohlcBarChart':
+          chartConf = new OHLCChartConfiguration();
+          break;
         default:
           chartConf = new ChartConfiguration();
       }
@@ -206,6 +223,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     chartConf.yAxis = this.yAxisArray;
 
     chartConf.translateService = this.translateService;
+
+    chartConf.data = this.dataArray;
 
     return chartConf;
   }
@@ -250,10 +269,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let adapter: ChartDataAdapter = factory.getAdapter(this.type);
     let adaptedResult = adapter.adaptResult(data);
     this.setDataArray(adaptedResult);
-    if (this.type === 'scatterChart') {
-      this.setDataArray((adapter as ScatterDataAdapter).createDefaultValues());
-      this.data = (adapter as ScatterDataAdapter).createDefaultValues();
-    }
+    this.configureChart();
   }
 
   getAttributesValuesToQuery(): Array<string> {

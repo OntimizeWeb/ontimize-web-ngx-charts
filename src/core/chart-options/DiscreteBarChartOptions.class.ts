@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { DiscreteBarChartConfiguration } from './DiscreteBarChartConfiguration.class';
 
 declare var d3: any;
@@ -17,10 +17,10 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
   protected getChartOptions(): Object {
     let params = this.chartConf as DiscreteBarChartConfiguration;
     if (params.xDataType) {
-      this.selectTickFormatter(params.xDataType, params.xScale);
+      params.xAxis1.tickFormat = this.getTickFormatter(params.xDataType);
     }
     if (params.yDataType) {
-      this.selectTickFormatter(params.yDataType, params.yScale);
+      params.yAxis1.tickFormat = this.getTickFormatter(params.yDataType);
     }
     if (params.xLabel) {
       params.xAxis1.axisLabel = params.xLabel;
@@ -28,14 +28,12 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
     if (params.yLabel) {
       params.yAxis1.axisLabel = params.yLabel;
     }
-    params.xAxis1.tickFormat = this.getTickFormatter(params.xDataType);
-    params.yAxis1.tickFormat = this.getTickFormatter(params.yDataType);
 
     let options = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: params.width,
-      margin: this.getChartMargins(),
+      margin: params.margin.getMarginOptions(),
       x: this.getXValue(),
       y: this.getYValue(),
       duration: params.duration,
@@ -49,12 +47,11 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
       rightAlignYAxis: params.rightAlingYAxis,
       legend: params.legend.getLegendOptions(),
       xAxis: params.xAxis1.getAxisOptions(),
-      yAxis: params.yAxis1.getAxisOptions(),
-      xScale: params.xScale,
-      yScale: params.yScale
+      yAxis: params.yAxis1.getAxisOptions()
     };
     return options;
   }
+
 
   protected getXAxisConfiguration(): Object {
     let xAxis = super.getXAxisConfiguration();

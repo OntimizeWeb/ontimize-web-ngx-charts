@@ -11,8 +11,9 @@ import {
 import { ChartFactory } from '../../interfaces';
 import { DonutChartOptions } from '../../core/chart-options/DonutChartOptions.class';
 import { LinePlusBarFocusChartOptions } from '../../core/chart-options/LinePlusBarFocusChartOptions.class';
-
-
+import { ForceDirectedGraphOptions } from '../../core/chart-options/ForceDirectedGraphOptions.class';
+import { CandlestickChartOptions } from '../../core/chart-options/CandlestickChartOptions.class';
+import { OHLCChartOptions } from '../../core/chart-options/OHLCChartOptions.class';
 
 export class OChartFactory implements ChartFactory {
 
@@ -45,14 +46,23 @@ export class OChartFactory implements ChartFactory {
       case 'donutChart':
         chartOpts = this.createDonutChartOptions(chartConf);
         break;
-      case 'linePlusBarFocusChart':
+      case 'linePlusBarWithFocusChart':
         chartOpts = this.createLinePlusBarOptions(chartConf);
+        break;
+      case 'forceDirectedGraph':
+        chartOpts = this.createForceDirectedGraph(chartConf);
+        break;
+      case 'candlestickBarChart':
+        chartOpts = this.createCandlestickBarChart(chartConf);
+        break;
+      case 'ohlcBarChart':
+        chartOpts = this.createOhlcBarChart(chartConf);
         break;
     }
     return chartOpts;
   }
 
-  public createLineChartOptions(chartConf: ChartConfiguration, ): any {
+  public createLineChartOptions(chartConf: ChartConfiguration): any {
     let lineChartOpts = new LineChartOptions(chartConf);
     return lineChartOpts.getOptions();
   }
@@ -89,6 +99,21 @@ export class OChartFactory implements ChartFactory {
 
   public createLinePlusBarOptions(chartConf: ChartConfiguration): any {
     let linePlusBarOptions = new LinePlusBarFocusChartOptions(chartConf);
-    return linePlusBarOptions;
+    return linePlusBarOptions.getOptions();
+  }
+
+  public createForceDirectedGraph(chartConf: ChartConfiguration): any {
+    let directedGraphOptions = new ForceDirectedGraphOptions(chartConf);
+    return directedGraphOptions.getOptions();
+  }
+
+  public createCandlestickBarChart(chartConf: ChartConfiguration): any {
+    let candlestickOptions = new CandlestickChartOptions(chartConf);
+    return candlestickOptions.getOptions();
+  }
+
+  public createOhlcBarChart(chartConf: ChartConfiguration): any {
+    let ohlcOptions = new OHLCChartOptions(chartConf);
+    return ohlcOptions.getOptions();
   }
 }

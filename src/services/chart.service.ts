@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { nvD3 } from 'ng2-nvd3';
-import { Margin } from '../core';
+import { ChartMarginConfiguration } from '../core';
 
 @Injectable()
 export class ChartService {
@@ -61,7 +61,7 @@ export class ChartService {
     }
   }
 
-  setMargin(margin: Margin) {
+  setMargin(margin: ChartMarginConfiguration) {
     let opts = this.getChartOptions();
     if (opts && margin) {
       opts['margin'] = margin;

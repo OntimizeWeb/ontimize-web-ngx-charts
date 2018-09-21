@@ -1,5 +1,5 @@
-import { ChartConfiguration } from '../core/ChartConfiguration.class';
+import { ChartConfiguration } from '../core/chart-options/ChartConfiguration.class';
 
 export interface ChartFactory {
-  createChartOptions(chartConf: ChartConfiguration): Object;
+  createChartOptions(chartConf:ChartConfiguration): Object;
 }

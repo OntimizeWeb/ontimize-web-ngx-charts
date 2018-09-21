@@ -1,5 +1,7 @@
 import { ChartSeries, ChartDataAdapter } from '../../interfaces';
-import { ChartConfiguration } from '../../core';
+import {
+  ChartConfiguration
+} from '../../core';
 import { LineChartConfiguration } from '../chart-options/LineChartConfiguration.class';
 
 export class LineDataAdapter implements ChartDataAdapter {
@@ -26,11 +28,17 @@ export class LineDataAdapter implements ChartDataAdapter {
           'key': axis,
           values: []
         };
-        if (config.isArea !== null && config.isArea[_index] !== null) {
+        if (config.isArea && config.isArea[_index]) {
           serie['area'] = config.isArea[_index];
         }
-        if (config.colors !== null && config.colors[_index] !== null) {
+        if (config.colors && config.colors[_index]) {
           serie['color'] = config.colors[_index];
+        }
+        if (config.strokeWidth && config.strokeWidth[_index]) {
+          serie['strokeWidth'] = config.strokeWidth[_index];
+        }
+        if (config.classed && config.classed[_index]) {
+          serie['classed'] = config.classed[_index];
         }
         let key = axis;
         if (config.translateService) {

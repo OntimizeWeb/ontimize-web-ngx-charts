@@ -9,8 +9,6 @@ export class ChartAxisConfiguration {
   width: number = 75;
   duration: number = 250;
   orient: string = 'bottom';
-  ticks: number = null;
-  tickValues: any = null;
   tickFormat: any = null;
 
   getAxisOptions(): Object {
@@ -25,9 +23,7 @@ export class ChartAxisConfiguration {
       width: this.width,
       duration: this.duration,
       orient: this.orient,
-      ticks: this.ticks,
-      tickValues: this.tickValues,
-      tickFormat: this.tickFormat,
+      tickFormat: this.tickFormat
     };
     return axis;
   }

@@ -1,57 +1,71 @@
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration } from '../ChartConfiguration.class';
-import { ChartPoint } from '../../interfaces/ChartData.interface';
+import { ChartSeries, ChartDataAdapter } from '../../interfaces';
+import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
+import { ScatterChartConfiguration } from '../chart-options/ScatterChartConfiguration.class';
 
 export class ScatterDataAdapter implements ChartDataAdapter {
 
   protected chartConf: ChartConfiguration;
   protected xAxis: string;
-  protected yAxis: string;
+  protected yAxis: Array<string>;
 
   constructor(chartConf: ChartConfiguration) {
     if (chartConf) {
       this.chartConf = chartConf;
       this.xAxis = this.chartConf.xAxis ? this.chartConf.xAxis : '';
       let yAxis = this.chartConf.yAxis;
-      this.yAxis = yAxis && yAxis.length ? yAxis[0] : '';
+      this.yAxis = yAxis && yAxis.length ? yAxis : [];
     }
   }
 
-  adaptResult(data: Array<any>): Array<ChartPoint> {
-    const values = [];
-    const self = this;
-    data.forEach((item: any, _index: number) => {
-      let itemLabel = item[self.xAxis];
-      if (self.chartConf.translateService) {
-        itemLabel = self.chartConf.translateService.get(itemLabel);
-      }
-      const val = {
-        'x': itemLabel,
-        'y': Math.abs(item[self.yAxis]),
-        'shape': 'circle'
-      };
-      values.push(val);
-    });
-    return values;
-  }
+  adaptResult(data: Array<any>): Array<ChartSeries> {
+    let result: Array<ChartSeries> = [];
+    if (data && data.length) {
+      let seriesvalues = this.processSeriesValues(data);
+      var self = this;
+      this.yAxis.forEach((axis: string, _index: number) => {
+        let serie: ChartSeries = {
+          'key': 'series',
+          'values': []
+        };
+        let key = axis;
+        if (self.chartConf.translateService) {
+          key = self.chartConf.translateService.get(key);
+        }
+        serie['key'] = key;
+        serie['values'] = seriesvalues[axis];
 
-  createDefaultValues(): Object {
-    var defaultData = [];
-    var shapes = ['circle', 'cross', 'diamond'];
-    for (let x = 0; x < 3; x++) {
-      defaultData.push({
-        key: 'Group ' + x,
-        values: []
+        result.push(serie);
       });
-
-      for (let y = 0; y < 15; y++) {
-        defaultData[x].values.push({
-          x: Math.random(),
-          y: Math.random(),
-          shape: shapes[x]
-        });
-      }
     }
-    return defaultData;
+    return result;
+  }
+
+  processSeriesValues(data: Array<Object>): Object {
+    let seriesvalues = {};
+    var self = this;
+    const params = this.chartConf as ScatterChartConfiguration;
+    data.forEach((item: any, _index: number) => {
+
+      self.yAxis.forEach((axis: string, _axisIndex: number) => {
+        if (seriesvalues[axis] === undefined) {
+          seriesvalues[axis] = [];
+        }
+        let val = {
+          'x': item[self.xAxis],
+          'y': item[axis]
+        };
+        if (params.shape && params.shape[_axisIndex]) {
+          val['shape'] = params.shape[_axisIndex];
+        }
+        if (params.size && params.size[_axisIndex]) {
+          val['size'] = params.size[_axisIndex];
+        }
+        if (params.colors && params.colors[_axisIndex]) {
+          val['color'] = params.colors[_axisIndex];
+        }
+        seriesvalues[axis].push(val);
+      });
+    });
+    return seriesvalues;
   }
 }

@@ -1,6 +1,7 @@
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import { ChartSeries } from '../../interfaces/ChartData.interface';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
+import { MultiBarChartConfiguration } from '../chart-options/MultiBarChartConfiguration.class';
 
 export class MultiBarDataAdapter implements ChartDataAdapter {
 
@@ -20,6 +21,7 @@ export class MultiBarDataAdapter implements ChartDataAdapter {
 
   adaptResult(data: Array<any>): Array<ChartSeries> {
     let result: Array<ChartSeries> = [];
+    let params = this.chartConf as MultiBarChartConfiguration;
     if (data && data.length) {
       let seriesvalues = this.processSeriesValues(data);
       var self = this;
@@ -28,6 +30,9 @@ export class MultiBarDataAdapter implements ChartDataAdapter {
           'key': 'series',
           'values': []
         };
+        if (params.colors && params.colors[_index]) {
+          serie['color'] = params.colors[_index];
+        }
         let key = axis;
         if (self.chartConf.translateService) {
           key = self.chartConf.translateService.get(key);
@@ -58,35 +63,5 @@ export class MultiBarDataAdapter implements ChartDataAdapter {
       });
     });
     return seriesvalues;
-  }
-
-  createDefaultData(): Object {
-    let values = [];
-    let values0 = [];
-    let values1 = [];
-    //change number of bars here by editing '50'//
-    for (var h = 0; h < 50; h++) {
-      //replace the y values with your own values//
-      values.push({ x: h, y: Math.random() + 1 });
-      values0.push({ x: h, y: Math.sqrt(h) / 2 });
-      values1.push({ x: h, y: Math.abs(h - 18) });
-    }
-
-    return [{
-      key: 'Values 1',
-      color: '#bcbd22',
-      values: values
-    },
-    {
-      key: 'Values 2',
-      color: '#1f77b4',
-      values: values0
-    },
-    {
-      key: 'Values 3',
-      color: 'black',
-      values: values1
-    }
-    ];
   }
 }

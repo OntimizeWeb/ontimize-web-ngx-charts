@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { MultiBarChartConfiguration } from './MultiBarChartConfiguration.class';
 
 declare var d3: any;
@@ -18,10 +18,10 @@ export class MultiBarChartOptions extends AbstractChartOptions {
     let params = (this.chartConf as MultiBarChartConfiguration);
 
     if (params.xDataType) {
-      this.selectTickFormatter(params.xDataType, params.xScale);
+      params.axisX.tickFormat = this.getTickFormatter(params.xDataType);
     }
     if (params.yDataType) {
-      this.selectTickFormatter(params.yDataType, params.yScale);
+      params.axisY.tickFormat = this.getTickFormatter(params.yDataType);
     }
     if (params.xLabel) {
       params.axisX.axisLabel = params.xLabel;
@@ -30,15 +30,13 @@ export class MultiBarChartOptions extends AbstractChartOptions {
       params.axisY.axisLabel = params.yLabel;
     }
 
-    params.axisX.tickFormat = this.getTickFormatter(params.xDataType);
-    params.axisY.tickFormat = this.getTickFormatter(params.yDataType);
-
     let chart = {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
       height: this.getChartHeight(),
       width: params.width,
+      margin: params.margin.getMarginOptions(),
       legend: params.legend.getLegendOptions(),
       xAxis: params.axisX.getAxisOptions(),
       yAxis: params.axisY.getAxisOptions(),

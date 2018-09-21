@@ -11,6 +11,9 @@ import { DiscreteBarDataAdapter } from '../../core/data-adapters/discreteBar-dat
 import { MultiBarDataAdapter } from '../../core/data-adapters/multibar-data-adapter';
 import { MultiBarHorizontalDataAdapter } from '../../core/data-adapters/multibar-horizontal-data-adapter';
 import { LinePlusBarDataAdapter } from '../../core/data-adapters/lineplusbar-data-adapter';
+import { ForceDirectedGraphDataAdapter } from '../../core/data-adapters/forceDirectedGraph-data-adapter';
+import { CandlestickDataAdapter } from '../../core/data-adapters/candlestick-data-adapter';
+import { OhlcDataAdapter } from '../../core/data-adapters/ohlc-data-adapter';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
@@ -39,13 +42,22 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
         adapter = this.createMultiBarHorizontalDataAdapter();
         break;
       case 'scatterChart':
-        adapter = this.createScatterAdapter();
+        adapter = this.createScatterDataAdapter();
         break;
       case 'donutChart':
         adapter = this.createPieDataAdapter();
         break;
-      case 'linePlusBarFocusChart':
+      case 'linePlusBarWithFocusChart':
         adapter = this.createLinePlusBarDataAdapter();
+        break;
+      case 'forceDirectedGraph':
+        adapter = this.createForceDirectedGraphDataAdapter();
+        break;
+      case 'candlestickBarChart':
+        adapter = this.createCandlestickDataAdapter();
+        break;
+      case 'ohlcBarChart':
+        adapter = this.createOhlcDataAdapter();
         break;
     }
     return adapter;
@@ -63,7 +75,7 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
     return new LineDataAdapter(this.chartConf);
   }
 
-  public createScatterAdapter(): ChartDataAdapter {
+  public createScatterDataAdapter(): ChartDataAdapter {
     return new ScatterDataAdapter(this.chartConf);
   }
 
@@ -82,5 +94,16 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
   public createLinePlusBarDataAdapter(): ChartDataAdapter {
     return new LinePlusBarDataAdapter(this.chartConf);
   }
-}
 
+  public createForceDirectedGraphDataAdapter(): ChartDataAdapter {
+    return new ForceDirectedGraphDataAdapter(this.chartConf);
+  }
+
+  public createCandlestickDataAdapter(): ChartDataAdapter {
+    return new CandlestickDataAdapter(this.chartConf);
+  }
+
+  public createOhlcDataAdapter(): ChartDataAdapter {
+    return new OhlcDataAdapter(this.chartConf);
+  }
+}

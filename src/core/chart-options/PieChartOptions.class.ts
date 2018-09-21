@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { PieChartConfiguration } from './PieChartConfiguration.class';
 
 export class PieChartOptions extends AbstractChartOptions {
@@ -22,7 +22,7 @@ export class PieChartOptions extends AbstractChartOptions {
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      margin: this.getChartMargins(),
+      margin: params.margin.getMarginOptions(),
       duration: params.duration,
       showLabels: params.showLabels,
       labelThreshold: params.labelThreshold,
@@ -45,4 +45,5 @@ export class PieChartOptions extends AbstractChartOptions {
     };
     return chart;
   }
+
 }

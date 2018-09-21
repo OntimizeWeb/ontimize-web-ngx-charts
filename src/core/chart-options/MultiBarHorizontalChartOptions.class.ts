@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from '../ChartConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { MultiBarHorizontalChartConfiguration } from './MultiBarHorizontalChartConfiguration.class';
 
 declare var d3: any;
@@ -15,30 +15,26 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params = this.chartConf as MultiBarHorizontalChartConfiguration;
-    if (params.xDataType) {
-      this.selectTickFormatter(params.xDataType, params.xScale);
-      params.axisX.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      this.selectTickFormatter(params.yDataType, params.yScale);
-      params.axisY.tickFormat = this.getTickFormatter(params.yDataType);
-    }
-    if (params.xLabel) {
-      params.axisX.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.axisY.axisLabel = params.yLabel;
-    }
+    const params = this.chartConf as MultiBarHorizontalChartConfiguration;
 
     let chart = {
       type: this.getChartType(),
       height: params.height,
+      margin: params.margin.getMarginOptions(),
+      legend: params.legend.getLegendOptions(),
       x: this.getXValue(),
       y: this.getYValue(),
-      legend: params.legend.getLegendOptions(),
-      xAxis: params.axisX.getAxisOptions(),
-      yAxis: params.axisY.getAxisOptions(),
+      xAxis: {
+        axisLabel: params.xLabel,
+        showMaxMin: false,
+        orient: 'left',
+        tickFormat: this.getTickFormatter(params.xDataType)
+      },
+      yAxis: {
+        axisLabel: params.yLabel,
+        showMaxMin: true,
+        tickFormat: this.getTickFormatter(params.yDataType)
+      },
       showControls: params.showControls,
       showValues: params.showValues,
       duration: params.duration,
@@ -48,8 +44,6 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       showLegend: params.showLegend,
       showXAxis: params.showXAxis,
       showYAxis: params.showYAxis,
-      xScale: params.xScale,
-      yScale: params.yScale,
     };
     return chart;
   }
@@ -69,6 +63,14 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       yAxis['tickFormat'] = this.getTickFormatter(this.chartConf.yDataType);
     }
     return yAxis;
+  }
+
+  protected getXValue() {
+    return function (d) { return d.label; };
+  }
+
+  protected getYValue() {
+    return function (d) {  return d.value; };
   }
 
 }
