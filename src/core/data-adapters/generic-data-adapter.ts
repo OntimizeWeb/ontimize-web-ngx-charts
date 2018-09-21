@@ -61,5 +61,4 @@ export class GenericDataAdapter implements ChartDataAdapter {
     });
     return seriesvalues;
   }
-
 }

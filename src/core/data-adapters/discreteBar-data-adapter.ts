@@ -1,11 +1,11 @@
-import { ChartPoint, ChartDataAdapter } from '../../interfaces';
+import { ChartDataAdapter } from '../../interfaces';
 import {
   ChartConfiguration
 } from '../../core';
+import { DiscreteBarChartConfiguration } from '../chart-options/DiscreteBarChartConfiguration.class';
 
-export class PieDataAdapter implements ChartDataAdapter {
-
-  protected chartConf: ChartConfiguration;
+export class DiscreteBarDataAdapter implements ChartDataAdapter{
+    protected chartConf: ChartConfiguration;
   protected xAxis: string;
   protected yAxis: string;
 
@@ -18,27 +18,45 @@ export class PieDataAdapter implements ChartDataAdapter {
     }
   }
 
-  adaptResult(data: Array<any>): Array<ChartPoint> {
+  adaptResult(data: Array<any>): Object {
     const values = [];
     const self = this;
+    const params = this.chartConf as DiscreteBarChartConfiguration;
     data.forEach( (item: any, _index: number) => {
       let itemLabel = item[self.xAxis];
       if(self.chartConf.translateService) {
         itemLabel = self.chartConf.translateService.get(itemLabel);
       }
       const filtered = self.filterCategory(itemLabel, values);
-      if(filtered && filtered.length === 0){
+      if(params.agroup){
+        if(filtered && filtered.length === 0){
+          const val = {
+            'x': itemLabel,
+            'y': item[self.yAxis]
+          };
+          values.push(val)
+        }
+        else {
+          filtered[0]['y'] += item[self.yAxis];
+        }
+      }
+      else{
         const val = {
           'x': itemLabel,
-          'y': Math.abs(item[self.yAxis])
+          'y': item[self.yAxis]
         };
         values.push(val)
       }
-      else {
-        filtered[0]['y'] += Math.abs(item[self.yAxis]);
-      }
     });
-    return values;
+    let result = {
+      key: self.xAxis,
+      values: values
+    };
+    if(self.chartConf.translateService){
+      result['key'] = self.chartConf.translateService.get(self.xAxis);
+    }
+
+    return result;
   }
 
   filterCategory(category: string, values: Array<Object>) {

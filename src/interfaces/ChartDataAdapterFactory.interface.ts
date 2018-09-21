@@ -4,7 +4,7 @@ import {
 } from './ChartData.interface';
 
 export interface ChartDataAdapter {
-    adaptResult(data: Array<any>): Array<ChartSeries | ChartPoint>;
+    adaptResult(data: Array<any>): Array<ChartSeries | ChartPoint> | Object ;
 }
 
 export interface ChartDataAdapterFactory {
