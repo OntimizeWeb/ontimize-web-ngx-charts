@@ -17,16 +17,16 @@ export class MultiBarChartOptions extends AbstractChartOptions {
   protected getChartOptions(): Object {
     let params = (this.chartConf as MultiBarChartConfiguration);
 
-    if(params.xDataType){
+    if (params.xDataType) {
       this.selectTickFormatter(params.xDataType, params.xScale);
     }
-    if(params.yDataType){
+    if (params.yDataType) {
       this.selectTickFormatter(params.yDataType, params.yScale);
     }
-    if(params.xLabel){
+    if (params.xLabel) {
       params.axisX.axisLabel = params.xLabel;
     }
-    if(params.yLabel){
+    if (params.yLabel) {
       params.axisY.axisLabel = params.yLabel;
     }
 
@@ -54,8 +54,7 @@ export class MultiBarChartOptions extends AbstractChartOptions {
       rotateLabels: params.rotateLabels,
       wrapLabels: params.wrapLabels,
       rightAlignYAxis: params.rightAlignYAxis,
-    }
-    
+    };
     return chart;
   }
 

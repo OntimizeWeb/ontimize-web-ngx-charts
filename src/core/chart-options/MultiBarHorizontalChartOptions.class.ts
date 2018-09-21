@@ -16,18 +16,18 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let params = this.chartConf as MultiBarHorizontalChartConfiguration;
-    if(params.xDataType){
+    if (params.xDataType) {
       this.selectTickFormatter(params.xDataType, params.xScale);
       params.axisX.tickFormat = this.getTickFormatter(params.xDataType);
     }
-    if(params.yDataType){
+    if (params.yDataType) {
       this.selectTickFormatter(params.yDataType, params.yScale);
       params.axisY.tickFormat = this.getTickFormatter(params.yDataType);
     }
-    if(params.xLabel){
+    if (params.xLabel) {
       params.axisX.axisLabel = params.xLabel;
     }
-    if(params.yLabel){
+    if (params.yLabel) {
       params.axisY.axisLabel = params.yLabel;
     }
 
@@ -50,7 +50,7 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       showYAxis: params.showYAxis,
       xScale: params.xScale,
       yScale: params.yScale,
-    }
+    };
     return chart;
   }
 

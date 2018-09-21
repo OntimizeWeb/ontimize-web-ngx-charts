@@ -32,14 +32,14 @@ export class AbstractChartOptions {
     let opts = {
       chart: this.getChartOptions(),
       title: {
-          enable: true,
-          text: "Title",
-          className: "h4"
-      },
-      caption : {
         enable: true,
-        text: "prueba",
-        html: "<b>prueba</b>"
+        text: 'Title',
+        className: 'h4'
+      },
+      caption: {
+        enable: true,
+        text: 'prueba',
+        html: '<b>prueba</b>'
       }
     };
     return opts;
@@ -126,7 +126,7 @@ export class AbstractChartOptions {
     return formatter;
   }
 
-  protected selectTickFormatter(type: string, scale: any) {
+  protected selectTickFormatter(type: string, scale: any)  {
     if (scale) {
       switch (type) {
         case 'int':

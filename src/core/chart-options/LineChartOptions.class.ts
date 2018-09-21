@@ -16,16 +16,15 @@ export class LineChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let params;
-    if(this.chartConf instanceof LineChartConfiguration){
+    if (this.chartConf instanceof LineChartConfiguration) {
       params = this.chartConf;
-    }
-    else{
+    } else {
       params = new LineChartConfiguration();
     }
-    if(params.xDataType){
+    if (params.xDataType) {
       this.selectTickFormatter(params.xDataType, params.xScale);
     }
-    if(params.yDataType){
+    if (params.yDataType) {
       this.selectTickFormatter(params.yDataType, params.yScale);
     }
     params.xAxis1.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
@@ -54,7 +53,7 @@ export class LineChartOptions extends AbstractChartOptions {
       xDomain: null,
       yScale: params.yScale,
       yDomain: null
-    }
+    };
     return chart;
   }
 

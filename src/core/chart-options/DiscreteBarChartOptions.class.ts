@@ -16,16 +16,16 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let params = this.chartConf as DiscreteBarChartConfiguration;
-    if(params.xDataType){
+    if (params.xDataType) {
       this.selectTickFormatter(params.xDataType, params.xScale);
     }
-    if(params.yDataType){
+    if (params.yDataType) {
       this.selectTickFormatter(params.yDataType, params.yScale);
     }
-    if(params.xLabel){
+    if (params.xLabel) {
       params.xAxis1.axisLabel = params.xLabel;
     }
-    if(params.yLabel){
+    if (params.yLabel) {
       params.yAxis1.axisLabel = params.yLabel;
     }
     params.xAxis1.tickFormat = this.getTickFormatter(params.xDataType);
@@ -52,10 +52,9 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
       yAxis: params.yAxis1.getAxisOptions(),
       xScale: params.xScale,
       yScale: params.yScale
-    }
+    };
     return options;
   }
-
 
   protected getXAxisConfiguration(): Object {
     let xAxis = super.getXAxisConfiguration();

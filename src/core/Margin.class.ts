@@ -4,13 +4,13 @@ export class Margin {
   right: number;
   left: number;
 
-  getChartOptions() : Object {
+  getChartOptions(): Object {
     let opt = {
       top: this.top,
       bottom: this.bottom,
       right: this.right,
       left: this.left
-    }
+    };
     return opt;
   }
 }

@@ -1,7 +1,5 @@
 import { ChartSeries, ChartDataAdapter } from '../../interfaces';
-import {
-  ChartConfiguration
-} from '../../core';
+import { ChartConfiguration } from '../../core';
 
 export class GenericDataAdapter implements ChartDataAdapter {
 
@@ -11,7 +9,7 @@ export class GenericDataAdapter implements ChartDataAdapter {
   protected yAxis: Array<string>;
 
   constructor(chartConf: ChartConfiguration) {
-    if(chartConf) {
+    if (chartConf) {
       this.chartConf = chartConf;
       this.xAxis = this.chartConf.xAxis ? this.chartConf.xAxis : '';
       let yAxis = this.chartConf.yAxis;
@@ -31,7 +29,7 @@ export class GenericDataAdapter implements ChartDataAdapter {
           'values': []
         };
         let key = axis;
-        if(self.chartConf.translateService) {
+        if (self.chartConf.translateService) {
           key = self.chartConf.translateService.get(key);
         }
         serie['key'] = key;

@@ -52,7 +52,7 @@ export class OChartFactory implements ChartFactory {
     return chartOpts;
   }
 
-  public createLineChartOptions(chartConf: ChartConfiguration,): any {
+  public createLineChartOptions(chartConf: ChartConfiguration, ): any {
     let lineChartOpts = new LineChartOptions(chartConf);
     return lineChartOpts.getOptions();
   }

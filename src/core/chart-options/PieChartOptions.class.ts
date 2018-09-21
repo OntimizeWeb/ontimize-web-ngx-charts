@@ -12,12 +12,11 @@ export class PieChartOptions extends AbstractChartOptions {
     return 'pieChart';
   }
 
-  protected getChartOptions(): Object {
+  protected getChartOptions(): Object {
     let params;
-    if(this.chartConf instanceof PieChartConfiguration){
+    if (this.chartConf instanceof PieChartConfiguration) {
       params = (this.chartConf as PieChartConfiguration);
-    }
-    else{
+    } else {
       params = new PieChartConfiguration();
     }
     let chart = {
@@ -43,8 +42,7 @@ export class PieChartOptions extends AbstractChartOptions {
         donutLabelOutside: params.donutLabelOutside,
         labelType: params.labelType,
       },
-    }
+    };
     return chart;
   }
-
 }

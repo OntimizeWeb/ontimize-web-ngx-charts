@@ -15,11 +15,11 @@ import { PieChartConfiguration } from '../../core/chart-options/PieChartConfigur
 import { DonutChartConfiguration } from '../../core/chart-options/DonutChartConfiguration.class';
 import { DiscreteBarChartConfiguration } from '../../core/chart-options/DiscreteBarChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../../core/chart-options/MultiBarChartConfiguration.class';
-import { MultiBarDataAdapter } from '../../core/data-adapters/multibar-data-adapter';
+// import { MultiBarDataAdapter } from '../../core/data-adapters/multibar-data-adapter';
 import { MultiBarHorizontalChartConfiguration } from '../../core/chart-options/MultiBarHorizontalChartConfiguration.class';
 import { ScatterChartConfiguration } from '../../core/chart-options/ScatterChartConfiguration.class';
 import { ScatterDataAdapter } from '../../core/data-adapters/scatter-data-adapter';
-import { MultiBarHorizontalDataAdapter } from '../../core/data-adapters/multibar-horizontal-data-adapter';
+// import { MultiBarHorizontalDataAdapter } from '../../core/data-adapters/multibar-horizontal-data-adapter';
 
 export const CHART_TYPES = [
   'line',
@@ -96,8 +96,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected formDataSubcribe;
 
-  private clickEvtEmitter: EventEmitter<any> = new EventEmitter();
-  private chartService: ChartService;
+  protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
+  protected chartService: ChartService;
+  protected translateService: OTranslateService;
 
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
@@ -111,9 +112,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   ngOnInit() {
     super.initialize();
- 
+
     this.yAxisArray = Util.parseArray(this.yAxis);
-    if(Util.isDefined(this.state['type'])){
+    if (Util.isDefined(this.state['type'])) {
       this.type = this.state['type'];
     }
     if (this.form && this.queryOnBind) {
@@ -137,7 +138,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     super.destroy();
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
-    }  
+    }
   }
 
   set data(value: any) {
@@ -157,30 +158,29 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   getChartConfiguration(): ChartConfiguration {
     //let chartConf = new ChartConfiguration();
     let chartConf;
-    if(this.chartParameters){
+    if (this.chartParameters) {
       chartConf = this.chartParameters;
-    }
-    else{
-      switch(this.type) {
-        case "line": 
-          chartConf= new LineChartConfiguration();
+    } else {
+      switch (this.type) {
+        case 'line':
+          chartConf = new LineChartConfiguration();
           break;
-        case "pie":
+        case 'pie':
           chartConf = new PieChartConfiguration();
           break;
-        case "donutChart":
+        case 'donutChart':
           chartConf = new DonutChartConfiguration();
           break;
-        case "discreteBar":
+        case 'discreteBar':
           chartConf = new DiscreteBarChartConfiguration();
           break;
-        case "multiBar":
+        case 'multiBar':
           chartConf = new MultiBarChartConfiguration();
           break;
-        case "multiBarHorizontalChart":
+        case 'multiBarHorizontalChart':
           chartConf = new MultiBarHorizontalChartConfiguration();
           break;
-        case "scatterChart":
+        case 'scatterChart':
           chartConf = new ScatterChartConfiguration();
           break;
         default:
@@ -192,7 +192,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (this.cHeight !== -1) {
       chartConf.height = this.cHeight;
     }
-    if(this.cWidth !== -1 ){
+    if (this.cWidth !== -1) {
       chartConf.width = this.cWidth;
     }
 
@@ -244,30 +244,30 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     this.queryData(filter);
   }
-  
+
   protected setData(data: any, _sqlTypes?: any, _replace?: boolean) {
-      let factory = this.getChartDataAdapterFactory();
-      let adapter: ChartDataAdapter = factory.getAdapter(this.type);
-      let adaptedResult = adapter.adaptResult(data);
-      this.setDataArray(adaptedResult);
-      if(this.type === "scatterChart"){
-        this.setDataArray((adapter as ScatterDataAdapter).createDefaultValues());
-        this.data = (adapter as ScatterDataAdapter).createDefaultValues();
-      }
+    let factory = this.getChartDataAdapterFactory();
+    let adapter: ChartDataAdapter = factory.getAdapter(this.type);
+    let adaptedResult = adapter.adaptResult(data);
+    this.setDataArray(adaptedResult);
+    if (this.type === 'scatterChart') {
+      this.setDataArray((adapter as ScatterDataAdapter).createDefaultValues());
+      this.data = (adapter as ScatterDataAdapter).createDefaultValues();
+    }
   }
 
   getAttributesValuesToQuery(): Array<string> {
     let columns = super.getAttributesValuesToQuery();
-    if(this.yAxisArray && this.yAxisArray.length){
+    if (this.yAxisArray && this.yAxisArray.length) {
       this.yAxisArray.forEach((item: any, _index: number) => {
-          if(columns.filter((val: Object) => (val === item))){
-            columns.push(item);
-          }
+        if (columns.filter((val: Object) => (val === item))) {
+          columns.push(item);
+        }
       });
     }
-    if(this.xAxis && this.xAxis.length) {
-      if(columns.filter((val: Object) => (val === this.xAxis))){
-      columns.push(this.xAxis);
+    if (this.xAxis && this.xAxis.length) {
+      if (columns.filter((val: Object) => (val === this.xAxis))) {
+        columns.push(this.xAxis);
       }
     }
     return columns;
