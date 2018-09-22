@@ -112,7 +112,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.type === 'forceDirectedGraph') {
+    if (this.type === 'forceDirectedGraph' || this.type === 'ohlcBarChart' || this.type === 'candlestickBarChart') {
       this.configureChart();
       this.setData(null);
       return;
@@ -229,6 +229,15 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return chartConf;
   }
 
+
+  getAdaptData() {
+    if (this.type === 'forceDirectedGraph') {
+      return this.dataArray[0];
+    }
+    else {
+      return this.dataArray;
+    }
+  }
 
   getChartFactory(): ChartFactory {
     return new OChartFactory();

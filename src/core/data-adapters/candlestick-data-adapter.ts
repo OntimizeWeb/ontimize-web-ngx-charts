@@ -3,6 +3,9 @@ import {  CandlestickChartConfiguration } from '../../core';
 
 export class CandlestickDataAdapter extends OhlcDataAdapter {
   adaptResult(_data: Array<any>): Object {
-    return (this.chartConf as CandlestickChartConfiguration).data;
+    let chart = {
+      values: (this.chartConf as CandlestickChartConfiguration).chartData
+    }
+    return chart;
   }
 }

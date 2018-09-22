@@ -6,7 +6,10 @@ export class OhlcDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
 
   adaptResult(_data: Array<any>): Object {
-    return (this.chartConf as OHLCChartConfiguration).data;
+    let chartVal = {
+      values: (this.chartConf as OHLCChartConfiguration).chartData
+    }
+    return chartVal;
   }
 
   constructor(chartconf: ChartConfiguration) {

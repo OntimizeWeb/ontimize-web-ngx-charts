@@ -23,7 +23,7 @@ export class OHLCChartConfiguration extends ChartConfiguration {
   padData: boolean = false;
   clidEdge: boolean = true;
 
-  data: Array<OHLCDataType>;
+  chartData: Array<OHLCDataType>;
 
   constructor() {
     super();
