@@ -232,7 +232,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   getAdaptData() {
     if (this.type === 'forceDirectedGraph') {
-      return this.dataArray[0];
+      if (this.dataArray && this.dataArray[0])
+        return this.dataArray[0];
+      else
+        return [];
     }
     else {
       return this.dataArray;

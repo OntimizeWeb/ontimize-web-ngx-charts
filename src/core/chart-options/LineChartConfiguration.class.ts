@@ -9,7 +9,6 @@ export class LineChartConfiguration extends ChartConfiguration {
   showLegend: boolean = true;
 
   duration: number = 500;
-  showLabels: boolean = false;
   useInteractiveGuideline: boolean = true;
   interactive: boolean = true;
   margin: ChartMarginConfiguration;

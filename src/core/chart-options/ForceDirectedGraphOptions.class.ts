@@ -9,11 +9,12 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
 
   public getChartOptions(): Object {
     let params = this.chartConf as ForceDirectedGraphConfiguration;
+
     let chart = {
       type: this.getChartType(),
       height: params.height,
       width: params.width,
-
+      color: this.getColor(),
       margin: params.margin.getMarginOptions(),
       linkStrenght: params.linkStrength,
       friction: params.friction,
@@ -25,5 +26,10 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
       radius: params.radius
     };
     return chart;
+  }
+
+  public getColor() {
+    var color = d3.scale.category20();
+    return function (d) { return color(d.group); };
   }
 }

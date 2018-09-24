@@ -22,26 +22,21 @@ export class PieChartOptions extends AbstractChartOptions {
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
+      width: params.width,
       margin: params.margin.getMarginOptions(),
       duration: params.duration,
       showLabels: params.showLabels,
+      labelType: params.labelType,
       labelThreshold: params.labelThreshold,
       labelSunbeamLayout: params.labelSunbeamLayout,
       showLegend: params.showLeyend,
       legendPosition: params.legendPosition,
+      legend: params.legend.getLegendOptions(),
       cornerRadius: params.cornerRadius,
-      legend: {
-        maxKeyLength: params.legend.maxKeyLength,
-        radioButtonMode: params.legend.radioButtonMode,
-        expanded: params.legend.expanded
-      },
-      pie: {
-        donut: params.donut,
-        donutRatio: params.donutRatio,
-        pieLabelOutside: params.pieLabelOutside,
-        donutLabelOutside: params.donutLabelOutside,
-        labelType: params.labelType,
-      },
+      donut: params.donut,
+      donutRatio: params.donutRatio,
+      pieLabelOutside: params.pieLabelOutside,
+      donutLabelOutside: params.donutLabelOutside,
     };
     return chart;
   }

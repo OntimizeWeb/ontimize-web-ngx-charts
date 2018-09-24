@@ -6,6 +6,19 @@ export class CandlestickChartOptions extends AbstractChartOptions {
   getChartOptions() {
     let params = this.chartConf as CandlestickChartConfiguration;
 
+    if (params.xDataType) {
+      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
+    }
+    if (params.yDataType) {
+      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
+    }
+    if (params.xLabel) {
+      params.x1Axis.axisLabel = params.xLabel;
+    }
+    if (params.yLabel) {
+      params.y1Axis.axisLabel = params.yLabel;
+    }
+
     let chart = {
       type: this.getChartType(),
       height: params.height,
