@@ -15,8 +15,8 @@ export class ForceDirectedGraphConfiguration extends ChartConfiguration {
   alpha: number = 0.1;
   radius: number = 5;
 
-  nodes: Array<any>;
-  links: Array<any>;
+  nodes: Array<ForceDirectedGraphNode>;
+  links: Array<ForceDirectedGraphLink>;
 
 
   constructor() {

@@ -16,25 +16,30 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     const params = this.chartConf as MultiBarHorizontalChartConfiguration;
+    if (params.xDataType) {
+      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
+    }
+    if (params.yDataType) {
+      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
+    }
+    if (params.xLabel) {
+      params.x1Axis.axisLabel = params.xLabel;
+    }
+    if (params.yLabel) {
+      params.y1Axis.axisLabel = params.yLabel;
+    }
+    params.x1Axis.orient = 'left';
 
     let chart = {
       type: this.getChartType(),
       height: params.height,
+      width: params.width,
       margin: params.margin.getMarginOptions(),
       legend: params.legend.getLegendOptions(),
       x: this.getXValue(),
       y: this.getYValue(),
-      xAxis: {
-        axisLabel: params.xLabel,
-        showMaxMin: false,
-        orient: 'left',
-        tickFormat: this.getTickFormatter(params.xDataType)
-      },
-      yAxis: {
-        axisLabel: params.yLabel,
-        showMaxMin: true,
-        tickFormat: this.getTickFormatter(params.yDataType)
-      },
+      xAxis: params.x1Axis.getAxisOptions(),
+      yAxis: params.y1Axis.getAxisOptions(),
       showControls: params.showControls,
       showValues: params.showValues,
       duration: params.duration,

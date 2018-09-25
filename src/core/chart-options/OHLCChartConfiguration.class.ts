@@ -25,6 +25,15 @@ export class OHLCChartConfiguration extends ChartConfiguration {
 
   chartData: Array<OHLCDataType>;
 
+
+  //Properties for select the values of date, open,
+  // close, high and low in chart
+  xColumn: string;
+  openAxis: string;
+  closeAxis: string;
+  highAxis: string;
+  lowAxis: string;
+
   constructor() {
     super();
     this.x1Axis = new ChartAxisConfiguration();
