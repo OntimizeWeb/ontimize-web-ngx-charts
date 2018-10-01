@@ -2,9 +2,7 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { LinePlusBarFocusChartConfiguration } from './LinePlusBarFocusChartConfiguration.class';
 import { ChartSeries } from '../../interfaces/ChartData.interface';
-//import * as d3 from 'd3';
-
-//declare var d3: any;
+declare var d3: any;
 
 export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
   constructor(chartConf: ChartConfiguration) {
