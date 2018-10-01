@@ -23,7 +23,16 @@ export class OHLCChartConfiguration extends ChartConfiguration {
   padData: boolean = false;
   clidEdge: boolean = true;
 
-  data: Array<OHLCDataType>;
+  chartData: Array<OHLCDataType>;
+
+
+  //Properties for select the values of date, open,
+  // close, high and low in chart
+  xColumn: string;
+  openAxis: string;
+  closeAxis: string;
+  highAxis: string;
+  lowAxis: string;
 
   constructor() {
     super();

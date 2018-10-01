@@ -12,6 +12,7 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
   showLegend: boolean = true;
   legend: ChartLegendConfiguration;
 
+  duration: number = 350;
   margin: ChartMarginConfiguration;
   isArea: any;
   interactive: boolean = true;
@@ -35,11 +36,11 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
     this.x1Axis = new ChartAxisConfiguration();
     this.y1Axis = new ChartAxisConfiguration();
     this.legend = new ChartLegendConfiguration();
-    this.isArea = this.funtionIsArea();
+    this.isArea = this.functionIsArea();
     this.margin = new ChartMarginConfiguration();
   }
 
-  funtionIsArea() {
+  functionIsArea() {
     return function (d) { return d.area; };
   }
 }

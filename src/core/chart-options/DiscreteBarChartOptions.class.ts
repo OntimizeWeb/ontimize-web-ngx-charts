@@ -52,22 +52,4 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
     return options;
   }
 
-
-  protected getXAxisConfiguration(): Object {
-    let xAxis = super.getXAxisConfiguration();
-    if (this.chartConf.xDataType !== undefined) {
-      xAxis['tickFormat'] = this.getTickFormatter(this.chartConf.xDataType);
-    }
-    return xAxis;
-  }
-
-  protected getYAxisConfiguration(): Object {
-    let yAxis = super.getYAxisConfiguration();
-
-    if (this.chartConf.yDataType !== undefined) {
-      yAxis['tickFormat'] = this.getTickFormatter(this.chartConf.yDataType);
-    }
-    return yAxis;
-  }
-
 }

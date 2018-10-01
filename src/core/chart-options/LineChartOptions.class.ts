@@ -15,58 +15,45 @@ export class LineChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params;
-    if (this.chartConf instanceof LineChartConfiguration) {
-      params = this.chartConf;
-    } else {
-      params = new LineChartConfiguration();
-    }
+    let params = this.chartConf as LineChartConfiguration;
     if (params.xDataType) {
       params.xAxis1.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
     }
     if (params.yDataType) {
       params.yAxis1.tickFormat = this.getTickFormatter(this.chartConf.yDataType);
     }
+    if (params.xLabel) {
+      params.xAxis1.axisLabel = params.xLabel;
+    }
+    if (params.yLabel) {
+      params.yAxis1.axisLabel = params.yLabel;
+    }
     let chart = {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
       xAxis: params.xAxis1.getAxisOptions(),
+      x2Axis: params.xAxis1.getAxisOptions(),
       yAxis: params.yAxis1.getAxisOptions(),
+      y2Axis: params.yAxis1.getAxisOptions(),
       height: this.getChartHeight(),
+      width: params.width,
       margin: params.margin.getMarginOptions(),
       duration: params.duration,
+      useInteractiveGuideline: params.useInteractiveGuideline,
+      interactive: params.interactive,
+      isArea: this.isArea(),
       legend: params.legend,
       legendPosition: params.legendPosition,
       showLegend: params.showLegend,
       showXAxis: params.showXAxis,
-      interactive: params.interactive,
-      isArea: this.isArea(),
       showYAxis: params.showYAxis,
+      rightAlignYAxis: params.rightAlignYAxis,
       focusEnable: params.focusEnable,
       focusShowAxisX: params.focusShowAxisX,
-      focusShowAxisY: params.focusShowAxisY,
-      rightAlignYAxis: params.rightAlignYAxis,
-      useInteractiveGuideline: params.useInteractiveGuideline,
+      focusShowAxisY: params.focusShowAxisY
     };
     return chart;
-  }
-
-  protected getXAxisConfiguration(): Object {
-    let xAxis = super.getXAxisConfiguration();
-    if (this.chartConf.xDataType !== undefined) {
-      xAxis['tickFormat'] = this.getTickFormatter(this.chartConf.xDataType);
-    }
-    return xAxis;
-  }
-
-  protected getYAxisConfiguration(): Object {
-    let yAxis = super.getYAxisConfiguration();
-
-    if (this.chartConf.yDataType !== undefined) {
-      yAxis['tickFormat'] = this.getTickFormatter(this.chartConf.yDataType);
-    }
-    return yAxis;
   }
 
 }

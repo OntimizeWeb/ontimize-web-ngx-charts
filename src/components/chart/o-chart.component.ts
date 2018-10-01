@@ -115,22 +115,35 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.type === 'forceDirectedGraph') {
-      this.configureChart();
-      this.setData(null);
-      return;
+    switch (this.type) {
+      case 'forceDirectedGraph':
+        this.configureChart();
+        this.setData(null);
+        return;
+      case 'ohlcBarChart':
+        if (this.chartParameters && this.chartParameters instanceof OHLCChartConfiguration) {
+          if (this.chartParameters.chartData) {
+            this.configureChart();
+            this.setData(null);
+            return;
+          }
+        }
+        break;
+      case 'candlestickBarChart':
+        if (this.chartParameters && this.chartParameters instanceof CandlestickChartConfiguration) {
+          if (this.chartParameters.chartData) {
+            this.configureChart();
+            this.setData(null);
+            return;
+          }
+        }
     }
+
     super.initialize();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
     if (Util.isDefined(this.state['type'])) {
       this.type = this.state['type'];
-    }
-    if (this.form && this.queryOnBind) {
-      var self = this;
-      this.formDataSubcribe = this.form.onDataLoaded.subscribe(data => {
-        self.onFormDataBind(data);
-      });
     }
     this.configureChart();
     this.bindChartEvents();
@@ -233,6 +246,19 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
 
+
+  getAdaptData() {
+    if (this.type === 'forceDirectedGraph') {
+      if (this.dataArray && this.dataArray[0])
+        return this.dataArray[0];
+      else
+        return [];
+    }
+    else {
+      return this.dataArray;
+    }
+  }
+
   getChartFactory(): ChartFactory {
     return new OChartFactory();
   }
@@ -264,6 +290,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
       });
     }
+    if (this.type === 'ohlcBarChart' || this.type === 'candlestickBarChart') {
+      filter = {};
+    }
     this.queryData(filter);
   }
 
@@ -288,6 +317,24 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       if (columns.filter((val: Object) => (val === this.xAxis))) {
         columns.push(this.xAxis);
       }
+    }
+    if (this.type === 'ohlcBarChart') {
+      columns = [];
+      let params = this.chartParameters as OHLCChartConfiguration;
+      columns.push(params.xColumn);
+      columns.push(params.openAxis);
+      columns.push(params.closeAxis);
+      columns.push(params.highAxis);
+      columns.push(params.lowAxis);
+    }
+    if (this.type === 'candlestickBarChart') {
+      columns = [];
+      let params = this.chartParameters as CandlestickChartConfiguration;
+      columns.push(params.xColumn);
+      columns.push(params.openAxis);
+      columns.push(params.closeAxis);
+      columns.push(params.highAxis);
+      columns.push(params.lowAxis);
     }
     return columns;
   }

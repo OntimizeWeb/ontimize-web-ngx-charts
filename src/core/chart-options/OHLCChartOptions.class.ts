@@ -10,7 +10,18 @@ export class OHLCChartOptions extends AbstractChartOptions {
 
   getChartOptions() {
     let params = this.chartConf as OHLCChartConfiguration;
-    /*
+    if (params.xDataType) {
+      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
+    }
+    if (params.yDataType) {
+      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
+    }
+    if (params.xLabel) {
+      params.x1Axis.axisLabel = params.xLabel;
+    }
+    if (params.yLabel) {
+      params.y1Axis.axisLabel = params.yLabel;
+    }
     let chart = {
         type: this.getChartType(),
         height: params.height,
@@ -30,45 +41,6 @@ export class OHLCChartOptions extends AbstractChartOptions {
         useInteractiveGuideline: params.useInteractiveGuideline,
         padData: params.padData,
         clipEdge: params.clidEdge
-    };
-    */
-    let chart = {
-      type: 'ohlcBarChart',
-      height: 450,
-      margin: {
-        top: 20,
-        right: 20,
-        bottom: 40,
-        left: 60
-      },
-      x: this.getXValue(),
-      y: this.getYValue(),
-      duration: 100,
-
-      xAxis: {
-        axisLabel: 'Dates',
-        tickFormat: function (_d) {
-          return d3.time.format('%x')(new Date());
-        },
-        showMaxMin: false
-      },
-
-      yAxis: {
-        axisLabel: 'Stock Price',
-        tickFormat: function (d) {
-          return '$' + d3.format(',.1f')(d);
-        },
-        showMaxMin: false
-      },
-      zoom: {
-        enabled: true,
-        scaleExtent: [1, 10],
-        useFixedDomain: false,
-        useNiceScale: false,
-        horizontalOff: false,
-        verticalOff: true,
-        unzoomEventType: 'dblclick.zoom'
-      }
     };
     return chart;
   }
