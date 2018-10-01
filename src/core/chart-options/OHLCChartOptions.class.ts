@@ -1,6 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { OHLCChartConfiguration } from './OHLCChartConfiguration.class';
-declare var d3: any;
 
 export class OHLCChartOptions extends AbstractChartOptions {
 

@@ -3,8 +3,6 @@ import { ChartSeries, ChartPoint } from '../../interfaces/ChartData.interface';
 import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
 import { LinePlusBarFocusChartConfiguration } from '../chart-options/LinePlusBarFocusChartConfiguration.class';
 
-declare var d3: any;
-
 export class LinePlusBarDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
 

@@ -2,8 +2,6 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { LineChartConfiguration } from './LineChartConfiguration.class';
 
-declare var d3: any;
-
 export class LineChartOptions extends AbstractChartOptions {
 
   constructor(chartConf: ChartConfiguration) {

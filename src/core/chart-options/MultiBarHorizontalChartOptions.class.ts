@@ -2,8 +2,6 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { MultiBarHorizontalChartConfiguration } from './MultiBarHorizontalChartConfiguration.class';
 
-declare var d3: any;
-
 export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
 
   constructor(chartConf: ChartConfiguration) {
