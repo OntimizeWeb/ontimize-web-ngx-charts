@@ -11,7 +11,7 @@ import { NavigationBarService } from '../../shared/services/navigation-bar.servi
   templateUrl: './multi-bar.component.html',
   styleUrls: ['./multi-bar.component.scss']
 })
-export class MultiBarComponent implements OnInit {
+export class MultiBarComponent implements OnInit{
 
   @ViewChild('multiBar')
   protected multiBar: OChartComponent;
@@ -49,11 +49,9 @@ export class MultiBarComponent implements OnInit {
 
         // var xScale = d3.time.scale();
         // chartOps['xScale'] = xScale;
-
         // var mindate = new Date(2009, 1, 1),
         //   maxdate = new Date(2009, 10, 1);
         // chartOps['xDomain'] = [mindate, maxdate];
-
         // Configuring y axis...
         var yScale = d3.scale.linear();
         chartOps['yScale'] = yScale;

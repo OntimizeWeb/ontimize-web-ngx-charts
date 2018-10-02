@@ -37,7 +37,9 @@ export class DiscreteBarComponent implements OnInit {
 
     if (this.oForm) {
       // Force oForm query.
-      this.oForm._reloadAction();
+      this.oForm.queryData({
+        ACCOUNTID: 19939
+      });
     }
 
     // Configuring Ontimize service instance...
@@ -83,7 +85,7 @@ export class DiscreteBarComponent implements OnInit {
     }
   }
 
-  processValues(data: Array<Object> ) : Array<Object> {
+  processValues(data: Array<Object>): Array<Object> {
     let values = [];
     var self = this;
     data.forEach((item: any, index: number) => {
@@ -112,6 +114,8 @@ export class DiscreteBarComponent implements OnInit {
     }
     return filtered;
   }
+
+
 
   getBasicUsageId() {
     return 'Discrete Bar Chart (Basic usage)';
@@ -175,7 +179,7 @@ export class DiscreteBarComponent implements OnInit {
       },
       {
         'type': 'service data',
-        'data':  this.serviceResponse
+        'data': this.serviceResponse
       },
       {
         'type': 'chart data',
@@ -192,19 +196,19 @@ const BASIC_USAGE_HTML_DATA = `
 `;
 
 const INSIDE_FORM_HTML_DATA = `
-<o-form layout="column" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R"
-  entity="EAccounts" keys="ACCOUNTID" #oForm flex="75">
+<o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R"
+  layout="column">
   <o-row elevation="0" layout-align="space-between center">
     <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
-    <o-row elevation="2" layout="row">
+    <o-row elevation="2">
       <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
       <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
       <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
       <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
     </o-row>
   </o-row>
-  <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" flex="75" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-    y-axis="MOVEMENT" query-on-init="no" parent-keys="ACCOUNTID"></o-chart>
+  <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+    query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID"></o-chart>
 </o-form>
 `;
 

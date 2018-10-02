@@ -4,10 +4,16 @@
 
   "INTRODUCTION": "Introducción",
   "LINE" : "Gráfica de línea",
+  "LINEPLUSBAR": "Gráfica de barras y líneas",
   "PIE"  : "Gráfica circular",
+  "DONUT": "Gráfica donut",
   "DISCRETE_BAR"  : "Gráfica de barras discreta",
   "MULTI_BAR"  : "Gráfica de barras múltiple",
   "MULTI_BAR_HORIZONTAL" :  "Gráfica de barras múltiple horizontal",
+  "SCATTER": "Gráfica de puntos",
+  "DIRECTEDGRAPH": "Grafo diridigo",
+  "CANDLESTICK": "Gráfico de barras de velas",
+  "OHLCCHART": "Gráfico de barras OHLC",
 
   "DATE_":"Fecha de movimiento",
   "MOVEMENT":"Movimiento",

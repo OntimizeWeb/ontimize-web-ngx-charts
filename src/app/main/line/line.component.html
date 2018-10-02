@@ -16,7 +16,7 @@
     <example-comp [comp-name]="getBasicUsageConfId()" [files]="getBasicUsageConfFiles()" layout-fill>
         <div layout="row" layout-fill layout-align="center">
             <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" flex="75"
-                entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
+                entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" [chart-parameters]="chartParameters" x-data-type="time"></o-chart>
         </div>
         <div class="body-text-container" layout-padding>
             <h2>Custom configuration </h2>
@@ -30,7 +30,7 @@
         <div layout="row" layout-fill layout-align="center">
             <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" flex="75"
                 entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-                x-data-type="time"></o-chart>
+                x-data-type="time" ></o-chart>
         </div>
         <div class="body-text-container" layout-padding>
             <h2>Series </h2>

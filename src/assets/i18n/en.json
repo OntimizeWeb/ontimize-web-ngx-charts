@@ -4,14 +4,22 @@
 
   "INTRODUCTION": "Introduction",
   "LINE" : "Line chart",
+  "LINEPLUSBAR": "Line + Bar chart",
   "PIE"  : "Pie chart",
+  "DONUT": "Donut chart",
   "DISCRETE_BAR"  : "Discrete Bar chart",
   "MULTI_BAR"  : "Multi bar chart",
   "MULTI_BAR_HORIZONTAL": "Multi bar horizontal chart",
+  "SCATTER": "Scatter chart",
+  "DIRECTEDGRAPH": "Force directed graph",
+  "CANDLESTICK": "Candlestick bar chart",
+  "OHLCCHART": "Ohlc chart",
 
   "DATE_":"Operation date",
   "MOVEMENT":"Movement",
   "MOVEMENTTYPES":"Movement types",
   "BALANCE": "Total Balance",
   "AVERAGE": "Average Balance"
+
+
 }

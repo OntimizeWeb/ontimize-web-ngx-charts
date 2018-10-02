@@ -1,0 +1,15 @@
+<div layout="column" layout-align="center top" layout-margin>
+  <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()">
+    <div layout="row" layout-padding layout-align="center center">
+      <o-chart #directedGraph type="forceDirectedGraph" chart-height="450" chart-width="1000"
+       [chart-parameters]="chartParameters" flex="75">
+      </o-chart>
+    </div>
+    <div class="body-text-container" layout-padding>
+      <h2>Custom data</h2>
+      <p class="body-text">
+        Data provided by the user
+      </p>
+    </div>
+  </example-comp>
+</div>

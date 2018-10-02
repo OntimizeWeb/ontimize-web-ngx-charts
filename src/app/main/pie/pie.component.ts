@@ -7,8 +7,10 @@ import { Observer } from 'rxjs/Observer';
 
 import { OTranslateService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { PieChartConfiguration } from 'ontimize-web-ngx-charts'
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
+
 
 @Component({
 
@@ -16,7 +18,7 @@ import { NavigationBarService } from '../../shared/services/navigation-bar.servi
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.scss']
 })
-export class PieComponent implements OnInit {
+export class PieComponent implements OnInit{
 
   @ViewChild('pieChart')
   protected pieChart: OChartComponent;
@@ -24,10 +26,16 @@ export class PieComponent implements OnInit {
   data: Array<Object>;
   protected serviceResponse: string;
 
+  protected chartParameters: PieChartConfiguration;
 
   constructor(protected http: Http,
     protected navigationService: NavigationBarService,
     protected translateService: OTranslateService) {
+
+    this.chartParameters = new PieChartConfiguration();
+    this.chartParameters.cornerRadius = 20;
+    this.chartParameters.legendPosition = "bottom";
+    this.chartParameters.labelType = "value";
   }
 
   ngOnInit() {
@@ -87,6 +95,28 @@ export class PieComponent implements OnInit {
     ]
   }
 
+  getCustomConfigurationId() {
+    return 'Pie Chart (Custom Configuration)';
+  }
+
+  getCustomConfigurationFiles() {
+    return [
+      {
+        'type': 'html',
+        'data': CUSTOM_CONFIGURATION_HTML_DATA
+      },
+      {
+        'type': 'scss',
+        'data': ''
+      },
+      {
+        'type': 'typescript',
+        'data': CUSTOM_CONFIGURATION_TYPESCRIPT_DATA
+      }
+
+    ];
+  }
+
   getCustomDataId() {
     return 'Pie Chart (Custom service)';
   }
@@ -118,6 +148,48 @@ const BASIC_USAGE_HTML_DATA = `
 <o-chart type="pie" layout-fill entity="EMovementTypesTotal"
   x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
 `;
+
+const CUSTOM_CONFIGURATION_HTML_DATA = `
+<o-chart type="pie" layout-fill entity="EMovementTypesTotal"
+x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
+`;
+
+const CUSTOM_CONFIGURATION_TYPESCRIPT_DATA = `
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import { Observer } from 'rxjs/Observer';
+
+import { OTranslateService } from 'ontimize-web-ngx';
+import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { PieChartConfiguration } from 'ontimize-web-ngx-charts'
+
+import { NavigationBarService } from '../../shared/services/navigation-bar.service';
+
+
+@Component({
+
+  selector: 'pie',
+  templateUrl: './pie.component.html',
+  styleUrls: ['./pie.component.scss']
+})
+export class PieComponent{
+  protected chartParameters: PieChartConfiguration;
+
+  constructor(protected http: Http,
+    protected navigationService: NavigationBarService,
+    protected translateService: OTranslateService) {
+
+    this.chartParameters = new PieChartConfiguration();
+    this.chartParameters.cornerRadius = 20;
+    this.chartParameters.legendPosition = "bottom";
+    this.chartParameters.labelType = "value";
+  }
+}
+`;
+
 
 const CUSTOM_DATA_HTML_DATA = `
 <o-chart #pieChart type="pie" [data]="data" layout-fill></o-chart>

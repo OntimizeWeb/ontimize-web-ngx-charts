@@ -9,6 +9,12 @@ import { PieModule } from './pie/pie.module';
 import { DiscreteBarModule } from './discrete-bar/discrete-bar.module';
 import { MultiBarModule } from './multi-bar/multi-bar.module';
 import { MultiBarHorizontalModule } from './multi-bar-horizontal/multi-bar-horizontal.module';
+import { ScatterModule } from './scatter/scatter.module';
+import { DonutModule } from './donut/donut.module';
+import { LineplusbarModule } from './lineplusbar/lineplusbar.module';
+import { DirectedGraphModule } from './directed-graph/directed-graph.module';
+import { CandlestickModule } from './candlestick/candlestick.module';
+import { OhlcModule } from './ohlc/ohlc.module';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -34,6 +40,29 @@ export function loadMultiBarHorizontalModule() {
   return MultiBarHorizontalModule;
 }
 
+export function loadScatterModule() {
+  return ScatterModule;
+}
+
+export function loadDonutModule(){
+  return DonutModule;
+}
+
+export function loadLinePlusBarModule(){
+  return LineplusbarModule;
+}
+
+export function loadDirectedGraph(){
+  return DirectedGraphModule;
+}
+
+export function loadCandlestickChart(){
+  return CandlestickModule;
+}
+
+export function loadOhlcChart(){
+  return OhlcModule;
+}
 
 export const routes: Routes = [
   {
@@ -65,6 +94,30 @@ export const routes: Routes = [
       {
         path: 'multi-bar-horizontal',
         loadChildren: loadMultiBarHorizontalModule
+      },
+      {
+        path: 'scatter',
+        loadChildren: loadScatterModule
+      },
+      {
+        path: 'donut',
+        loadChildren: loadDonutModule
+      },
+      {
+        path: 'lineplusbar',
+        loadChildren: loadLinePlusBarModule
+      },
+      {
+        path: 'directedGraph',
+        loadChildren: loadDirectedGraph
+      },
+      {
+        path: 'candlestick',
+        loadChildren: loadCandlestickChart
+      },
+      {
+        path: 'ohlc',
+        loadChildren: loadOhlcChart
       }
     ]
   }

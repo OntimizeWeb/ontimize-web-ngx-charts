@@ -1,61 +1,61 @@
 <div layout="column" layout-align="center top" layout-margin>
 
-    <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()" layout-fill>
-        <div layout="row" layout-padding layout-align="center center">
-            <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" flex="75"
-                entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
-        </div>
-        <div class="body-text-container" layout-padding>
-            <h2>Basic Usage</h2>
-            <p class="body-text">
-                Chart data are provided through an Ontimize service.
-            </p>
-        </div>
-    </example-comp>
+  <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()" layout-fill>
+    <div layout="row" layout-padding layout-align="center center">
+      <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" flex="75" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+        y-axis="MOVEMENT"></o-chart>
+    </div>
+    <div class="body-text-container" layout-padding>
+      <h2>Basic Usage</h2>
+      <p class="body-text">
+        Chart data are provided through an Ontimize service.
+      </p>
+    </div>
+  </example-comp>
 
-    <example-comp [comp-name]="getInsideFormId()" [files]="getInsideFormFiles()" layout-fill>
-        <div layout="row" layout-padding layout-align="center center">
-            <o-form layout="column" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R" entity="EAccounts"
-                keys="ACCOUNTID" #oForm flex="75" class="mat-elevation-z4">
-                <o-row elevation="0" layout-align="space-between center">
-                    <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
-                    <o-row elevation="2" layout="row">
-                        <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
-                        <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
-                        <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
-                        <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
-                    </o-row>
-                </o-row>
-                <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" flex="75" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-                    y-axis="MOVEMENT" query-on-init="no" parent-keys="ACCOUNTID"></o-chart>
-            </o-form>
-        </div>
-        <div class="body-text-container" layout-padding>
-            <h3>Inside a form</h3>
-            <p class="body-text">
-                When a chart is included inside an Ontimize form, it is possible to configure the parameter 'parent-keys' for filtering
-                the results of chart service query.
-            </p>
-        </div>
-    </example-comp>
+  <example-comp [comp-name]="getInsideFormId()" [files]="getInsideFormFiles()" layout-fill>
+    <div layout="row" layout-padding layout-align="center center">
+      <o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R"
+        layout="column" flex="75" class="mat-elevation-z4" query-on-init="no">
+        <o-row elevation="0" layout-align="space-between center">
+          <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
+          <o-row elevation="2">
+            <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
+            <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
+            <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
+            <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
+          </o-row>
+        </o-row>
+        <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+          query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID"></o-chart>
+      </o-form>
+    </div>
+    <div class="body-text-container" layout-padding>
+      <h3>Inside a form</h3>
+      <p class="body-text">
+        When a chart is included inside an Ontimize form, it is possible to configure the parameter 'parent-keys' for filtering the
+        results of chart service query.
+      </p>
+    </div>
+  </example-comp>
 
-    <example-comp [comp-name]="getCustomDataId()" [files]="getCustomDataFiles()" layout-fill>
-        <div layout="row" layout-padding layout-align="center center">
-            <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" flex="75"></o-chart>
-        </div>
-        <div class="body-text-container" layout-padding>
-            <h3>Custom data</h3>
-            <p class="body-text">
-                Chart data are provided through an Ontimize service, but the user is the responsible of
-                perform the query call. This case is very useful to perform queries with custom filters and
-                also to process service response for creating aggregate data from queried data.
-            </p>
-            <p class="body-text">
-                In this example, it is performed an Ontimize service query filtering by 'ACCOUNTID' = 7310. Once
-                service response is received, data is processed for grouping all movements (amount of money in (€))
-                depending on its movement type ('Direct debit', 'Transfer', ...)
-            </p>
-        </div>
-    </example-comp>
+  <example-comp [comp-name]="getCustomDataId()" [files]="getCustomDataFiles()" layout-fill>
+    <div layout="row" layout-padding layout-align="center center">
+      <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" flex="75"></o-chart>
+    </div>
+    <div class="body-text-container" layout-padding>
+      <h3>Custom data</h3>
+      <p class="body-text">
+        Chart data are provided through an Ontimize service, but the user is the responsible of perform the query call. This case
+        is very useful to perform queries with custom filters and also to process service response for creating aggregate
+        data from queried data.
+      </p>
+      <p class="body-text">
+        In this example, it is performed an Ontimize service query filtering by 'ACCOUNTID' = 7310. Once service response is received,
+        data is processed for grouping all movements (amount of money in (€)) depending on its movement type ('Direct debit',
+        'Transfer', ...)
+      </p>
+    </div>
+  </example-comp>
 
 </div>

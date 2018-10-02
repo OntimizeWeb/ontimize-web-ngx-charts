@@ -3,7 +3,7 @@ import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { OComponent, OFormComponent, OntimizeService, dataServiceFactory } from 'ontimize-web-ngx';
 
-import { nvD3, NvD3Module } from 'ng2-nvd3';
+import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
 import {
   OChartComponent, ChartService,
   ChartFactory, ChartDataAdapterFactory
@@ -29,7 +29,7 @@ import { CustomChartFactory } from './custom.chart.factory';
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] },
     { provide: OChartComponent, useExisting: forwardRef(() => CustomChartComponent) }
   ],
-  inputs: OChartComponent.DEFAULT_INPUTS,
+  inputs: OChartComponent.DEFAULT_INPUTS_O_CHART,
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss']
 })
