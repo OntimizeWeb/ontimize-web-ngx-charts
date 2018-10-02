@@ -1,6 +1,8 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
 import {  ForceDirectedGraphConfiguration } from './ForceDirectedGraphConfiguration.class';
 
+declare var d3: any;
+
 export class ForceDirectedGraphOptions extends AbstractChartOptions {
 
   public getChartType(): string {

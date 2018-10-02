@@ -1,9 +1,6 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  // nvD3,
-  NvD3Module
-} from 'ng2-nvd3';
+import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
 import 'd3';
 import 'nvd3';
 import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util, OServiceBaseComponent } from 'ontimize-web-ngx';
@@ -97,7 +94,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected ChartOptions: any;
 
   @ViewChild('nvChart')
-  protected chartWrapper: any;
+  protected chartWrapper: nvD3;
 
   protected formDataSubcribe;
 
@@ -253,8 +250,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         return this.dataArray[0];
       else
         return [];
-    }
-    else {
+    } else {
       return this.dataArray;
     }
   }
