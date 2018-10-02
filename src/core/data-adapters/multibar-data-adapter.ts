@@ -1,7 +1,9 @@
-import { ChartSeries, ChartDataAdapter } from '../../interfaces';
-import { ChartConfiguration } from '../../core';
+import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
+import { ChartSeries } from '../../interfaces/ChartData.interface';
+import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
+import { MultiBarChartConfiguration } from '../chart-options/MultiBarChartConfiguration.class';
 
-export class GenericDataAdapter implements ChartDataAdapter {
+export class MultiBarDataAdapter implements ChartDataAdapter {
 
   protected chartConf: ChartConfiguration;
 
@@ -17,9 +19,9 @@ export class GenericDataAdapter implements ChartDataAdapter {
     }
   }
 
-
   adaptResult(data: Array<any>): Array<ChartSeries> {
     let result: Array<ChartSeries> = [];
+    let params = this.chartConf as MultiBarChartConfiguration;
     if (data && data.length) {
       let seriesvalues = this.processSeriesValues(data);
       var self = this;
@@ -28,6 +30,9 @@ export class GenericDataAdapter implements ChartDataAdapter {
           'key': 'series',
           'values': []
         };
+        if (params.colors && params.colors[_index]) {
+          serie['color'] = params.colors[_index];
+        }
         let key = axis;
         if (self.chartConf.translateService) {
           key = self.chartConf.translateService.get(key);

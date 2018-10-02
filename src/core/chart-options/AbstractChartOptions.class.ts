@@ -4,11 +4,6 @@ declare var d3: any;
 
 export class AbstractChartOptions {
 
-  public static DEFAULT_TOP_MARGIN: number = 20;
-  public static DEFAULT_BOTTOM_MARGIN: number = 40;
-  public static DEFAULT_RIGHT_MARGIN: number = 40;
-  public static DEFAULT_LEFT_MARGIN: number = 60;
-
   protected chartConf: ChartConfiguration;
   protected type: string;
 
@@ -27,7 +22,7 @@ export class AbstractChartOptions {
 
   public getOptions(): Object {
     let opts = {
-      chart: this.getChartOptions()
+      chart: this.getChartOptions(),
     };
     return opts;
   }
@@ -36,7 +31,6 @@ export class AbstractChartOptions {
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      margin: this.getChartMargins(),
       x: this.getXValue(),
       y: this.getYValue(),
       xAxis: this.getXAxisConfiguration(),
@@ -53,22 +47,16 @@ export class AbstractChartOptions {
     return this.chartConf.height ? this.chartConf.height : 450;
   }
 
-  protected getChartMargins() {
-    let margins = {
-      top: AbstractChartOptions.DEFAULT_TOP_MARGIN,
-      right: AbstractChartOptions.DEFAULT_RIGHT_MARGIN,
-      bottom: AbstractChartOptions.DEFAULT_BOTTOM_MARGIN,
-      left: AbstractChartOptions.DEFAULT_LEFT_MARGIN,
-    };
-    return margins;
-  }
-
   protected getXValue(): any {
     return function (d) { return d.x; };
   }
 
   protected getYValue(): any {
     return function (d) { return d.y; };
+  }
+
+  protected isArea(): any {
+    return function (d) { return d.area; };
   }
 
   protected getXAxisConfiguration(): Object {
@@ -105,7 +93,7 @@ export class AbstractChartOptions {
         };
         break;
     }
+
     return formatter;
   }
-
 }

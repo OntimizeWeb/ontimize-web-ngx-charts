@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
     "preinstall": "npm config set package-lock false",
@@ -18,7 +18,7 @@
   "author": "IMATIA S.L.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:OntimizeWebf/ontimize-web-ngx-charts.git"
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
   },
   "license": "Apache-2.0",
   "main": "./bundles/ontimize-web-ngx-charts.umd.js",

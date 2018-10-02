@@ -1,34 +1,48 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { nvD3, NvD3Module } from 'ng2-nvd3';
+import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
 import 'd3';
 import 'nvd3';
-import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util } from 'ontimize-web-ngx';
+import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util, OServiceBaseComponent } from 'ontimize-web-ngx';
 
 import { OChartFactory } from './o-chart.factory';
 import { ChartService } from '../../services/chart.service';
-import { ChartConfiguration } from '../../core/ChartConfiguration.class';
+import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.class';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
-import { isUndefined } from 'util';
-
+import {
+  PieChartConfiguration,
+  LineChartConfiguration,
+  ScatterChartConfiguration,
+  MultiBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration,
+  DonutChartConfiguration,
+  DiscreteBarChartConfiguration
+} from './../../core';
+import { LinePlusBarFocusChartConfiguration } from '../../core/chart-options/LinePlusBarFocusChartConfiguration.class';
+import { ForceDirectedGraphConfiguration } from '../../core/chart-options/ForceDirectedGraphConfiguration.class';
+import { CandlestickChartConfiguration } from '../../core/chart-options/CandlestickChartConfiguration.class';
+import { OHLCChartConfiguration } from '../../core/chart-options/OHLCChartConfiguration.class';
 export const CHART_TYPES = [
   'line',
   'discreteBar',
   'pie',
-  'multiBar'
-  // 'scatterChart',
-  // 'candlestickBarChart',
-  // 'ohlcBarChart',
-  // 'boxPlotChart',
-  // 'donutChart',
-  // 'multiBarHorizontalChart',
-  // 'linePlusBarWithFocusChart',
-  // 'forceDirectedGraph'
+  'multiBar',
+  'scatterChart',
+  'candlestickBarChart',
+  'ohlcBarChart',
+  'boxPlotChart',
+  'donutChart',
+  'multiBarHorizontalChart',
+  'linePlusBarWithFocusChart',
+  'forceDirectedGraph'
 ];
 
-const DEFAULT_INPUTS = [
+export const DEFAULT_INPUTS_O_CHART = [
+  ...OServiceBaseComponent.DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
+
   'cHeight: chart-height',
+  'cWidth: chart-width',
   // type [string]: Defines the type of graph to be painted (Line, Pie, ...)
   'type',
   'xAxis: x-axis',
@@ -39,29 +53,23 @@ const DEFAULT_INPUTS = [
   'xAxisDataType: x-data-type',
   'yAxisDataType: y-data-type',
   'data',
-  'entity',
-  'service',
-  'columns',
-  'parentKeys: parent-keys',
-  'queryOnInit: query-on-init',
-  'queryOnBind: query-on-bind'
+  'chartParameters: chart-parameters'
 ];
 
 @Component({
   selector: 'o-chart',
+  templateUrl: './o-chart.component.html',
+  styleUrls: ['./o-chart.component.scss'],
   providers: [
     OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
-  inputs: [
-    ...DEFAULT_INPUTS
-  ],
-  templateUrl: './o-chart.component.html',
-  styleUrls: ['./o-chart.component.scss']
+  inputs: DEFAULT_INPUTS_O_CHART
 })
-export class OChartComponent implements OnInit {
 
-  public static DEFAULT_INPUTS = DEFAULT_INPUTS;
+export class OChartComponent extends OServiceBaseComponent implements OnInit {
+
+  public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;
   public static CHART_TYPES = CHART_TYPES;
 
   /* Inputs */
@@ -72,70 +80,70 @@ export class OChartComponent implements OnInit {
   protected yAxisLabel: string;
   protected xAxisDataType: string;
   protected yAxisDataType: string;
-  protected entity: string;
-  protected service: string;
-  protected columns: string;
-  protected parentKeys: string;
+  protected chartParameters: ChartConfiguration;
   @InputConverter()
   protected cHeight: number = -1;
   @InputConverter()
-  protected queryOnInit: boolean = true;
-  @InputConverter()
-  protected queryOnBind: boolean = false;
+  protected cWidth: number = -1;
 
   protected _options: any;
   protected dataArray: Object[] = [];
   protected dataService: any;
   protected yAxisArray: Array<string> = [];
-  protected columnsArray: Array<string>;
-  protected pKeysEquiv = {};
+
+  protected ChartOptions: any;
 
   @ViewChild('nvChart')
   protected chartWrapper: nvD3;
 
   protected formDataSubcribe;
 
-  private clickEvtEmitter: EventEmitter<any> = new EventEmitter();
-  private chartService: ChartService;
-  private translateService: OTranslateService;
-
+  protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
+  protected chartService: ChartService;
+  protected translateService: OTranslateService;
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
     protected injector: Injector
   ) {
+    super(injector);
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
   }
 
   ngOnInit() {
+    switch (this.type) {
+      case 'forceDirectedGraph':
+        this.configureChart();
+        this.setData(null);
+        return;
+      case 'ohlcBarChart':
+        if (this.chartParameters && this.chartParameters instanceof OHLCChartConfiguration) {
+          if (this.chartParameters.chartData) {
+            this.configureChart();
+            this.setData(null);
+            return;
+          }
+        }
+        break;
+      case 'candlestickBarChart':
+        if (this.chartParameters && this.chartParameters instanceof CandlestickChartConfiguration) {
+          if (this.chartParameters.chartData) {
+            this.configureChart();
+            this.setData(null);
+            return;
+          }
+        }
+    }
+
+    super.initialize();
+
     this.yAxisArray = Util.parseArray(this.yAxis);
-
-    let pkArray = Util.parseArray(this.parentKeys);
-    this.pKeysEquiv = Util.parseParentKeysEquivalences(pkArray);
-
-    if (this.columns !== undefined) {
-      this.columnsArray = Util.parseArray(this.columns);
-    } else {
-      this.columnsArray = [];
-      if (this.xAxis && this.xAxis.length) {
-        this.columnsArray.push(this.xAxis);
-      }
-      if (this.yAxisArray && this.yAxisArray.length) {
-        this.columnsArray = this.columnsArray.concat(this.yAxisArray);
-      }
+    if (Util.isDefined(this.state['type'])) {
+      this.type = this.state['type'];
     }
-
-    if (this.form && this.queryOnBind) {
-      var self = this;
-      this.formDataSubcribe = this.form.onDataLoaded.subscribe(data => {
-        self.onFormDataBind(data);
-      });
-    }
-
     this.configureChart();
     this.bindChartEvents();
-    this.configureService();
   }
 
   ngAfterViewInit(): void {
@@ -146,6 +154,7 @@ export class OChartComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    super.destroy();
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
     }
@@ -166,11 +175,55 @@ export class OChartComponent implements OnInit {
   }
 
   getChartConfiguration(): ChartConfiguration {
-    let chartConf = new ChartConfiguration();
+    let chartConf;
+    if (this.chartParameters) {
+      chartConf = this.chartParameters;
+    } else {
+      switch (this.type) {
+        case 'line':
+          chartConf = new LineChartConfiguration();
+          break;
+        case 'pie':
+          chartConf = new PieChartConfiguration();
+          break;
+        case 'donutChart':
+          chartConf = new DonutChartConfiguration();
+          break;
+        case 'discreteBar':
+          chartConf = new DiscreteBarChartConfiguration();
+          break;
+        case 'multiBar':
+          chartConf = new MultiBarChartConfiguration();
+          break;
+        case 'multiBarHorizontalChart':
+          chartConf = new MultiBarHorizontalChartConfiguration();
+          break;
+        case 'scatterChart':
+          chartConf = new ScatterChartConfiguration();
+          break;
+        case 'linePlusBarWithFocusChart':
+          chartConf = new LinePlusBarFocusChartConfiguration();
+          break;
+        case 'forceDirectedGraph':
+          chartConf = new ForceDirectedGraphConfiguration();
+          break;
+        case 'candlestickBarChart':
+          chartConf = new CandlestickChartConfiguration();
+          break;
+        case 'ohlcBarChart':
+          chartConf = new OHLCChartConfiguration();
+          break;
+        default:
+          chartConf = new ChartConfiguration();
+      }
+    }
     chartConf.type = this.type;
 
     if (this.cHeight !== -1) {
       chartConf.height = this.cHeight;
+    }
+    if (this.cWidth !== -1) {
+      chartConf.width = this.cWidth;
     }
 
     chartConf.xLabel = this.xAxisLabel;
@@ -184,7 +237,22 @@ export class OChartComponent implements OnInit {
 
     chartConf.translateService = this.translateService;
 
+    chartConf.data = this.dataArray;
+
     return chartConf;
+  }
+
+
+
+  getAdaptData() {
+    if (this.type === 'forceDirectedGraph') {
+      if (this.dataArray && this.dataArray[0])
+        return this.dataArray[0];
+      else
+        return [];
+    } else {
+      return this.dataArray;
+    }
   }
 
   getChartFactory(): ChartFactory {
@@ -207,83 +275,71 @@ export class OChartComponent implements OnInit {
     return this.chartService;
   }
 
-  protected configureService() {
-    if (this.entity === undefined && this.service === undefined) {
-      return;
-    }
-    this.dataService = this.injector.get(OntimizeService);
-
-    if (Util.isDataService(this.dataService)) {
-      let serviceCfg = this.dataService.getDefaultServiceConfiguration(this.service);
-      if (this.entity) {
-        serviceCfg['entity'] = this.entity;
-      }
-      this.dataService.configureService(serviceCfg);
-    }
-  }
-
-  getDataArray(): any {
-    return this.dataArray;
-  }
-
-  protected setDataArray(data: any): void {
-    if (Util.isArray(data)) {
-      this.dataArray = data;
-    } else if (Util.isObject(data)) {
-      this.dataArray = [data];
-    } else {
-      console.warn('Chart has received not supported service data. Supported data are Array or Object');
-      this.dataArray = [];
-    }
-  }
-
   protected onFormDataBind(bindedData: Object) {
     let filter = {};
-    let keys = Object.keys(this.pKeysEquiv);
+    let keys = Object.keys(this._pKeysEquiv);
     if (keys && keys.length > 0 && bindedData) {
       keys.forEach(item => {
         let value = bindedData[item];
         if (value) {
-          filter[this.pKeysEquiv[item]] = value;
+          filter[this._pKeysEquiv[item]] = value;
         }
       });
+    }
+    if (this.type === 'ohlcBarChart' || this.type === 'candlestickBarChart') {
+      filter = {};
     }
     this.queryData(filter);
   }
 
-  queryData(filter: Object = {}, ovrrArgs?: any) {
-    var self = this;
-    if (this.dataService === undefined) {
-      console.warn('No service configured! aborting query');
-      return;
-    }
-
-    let sqltypes = undefined;
-    if (Util.isDefined(ovrrArgs)) {
-      sqltypes = ovrrArgs.sqltypes;
-    }
-    this.dataService.query(filter, this.columnsArray, this.entity, sqltypes).subscribe(resp => {
-      if (resp.code === 0) {
-        self.onQueryResponse(resp);
-      } else {
-        console.log('error');
-      }
-    }, err => console.log(err));
+  protected setData(data: any, _sqlTypes?: any, _replace?: boolean) {
+    let factory = this.getChartDataAdapterFactory();
+    let adapter: ChartDataAdapter = factory.getAdapter(this.type);
+    let adaptedResult = adapter.adaptResult(data);
+    this.setDataArray(adaptedResult);
+    this.configureChart();
   }
 
-  protected onQueryResponse(resp: Object) {
-    if (resp && resp['code'] === 0 && resp['data']) {
-      let factory = this.getChartDataAdapterFactory();
-      let adapter: ChartDataAdapter = factory.getAdapter(this.type);
-      let adaptedResult = adapter.adaptResult(resp['data']);
-      this.setDataArray(adaptedResult);
+  getAttributesValuesToQuery(): Array<string> {
+    let columns = super.getAttributesValuesToQuery();
+    if (this.yAxisArray && this.yAxisArray.length) {
+      this.yAxisArray.forEach((item: any, _index: number) => {
+        if (columns.filter((val: Object) => (val === item))) {
+          columns.push(item);
+        }
+      });
     }
+    if (this.xAxis && this.xAxis.length) {
+      if (columns.filter((val: Object) => (val === this.xAxis))) {
+        columns.push(this.xAxis);
+      }
+    }
+    if (this.type === 'ohlcBarChart') {
+      columns = [];
+      let params = this.chartParameters as OHLCChartConfiguration;
+      columns.push(params.xColumn);
+      columns.push(params.openAxis);
+      columns.push(params.closeAxis);
+      columns.push(params.highAxis);
+      columns.push(params.lowAxis);
+    }
+    if (this.type === 'candlestickBarChart') {
+      columns = [];
+      let params = this.chartParameters as CandlestickChartConfiguration;
+      columns.push(params.xColumn);
+      columns.push(params.openAxis);
+      columns.push(params.closeAxis);
+      columns.push(params.highAxis);
+      columns.push(params.lowAxis);
+    }
+    return columns;
   }
 
   /**
    *  Binds chart events.
    * @returns void
    */
+
   bindChartEvents(): void {
     var self = this;
     let chart = this.getChartService().chart;

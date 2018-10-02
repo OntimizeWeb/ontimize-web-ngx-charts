@@ -12,4 +12,8 @@ export interface ChartSeries {
   color?: string;
   //area - optional: set to true if you want this line to turn into a filled area chart.
   area?: boolean;
+  //shape - optional: choose your preferred shape for your point
+  shape?: string;
+  //bar - optional: set true in LinePLusBarChart for select bar option
+  bar?: boolean;
 }
