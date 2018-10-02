@@ -1,4 +1,21 @@
-PEER-DEPENDENCY UPDATES
+## 3.1.1 (2018-10-02)
+### Features
+* **o-chart**
+  * Adding new chart types:
+    * scatterChart
+    * candlestickBarChart
+    * ohlcBarChart
+    * boxPlotChart
+    * donutChart
+    * multiBarHorizontalChart
+    * linePlusBarWithFocusChart
+    * forceDirectedGraph
+  * Adding new `chart-parameters` input
+  * Now extending OntimizeWeb `OServiceBaseComponent` class
+
+### PEER-DEPENDENCY UPDATES
+* **Updated**: ng2-nvd3 updated to latest version. Updating its reference to '@nois/ng2-nvd3' in the code.
+
 ## 3.1.0 (2018-09-17)
 ### PEER-DEPENDENCY UPDATES
 * **Updated**: ontimize-web-ngx@3.1.0
