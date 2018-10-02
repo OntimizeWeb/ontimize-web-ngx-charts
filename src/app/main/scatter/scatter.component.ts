@@ -19,7 +19,7 @@ export class ScatterComponent implements OnInit {
   @ViewChild('scatter2')
   protected scatter2: OChartComponent;
 
-  protected chartParameters: ScatterChartConfiguration;
+  chartParameters: ScatterChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -107,7 +107,7 @@ import { ScatterChartConfiguration } from 'ontimize-web-ngx-charts/src/core';
 })
 export class ScatterComponent {
 
-  protected chartParameters: ScatterChartConfiguration;
+  chartParameters: ScatterChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

@@ -16,8 +16,8 @@ export class LineplusbarComponent implements OnInit {
   @ViewChild('lineplusbar2')
   protected lineplusbar2: OChartComponent;
 
-  protected chartParameters: LinePlusBarFocusChartConfiguration;
-  protected chartParameters2: LinePlusBarFocusChartConfiguration;
+  chartParameters: LinePlusBarFocusChartConfiguration;
+  chartParameters2: LinePlusBarFocusChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -100,7 +100,7 @@ import { OTranslateService } from 'ontimize-web-ngx';
 })
 export class LineplusbarComponent implements OnInit {
 
-  protected chartParameters: LinePlusBarFocusChartConfiguration;
+  chartParameters: LinePlusBarFocusChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -132,7 +132,7 @@ import { OTranslateService } from 'ontimize-web-ngx';
 })
 export class LineplusbarComponent {
 
-  protected chartParameters: LinePlusBarFocusChartConfiguration;
+  chartParameters: LinePlusBarFocusChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

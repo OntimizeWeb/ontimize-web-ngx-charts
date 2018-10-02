@@ -16,7 +16,7 @@ export class DonutComponent implements OnInit {
   @ViewChild('donutConfig')
   protected donutConfig: OChartComponent;
 
-  protected chartParameters: DonutChartConfiguration;
+  chartParameters: DonutChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -96,7 +96,7 @@ import { OTranslateService } from 'ontimize-web-ngx';
 })
 export class DonutComponent {
 
-  protected chartParameters: DonutChartConfiguration;
+  chartParameters: DonutChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

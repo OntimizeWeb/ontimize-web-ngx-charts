@@ -26,7 +26,7 @@ export class PieComponent implements OnInit{
   data: Array<Object>;
   protected serviceResponse: string;
 
-  protected chartParameters: PieChartConfiguration;
+  chartParameters: PieChartConfiguration;
 
   constructor(protected http: Http,
     protected navigationService: NavigationBarService,
@@ -176,7 +176,7 @@ import { NavigationBarService } from '../../shared/services/navigation-bar.servi
   styleUrls: ['./pie.component.scss']
 })
 export class PieComponent{
-  protected chartParameters: PieChartConfiguration;
+  chartParameters: PieChartConfiguration;
 
   constructor(protected http: Http,
     protected navigationService: NavigationBarService,

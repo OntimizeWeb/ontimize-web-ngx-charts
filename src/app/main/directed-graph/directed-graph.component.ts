@@ -14,7 +14,7 @@ export class DirectedGraphComponent implements OnInit {
   @ViewChild('directedGraph')
   protected directedGraph: OChartComponent;
 
-  protected chartParameters: ForceDirectedGraphConfiguration;
+  chartParameters: ForceDirectedGraphConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -104,7 +104,7 @@ import { ForceDirectedGraphConfiguration } from 'ontimize-web-ngx-charts/src/cor
 })
 export class DirectedGraphComponent implements OnInit {
 
-  protected chartParameters: ForceDirectedGraphConfiguration;
+  chartParameters: ForceDirectedGraphConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

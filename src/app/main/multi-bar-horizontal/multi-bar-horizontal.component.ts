@@ -15,7 +15,7 @@ export class MultiBarHorizontalComponent {
   @ViewChild('multiBarHor')
   protected multiBarHor: OChartComponent;
 
-  protected chartParameters: MultiBarHorizontalChartConfiguration;
+  chartParameters: MultiBarHorizontalChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

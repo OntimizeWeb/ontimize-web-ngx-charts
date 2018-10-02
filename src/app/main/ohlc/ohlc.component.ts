@@ -13,8 +13,8 @@ export class OhlcComponent implements OnInit {
   @ViewChild('ohlc')
   protected ohlc: OChartComponent;
 
-  protected chartParameters: OHLCChartConfiguration;
-  protected chartParameters2: OHLCChartConfiguration;
+  chartParameters: OHLCChartConfiguration;
+  chartParameters2: OHLCChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -116,7 +116,7 @@ export class OhlcComponent implements OnInit {
   @ViewChild('ohlc')
   protected ohlc: OChartComponent;
 
-  protected chartParameters: OHLCChartConfiguration;
+  chartParameters: OHLCChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -153,7 +153,7 @@ export class OhlcComponent implements OnInit {
   @ViewChild('ohlc')
   protected ohlc: OChartComponent;
 
-  protected chartParameters2: OHLCChartConfiguration;
+  chartParameters2: OHLCChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,

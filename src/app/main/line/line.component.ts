@@ -23,7 +23,7 @@ export class LineComponent {
   protected yAxis: string = 'MOVEMENT';
   protected xAxis: string = 'DATE_';
 
-  protected chartParameters: LineChartConfiguration;
+  chartParameters: LineChartConfiguration;
 
   protected data: Array<Object>;
 
@@ -123,7 +123,7 @@ declare var d3: any;
   styleUrls: ['./line.component.scss']
 })
 export class LineComponent {
-  protected chartParameters: LineChartConfiguration;
+  chartParameters: LineChartConfiguration;
 
   constructor(
     protected injector: Injector,

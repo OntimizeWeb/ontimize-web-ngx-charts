@@ -13,8 +13,8 @@ export class CandlestickComponent implements OnInit {
   @ViewChild('ohlc')
   protected ohlc: OChartComponent;
 
-  protected chartParameters: CandlestickChartConfiguration;
-  protected chartParameters2: CandlestickChartConfiguration;
+  chartParameters: CandlestickChartConfiguration;
+  chartParameters2: CandlestickChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -114,7 +114,7 @@ import { OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts
 export class CandlestickComponent {
 
 
-  protected chartParameters: CandlestickChartConfiguration;
+  chartParameters: CandlestickChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
@@ -149,7 +149,7 @@ import { OChartComponent, CandlestickChartConfiguration } from 'ontimize-web-ngx
 export class CandlestickComponent {
 
 
-  protected chartParameters2: CandlestickChartConfiguration;
+  chartParameters2: CandlestickChartConfiguration;
 
   constructor(protected injector: Injector,
     protected navigationService: NavigationBarService,
