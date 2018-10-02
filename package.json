@@ -18,7 +18,7 @@
   "author": "IMATIA S.L.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:OntimizeWebf/ontimize-web-ngx-charts.git"
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
   },
   "license": "Apache-2.0",
   "main": "./bundles/ontimize-web-ngx-charts.umd.js",
