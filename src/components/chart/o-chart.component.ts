@@ -11,18 +11,12 @@ import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 import {
-  PieChartConfiguration,
-  LineChartConfiguration,
-  ScatterChartConfiguration,
-  MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration,
-  DonutChartConfiguration,
-  DiscreteBarChartConfiguration
+  PieChartConfiguration, LineChartConfiguration, ScatterChartConfiguration, MultiBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration, DonutChartConfiguration,  DiscreteBarChartConfiguration,
+  BulletChartConfiguration, GaugeChartConfiguration, LinePlusBarFocusChartConfiguration,
+  ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration
 } from './../../core';
-import { LinePlusBarFocusChartConfiguration } from '../../core/chart-options/LinePlusBarFocusChartConfiguration.class';
-import { ForceDirectedGraphConfiguration } from '../../core/chart-options/ForceDirectedGraphConfiguration.class';
-import { CandlestickChartConfiguration } from '../../core/chart-options/CandlestickChartConfiguration.class';
-import { OHLCChartConfiguration } from '../../core/chart-options/OHLCChartConfiguration.class';
+
 export const CHART_TYPES = [
   'line',
   'discreteBar',
@@ -35,7 +29,9 @@ export const CHART_TYPES = [
   'donutChart',
   'multiBarHorizontalChart',
   'linePlusBarWithFocusChart',
-  'forceDirectedGraph'
+  'forceDirectedGraph',
+  'bulletChart',
+  'gaugeChart'
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
@@ -178,6 +174,37 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let chartConf;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
+
+      chartConf.type = this.type;
+
+      if (this.cHeight !== -1 && this.chartParameters.height === undefined) {
+        chartConf.height = this.cHeight;
+      }
+      if (this.cWidth !== -1 && this.chartParameters.width === undefined) {
+        chartConf.width = this.cWidth;
+      }
+
+      if(this.chartParameters.xLabel === undefined)
+        chartConf.xLabel = this.xAxisLabel;
+      if(this.chartParameters.yLabel === undefined)
+        chartConf.yLabel = this.yAxisLabel;``
+
+      if(this.chartParameters.xDataType === undefined)
+        chartConf.xDataType = this.xAxisDataType;
+      if(this.chartParameters.yDataType === undefined)
+        chartConf.yDataType = this.yAxisDataType;
+
+      if(this.chartParameters.xAxis === undefined)
+        chartConf.xAxis = this.xAxis;
+
+      if(this.chartParameters.yAxis === undefined)
+        chartConf.yAxis = this.yAxisArray;
+
+      chartConf.translateService = this.translateService;
+
+      if(this.chartParameters.data === undefined)
+        chartConf.data = this.dataArray;
+
     } else {
       switch (this.type) {
         case 'line':
@@ -213,39 +240,51 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'ohlcBarChart':
           chartConf = new OHLCChartConfiguration();
           break;
+        case 'bulletChart':
+          chartConf = new BulletChartConfiguration();
+          break;
+        case 'gaugeChart':
+          chartConf = new GaugeChartConfiguration();
+          break;
         default:
           chartConf = new ChartConfiguration();
       }
+
+      chartConf.type = this.type;
+
+      if (this.cHeight !== -1) {
+        chartConf.height = this.cHeight;
+      }
+      if (this.cWidth !== -1) {
+        chartConf.width = this.cWidth;
+      }
+
+      chartConf.xLabel = this.xAxisLabel;
+      chartConf.yLabel = this.yAxisLabel;``
+
+      chartConf.xDataType = this.xAxisDataType;
+      chartConf.yDataType = this.yAxisDataType;
+
+      chartConf.xAxis = this.xAxis;
+      chartConf.yAxis = this.yAxisArray;
+
+      chartConf.translateService = this.translateService;
+
+      chartConf.data = this.dataArray;
     }
-    chartConf.type = this.type;
-
-    if (this.cHeight !== -1) {
-      chartConf.height = this.cHeight;
-    }
-    if (this.cWidth !== -1) {
-      chartConf.width = this.cWidth;
-    }
-
-    chartConf.xLabel = this.xAxisLabel;
-    chartConf.yLabel = this.yAxisLabel;
-
-    chartConf.xDataType = this.xAxisDataType;
-    chartConf.yDataType = this.yAxisDataType;
-
-    chartConf.xAxis = this.xAxis;
-    chartConf.yAxis = this.yAxisArray;
-
-    chartConf.translateService = this.translateService;
-
-    chartConf.data = this.dataArray;
 
     return chartConf;
+  }
+
+  public setChartConfiguration(conf: ChartConfiguration) {
+    this.chartParameters = conf;
+    this.configureChart();
   }
 
 
 
   getAdaptData() {
-    if (this.type === 'forceDirectedGraph') {
+    if (this.type === 'forceDirectedGraph' || this.type == 'bulletChart') {
       if (this.dataArray && this.dataArray[0])
         return this.dataArray[0];
       else
@@ -292,7 +331,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.queryData(filter);
   }
 
-  protected setData(data: any, _sqlTypes?: any, _replace?: boolean) {
+  public setData(data: any, _sqlTypes?: any, _replace?: boolean) {
     let factory = this.getChartDataAdapterFactory();
     let adapter: ChartDataAdapter = factory.getAdapter(this.type);
     let adaptedResult = adapter.adaptResult(data);

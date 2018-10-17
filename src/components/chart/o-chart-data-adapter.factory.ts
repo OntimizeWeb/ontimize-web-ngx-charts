@@ -3,7 +3,8 @@ import { ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 import {
   ChartConfiguration,
   GenericDataAdapter,
-  PieDataAdapter
+  PieDataAdapter,
+  GaugeDataAdapter
 } from '../../core';
 import { LineDataAdapter } from '../../core/data-adapters/line-data-adapter';
 import { ScatterDataAdapter } from '../../core/data-adapters/scatter-data-adapter';
@@ -14,6 +15,7 @@ import { LinePlusBarDataAdapter } from '../../core/data-adapters/lineplusbar-dat
 import { ForceDirectedGraphDataAdapter } from '../../core/data-adapters/forceDirectedGraph-data-adapter';
 import { CandlestickDataAdapter } from '../../core/data-adapters/candlestick-data-adapter';
 import { OhlcDataAdapter } from '../../core/data-adapters/ohlc-data-adapter';
+import {  BulletDataAdapter } from '../../core';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
@@ -58,6 +60,12 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
         break;
       case 'ohlcBarChart':
         adapter = this.createOhlcDataAdapter();
+        break;
+      case 'bulletChart':
+        adapter = this.createBulletDataAdapter();
+        break;
+      case 'gaugeChart':
+        adapter = this.createGaugeDataAdapter();
         break;
     }
     return adapter;
@@ -105,5 +113,13 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
   public createOhlcDataAdapter(): ChartDataAdapter {
     return new OhlcDataAdapter(this.chartConf);
+  }
+
+  public createBulletDataAdapter(): ChartDataAdapter {
+    return new BulletDataAdapter(this.chartConf);
+  }
+
+  public createGaugeDataAdapter(): ChartDataAdapter {
+    return new GaugeDataAdapter(this.chartConf);
   }
 }

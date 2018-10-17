@@ -5,7 +5,9 @@ import {
   DiscreteBarChartOptions,
   MultiBarChartOptions,
   MultiBarHorizontalChartOptions,
-  ScatterChartOptions
+  ScatterChartOptions,
+  BulletChartOptions,
+  GaugeChartOption
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
@@ -57,6 +59,12 @@ export class OChartFactory implements ChartFactory {
         break;
       case 'ohlcBarChart':
         chartOpts = this.createOhlcBarChart(chartConf);
+        break;
+      case 'bulletChart':
+        chartOpts = this.createBulletChartOptions(chartConf);
+        break;
+      case 'gaugeChart':
+        chartOpts = this.createGaugeChartOptions(chartConf);
         break;
     }
     return chartOpts;
@@ -115,5 +123,15 @@ export class OChartFactory implements ChartFactory {
   public createOhlcBarChart(chartConf: ChartConfiguration): any {
     let ohlcOptions = new OHLCChartOptions(chartConf);
     return ohlcOptions.getOptions();
+  }
+
+  public createBulletChartOptions(chartConf: ChartConfiguration): any {
+    let bulletOptions = new BulletChartOptions(chartConf);
+    return bulletOptions.getOptions();
+  }
+
+  public createGaugeChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeChartOption(chartConf);
+    return gaugeOptions.getOptions();
   }
 }

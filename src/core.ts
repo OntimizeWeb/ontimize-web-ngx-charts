@@ -22,6 +22,10 @@ export * from './core/chart-options/OHLCChartConfiguration.class';
 export * from './core/chart-options/OHLCChartOptions.class';
 export * from './core/chart-options/ScatterChartConfiguration.class';
 export * from './core/chart-options/ScatterChartOption.class';
+export * from './core/chart-options/BulletChartConfiguration.class';
+export * from './core/chart-options/BulletChartOptions.class';
+export * from './core/chart-options/GaugeChartConfiguration.class';
+export * from './core/chart-options/GaugeChartOptions.class';
 
 export * from './core/data-adapters/generic-data-adapter';
 export * from './core/data-adapters/pie-data-adapter';
@@ -30,5 +34,12 @@ export * from './core/data-adapters/line-data-adapter';
 export * from './core/data-adapters/multibar-data-adapter';
 export * from './core/data-adapters/multibar-horizontal-data-adapter';
 export * from './core/data-adapters/scatter-data-adapter';
+export * from './core/data-adapters/candlestick-data-adapter';
+export * from './core/data-adapters/ohlc-data-adapter';
+export * from './core/data-adapters/lineplusbar-data-adapter';
+export * from './core/data-adapters/forceDirectedGraph-data-adapter';
+export * from './core/data-adapters/bullet-data-adapter';
+export * from './core/data-adapters/data-adapter-utils';
+export * from './core/data-adapters/gauge-data-adapter';
 
 export * from './core/chart-options/ChartMarginConfiguration.class';

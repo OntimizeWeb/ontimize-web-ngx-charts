@@ -18,7 +18,7 @@ export class LineChartConfiguration extends ChartConfiguration {
   classed: Array<string> = null;
   colors: Array<string> = null;
 
-  showXAxis: boolean = false;
+  showXAxis: boolean = true;
   showYAxis: boolean = true;
   xAxis1: ChartAxisConfiguration;
   yAxis1: ChartAxisConfiguration;

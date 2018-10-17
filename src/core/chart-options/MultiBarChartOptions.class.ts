@@ -16,16 +16,16 @@ export class MultiBarChartOptions extends AbstractChartOptions {
     let params = (this.chartConf as MultiBarChartConfiguration);
 
     if (params.xDataType) {
-      params.axisX.tickFormat = this.getTickFormatter(params.xDataType);
+      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
     }
     if (params.yDataType) {
-      params.axisY.tickFormat = this.getTickFormatter(params.yDataType);
+      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
     }
     if (params.xLabel) {
-      params.axisX.axisLabel = params.xLabel;
+      params.x1Axis.axisLabel = params.xLabel;
     }
     if (params.yLabel) {
-      params.axisY.axisLabel = params.yLabel;
+      params.y1Axis.axisLabel = params.yLabel;
     }
 
     let chart = {
@@ -36,14 +36,15 @@ export class MultiBarChartOptions extends AbstractChartOptions {
       width: params.width,
       margin: params.margin.getMarginOptions(),
       legend: params.legend.getLegendOptions(),
-      xAxis: params.axisX.getAxisOptions(),
-      yAxis: params.axisY.getAxisOptions(),
+      xAxis: params.x1Axis.getAxisOptions(),
+      yAxis: params.y1Axis.getAxisOptions(),
       duration: params.duration,
       stacked: params.stacked,
       hideable: params.hideable,
       groupSpacing: params.groupSpacing,
       showLegend: params.showLegend,
       showControls: params.showControls,
+      control: params.control.getChartControlConfiguration(),
       showXAxis: params.showXAxis,
       showYAxis: params.showYAxis,
       reduceXTicks: params.reduceXTicks,

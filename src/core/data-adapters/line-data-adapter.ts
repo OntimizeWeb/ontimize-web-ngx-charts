@@ -60,6 +60,8 @@ export class LineDataAdapter implements ChartDataAdapter {
         if (seriesValues[axis] === undefined) {
           seriesValues[axis] = [];
         }
+        if (item[axis] === undefined)
+          return;
         let val = {
           'x': item[self.xAxis],
           'y': item[axis]
