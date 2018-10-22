@@ -1,7 +1,7 @@
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
-export class GaugeChartConfiguration extends ChartConfiguration {
+export class GaugeDashboardChartConfiguration extends ChartConfiguration {
   readonly donut: boolean = true;
   readonly donutRatio: number = 0.5;
   readonly showLabels: boolean = false;

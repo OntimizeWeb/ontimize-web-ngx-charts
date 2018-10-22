@@ -24,8 +24,14 @@ export * from './core/chart-options/ScatterChartConfiguration.class';
 export * from './core/chart-options/ScatterChartOption.class';
 export * from './core/chart-options/BulletChartConfiguration.class';
 export * from './core/chart-options/BulletChartOptions.class';
-export * from './core/chart-options/GaugeChartConfiguration.class';
-export * from './core/chart-options/GaugeChartOptions.class';
+export * from './core/chart-options/GaugeDashboardChartConfiguration.class';
+export * from './core/chart-options/GaugeDashboardChartOptions.class';
+export * from './core/chart-options/GaugeSlimChartConfiguration.class';
+export * from './core/chart-options/GaugeSlimChartOptions.class';
+export * from './core/chart-options/GaugeSpaceChartConfiguration.class';
+export * from './core/chart-options/GaugeSpaceChartOptions.class';
+export * from './core/chart-options/RadialPercentChartConfiguration.class';
+export * from './core/chart-options/RadialPercentChartOptions.class';
 
 export * from './core/data-adapters/generic-data-adapter';
 export * from './core/data-adapters/pie-data-adapter';

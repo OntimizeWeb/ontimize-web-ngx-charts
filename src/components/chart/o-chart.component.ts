@@ -13,8 +13,9 @@ import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../i
 import {
   PieChartConfiguration, LineChartConfiguration, ScatterChartConfiguration, MultiBarChartConfiguration,
   MultiBarHorizontalChartConfiguration, DonutChartConfiguration,  DiscreteBarChartConfiguration,
-  BulletChartConfiguration, GaugeChartConfiguration, LinePlusBarFocusChartConfiguration,
-  ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration
+  BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
+  ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
+  GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration
 } from './../../core';
 
 export const CHART_TYPES = [
@@ -31,7 +32,10 @@ export const CHART_TYPES = [
   'linePlusBarWithFocusChart',
   'forceDirectedGraph',
   'bulletChart',
-  'gaugeChart'
+  'gaugeDashboardChart',
+  'radialPercentChart',
+  'gaugeSpaceChart',
+  'gaugeSlimChart'
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
@@ -243,8 +247,17 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'bulletChart':
           chartConf = new BulletChartConfiguration();
           break;
-        case 'gaugeChart':
-          chartConf = new GaugeChartConfiguration();
+        case 'gaugeDashboardChart':
+          chartConf = new GaugeDashboardChartConfiguration();
+          break;
+        case 'gaugeSlimChart':
+          chartConf = new GaugeSlimChartConfiguration();
+          break;
+        case 'gaugeSpaceChart':
+          chartConf = new GaugeSpaceChartConfiguration();
+          break;
+        case 'radialPercentChart':
+          chartConf = new RadialPercentChartConfiguration();
           break;
         default:
           chartConf = new ChartConfiguration();
@@ -280,8 +293,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.chartParameters = conf;
     this.configureChart();
   }
-
-
 
   getAdaptData() {
     if (this.type === 'forceDirectedGraph' || this.type == 'bulletChart') {

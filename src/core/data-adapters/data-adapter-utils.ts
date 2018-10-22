@@ -51,7 +51,10 @@ export class DataAdapterUtils {
       case 'bulletChart':
         DataAdapterUtils.adapter = new BulletDataAdapter(chartConfiguration);
         break;
-      case 'gaugeChart':
+      case 'gaugeDashboardChart':
+      case 'radialPercentChart':
+      case 'gaugeSpaceChart':
+      case 'gaugeSlimChart':
         DataAdapterUtils.adapter = new GaugeDataAdapter(chartConfiguration);
         break;
       default:

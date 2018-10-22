@@ -1,21 +1,11 @@
 import {
-  ChartConfiguration,
-  LineChartOptions,
-  PieChartOptions,
-  DiscreteBarChartOptions,
-  MultiBarChartOptions,
-  MultiBarHorizontalChartOptions,
-  ScatterChartOptions,
-  BulletChartOptions,
-  GaugeChartOption
+  ChartConfiguration, LineChartOptions, PieChartOptions, DiscreteBarChartOptions, MultiBarChartOptions,
+  MultiBarHorizontalChartOptions, ScatterChartOptions, BulletChartOptions, GaugeDashboardChartOptions,
+  DonutChartOptions, LinePlusBarFocusChartOptions, ForceDirectedGraphOptions, CandlestickChartOptions,
+  OHLCChartOptions, GaugeSlimChartOptions, GaugeSpaceChartOptions, RadialPercentChartOptions
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
-import { DonutChartOptions } from '../../core/chart-options/DonutChartOptions.class';
-import { LinePlusBarFocusChartOptions } from '../../core/chart-options/LinePlusBarFocusChartOptions.class';
-import { ForceDirectedGraphOptions } from '../../core/chart-options/ForceDirectedGraphOptions.class';
-import { CandlestickChartOptions } from '../../core/chart-options/CandlestickChartOptions.class';
-import { OHLCChartOptions } from '../../core/chart-options/OHLCChartOptions.class';
 
 export class OChartFactory implements ChartFactory {
 
@@ -63,8 +53,17 @@ export class OChartFactory implements ChartFactory {
       case 'bulletChart':
         chartOpts = this.createBulletChartOptions(chartConf);
         break;
-      case 'gaugeChart':
-        chartOpts = this.createGaugeChartOptions(chartConf);
+      case 'gaugeDashboardChart':
+        chartOpts = this.createGaugeDashboardChartOptions(chartConf);
+        break;
+      case 'gaugeSlimChart':
+        chartOpts = this.createGaugeSlimChartOptions(chartConf);
+        break;
+      case 'gaugeSpaceChart':
+        chartOpts = this.createGaugeSpaceChartOptions(chartConf);
+        break;
+      case 'radialPercentChart':
+        chartOpts = this.createRadialPercentChartOptions(chartConf);
         break;
     }
     return chartOpts;
@@ -130,8 +129,23 @@ export class OChartFactory implements ChartFactory {
     return bulletOptions.getOptions();
   }
 
-  public createGaugeChartOptions(chartConf: ChartConfiguration): any {
-    let gaugeOptions = new GaugeChartOption(chartConf);
+  public createGaugeDashboardChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeDashboardChartOptions(chartConf);
     return gaugeOptions.getOptions();
+  }
+
+  public createGaugeSlimChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeSlimChartOptions(chartConf);
+    return gaugeOptions.getOptions();
+  }
+
+  public createGaugeSpaceChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeSpaceChartOptions(chartConf);
+    return gaugeOptions.getOptions();
+  }
+
+  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any{
+    let radialPercentOptions = new RadialPercentChartOptions(chartConf);
+    return radialPercentOptions.getOptions();
   }
 }

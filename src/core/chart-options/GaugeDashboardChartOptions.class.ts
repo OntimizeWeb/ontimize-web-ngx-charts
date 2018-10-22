@@ -1,8 +1,8 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
-import { GaugeChartConfiguration } from './GaugeChartConfiguration.class';
+import { GaugeDashboardChartConfiguration } from './GaugeDashboardChartConfiguration.class';
 
-export class GaugeChartOption extends AbstractChartOptions {
+export class GaugeDashboardChartOptions extends AbstractChartOptions {
 
   constructor(chartConf: ChartConfiguration) {
     super(chartConf);
@@ -14,18 +14,17 @@ export class GaugeChartOption extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let params;
-    if (this.chartConf instanceof GaugeChartConfiguration) {
+    if (this.chartConf instanceof GaugeDashboardChartConfiguration) {
       params = this.chartConf;
     }
     else {
-      params = new GaugeChartConfiguration();
+      params = new GaugeDashboardChartConfiguration();
     }
 
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      margin: params.margin.getMarginOptions(),
       duration: params.duration,
       donut: params.donut,
       donutRatio: params.donutRatio,
@@ -33,7 +32,7 @@ export class GaugeChartOption extends AbstractChartOptions {
       showLegend: params.showLegend,
       titleOffset: params.titleOffset,
       title: params.title,
-      x: function (d) { return d.key; },
+      x: function (d) { return d.x; },
       y: function (d) { return d.y; },
       pie: {
         startAngle: function (d) { return d.startAngle / 2 - Math.PI / 2 },

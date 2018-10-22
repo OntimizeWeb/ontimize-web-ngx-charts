@@ -1,21 +1,11 @@
 import { ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 
 import {
-  ChartConfiguration,
-  GenericDataAdapter,
-  PieDataAdapter,
-  GaugeDataAdapter
+  ChartConfiguration, GenericDataAdapter, PieDataAdapter, GaugeDataAdapter, LineDataAdapter,
+  ScatterDataAdapter, DiscreteBarDataAdapter, MultiBarDataAdapter, MultiBarHorizontalDataAdapter,
+  LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter, CandlestickDataAdapter, OhlcDataAdapter,
+  BulletDataAdapter
 } from '../../core';
-import { LineDataAdapter } from '../../core/data-adapters/line-data-adapter';
-import { ScatterDataAdapter } from '../../core/data-adapters/scatter-data-adapter';
-import { DiscreteBarDataAdapter } from '../../core/data-adapters/discreteBar-data-adapter';
-import { MultiBarDataAdapter } from '../../core/data-adapters/multibar-data-adapter';
-import { MultiBarHorizontalDataAdapter } from '../../core/data-adapters/multibar-horizontal-data-adapter';
-import { LinePlusBarDataAdapter } from '../../core/data-adapters/lineplusbar-data-adapter';
-import { ForceDirectedGraphDataAdapter } from '../../core/data-adapters/forceDirectedGraph-data-adapter';
-import { CandlestickDataAdapter } from '../../core/data-adapters/candlestick-data-adapter';
-import { OhlcDataAdapter } from '../../core/data-adapters/ohlc-data-adapter';
-import {  BulletDataAdapter } from '../../core';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
@@ -64,7 +54,10 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
       case 'bulletChart':
         adapter = this.createBulletDataAdapter();
         break;
-      case 'gaugeChart':
+      case 'gaugeDashboardChart':
+      case 'gaugeSlimChart':
+      case 'gaugeSpaceChart':
+      case 'radialPercentChart':
         adapter = this.createGaugeDataAdapter();
         break;
     }
