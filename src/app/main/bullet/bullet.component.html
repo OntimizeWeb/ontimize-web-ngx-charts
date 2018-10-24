@@ -1,7 +1,7 @@
 <div layout="column" layout-align="center top" layout-padding>
   <example-comp [comp-name]="getBasicId()" [files]="getBasicFiles()">
     <div layout="row" layout-padding layout-align="center center">
-      <o-chart type="bulletChart" flex="75" chart-height="200" entity="EBullet"></o-chart>
+      <o-chart type="bulletChart" flex="75" chart-height="200" entity="EBullet" [chart-parameters]='chartParameters2'></o-chart>
     </div>
     <div class="body-text-container" layout-padding>
       <h2>Basic Usage</h2>

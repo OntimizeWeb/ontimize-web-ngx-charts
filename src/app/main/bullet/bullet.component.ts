@@ -14,11 +14,18 @@ export class BulletComponent implements OnInit {
 
   protected chartParameters: BulletChartConfiguration;
 
+  protected chartParameters2: BulletChartConfiguration;
+
   constructor() {
     this.chartParameters = new BulletChartConfiguration();
     this.chartParameters.ticks = 10;
     this.chartParameters.title = 'Custom';
     this.chartParameters.subtitle = 'Value';
+
+    this.chartParameters2 = new BulletChartConfiguration();
+    this.chartParameters2.markersAxis = 'marker';
+    this.chartParameters2.rangesAxis = 'range';
+    this.chartParameters2.measuresAxis = 'measure';
    }
 
   ngOnInit() {
