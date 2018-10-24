@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Injector } from '@angular/core';
 import { OChartComponent, ChartMarginConfiguration } from 'ontimize-web-ngx-charts';
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 import { OTranslateService } from 'ontimize-web-ngx';
-import { ForceDirectedGraphConfiguration } from 'ontimize-web-ngx-charts/src/core/chart-options/ForceDirectedGraphConfiguration.class'
+import { ForceDirectedGraphConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts'
 
 @Component({
   selector: 'app-directed-graph',
@@ -59,6 +59,11 @@ export class DirectedGraphComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    DataAdapterUtils.createDataAdapter(this.chartParameters);
+    this.directedGraph.setDataArray(DataAdapterUtils.adapter.adaptResult([]));
   }
 
   getBasicUsageId() {

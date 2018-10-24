@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 import { OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent, CandlestickChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, CandlestickChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
@@ -10,8 +10,8 @@ import { OChartComponent, CandlestickChartConfiguration } from 'ontimize-web-ngx
 })
 export class CandlestickComponent implements OnInit {
 
-  @ViewChild('ohlc')
-  protected ohlc: OChartComponent;
+  @ViewChild('candlestick')
+  protected candlestick: OChartComponent;
 
   chartParameters: CandlestickChartConfiguration;
   chartParameters2: CandlestickChartConfiguration;
@@ -28,8 +28,13 @@ export class CandlestickComponent implements OnInit {
     this.chartParameters.lowAxis = "MOVEMENT";
 
 
-    this.chartParameters2 = new CandlestickChartConfiguration();
-    this.chartParameters2.chartData = [
+  }
+
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    let data = [
       { "date": 1511111115707, "open": 145.11, "high": 146.15, "low": 144.73, "close": 146.06, },
       { "date": 1511111115708, "open": 145.99, "high": 146.37, "low": 145.34, "close": 145.73 },
       { "date": 1511111115709, "open": 145.97, "high": 146.61, "low": 145.67, "close": 146.37 },
@@ -47,13 +52,22 @@ export class CandlestickComponent implements OnInit {
       { "date": 1511111115728, "open": 149.13, "high": 149.5, "low": 148.86, "close": 149.37 },
       { "date": 1511111115729, "open": 149.15, "high": 150.14, "low": 149.01, "close": 149.41 }
     ];
-  }
 
-  ngOnInit() {
+    this.chartParameters2 = new CandlestickChartConfiguration();
+    this.chartParameters2.xColumn = 'date';
+    this.chartParameters2.openAxis = 'open';
+    this.chartParameters2.highAxis = 'high';
+    this.chartParameters2.lowAxis = 'low';
+    this.chartParameters2.closeAxis = 'close';
+
+    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+
+    this.candlestick.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+
   }
 
   getBasicUsageId() {
-    return 'OHLC Chart (Basic Usage)';
+    return 'Candlestick Chart (Basic Usage)';
   }
 
   getBasicUsageFiles() {
@@ -74,7 +88,7 @@ export class CandlestickComponent implements OnInit {
   }
 
   getCustomServiceId() {
-    return 'OHLC Chart (Custom Service)';
+    return 'Candlestick Chart (Custom Service)';
   }
 
   getCustomServiceFiles() {
@@ -96,7 +110,7 @@ export class CandlestickComponent implements OnInit {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart #ohlc type="candlestickBarChart" chart-height="600" x-data-type="time"
+<o-chart type="candlestickBarChart" chart-height="600" x-data-type="time"
 [chart-parameters]="chartParameters" entity="EMovementsGrouped"></o-chart>
 `;
 
@@ -131,7 +145,7 @@ export class CandlestickComponent {
 `;
 
 const CUSTOM_SERVICE_HTML_DATA = `
-<o-chart type="ohlcBarChart" chart-height="600" x-data-type="time"
+<o-chart #candlestick type="ohlcBarChart" chart-height="600" x-data-type="time"
         [chart-parameters]="chartParameters2"></o-chart>
 `;
 
@@ -139,15 +153,17 @@ const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 import { OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent, CandlestickChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, CandlestickChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
-  templateUrl: './ohlc.component.html',
-  styleUrls: ['./ohlc.component.scss']
+  templateUrl: './candlestick.component.html',
+  styleUrls: ['./candlestick.component.scss']
 })
-export class CandlestickComponent {
+export class CandlestickComponent implements OnInit {
 
+  @ViewChild('candlestick')
+  protected candlestick: OChartComponent;
 
   chartParameters2: CandlestickChartConfiguration;
 
@@ -155,8 +171,13 @@ export class CandlestickComponent {
     protected navigationService: NavigationBarService,
     protected translateService: OTranslateService) {
 
-    this.chartParameters2 = new CandlestickChartConfiguration();
-    this.chartParameters2.chartData = [
+  }
+
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    let data = [
       { "date": 1511111115707, "open": 145.11, "high": 146.15, "low": 144.73, "close": 146.06, },
       { "date": 1511111115708, "open": 145.99, "high": 146.37, "low": 145.34, "close": 145.73 },
       { "date": 1511111115709, "open": 145.97, "high": 146.61, "low": 145.67, "close": 146.37 },
@@ -174,6 +195,16 @@ export class CandlestickComponent {
       { "date": 1511111115728, "open": 149.13, "high": 149.5, "low": 148.86, "close": 149.37 },
       { "date": 1511111115729, "open": 149.15, "high": 150.14, "low": 149.01, "close": 149.41 }
     ];
+
+    this.chartParameters2 = new CandlestickChartConfiguration();
+    this.chartParameters2.xColumn = 'date';
+    this.chartParameters2.openAxis = 'open';
+    this.chartParameters2.highAxis = 'high';
+    this.chartParameters2.lowAxis = 'low';
+    this.chartParameters2.closeAxis = 'close';
+
+    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+    this.candlestick.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
   }
 }
 `;

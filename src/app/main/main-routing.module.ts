@@ -15,6 +15,10 @@ import { LineplusbarModule } from './lineplusbar/lineplusbar.module';
 import { DirectedGraphModule } from './directed-graph/directed-graph.module';
 import { CandlestickModule } from './candlestick/candlestick.module';
 import { OhlcModule } from './ohlc/ohlc.module';
+import { GaugeModule } from './gauge/gauge.module';
+import { BubbleModule } from './bubble/bubble.module';
+import { BulletModule } from './bullet/bullet.module';
+import {  StackedAreaModule } from './stacked-area/stacked-area.module';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -52,16 +56,32 @@ export function loadLinePlusBarModule(){
   return LineplusbarModule;
 }
 
-export function loadDirectedGraph(){
+export function loadDirectedGraphModule(){
   return DirectedGraphModule;
 }
 
-export function loadCandlestickChart(){
+export function loadCandlestickModule(){
   return CandlestickModule;
 }
 
-export function loadOhlcChart(){
+export function loadOhlcModule(){
   return OhlcModule;
+}
+
+export function loadGaugeModule() {
+  return GaugeModule;
+}
+
+export function loadBubbleModule() {
+  return BubbleModule;
+}
+
+export function loadBulletModule() {
+  return BulletModule;
+}
+
+export function loadStackedAreaModule() {
+  return StackedAreaModule;
 }
 
 export const routes: Routes = [
@@ -109,15 +129,31 @@ export const routes: Routes = [
       },
       {
         path: 'directedGraph',
-        loadChildren: loadDirectedGraph
+        loadChildren: loadDirectedGraphModule
       },
       {
         path: 'candlestick',
-        loadChildren: loadCandlestickChart
+        loadChildren: loadCandlestickModule
       },
       {
         path: 'ohlc',
-        loadChildren: loadOhlcChart
+        loadChildren: loadOhlcModule
+      },
+      {
+        path: 'gauge',
+        loadChildren: loadGaugeModule
+      },
+      {
+        path: 'bubble',
+        loadChildren: loadBubbleModule
+      },
+      {
+        path: 'bullet',
+        loadChildren: loadBulletModule
+      },
+      {
+        path: 'stackedArea',
+        loadChildren: loadStackedAreaModule
       }
     ]
   }

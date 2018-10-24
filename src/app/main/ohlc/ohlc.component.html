@@ -14,7 +14,7 @@
 
   <example-comp [comp-name]="getCustomServiceId()" [files]="getCustomServiceFiles()">
     <div layout="row" layout-padding layout-align="center center">
-      <o-chart type="ohlcBarChart" chart-height="600" x-data-type="time"
+      <o-chart #ohlc2 type="ohlcBarChart" chart-height="600" x-data-type="time"
         [chart-parameters]="chartParameters2"></o-chart>
     </div>
     <div class="body-text-container" layout-padding>

@@ -5,6 +5,8 @@ import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
 
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 
+declare var d3: any;
+
 @Component({
 
   selector: 'multi-bar',

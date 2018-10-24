@@ -19,7 +19,16 @@
   "MOVEMENT":"Movement",
   "MOVEMENTTYPES":"Movement types",
   "BALANCE": "Total Balance",
-  "AVERAGE": "Average Balance"
+  "AVERAGE": "Average Balance",
 
+  "BUBBLE": "Bubble Chart",
+  "GAUGE": "Gauge Charts",
+  "GAUGEDASHBOARD": "Gauge Dashboard Chart",
+  "GAUGESIMPLE": "Gauge Simple Chart",
+  "GAUGESLIM": "Gauge Slim Chart",
+  "GAUGESPACE": "Gauge Space Chart",
+  "RADIALPERCENT": "Radial Percent Chart",
+  "BULLET": "Bullet Chart",
+  "STACKEDAREA": "Stacked Area Chart"
 
 }
