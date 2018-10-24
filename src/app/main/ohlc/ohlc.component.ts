@@ -10,9 +10,6 @@ import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontim
 })
 export class OhlcComponent implements OnInit {
 
-  @ViewChild('ohlc')
-  protected ohlc: OChartComponent;
-
   @ViewChild('ohlc2')
   protected ohlc2: OChartComponent;
 
@@ -24,11 +21,11 @@ export class OhlcComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new OHLCChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
 
 
     this.chartParameters2 = new OHLCChartConfiguration();
@@ -114,7 +111,7 @@ export class OhlcComponent implements OnInit {
 
 const BASIC_USAGE_HTML_DATA = `
 <o-chart #ohlc type="ohlcBarChart" chart-height="600" x-data-type="time"
-[chart-parameters]="chartParameters" entity="EMovementsGrouped"></o-chart>
+[chart-parameters]="chartParameters" entity="EStockExchange"></o-chart>
 `;
 
 const BASIC_USAGE_TYPESCRIPT_DATA = `
@@ -140,11 +137,11 @@ export class OhlcComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new OHLCChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
   }
 }
 `;

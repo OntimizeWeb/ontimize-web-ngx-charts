@@ -68,6 +68,8 @@ export class CustomOntimizeService extends OntimizeService {
       url += '/epercentmovements.json';
     } else if (entity === 'EDataGauge') {
       url += '/edatagauge.json';
+    } else if (entity === 'EStockExchange') {
+      url += '/estockexchange.json';
     }
 
     const options = {

@@ -21,11 +21,11 @@ export class CandlestickComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new CandlestickChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
 
 
   }
@@ -111,7 +111,7 @@ export class CandlestickComponent implements OnInit {
 
 const BASIC_USAGE_HTML_DATA = `
 <o-chart type="candlestickBarChart" chart-height="600" x-data-type="time"
-[chart-parameters]="chartParameters" entity="EMovementsGrouped"></o-chart>
+[chart-parameters]="chartParameters" entity="EStockExchange"></o-chart>
 `;
 
 const BASIC_USAGE_TYPESCRIPT_DATA = `
@@ -135,11 +135,11 @@ export class CandlestickComponent {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new OHLCChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
   }
 }
 `;
