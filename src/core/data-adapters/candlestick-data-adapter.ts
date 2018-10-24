@@ -17,6 +17,8 @@ export class CandlestickDataAdapter extends OhlcDataAdapter {
       values.push(val)
     });
 
+    values.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
+
     let dataAdapt = {
       'values': values
     }

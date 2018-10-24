@@ -42,6 +42,9 @@ export class BulletDataAdapter implements ChartDataAdapter {
       result['subtitle'] = this.chartConf.subtitle ? this.chartConf.subtitle : '';
     }
 
+    ranges.sort((a, b) => (a > b) ? 1 : (b > a) ? -1 : 0);
+    markers.sort((a, b) => (a > b) ? 1 : (b > a) ? -1 : 0);
+
     result['markers'] = markers;
     result['measures'] = measures;
     result['ranges'] = ranges;
