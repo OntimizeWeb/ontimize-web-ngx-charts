@@ -4,6 +4,8 @@ import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LineChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'line';
+
   legend: ChartLegendConfiguration;
   legendPosition: string = 'top';
   showLegend: boolean = true;

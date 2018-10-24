@@ -4,6 +4,8 @@ import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class DiscreteBarChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'discreteBar';
+
   showValues: boolean = true;
   duration: number = 500;
 

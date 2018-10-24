@@ -3,10 +3,18 @@ import { BulletChartConfiguration } from '../chart-options/BulletChartConfigurat
 import { ChartConfiguration } from '../ChartConfiguration.class'
 export class BulletDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
+  protected rangesAxis: string;
+  protected markersAxis: string;
+  protected measuresAxis: string;
 
   constructor(chartConf: ChartConfiguration) {
     if (chartConf) {
       this.chartConf = chartConf;
+      if (chartConf instanceof BulletChartConfiguration) {
+        this.rangesAxis = chartConf.rangesAxis ? chartConf.rangesAxis : 'range';
+        this.markersAxis = chartConf.markersAxis ? chartConf.markersAxis : 'marker';
+        this.measuresAxis = chartConf.measuresAxis ? chartConf.measuresAxis : 'measure';
+      }
     }
   }
 
@@ -18,24 +26,20 @@ export class BulletDataAdapter implements ChartDataAdapter {
 
 
     data.forEach((item: any, _index: number) => {
-      if (item['marker']) {
-        markers.push(item['marker']);
+      if (item[this.markersAxis]) {
+        markers.push(item[this.markersAxis]);
       }
-      else if (item['range']) {
-        ranges.push(item['range']);
+      else if (item[this.rangesAxis]) {
+        ranges.push(item[this.rangesAxis]);
       }
-      else if (item['measure']) {
-        measures.push(item['measure']);
+      else if (item[this.measuresAxis]) {
+        measures.push(item[this.measuresAxis]);
       }
     });
 
     if (this.chartConf instanceof BulletChartConfiguration) {
-      if (this.chartConf.title) {
-        result['title'] = this.chartConf.title;
-      }
-      if (this.chartConf.subtitle) {
-        result['subtitle'] = this.chartConf.subtitle;
-      }
+      result['title'] = this.chartConf.title ? this.chartConf.title : '';
+      result['subtitle'] = this.chartConf.subtitle ? this.chartConf.subtitle : '';
     }
 
     result['markers'] = markers;

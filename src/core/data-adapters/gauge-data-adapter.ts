@@ -1,6 +1,6 @@
 import { ChartDataAdapter } from '../../interfaces';
 import { ChartConfiguration } from '../ChartConfiguration.class'
-import { GaugeDashboardChartConfiguration } from '../../core';
+
 export class GaugeDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
   protected xAxis: string;

@@ -1,6 +1,7 @@
 import { ChartConfiguration } from './ChartConfiguration.class';
 
 export class GaugeSlimChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'gaugeSlimChart';
   readonly donut: boolean = true;
   arcsRadius: number = 0.1;
   readonly showLabels: boolean = false;

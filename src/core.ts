@@ -32,6 +32,12 @@ export * from './core/chart-options/GaugeSpaceChartConfiguration.class';
 export * from './core/chart-options/GaugeSpaceChartOptions.class';
 export * from './core/chart-options/RadialPercentChartConfiguration.class';
 export * from './core/chart-options/RadialPercentChartOptions.class';
+export * from './core/chart-options/GaugeSimpleChartOptions.class';
+export * from './core/chart-options/GaugeSimpleChartConfiguration.class';
+export * from './core/chart-options/BubbleChartConfiguration.class';
+export * from './core/chart-options/BubbleChartOptions.class';
+export * from './core/chart-options/StackedAreaChartConfiguration.class';
+export * from './core/chart-options/StackedAreaChartOptions.class';
 
 export * from './core/data-adapters/generic-data-adapter';
 export * from './core/data-adapters/pie-data-adapter';
@@ -47,5 +53,7 @@ export * from './core/data-adapters/forceDirectedGraph-data-adapter';
 export * from './core/data-adapters/bullet-data-adapter';
 export * from './core/data-adapters/data-adapter-utils';
 export * from './core/data-adapters/gauge-data-adapter';
+export * from './core/data-adapters/gauge-simple-data-adapter';
+export * from './core/data-adapters/stacked-area-data-adapter';
 
 export * from './core/chart-options/ChartMarginConfiguration.class';

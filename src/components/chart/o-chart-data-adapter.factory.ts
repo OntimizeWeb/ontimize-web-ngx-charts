@@ -4,7 +4,7 @@ import {
   ChartConfiguration, GenericDataAdapter, PieDataAdapter, GaugeDataAdapter, LineDataAdapter,
   ScatterDataAdapter, DiscreteBarDataAdapter, MultiBarDataAdapter, MultiBarHorizontalDataAdapter,
   LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter, CandlestickDataAdapter, OhlcDataAdapter,
-  BulletDataAdapter
+  BulletDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter
 } from '../../core';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
@@ -60,6 +60,12 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
       case 'radialPercentChart':
         adapter = this.createGaugeDataAdapter();
         break;
+      case 'gaugeSimpleChart':
+        adapter = this.createGaugeSimpleDataAdapter();
+        break;
+      case 'stackedAreaChart':
+        adapter = this.createStackedAreaDataAdapter();
+        break;
     }
     return adapter;
   }
@@ -114,5 +120,13 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
   public createGaugeDataAdapter(): ChartDataAdapter {
     return new GaugeDataAdapter(this.chartConf);
+  }
+
+  public createGaugeSimpleDataAdapter(): ChartDataAdapter {
+    return new GaugeSimpleDataAdapter(this.chartConf);
+  }
+
+  public createStackedAreaDataAdapter(): ChartDataAdapter {
+    return new StackedAreaDataAdapter(this.chartConf);
   }
 }

@@ -1,10 +1,11 @@
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
-import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartZoomConfiguration } from './ChartZoomConfiguration.class';
+import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
+import { ChartControlConfiguration } from './ChartControlConfiguration.class';
 
-export class OHLCChartConfiguration extends ChartConfiguration {
-  readonly type: string = 'ohlcBarChart';
+export class StackedAreaChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'stackedAreaChart';
 
   x1Axis: ChartAxisConfiguration;
   showXAxis: boolean = true;
@@ -13,30 +14,27 @@ export class OHLCChartConfiguration extends ChartConfiguration {
   rightAlignYAxis: boolean = false;
 
   legend: ChartLegendConfiguration;
-  showLegend: boolean = false;
+  showLegend: boolean = true;
+
+  control: ChartControlConfiguration;
+  showControls: boolean = true;
 
   zoom: ChartZoomConfiguration;
 
-  low: any;
-  high: any;
-
   useInteractiveGuideline: boolean = true;
-  padData: boolean = false;
-  clidEdge: boolean = true;
+  style: string = 'stack';
+  interactive: boolean = true;
+  useVoronoi: boolean = true;
+  showVoronoi: boolean = false;
 
-  //Properties for select the values of date, open,
-  // close, high and low in data adapter
-  xColumn: string;
-  openAxis: string;
-  closeAxis: string;
-  highAxis: string;
-  lowAxis: string;
+  color: Array<string>;
 
   constructor() {
     super();
     this.x1Axis = new ChartAxisConfiguration();
     this.y1Axis = new ChartAxisConfiguration();
     this.legend = new ChartLegendConfiguration();
+    this.control = new ChartControlConfiguration();
     this.zoom = new ChartZoomConfiguration();
   }
 }

@@ -13,7 +13,7 @@ export class BulletChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params;
+    let params: BulletChartConfiguration;
     if (this.chartConf instanceof BulletChartConfiguration) {
       params = (this.chartConf as BulletChartConfiguration);
     } else {
@@ -26,12 +26,15 @@ export class BulletChartOptions extends AbstractChartOptions {
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      width: params.width,
+      width: this.chartConf.width,
       margin: params.margin.getMarginOptions(),
       duration: params.duration,
       ticks: params.ticks,
       tickFormat: params.tickFormat,
-      orient: params.orient
+      orient: params.orient,
+      ranges: this.getRanges(),
+      measures: this.getMeasure(),
+      markers: this.getMarkers()
     }
     return chart;
   }

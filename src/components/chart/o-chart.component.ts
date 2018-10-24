@@ -15,27 +15,30 @@ import {
   MultiBarHorizontalChartConfiguration, DonutChartConfiguration,  DiscreteBarChartConfiguration,
   BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
   ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
-  GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration
+  GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration,
+  GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration
 } from './../../core';
 
 export const CHART_TYPES = [
-  'line',
-  'discreteBar',
-  'pie',
-  'multiBar',
-  'scatterChart',
-  'candlestickBarChart',
-  'ohlcBarChart',
-  'boxPlotChart',
-  'donutChart',
-  'multiBarHorizontalChart',
-  'linePlusBarWithFocusChart',
-  'forceDirectedGraph',
+  'bubbleChart',
   'bulletChart',
+  'candlestickBarChart',
+  'discreteBar',
+  'donutChart',
+  'forceDirectedGraph',
   'gaugeDashboardChart',
-  'radialPercentChart',
+  'gaugeSimpleChart',
+  'gaugeSlimChart',
   'gaugeSpaceChart',
-  'gaugeSlimChart'
+  'line',
+  'linePlusBarWithFocusChart',
+  'multiBar',
+  'multiBarHorizontalChart',
+  'ohlcBarChart',
+  'pie',
+  'radialPercentChart',
+  'scatterChart',
+  'stackedAreaChart'
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
@@ -112,29 +115,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    switch (this.type) {
-      case 'forceDirectedGraph':
-        this.configureChart();
-        this.setData(null);
-        return;
-      case 'ohlcBarChart':
-        if (this.chartParameters && this.chartParameters instanceof OHLCChartConfiguration) {
-          if (this.chartParameters.chartData) {
-            this.configureChart();
-            this.setData(null);
-            return;
-          }
-        }
-        break;
-      case 'candlestickBarChart':
-        if (this.chartParameters && this.chartParameters instanceof CandlestickChartConfiguration) {
-          if (this.chartParameters.chartData) {
-            this.configureChart();
-            this.setData(null);
-            return;
-          }
-        }
-    }
 
     super.initialize();
 
@@ -178,8 +158,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let chartConf;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
-
-      chartConf.type = this.type;
 
       if (this.cHeight !== -1 && this.chartParameters.height === undefined) {
         chartConf.height = this.cHeight;
@@ -259,11 +237,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'radialPercentChart':
           chartConf = new RadialPercentChartConfiguration();
           break;
+        case 'gaugeSimpleChart':
+          chartConf = new GaugeSimpleChartConfiguration();
+          break;
+        case 'bubbleChart':
+          chartConf = new BubbleChartConfiguration();
+          break;
+        case 'stackedAreaChart':
+          chartConf = new StackedAreaChartConfiguration();
+          break;
         default:
           chartConf = new ChartConfiguration();
       }
-
-      chartConf.type = this.type;
 
       if (this.cHeight !== -1) {
         chartConf.height = this.cHeight;
@@ -273,7 +258,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       }
 
       chartConf.xLabel = this.xAxisLabel;
-      chartConf.yLabel = this.yAxisLabel;``
+      chartConf.yLabel = this.yAxisLabel;
 
       chartConf.xDataType = this.xAxisDataType;
       chartConf.yDataType = this.yAxisDataType;
@@ -373,7 +358,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       columns.push(params.highAxis);
       columns.push(params.lowAxis);
     }
-    if (this.type === 'candlestickBarChart') {
+    else if (this.type === 'candlestickBarChart') {
       columns = [];
       let params = this.chartParameters as CandlestickChartConfiguration;
       columns.push(params.xColumn);
@@ -381,6 +366,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       columns.push(params.closeAxis);
       columns.push(params.highAxis);
       columns.push(params.lowAxis);
+    }
+    else if (this.type === 'bulletChart') {
+      columns = [];
+      let params = this.chartParameters as BulletChartConfiguration;
+      columns.push(params.markersAxis);
+      columns.push(params.measuresAxis);
+      columns.push(params.rangesAxis);
     }
     return columns;
   }

@@ -4,6 +4,8 @@ import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 
 export class ScatterChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'scatterChart';
+
   showDistX: boolean = true;
   showDistY: boolean = true;
   showXAxis: boolean = true;

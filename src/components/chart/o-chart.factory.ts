@@ -2,7 +2,8 @@ import {
   ChartConfiguration, LineChartOptions, PieChartOptions, DiscreteBarChartOptions, MultiBarChartOptions,
   MultiBarHorizontalChartOptions, ScatterChartOptions, BulletChartOptions, GaugeDashboardChartOptions,
   DonutChartOptions, LinePlusBarFocusChartOptions, ForceDirectedGraphOptions, CandlestickChartOptions,
-  OHLCChartOptions, GaugeSlimChartOptions, GaugeSpaceChartOptions, RadialPercentChartOptions
+  OHLCChartOptions, GaugeSlimChartOptions, GaugeSpaceChartOptions, RadialPercentChartOptions,
+  GaugeSimpleChartOptions, BubbleChartOptions, StackedAreaChartOptions
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
@@ -64,6 +65,15 @@ export class OChartFactory implements ChartFactory {
         break;
       case 'radialPercentChart':
         chartOpts = this.createRadialPercentChartOptions(chartConf);
+        break;
+      case 'gaugeSimpleChart':
+        chartOpts = this.createGaugeSimpleChartOptions(chartConf);
+        break;
+      case 'bubbleChart':
+        chartOpts = this.createBubbleChartOptions(chartConf);
+        break;
+      case 'stackedAreaChart':
+        chartOpts = this.createStackedAreaChartOptions(chartConf);
         break;
     }
     return chartOpts;
@@ -147,5 +157,20 @@ export class OChartFactory implements ChartFactory {
   public createRadialPercentChartOptions(chartConf: ChartConfiguration): any{
     let radialPercentOptions = new RadialPercentChartOptions(chartConf);
     return radialPercentOptions.getOptions();
+  }
+
+  public createGaugeSimpleChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeSimpleOptions = new GaugeSimpleChartOptions(chartConf);
+    return gaugeSimpleOptions.getOptions();
+  }
+
+  public createBubbleChartOptions(chartConf: ChartConfiguration): any {
+    let bubbleOptions = new BubbleChartOptions(chartConf);
+    return bubbleOptions.getOptions();
+  }
+
+  public createStackedAreaChartOptions(chartConf: ChartConfiguration): any {
+    let stackedAreaOptions = new StackedAreaChartOptions(chartConf);
+    return stackedAreaOptions.getOptions();
   }
 }

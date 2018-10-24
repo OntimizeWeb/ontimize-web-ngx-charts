@@ -5,6 +5,8 @@ import { ChartAxisConfiguration } from "./ChartAxisConfiguration.class";
 import { ChartControlConfiguration } from "./ChartControlConfiguration.class";
 
 export class MultiBarChartConfiguration extends ChartConfiguration {
+    readonly type: string = 'multiBar';
+
     margin : ChartMarginConfiguration;
 
     showLegend: boolean = true;

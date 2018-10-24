@@ -2,6 +2,8 @@ import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class BulletChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'bulletChart';
+
   ticks: number = null;
   tickFormat: any = null;
   orient: string = 'left';
@@ -11,6 +13,10 @@ export class BulletChartConfiguration extends ChartConfiguration {
   subtitle: string = '';
 
   margin: ChartMarginConfiguration;
+
+  markersAxis: string;
+  measuresAxis: string;
+  rangesAxis: string;
 
   constructor() {
     super();
