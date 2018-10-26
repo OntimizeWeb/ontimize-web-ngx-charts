@@ -13,30 +13,26 @@ export class PieChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params;
-    if (this.chartConf instanceof PieChartConfiguration) {
-      params = (this.chartConf as PieChartConfiguration);
-    } else {
-      params = new PieChartConfiguration();
-    }
+    let conf = this.chartConf instanceof PieChartConfiguration ? this.chartConf : new PieChartConfiguration();
+
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      width: params.width,
-      margin: params.margin.getMarginOptions(),
-      duration: params.duration,
-      showLabels: params.showLabels,
-      labelType: params.labelType,
-      labelThreshold: params.labelThreshold,
-      labelSunbeamLayout: params.labelSunbeamLayout,
-      showLegend: params.showLeyend,
-      legendPosition: params.legendPosition,
-      legend: params.legend.getLegendOptions(),
-      cornerRadius: params.cornerRadius,
-      donut: params.donut,
-      donutRatio: params.donutRatio,
-      pieLabelOutside: params.pieLabelOutside,
-      donutLabelOutside: params.donutLabelOutside,
+      width: conf.width,
+      margin: conf.margin.getMarginOptions(),
+      duration: conf.duration,
+      showLabels: conf.showLabels,
+      labelType: conf.labelType,
+      labelThreshold: conf.labelThreshold,
+      labelSunbeamLayout: conf.labelSunbeamLayout,
+      showLegend: conf.showLeyend,
+      legendPosition: conf.legendPosition,
+      legend: conf.legend.getLegendOptions(),
+      cornerRadius: conf.cornerRadius,
+      donut: conf.donut,
+      donutRatio: conf.donutRatio,
+      pieLabelOutside: conf.pieLabelOutside,
+      donutLabelOutside: conf.donutLabelOutside,
     };
     return chart;
   }

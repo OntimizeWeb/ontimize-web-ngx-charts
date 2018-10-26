@@ -4,7 +4,7 @@ import {
   ChartConfiguration, GenericDataAdapter, PieDataAdapter, GaugeDataAdapter, LineDataAdapter,
   ScatterDataAdapter, DiscreteBarDataAdapter, MultiBarDataAdapter, MultiBarHorizontalDataAdapter,
   LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter, CandlestickDataAdapter, OhlcDataAdapter,
-  BulletDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter
+  BulletDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter, RadarDataAdapter, ParallelCoordinatesDataAdapter
 } from '../../core';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
@@ -65,6 +65,12 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
         break;
       case 'stackedAreaChart':
         adapter = this.createStackedAreaDataAdapter();
+        break;
+      case 'radarChart':
+        adapter = this.createRadarDataAdapter();
+        break;
+      case 'parallelCoordinatesChart':
+        adapter = this.createParallelCoordinatesDataAdapter();
         break;
     }
     return adapter;
@@ -128,5 +134,13 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
   public createStackedAreaDataAdapter(): ChartDataAdapter {
     return new StackedAreaDataAdapter(this.chartConf);
+  }
+
+  public createRadarDataAdapter(): ChartDataAdapter {
+    return new RadarDataAdapter(this.chartConf);
+  }
+
+  public createParallelCoordinatesDataAdapter(): ChartDataAdapter {
+    return new ParallelCoordinatesDataAdapter(this.chartConf);
   }
 }

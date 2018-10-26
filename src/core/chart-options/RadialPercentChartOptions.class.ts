@@ -12,28 +12,23 @@ export class RadialPercentChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params;
-    if (this.chartConf instanceof RadialPercentChartConfiguration) {
-      params = this.chartConf;
-    }
-    else {
-      params = new RadialPercentChartConfiguration();
-    }
+    let conf = this.chartConf instanceof RadialPercentChartConfiguration ? this.chartConf : new RadialPercentChartConfiguration();
+
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      duration: params.duration,
-      donut: params.donut,
-      arcsRadius: params.arcsRadius,
-      showLabels: params.showLabels,
-      showLegend: params.showLegend,
-      titleOffset: params.titleOffset,
-      title: params.title,
-      growOnHover: params.growOnHover,
-      x: function (d) { return d.x; },
-      y: function (d) { return d.y; },
-      color: params.color
+      duration: conf.duration,
+      donut: conf.donut,
+      arcsRadius: conf.arcsRadius,
+      showLabels: conf.showLabels,
+      showLegend: conf.showLegend,
+      titleOffset: conf.titleOffset,
+      title: conf.title,
+      growOnHover: conf.growOnHover,
+      x: this.getXValue(),
+      y: this.getYValue(),
+      color: conf.color
     }
 
     return chart;

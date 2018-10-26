@@ -38,6 +38,10 @@ export * from './core/chart-options/BubbleChartConfiguration.class';
 export * from './core/chart-options/BubbleChartOptions.class';
 export * from './core/chart-options/StackedAreaChartConfiguration.class';
 export * from './core/chart-options/StackedAreaChartOptions.class';
+export * from './core/chart-options/RadarChartConfiguration.class';
+export * from './core/chart-options/RadarChartOptions.class';
+export * from './core/chart-options/ParallelCoordinatesChartConfiguration.class';
+export * from './core/chart-options/ParallelCoordinatesChartOptions.class';
 
 export * from './core/data-adapters/generic-data-adapter';
 export * from './core/data-adapters/pie-data-adapter';
@@ -55,5 +59,7 @@ export * from './core/data-adapters/data-adapter-utils';
 export * from './core/data-adapters/gauge-data-adapter';
 export * from './core/data-adapters/gauge-simple-data-adapter';
 export * from './core/data-adapters/stacked-area-data-adapter';
+export * from './core/data-adapters/radar-data-adapter';
+export * from './core/data-adapters/parallel-coordinates-data-adapter';
 
 export * from './core/chart-options/ChartMarginConfiguration.class';

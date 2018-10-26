@@ -13,25 +13,18 @@ export class BulletChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params: BulletChartConfiguration;
-    if (this.chartConf instanceof BulletChartConfiguration) {
-      params = (this.chartConf as BulletChartConfiguration);
-    } else {
-      params = new BulletChartConfiguration();
-    }
-    if (params.xDataType) {
-      params.tickFormat = this.getTickFormatter(params.xDataType);
-    }
+    let conf = (this.chartConf instanceof BulletChartConfiguration) ? this.chartConf : new BulletChartConfiguration();
+    conf.tickFormat = (conf.xDataType) ? this.getTickFormatter(conf.xDataType) : null;
 
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      margin: params.margin.getMarginOptions(),
-      duration: params.duration,
-      ticks: params.ticks,
-      tickFormat: params.tickFormat,
-      orient: params.orient,
+      margin: conf.margin.getMarginOptions(),
+      duration: conf.duration,
+      ticks: conf.ticks,
+      tickFormat: conf.tickFormat,
+      orient: conf.orient,
       ranges: this.getRanges(),
       measures: this.getMeasure(),
       markers: this.getMarkers()

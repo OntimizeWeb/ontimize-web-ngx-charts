@@ -12,15 +12,9 @@ export class GaugeSlimChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params;
-    if (this.chartConf instanceof GaugeSlimChartConfiguration) {
-      params = this.chartConf;
-    }
-    else {
-      params = new GaugeSlimChartConfiguration();
-    }
+    let conf = this.chartConf instanceof GaugeSlimChartConfiguration ? this.chartConf : new GaugeSlimChartConfiguration();
     const outer = 1;
-    const inner = 1 - params.arcsRadius;
+    const inner = 1 - conf.arcsRadius;
     let arcsRadius = [
       { 'inner': inner, 'outer': outer },
       { 'inner': inner, 'outer': outer }];
@@ -28,17 +22,17 @@ export class GaugeSlimChartOptions extends AbstractChartOptions {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      duration: params.duration,
-      donut: params.donut,
+      duration: conf.duration,
+      donut: conf.donut,
       arcsRadius: arcsRadius,
-      showLabels: params.showLabels,
-      showLegend: params.showLegend,
-      titleOffset: params.titleOffset,
-      title: params.title,
-      growOnHover: params.growOnHover,
+      showLabels: conf.showLabels,
+      showLegend: conf.showLegend,
+      titleOffset: conf.titleOffset,
+      title: conf.title,
+      growOnHover: conf.growOnHover,
       x: function (d) { return d.x; },
       y: function (d) { return d.y; },
-      color: params.color
+      color: conf.color
     }
 
     return chart;

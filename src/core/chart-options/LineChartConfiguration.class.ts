@@ -22,8 +22,8 @@ export class LineChartConfiguration extends ChartConfiguration {
 
   showXAxis: boolean = true;
   showYAxis: boolean = true;
-  xAxis1: ChartAxisConfiguration;
-  yAxis1: ChartAxisConfiguration;
+  x1Axis: ChartAxisConfiguration;
+  y1Axis: ChartAxisConfiguration;
   rightAlignYAxis: boolean = false;
 
   focusEnable: boolean = false;
@@ -33,8 +33,8 @@ export class LineChartConfiguration extends ChartConfiguration {
   constructor() {
     super();
     this.legend = new ChartLegendConfiguration();
-    this.xAxis1 = new ChartAxisConfiguration();
-    this.yAxis1 = new ChartAxisConfiguration();
+    this.x1Axis = new ChartAxisConfiguration();
+    this.y1Axis = new ChartAxisConfiguration();
     this.margin = new ChartMarginConfiguration();
   }
 }

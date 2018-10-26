@@ -12,20 +12,14 @@ export class BubbleChartOptions extends AbstractChartOptions {
   }
 
   getChartOptions() {
-    let params;
-    if (this.chartConf instanceof BubbleChartConfiguration) {
-      params = this.chartConf;
-    }
-    else {
-      params = new BubbleChartConfiguration();
-    }
+    let conf = (this.chartConf instanceof BubbleChartConfiguration) ? this.chartConf : new BubbleChartConfiguration();
 
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
       duration: 500,
-      color: params.color
+      color: conf.color
     }
 
     return chart;

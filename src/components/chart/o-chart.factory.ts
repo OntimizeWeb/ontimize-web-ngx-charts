@@ -3,7 +3,8 @@ import {
   MultiBarHorizontalChartOptions, ScatterChartOptions, BulletChartOptions, GaugeDashboardChartOptions,
   DonutChartOptions, LinePlusBarFocusChartOptions, ForceDirectedGraphOptions, CandlestickChartOptions,
   OHLCChartOptions, GaugeSlimChartOptions, GaugeSpaceChartOptions, RadialPercentChartOptions,
-  GaugeSimpleChartOptions, BubbleChartOptions, StackedAreaChartOptions
+  GaugeSimpleChartOptions, BubbleChartOptions, StackedAreaChartOptions, RadarChartOptions,
+  ParallelCoordinatesChartOptions
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
@@ -75,6 +76,13 @@ export class OChartFactory implements ChartFactory {
       case 'stackedAreaChart':
         chartOpts = this.createStackedAreaChartOptions(chartConf);
         break;
+      case 'radarChart':
+        chartOpts = this.createRadarChartOptions(chartConf);
+        break;
+      case 'parallelCoordinatesChart':
+        chartOpts = this.createParallelCoordinatesChartOptions(chartConf);
+        break;
+
     }
     return chartOpts;
   }
@@ -172,5 +180,15 @@ export class OChartFactory implements ChartFactory {
   public createStackedAreaChartOptions(chartConf: ChartConfiguration): any {
     let stackedAreaOptions = new StackedAreaChartOptions(chartConf);
     return stackedAreaOptions.getOptions();
+  }
+
+  public createRadarChartOptions(chartConf: ChartConfiguration): any {
+    let radarChartOptions = new RadarChartOptions(chartConf);
+    return radarChartOptions.getOptions();
+  }
+
+  public createParallelCoordinatesChartOptions(chartConf: ChartConfiguration): any {
+    let parallelCoordinatesChartOptions = new ParallelCoordinatesChartOptions(chartConf);
+    return parallelCoordinatesChartOptions.getOptions();
   }
 }

@@ -13,19 +13,9 @@ export class StackedAreaChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions() {
-    let params: StackedAreaChartConfiguration;
-    if (this.chartConf instanceof StackedAreaChartConfiguration) {
-      params = this.chartConf
-    }
-    else {
-      params = new StackedAreaChartConfiguration();
-    }
-    if (!params.x1Axis.tickFormat && this.chartConf.xDataType) {
-      params.x1Axis.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
-    }
-    if (!params.y1Axis.tickFormat && this.chartConf.yDataType) {
-      params.y1Axis.tickFormat = this.getTickFormatter(this.chartConf.yDataType);
-    }
+    let conf = this.chartConf instanceof StackedAreaChartConfiguration ? this.chartConf :  new StackedAreaChartConfiguration();
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
     let chart = {
       type: this.getChartType(),
@@ -34,21 +24,21 @@ export class StackedAreaChartOptions extends AbstractChartOptions {
       width: this.chartConf.width,
       x: this.getXValue(),
       y: this.getYValue(),
-      xAxis: params.x1Axis.getAxisOptions(),
-      showXAxis: params.showXAxis,
-      yAxis: params.y1Axis.getAxisOptions(),
-      showYAxis: params.showYAxis,
-      rightAlignYAxis: params.rightAlignYAxis,
-      legend: params.legend.getLegendOptions(),
-      showLegend: params.showLegend,
-      control: params.control.getChartControlConfiguration(),
-      showControls: params.showControls,
-      zoom: params.zoom.getZoomOptions(),
-      useInteractiveGuideline: params.useInteractiveGuideline,
-      style: params.style,
-      interactive: params.interactive,
-      useVoronoi: params.useVoronoi,
-      showVoronoi: params.showVoronoi
+      xAxis: conf.x1Axis.getAxisOptions(),
+      showXAxis: conf.showXAxis,
+      yAxis: conf.y1Axis.getAxisOptions(),
+      showYAxis: conf.showYAxis,
+      rightAlignYAxis: conf.rightAlignYAxis,
+      legend: conf.legend.getLegendOptions(),
+      showLegend: conf.showLegend,
+      control: conf.control.getChartControlConfiguration(),
+      showControls: conf.showControls,
+      zoom: conf.zoom.getZoomOptions(),
+      useInteractiveGuideline: conf.useInteractiveGuideline,
+      style: conf.style,
+      interactive: conf.interactive,
+      useVoronoi: conf.useVoronoi,
+      showVoronoi: conf.showVoronoi
     };
 
     return chart;

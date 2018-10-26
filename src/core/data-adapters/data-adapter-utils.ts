@@ -2,7 +2,8 @@ import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.inter
 import {
   ChartConfiguration, LineDataAdapter, DiscreteBarDataAdapter, PieDataAdapter, MultiBarDataAdapter, ScatterDataAdapter,
   OhlcDataAdapter, CandlestickDataAdapter, MultiBarHorizontalDataAdapter, LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter,
-  GenericDataAdapter, BulletDataAdapter, GaugeDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter
+  GenericDataAdapter, BulletDataAdapter, GaugeDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter,
+  RadarDataAdapter, ParallelCoordinatesDataAdapter
 } from '../../core';
 
 export class DataAdapterUtils {
@@ -62,6 +63,12 @@ export class DataAdapterUtils {
         break;
       case 'stackedAreaChart':
         DataAdapterUtils.adapter = new StackedAreaDataAdapter(chartConf);
+        break;
+      case 'radarChart':
+        DataAdapterUtils.adapter = new RadarDataAdapter(chartConf);
+        break;
+      case 'parallelCoordinatesChart':
+        DataAdapterUtils.adapter = new ParallelCoordinatesDataAdapter(chartConf);
         break;
       default:
         DataAdapterUtils.adapter = new GenericDataAdapter(chartConf);

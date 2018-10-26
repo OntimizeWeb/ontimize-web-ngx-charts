@@ -19,8 +19,8 @@ export class ScatterChartConfiguration extends ChartConfiguration {
   clipEdge: boolean = false;
 
   rightAlignYAxis: boolean = false;
-  xAxis1: ChartAxisConfiguration;
-  yAxis1: ChartAxisConfiguration;
+  x1Axis: ChartAxisConfiguration;
+  y1Axis: ChartAxisConfiguration;
 
   colors: Array<string> = null;
   shape: Array<string> = null;
@@ -28,8 +28,8 @@ export class ScatterChartConfiguration extends ChartConfiguration {
 
   constructor() {
     super();
-    this.xAxis1 = new ChartAxisConfiguration();
-    this.yAxis1 = new ChartAxisConfiguration();
+    this.x1Axis = new ChartAxisConfiguration();
+    this.y1Axis = new ChartAxisConfiguration();
     this.margin = new ChartMarginConfiguration();
     this.legend = new ChartLegendConfiguration();
   }

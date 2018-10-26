@@ -13,25 +13,20 @@ export class GaugeSimpleChartOptions extends AbstractChartOptions {
 
 
   protected getChartOptions(): Object {
-    let params;
-    if (this.chartConf instanceof GaugeSimpleChartConfiguration) {
-      params = this.chartConf;
-    }
-    else {
-      params = new GaugeSimpleChartConfiguration();
-    }
+    let conf = this.chartConf instanceof GaugeSimpleChartConfiguration ? this.chartConf : new GaugeSimpleChartConfiguration();
+
     let chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      duration: params.duration,
-      color: params.color,
-      title: params.title,
-      showMinMaxLabels: params.showMinMaxLabels,
-      min: params.min,
-      max: params.max,
-      zoneLimit1: params.zoneLimit1,
-      zoneLimit2: params.zoneLimit2
+      duration: conf.duration,
+      color: conf.color,
+      title: conf.title,
+      showMinMaxLabels: conf.showMinMaxLabels,
+      min: conf.min,
+      max: conf.max,
+      zoneLimit1: conf.zoneLimit1,
+      zoneLimit2: conf.zoneLimit2
     }
 
     return chart;

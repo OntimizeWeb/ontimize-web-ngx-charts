@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
+import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import 'd3';
 import 'nvd3';
 import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util, OServiceBaseComponent } from 'ontimize-web-ngx';
@@ -16,7 +16,8 @@ import {
   BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
   ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
   GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration,
-  GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration
+  GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration,
+  RadarChartConfiguration, ParallelCoordinatesChartConfiguration
 } from './../../core';
 
 export const CHART_TYPES = [
@@ -35,7 +36,9 @@ export const CHART_TYPES = [
   'multiBar',
   'multiBarHorizontalChart',
   'ohlcBarChart',
+  'parallelCoordinatesChart',
   'pie',
+  'radarChart',
   'radialPercentChart',
   'scatterChart',
   'stackedAreaChart'
@@ -155,37 +158,22 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartConfiguration(): ChartConfiguration {
-    let chartConf;
+    let chartConf : ChartConfiguration;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
 
-      if (this.cHeight !== -1 && this.chartParameters.height === undefined) {
-        chartConf.height = this.cHeight;
-      }
-      if (this.cWidth !== -1 && this.chartParameters.width === undefined) {
-        chartConf.width = this.cWidth;
-      }
-
-      if(this.chartParameters.xLabel === undefined)
-        chartConf.xLabel = this.xAxisLabel;
-      if(this.chartParameters.yLabel === undefined)
-        chartConf.yLabel = this.yAxisLabel;``
-
-      if(this.chartParameters.xDataType === undefined)
-        chartConf.xDataType = this.xAxisDataType;
-      if(this.chartParameters.yDataType === undefined)
-        chartConf.yDataType = this.yAxisDataType;
-
-      if(this.chartParameters.xAxis === undefined)
-        chartConf.xAxis = this.xAxis;
-
-      if(this.chartParameters.yAxis === undefined)
-        chartConf.yAxis = this.yAxisArray;
+      chartConf.height = chartConf.height ? chartConf.height : (this.cHeight !== -1) ? this.cHeight : null;
+      chartConf.width = chartConf.width ? chartConf.width : (this.cWidth !== -1) ? this.cWidth : null;
+      chartConf.xLabel = chartConf.xLabel ? chartConf.xLabel : this.xAxisLabel ? this.xAxisLabel : '';
+      chartConf.yLabel = chartConf.yLabel ? chartConf.yLabel : this.yAxisLabel ? this.yAxisLabel : '';
+      chartConf.xDataType = chartConf.xDataType ? chartConf.xDataType : this.xAxisDataType ? this.xAxisDataType : null;
+      chartConf.yDataType = chartConf.yDataType ? chartConf.yDataType : this.yAxisDataType ? this.yAxisDataType : null;
+      chartConf.xAxis = chartConf.xAxis ? chartConf.xAxis : this.xAxis ? this.xAxis : null;
+      chartConf.yAxis = chartConf.yAxis ? chartConf.yAxis : this.yAxisArray ? this.yAxisArray : null;
 
       chartConf.translateService = this.translateService;
 
-      if(this.chartParameters.data === undefined)
-        chartConf.data = this.dataArray;
+      chartConf.data = this.dataArray ? this.dataArray : null;
 
     } else {
       switch (this.type) {
@@ -246,16 +234,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'stackedAreaChart':
           chartConf = new StackedAreaChartConfiguration();
           break;
+        case 'radarChart':
+          chartConf = new RadarChartConfiguration();
+          break;
+        case 'parallelCoordinatesChart':
+          chartConf = new ParallelCoordinatesChartConfiguration();
+          break;
         default:
           chartConf = new ChartConfiguration();
       }
 
-      if (this.cHeight !== -1) {
-        chartConf.height = this.cHeight;
-      }
-      if (this.cWidth !== -1) {
-        chartConf.width = this.cWidth;
-      }
+      chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
+      chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
 
       chartConf.xLabel = this.xAxisLabel;
       chartConf.yLabel = this.yAxisLabel;
@@ -321,9 +311,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
       });
     }
-    if (this.type === 'ohlcBarChart' || this.type === 'candlestickBarChart') {
-      filter = {};
-    }
+    filter = (this.type === 'ohlcBarChart') ? {} : (this.type === 'candlestickBarChart') ? {} : filter;
     this.queryData(filter);
   }
 

@@ -13,43 +13,34 @@ export class LineChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params = this.chartConf as LineChartConfiguration;
-    if (params.xDataType) {
-      params.xAxis1.tickFormat = this.getTickFormatter(this.chartConf.xDataType);
-    }
-    if (params.yDataType) {
-      params.yAxis1.tickFormat = this.getTickFormatter(this.chartConf.yDataType);
-    }
-    if (params.xLabel) {
-      params.xAxis1.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.yAxis1.axisLabel = params.yLabel;
-    }
+    let conf = this.chartConf instanceof LineChartConfiguration ? this.chartConf : new LineChartConfiguration;
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+
     let chart = {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
-      xAxis: params.xAxis1.getAxisOptions(),
-      x2Axis: params.xAxis1.getAxisOptions(),
-      yAxis: params.yAxis1.getAxisOptions(),
-      y2Axis: params.yAxis1.getAxisOptions(),
+      xAxis: conf.x1Axis.getAxisOptions(),
+      x2Axis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions(),
+      y2Axis: conf.y1Axis.getAxisOptions(),
       height: this.getChartHeight(),
-      width: params.width,
-      margin: params.margin.getMarginOptions(),
-      duration: params.duration,
-      useInteractiveGuideline: params.useInteractiveGuideline,
-      interactive: params.interactive,
+      width: conf.width,
+      margin: conf.margin.getMarginOptions(),
+      duration: conf.duration,
+      useInteractiveGuideline: conf.useInteractiveGuideline,
+      interactive: conf.interactive,
       isArea: this.isArea(),
-      legend: params.legend,
-      legendPosition: params.legendPosition,
-      showLegend: params.showLegend,
-      showXAxis: params.showXAxis,
-      showYAxis: params.showYAxis,
-      rightAlignYAxis: params.rightAlignYAxis,
-      focusEnable: params.focusEnable,
-      focusShowAxisX: params.focusShowAxisX,
-      focusShowAxisY: params.focusShowAxisY
+      legend: conf.legend,
+      legendPosition: conf.legendPosition,
+      showLegend: conf.showLegend,
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
+      rightAlignYAxis: conf.rightAlignYAxis,
+      focusEnable: conf.focusEnable,
+      focusShowAxisX: conf.focusShowAxisX,
+      focusShowAxisY: conf.focusShowAxisY
     };
     return chart;
   }
