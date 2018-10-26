@@ -27,7 +27,7 @@ export class GaugeDashboardChartOptions extends AbstractChartOptions {
       showLegend: conf.showLegend,
       titleOffset: conf.titleOffset,
       title: conf.title,
-      color: conf.colors,
+      color: conf.color,
       x: function (d) { return d.x; },
       y: function (d) { return d.y; },
       pie: {

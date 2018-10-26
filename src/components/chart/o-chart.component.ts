@@ -136,6 +136,30 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.chartService.chartWrapper = this.chartWrapper;
   }
 
+  ngAfterViewChecked() {
+    let color = undefined;
+    if (this.type === 'gaugeDashboardChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
+    }
+    else if (this.type === 'gaugeSlimChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
+    }
+    else if (this.type === 'gaugeSpaceChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
+    }
+    else if (this.type === 'radialPercentChart') {
+      color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
+    }
+
+    if (color) {
+      let elements = document.getElementsByClassName('nv-pie-title');
+      for (let i = 0; i < elements.length; i++) {
+        (elements.item(i) as SVGTextElement).style.fill = color;
+      }
+    }
+
+  }
+
   ngOnDestroy() {
     super.destroy();
     if (this.formDataSubcribe) {
