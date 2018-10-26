@@ -30,7 +30,7 @@ export class GaugeDashboardComponent implements OnInit {
     this.gaugeDashboardConf = new GaugeDashboardChartConfiguration();
     this.gaugeDashboardConf.title = "77.34%";
     this.gaugeDashboardConf.yAxis = ['y'];
-    this.gaugeDashboardConf.colors = ['#17A589', 'white'];
+    this.gaugeDashboardConf.color = ['#17A589', 'white'];
 
     let data = [{ 'x': 'value', 'y': 77.34 }];
 
