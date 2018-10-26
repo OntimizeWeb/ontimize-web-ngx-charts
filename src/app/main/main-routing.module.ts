@@ -18,7 +18,9 @@ import { OhlcModule } from './ohlc/ohlc.module';
 import { GaugeModule } from './gauge/gauge.module';
 import { BubbleModule } from './bubble/bubble.module';
 import { BulletModule } from './bullet/bullet.module';
-import {  StackedAreaModule } from './stacked-area/stacked-area.module';
+import { StackedAreaModule } from './stacked-area/stacked-area.module';
+import { RadarModule } from './radar/radar.module';
+import { ParallelCoordinatesModule } from './parallel-coordinates/parallel-coordinates.module';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -82,6 +84,14 @@ export function loadBulletModule() {
 
 export function loadStackedAreaModule() {
   return StackedAreaModule;
+}
+
+export function loadRadarModule() {
+  return RadarModule;
+}
+
+export function loadParallelCoordinatesModule() {
+  return ParallelCoordinatesModule;
 }
 
 export const routes: Routes = [
@@ -154,6 +164,14 @@ export const routes: Routes = [
       {
         path: 'stackedArea',
         loadChildren: loadStackedAreaModule
+      },
+      {
+        path: 'radar',
+        loadChildren: loadRadarModule
+      },
+      {
+        path: 'parallelCoordinates',
+        loadChildren: loadParallelCoordinatesModule
       }
     ]
   }

@@ -29,6 +29,8 @@
   "GAUGESPACE": "Gauge Space Chart",
   "RADIALPERCENT": "Radial Percent Chart",
   "BULLET": "Bullet Chart",
-  "STACKEDAREA": "Stacked Area Chart"
+  "STACKEDAREA": "Stacked Area Chart",
+  "PARALLELCOORDINATES": "Parallel Coordinates Chart",
+  "RADAR": "Radar Chart"
 
 }

@@ -27,5 +27,7 @@
   "GAUGESIMPLE": "Gráfico Gauge Simple",
   "GAUGESLIM": "Gráfico Gauge Slim",
   "GAUGESPACE": "Gráfico Gauge Space",
-  "RADIALPERCENT": "Gráfico Porcentaje Circular"
+  "RADIALPERCENT": "Gráfico Porcentaje Circular",
+  "PARALLELCOORDINATES": "Gráfico de coordenadas paralelas",
+  "RADAR": "Gráfica radar"
 }

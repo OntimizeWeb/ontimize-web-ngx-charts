@@ -70,6 +70,8 @@ export class CustomOntimizeService extends OntimizeService {
       url += '/edatagauge.json';
     } else if (entity === 'EStockExchange') {
       url += '/estockexchange.json';
+    } else if (entity === 'EDimensionData') {
+      url += '/edimensiondata.json';
     }
 
     const options = {

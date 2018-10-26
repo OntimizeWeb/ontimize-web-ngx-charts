@@ -14,7 +14,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
       { id: 'gaugeSimple', name: 'GAUGESIMPLE', icon: 'network_check', route: '/main/gauge/gaugeSimple' },
       { id: 'gaugeSlim', name: 'GAUGESLIM', icon: 'data_usage', route: 'main/gauge/gaugeSlim' },
       { id: 'gaugeSpace', name: 'GAUGESPACE', icon: 'insert_chart_outlined', route: '/main/gauge/gaugeSpace' },
-      { id: 'radialPercent', name: 'RADIALPERCENT', icon: 'trip_origin', route: '/main/gauge/radialPercent'}
+      { id: 'radialPercent', name: 'RADIALPERCENT', icon: 'trip_origin', route: '/main/gauge/radialPercent' }
     ]
   },
   { id: 'line', name: 'LINE', icon: 'show_chart', route: '/main/line' },
@@ -22,7 +22,9 @@ export const MENU_CONFIG: MenuRootItem[] = [
   { id: 'multi_bar', name: 'MULTI_BAR', icon: 'insert_chart', route: '/main/multi-bar' },
   { id: 'multi_bar_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/multi-bar-horizontal' },
   { id: 'ohlc', name: 'OHLCCHART', icon: 'insert_chart_outlined', route: '/main/ohlc' },
+  { id: 'parallelCoordinates', name: 'PARALLELCOORDINATES', icon: 'insert_chart', route: '/main/parallelCoordinates' },
   { id: 'pie', name: 'PIE', icon: 'pie_chart', route: '/main/pie' },
+  { id: 'radar', name: 'RADAR', icon: 'insert_chart', route: '/main/radar' },
   { id: 'scatter', name: 'SCATTER', icon: 'scatter_plot', route: '/main/scatter' },
   { id: 'stackedArea', name: 'STACKEDAREA', icon: 'timeline', route: '/main/stackedArea'}
 ];
