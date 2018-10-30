@@ -13,9 +13,8 @@ export class GaugeSpaceComponent implements OnInit {
   @ViewChild('gaugeSpace')
   protected gaugeSpace: OChartComponent;
 
-  protected gaugeSpaceConf: GaugeSpaceChartConfiguration;
-  protected gaugeSpaceConf2: GaugeSpaceChartConfiguration;
-
+  gaugeSpaceConf: GaugeSpaceChartConfiguration;
+  gaugeSpaceConf2: GaugeSpaceChartConfiguration;
 
   constructor() {
     this.gaugeSpaceConf = new GaugeSpaceChartConfiguration();
@@ -103,7 +102,7 @@ import {
 })
 export class GaugeSpaceComponent implements OnInit {
 
-  protected gaugeSpaceConf: GaugeSpaceChartConfiguration;
+  gaugeSpaceConf: GaugeSpaceChartConfiguration;
 
   constructor() {
     this.gaugeSpaceConf = new GaugeSpaceChartConfiguration();
@@ -136,7 +135,7 @@ export class GaugeSpaceComponent implements OnInit {
   @ViewChild('gaugeSpace')
   protected gaugeSpace: OChartComponent;
 
-  protected gaugeSpaceConf2: GaugeSpaceChartConfiguration;
+  gaugeSpaceConf2: GaugeSpaceChartConfiguration;
 
   constructor() {
 

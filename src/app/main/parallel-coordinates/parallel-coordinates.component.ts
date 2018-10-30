@@ -11,9 +11,8 @@ export class ParallelCoordinatesComponent implements OnInit {
   @ViewChild('chart')
   protected chart: OChartComponent;
 
-  protected chartConf: ParallelCoordinatesChartConfiguration;
-
-  protected chartConf2: ParallelCoordinatesChartConfiguration;
+  chartConf: ParallelCoordinatesChartConfiguration;
+  chartConf2: ParallelCoordinatesChartConfiguration;
 
   constructor() {
     this.chartConf = new ParallelCoordinatesChartConfiguration();
@@ -145,7 +144,7 @@ import { OChartComponent, ParallelCoordinatesChartConfiguration } from 'ontimize
 })
 export class ParallelCoordinatesComponent implements OnInit {
 
-  protected chartConf2: ParallelCoordinatesChartConfiguration;
+  chartConf2: ParallelCoordinatesChartConfiguration;
 
   constructor() {
 
@@ -186,7 +185,7 @@ export class ParallelCoordinatesComponent implements OnInit {
   @ViewChild('chart')
   protected chart: OChartComponent;
 
-  protected chartConf: ParallelCoordinatesChartConfiguration;
+  chartConf: ParallelCoordinatesChartConfiguration;
 
   constructor() {
     this.chartConf = new ParallelCoordinatesChartConfiguration();

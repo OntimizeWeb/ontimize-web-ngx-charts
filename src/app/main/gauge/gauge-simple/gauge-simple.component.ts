@@ -11,7 +11,7 @@ export class GaugeSimpleComponent implements OnInit {
   @ViewChild('gaugeSimple')
   protected gaugeSimple: OChartComponent;
 
-  protected gaugeSimpleConf: GaugeSimpleChartConfiguration;
+  gaugeSimpleConf: GaugeSimpleChartConfiguration;
 
   constructor() {
     this.gaugeSimpleConf = new GaugeSimpleChartConfiguration();
@@ -113,7 +113,7 @@ export class GaugeSimpleComponent implements OnInit {
   @ViewChild('gaugeSimple')
   protected gaugeSimple: OChartComponent;
 
-  protected gaugeSimpleConf: GaugeSimpleChartConfiguration;
+  gaugeSimpleConf: GaugeSimpleChartConfiguration;
 
   constructor() {
     this.gaugeSimpleConf = new GaugeSimpleChartConfiguration();

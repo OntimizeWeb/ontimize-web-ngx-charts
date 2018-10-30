@@ -16,8 +16,8 @@ export class GaugeSlimComponent implements OnInit {
   @ViewChild('gaugeSlim')
   protected gaugeSlim: OChartComponent;
 
-  protected gaugeSlimConf: GaugeSlimChartConfiguration;
-  protected gaugeSlimConf2: GaugeSlimChartConfiguration;
+  gaugeSlimConf: GaugeSlimChartConfiguration;
+  gaugeSlimConf2: GaugeSlimChartConfiguration;
 
   constructor() {
     this.gaugeSlimConf = new GaugeSlimChartConfiguration();
@@ -110,7 +110,7 @@ export class GaugeSlimComponent implements OnInit {
   @ViewChild('gaugeSlim')
   protected gaugeSlim: OChartComponent;
 
-  protected gaugeSlimConf: GaugeSlimChartConfiguration;
+  gaugeSlimConf: GaugeSlimChartConfiguration;
   constructor() {
     this.gaugeSlimConf = new GaugeSlimChartConfiguration();
     this.gaugeSlimConf.yAxis = ['value'];
@@ -145,7 +145,7 @@ export class GaugeSlimComponent implements OnInit {
   @ViewChild('gaugeSlim')
   protected gaugeSlim: OChartComponent;
 
-  protected gaugeSlimConf2: GaugeSlimChartConfiguration;
+  gaugeSlimConf2: GaugeSlimChartConfiguration;
 
   constructor() {
 

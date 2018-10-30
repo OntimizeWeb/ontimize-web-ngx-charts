@@ -12,9 +12,8 @@ export class BulletComponent implements OnInit {
   @ViewChild('bulletChart')
   protected bulletChart: OChartComponent;
 
-  protected chartParameters: BulletChartConfiguration;
-
-  protected chartParameters2: BulletChartConfiguration;
+  chartParameters: BulletChartConfiguration;
+  chartParameters2: BulletChartConfiguration;
 
   constructor() {
     this.chartParameters = new BulletChartConfiguration();
@@ -137,7 +136,7 @@ export class BulletComponent implements OnInit {
   @ViewChild('bulletChart')
   protected bulletChart: OChartComponent;
 
-  protected chartParameters: BulletChartConfiguration;
+  chartParameters: BulletChartConfiguration;
 
   constructor() {
     this.chartParameters = new BulletChartConfiguration();

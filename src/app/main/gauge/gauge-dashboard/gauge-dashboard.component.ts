@@ -14,8 +14,8 @@ export class GaugeDashboardComponent implements OnInit {
   @ViewChild('gaugeDashboard')
   protected gaugeDashboard: OChartComponent;
 
-  protected gaugeDashboardConf: GaugeDashboardChartConfiguration;
-  protected gaugeDashboardConf2: GaugeDashboardChartConfiguration;
+  gaugeDashboardConf: GaugeDashboardChartConfiguration;
+  gaugeDashboardConf2: GaugeDashboardChartConfiguration;
 
   constructor() {
     this.gaugeDashboardConf2 = new GaugeDashboardChartConfiguration();
@@ -101,7 +101,7 @@ import {
 })
 export class GaugeDashboardComponent implements OnInit {
 
-  protected gaugeDashboardConf2: GaugeDashboardChartConfiguration;
+  gaugeDashboardConf2: GaugeDashboardChartConfiguration;
 
   constructor() {
     this.gaugeDashboardConf2 = new GaugeDashboardChartConfiguration();
@@ -134,7 +134,7 @@ export class GaugeDashboardComponent implements OnInit {
   @ViewChild('gaugeDashboard')
   protected gaugeDashboard: OChartComponent;
 
-  protected gaugeDashboardConf: GaugeDashboardChartConfiguration;
+  gaugeDashboardConf: GaugeDashboardChartConfiguration;
 
   constructor() {
   }

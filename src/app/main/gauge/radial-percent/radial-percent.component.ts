@@ -13,8 +13,7 @@ export class RadialPercentComponent implements OnInit {
   @ViewChild('radialPercent')
   protected radialPercent: OChartComponent;
 
-  protected radialPercentConf: RadialPercentChartConfiguration;
-
+  radialPercentConf: RadialPercentChartConfiguration;
 
   constructor() { }
 

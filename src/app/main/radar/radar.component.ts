@@ -12,9 +12,8 @@ export class RadarComponent implements OnInit {
   @ViewChild('radar')
   protected radar: OChartComponent;
 
-  protected chartConf: RadarChartConfiguration;
-
-  protected chartConf2: RadarChartConfiguration;
+  chartConf: RadarChartConfiguration;
+  chartConf2: RadarChartConfiguration;
 
   constructor() {
     this.chartConf = new RadarChartConfiguration();
@@ -150,7 +149,7 @@ import { OChartComponent, RadarChartConfiguration } from 'ontimize-web-ngx-chart
 })
 export class RadarComponent implements OnInit {
 
-  protected chartConf2: RadarChartConfiguration;
+  chartConf2: RadarChartConfiguration;
 
   constructor() {
     this.chartConf2 = new RadarChartConfiguration();
@@ -189,7 +188,7 @@ export class RadarComponent implements OnInit {
   @ViewChild('radar')
   protected radar: OChartComponent;
 
-  protected chartConf: RadarChartConfiguration;
+  chartConf: RadarChartConfiguration;
 
   constructor() {
     this.chartConf = new RadarChartConfiguration();
