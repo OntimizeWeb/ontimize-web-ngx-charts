@@ -12,7 +12,7 @@ import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 import {
   PieChartConfiguration, LineChartConfiguration, ScatterChartConfiguration, MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration, DonutChartConfiguration,  DiscreteBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration, DonutChartConfiguration, DiscreteBarChartConfiguration,
   BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
   ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
   GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration,
@@ -138,26 +138,28 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   ngAfterViewChecked() {
     let color = undefined;
-    if (this.type === 'gaugeDashboardChart') {
-      color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
+    switch (this.type) {
+      case 'gaugeDashboardChart':
+        color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
+        break;
+      case 'gaugeSlimChart':
+        color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
+        break;
+      case 'gaugeSpaceChart':
+        color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
+        break;
+      case 'radialPercentChart':
+        color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
+        break;
+      default:
+        break;
     }
-    else if (this.type === 'gaugeSlimChart') {
-      color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
-    }
-    else if (this.type === 'gaugeSpaceChart') {
-      color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
-    }
-    else if (this.type === 'radialPercentChart') {
-      color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
-    }
-
     if (color) {
       let elements = document.getElementsByClassName('nv-pie-title');
       for (let i = 0; i < elements.length; i++) {
         (elements.item(i) as SVGTextElement).style.fill = color;
       }
     }
-
   }
 
   ngOnDestroy() {
@@ -182,10 +184,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartConfiguration(): ChartConfiguration {
-    let chartConf : ChartConfiguration;
+    let chartConf: ChartConfiguration;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
-
       chartConf.height = chartConf.height ? chartConf.height : (this.cHeight !== -1) ? this.cHeight : null;
       chartConf.width = chartConf.width ? chartConf.width : (this.cWidth !== -1) ? this.cWidth : null;
       chartConf.xLabel = chartConf.xLabel ? chartConf.xLabel : this.xAxisLabel ? this.xAxisLabel : '';
@@ -196,9 +197,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.yAxis = chartConf.yAxis ? chartConf.yAxis : this.yAxisArray ? this.yAxisArray : null;
 
       chartConf.translateService = this.translateService;
-
       chartConf.data = this.dataArray ? this.dataArray : null;
-
     } else {
       switch (this.type) {
         case 'line':
@@ -294,11 +293,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getAdaptData() {
-    if (this.type === 'forceDirectedGraph' || this.type == 'bulletChart') {
-      if (this.dataArray && this.dataArray[0])
+    if (this.type === 'forceDirectedGraph' || this.type === 'bulletChart') {
+      if (this.dataArray && this.dataArray[0]) {
         return this.dataArray[0];
-      else
+      } else {
         return [];
+      }
     } else {
       return this.dataArray;
     }
@@ -361,30 +361,34 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         columns.push(this.xAxis);
       }
     }
-    if (this.type === 'ohlcBarChart') {
-      columns = [];
-      let params = this.chartParameters as OHLCChartConfiguration;
-      columns.push(params.xColumn);
-      columns.push(params.openAxis);
-      columns.push(params.closeAxis);
-      columns.push(params.highAxis);
-      columns.push(params.lowAxis);
-    }
-    else if (this.type === 'candlestickBarChart') {
-      columns = [];
-      let params = this.chartParameters as CandlestickChartConfiguration;
-      columns.push(params.xColumn);
-      columns.push(params.openAxis);
-      columns.push(params.closeAxis);
-      columns.push(params.highAxis);
-      columns.push(params.lowAxis);
-    }
-    else if (this.type === 'bulletChart') {
-      columns = [];
-      let params = this.chartParameters as BulletChartConfiguration;
-      columns.push(params.markersAxis);
-      columns.push(params.measuresAxis);
-      columns.push(params.rangesAxis);
+    switch (this.type) {
+      case 'ohlcBarChart':
+        columns = [];
+        let OHLCParams = this.chartParameters as OHLCChartConfiguration;
+        columns.push(OHLCParams.xColumn);
+        columns.push(OHLCParams.openAxis);
+        columns.push(OHLCParams.closeAxis);
+        columns.push(OHLCParams.highAxis);
+        columns.push(OHLCParams.lowAxis);
+        break;
+      case 'candlestickBarChart':
+        columns = [];
+        let candlestickParams = this.chartParameters as CandlestickChartConfiguration;
+        columns.push(candlestickParams.xColumn);
+        columns.push(candlestickParams.openAxis);
+        columns.push(candlestickParams.closeAxis);
+        columns.push(candlestickParams.highAxis);
+        columns.push(candlestickParams.lowAxis);
+        break;
+      case 'bulletChart':
+        columns = [];
+        let bulletParams = this.chartParameters as BulletChartConfiguration;
+        columns.push(bulletParams.markersAxis);
+        columns.push(bulletParams.measuresAxis);
+        columns.push(bulletParams.rangesAxis);
+        break;
+      default:
+        break;
     }
     return columns;
   }
