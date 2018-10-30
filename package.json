@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-quickstart-charts",
-  "version": "3.0.0",
+  "version": "3.1.2",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -10,8 +10,7 @@
     "clean": "rimraf dist",
     "production": "npm run clean && ng build --aot=false --target --base-href /ontimize-web-ngx-charts/",
     "production-aot": "ontimize-web-ngx production-aot --href=/ontimize-web-ngx-charts/",
-    "production-aot-server": "ontimize-web-ngx production-aot --href /ontimizeweb/charts/",
-    "pack": "rm -r node_modules/ontimize-web-ngx-charts && npm install && npm start"
+    "production-aot-server": "ontimize-web-ngx production-aot --href /ontimizeweb/charts/"
   },
   "private": true,
   "dependencies": {
@@ -38,8 +37,8 @@
     "reflect-metadata": "0.1.12",
     "angular2-highlight-js": "5.0.1",
     "lodash": "4.17.4",
-    "ontimize-web-ngx": "3.1.0",
-    "ontimize-web-ngx-charts": "3.1.1",
+    "ontimize-web-ngx": "3.1.1",
+    "ontimize-web-ngx-charts": "3.1.2",
     "ontimize-web-ngx-theming": "1.2.0"
   },
   "devDependencies": {
