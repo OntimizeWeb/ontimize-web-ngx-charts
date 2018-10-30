@@ -38,6 +38,7 @@ export class LinePlusBarDataAdapter implements ChartDataAdapter {
           key = self.chartConf.translateService.get(key);
         }
         serie['key'] = key;
+        seriesvalues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
         if ((this.chartConf as LinePlusBarFocusChartConfiguration).to_zero && (this.chartConf as LinePlusBarFocusChartConfiguration).to_zero[_index]) {
           serie['values'] = this.beautyResult(seriesvalues[axis], true);
         } else if ((this.chartConf as LinePlusBarFocusChartConfiguration).to_previusValue && (this.chartConf as LinePlusBarFocusChartConfiguration).to_previusValue[_index]) {

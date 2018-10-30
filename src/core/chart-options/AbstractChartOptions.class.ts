@@ -77,6 +77,16 @@ export class AbstractChartOptions {
     let formatter;
 
     switch (type) {
+      case 'intAgrouped':
+        formatter = function (d) {
+          return d3.format(',d')(d);
+        }
+        break;
+      case 'floatAgrouped':
+        formatter = function (d) {
+          return d3.format(',.02f')(d);
+        }
+        break;
       case 'int':
         formatter = function (d) {
           return d3.format('d')(d);
@@ -90,6 +100,11 @@ export class AbstractChartOptions {
       case 'time':
         formatter = function (d) {
           return d3.time.format('%x')(new Date(d));
+        };
+        break;
+      case 'percentage':
+        formatter = function (d) {
+          return d3.format(".0%")(d);
         };
         break;
     }

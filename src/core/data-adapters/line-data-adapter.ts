@@ -45,6 +45,9 @@ export class LineDataAdapter implements ChartDataAdapter {
           key = config.translateService.get(key);
         }
         serie['key'] = key;
+
+        seriesValues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
+
         serie['values'] = seriesValues[axis];
         result.push(serie);
       });
@@ -60,6 +63,8 @@ export class LineDataAdapter implements ChartDataAdapter {
         if (seriesValues[axis] === undefined) {
           seriesValues[axis] = [];
         }
+        if (item[axis] === undefined)
+          return;
         let val = {
           'x': item[self.xAxis],
           'y': item[axis]

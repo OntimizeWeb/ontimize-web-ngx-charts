@@ -13,39 +13,29 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params = this.chartConf as DiscreteBarChartConfiguration;
-    if (params.xDataType) {
-      params.xAxis1.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      params.yAxis1.tickFormat = this.getTickFormatter(params.yDataType);
-    }
-    if (params.xLabel) {
-      params.xAxis1.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.yAxis1.axisLabel = params.yLabel;
-    }
+    let conf = this.chartConf instanceof DiscreteBarChartConfiguration ? this.chartConf : new DiscreteBarChartConfiguration;
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
     let options = {
       type: this.getChartType(),
       height: this.getChartHeight(),
-      width: params.width,
-      margin: params.margin.getMarginOptions(),
+      width: conf.width,
+      margin: conf.margin.getMarginOptions(),
       x: this.getXValue(),
       y: this.getYValue(),
-      duration: params.duration,
-      showValues: params.showValues,
-      staggerLabels: params.staggerLabels,
-      rotateLabels: params.rotateLabels,
-      wrapLabels: params.wrapLabels,
-      showXAxis: params.showXAxis,
-      showYAxis: params.showYAxis,
-      showLegend: params.showLegend,
-      rightAlignYAxis: params.rightAlingYAxis,
-      legend: params.legend.getLegendOptions(),
-      xAxis: params.xAxis1.getAxisOptions(),
-      yAxis: params.yAxis1.getAxisOptions()
+      duration: conf.duration,
+      showValues: conf.showValues,
+      staggerLabels: conf.staggerLabels,
+      rotateLabels: conf.rotateLabels,
+      wrapLabels: conf.wrapLabels,
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
+      showLegend: conf.showLegend,
+      rightAlignYAxis: conf.rightAlingYAxis,
+      legend: conf.legend.getLegendOptions(),
+      xAxis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions()
     };
     return options;
   }

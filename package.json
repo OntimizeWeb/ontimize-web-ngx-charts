@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "3.1.1",
+  "version": "3.1.3",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
     "preinstall": "npm config set package-lock false",
@@ -8,7 +8,7 @@
     "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
   "keywords": [
-    "angular2",
+    "angular",
     "ontimize-web-ngx",
     "ontimize-web-ngx-charts",
     "charts",
@@ -27,9 +27,9 @@
   "es2015": "./esm2015/ontimize-web-ngx-charts.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "d3": "^3.5.6",
-    "ng2-nvd3": "git+https://github.com/daominhsangvn/ng2-nvd3.git",
-    "nvd3": "^1.8.4"
+    "d3": "3.5.17",
+    "ontimize-web-ngx-nvd3": "3.0.0",
+    "nvd3": "1.8.6"
   },
   "peerDependencies": {
     "core-js": "2.5.3",
@@ -37,7 +37,7 @@
     "zone.js": "0.8.20"
   },
   "devDependencies": {
-    "ontimize-web-ngx": "3.1.0",
+    "ontimize-web-ngx": "3.1.1",
     "ontimize-web-ngx-library-tools": "1.0.0",
     "@angular/flex-layout": "5.0.0-beta.13",
     "@angular/material": "5.2.4",

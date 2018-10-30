@@ -2,9 +2,10 @@ import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartZoomConfiguration } from './ChartZoomConfiguration.class';
-import { OHLCDataType } from './OHLCDataType.class';
 
 export class OHLCChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'ohlcBarChart';
+
   x1Axis: ChartAxisConfiguration;
   showXAxis: boolean = true;
   y1Axis: ChartAxisConfiguration;
@@ -23,11 +24,8 @@ export class OHLCChartConfiguration extends ChartConfiguration {
   padData: boolean = false;
   clidEdge: boolean = true;
 
-  chartData: Array<OHLCDataType>;
-
-
   //Properties for select the values of date, open,
-  // close, high and low in chart
+  // close, high and low in data adapter
   xColumn: string;
   openAxis: string;
   closeAxis: string;

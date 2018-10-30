@@ -3,6 +3,8 @@ import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 
 export class PieChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'pie';
+
   showLeyend: boolean = true;
   legend: ChartLegendConfiguration;
   legendPosition: string = 'top';
