@@ -24,6 +24,7 @@ export class LineComponent {
   protected xAxis: string = 'DATE_';
 
   chartParameters: LineChartConfiguration;
+  chartParametersSerie: LineChartConfiguration;
 
   protected data: Array<Object>;
 
@@ -36,6 +37,9 @@ export class LineComponent {
       this.chartParameters.isArea = [true];
       this.chartParameters.interactive = false;
       this.chartParameters.useInteractiveGuideline = false;
+
+      this.chartParametersSerie = new LineChartConfiguration();
+      this.chartParametersSerie.legend.vers = 'furious';
 
   }
 
@@ -142,7 +146,7 @@ export class LineComponent {
 const SERIES_HTML_DATA = `
 <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" flex="75"
     entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-    x-data-type="time"></o-chart>
+    x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>
 `;
 
 const SERIES_TYPESCRIPT_DATA = `
@@ -157,7 +161,12 @@ declare var d3: any;
 export class LineComponent implements OnInit {
   @ViewChild('lineChart')
   protected lineChart: OChartComponent;
+
+  chartParametersSerie: LineChartConfiguration;
+
   constructor() {
+    this.chartParametersSerie = new LineChartConfiguration();
+    this.chartParametersSerie.legend.vers = 'furious';
   }
   ngOnInit() {
     // nothing to do

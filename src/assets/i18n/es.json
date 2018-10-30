@@ -19,5 +19,15 @@
   "MOVEMENT":"Movimiento",
   "MOVEMENTTYPES":"Tipo de movimiento",
   "BALANCE": "Saldo Total",
-  "AVERAGE": "Saldo medio"
+  "AVERAGE": "Saldo medio",
+
+  "BUBBLE": "Gráfico de burbujas",
+  "GAUGE": "Gráficos Gauge",
+  "GAUGEDASHBOARD": "Gráfico Gauge Dashboard",
+  "GAUGESIMPLE": "Gráfico Gauge Simple",
+  "GAUGESLIM": "Gráfico Gauge Slim",
+  "GAUGESPACE": "Gráfico Gauge Space",
+  "RADIALPERCENT": "Gráfico Porcentaje Circular",
+  "PARALLELCOORDINATES": "Gráfico de coordenadas paralelas",
+  "RADAR": "Gráfica radar"
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 import { OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
@@ -10,8 +10,8 @@ import { OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts
 })
 export class OhlcComponent implements OnInit {
 
-  @ViewChild('ohlc')
-  protected ohlc: OChartComponent;
+  @ViewChild('ohlc2')
+  protected ohlc2: OChartComponent;
 
   chartParameters: OHLCChartConfiguration;
   chartParameters2: OHLCChartConfiguration;
@@ -21,15 +21,22 @@ export class OhlcComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new OHLCChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
 
 
     this.chartParameters2 = new OHLCChartConfiguration();
-    this.chartParameters2.chartData = [
+
+  }
+
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    let data = [
       { "date": 1511111115707, "open": 145.11, "high": 146.15, "low": 144.73, "close": 146.06, },
       { "date": 1511111115708, "open": 145.99, "high": 146.37, "low": 145.34, "close": 145.73 },
       { "date": 1511111115709, "open": 145.97, "high": 146.61, "low": 145.67, "close": 146.37 },
@@ -47,9 +54,16 @@ export class OhlcComponent implements OnInit {
       { "date": 1511111115728, "open": 149.13, "high": 149.5, "low": 148.86, "close": 149.37 },
       { "date": 1511111115729, "open": 149.15, "high": 150.14, "low": 149.01, "close": 149.41 }
     ];
-  }
 
-  ngOnInit() {
+    this.chartParameters2.xColumn = 'date';
+    this.chartParameters2.openAxis = 'open';
+    this.chartParameters2.highAxis = 'high';
+    this.chartParameters2.lowAxis = 'low';
+    this.chartParameters2.closeAxis = 'close';
+
+    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+
+    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
   }
 
   getBasicUsageId() {
@@ -97,7 +111,7 @@ export class OhlcComponent implements OnInit {
 
 const BASIC_USAGE_HTML_DATA = `
 <o-chart #ohlc type="ohlcBarChart" chart-height="600" x-data-type="time"
-[chart-parameters]="chartParameters" entity="EMovementsGrouped"></o-chart>
+[chart-parameters]="chartParameters" entity="EStockExchange"></o-chart>
 `;
 
 const BASIC_USAGE_TYPESCRIPT_DATA = `
@@ -123,11 +137,11 @@ export class OhlcComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters = new OHLCChartConfiguration();
-    this.chartParameters.xColumn = "DATE_";
-    this.chartParameters.openAxis = "BALANCE";
-    this.chartParameters.highAxis = "BALANCE";
-    this.chartParameters.closeAxis = "MOVEMENT";
-    this.chartParameters.lowAxis = "MOVEMENT";
+    this.chartParameters.xColumn = "date";
+    this.chartParameters.openAxis = "open";
+    this.chartParameters.highAxis = "high";
+    this.chartParameters.closeAxis = "close";
+    this.chartParameters.lowAxis = "low";
   }
 }
 `;
@@ -141,7 +155,7 @@ const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { NavigationBarService } from '../../shared/services/navigation-bar.service';
 import { OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
@@ -150,8 +164,8 @@ import { OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts
 })
 export class OhlcComponent implements OnInit {
 
-  @ViewChild('ohlc')
-  protected ohlc: OChartComponent;
+  @ViewChild('ohlc2')
+  protected ohlc2: OChartComponent;
 
   chartParameters2: OHLCChartConfiguration;
 
@@ -160,7 +174,14 @@ export class OhlcComponent implements OnInit {
     protected translateService: OTranslateService) {
 
     this.chartParameters2 = new OHLCChartConfiguration();
-    this.chartParameters2.chartData = [
+
+  }
+
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    let data = [
       { "date": 1511111115707, "open": 145.11, "high": 146.15, "low": 144.73, "close": 146.06, },
       { "date": 1511111115708, "open": 145.99, "high": 146.37, "low": 145.34, "close": 145.73 },
       { "date": 1511111115709, "open": 145.97, "high": 146.61, "low": 145.67, "close": 146.37 },
@@ -178,6 +199,16 @@ export class OhlcComponent implements OnInit {
       { "date": 1511111115728, "open": 149.13, "high": 149.5, "low": 148.86, "close": 149.37 },
       { "date": 1511111115729, "open": 149.15, "high": 150.14, "low": 149.01, "close": 149.41 }
     ];
+
+    this.chartParameters2.xColumn = 'date';
+    this.chartParameters2.openAxis = 'open';
+    this.chartParameters2.highAxis = 'high';
+    this.chartParameters2.lowAxis = 'low';
+    this.chartParameters2.closeAxis = 'close';
+
+    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+
+    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
   }
 }
 `;

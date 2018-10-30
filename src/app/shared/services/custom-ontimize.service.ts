@@ -62,6 +62,16 @@ export class CustomOntimizeService extends OntimizeService {
       url += '/emovementsgrouped.json';
     } else if (entity === 'EAccounts') {
       url += '/eaccounts.json';
+    } else if (entity === 'EBullet') {
+      url += '/ebullet.json';
+    } else if (entity === 'EMovementPercent') {
+      url += '/epercentmovements.json';
+    } else if (entity === 'EDataGauge') {
+      url += '/edatagauge.json';
+    } else if (entity === 'EStockExchange') {
+      url += '/estockexchange.json';
+    } else if (entity === 'EDimensionData') {
+      url += '/edimensiondata.json';
     }
 
     const options = {

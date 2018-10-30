@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "measure": 75.65
+    },
+    {
+      "range": 60
+    },
+    {
+      "range": 30
+    },
+    {
+      "range": 100
+    }
+  ]
+}
