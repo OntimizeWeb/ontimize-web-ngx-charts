@@ -27,9 +27,9 @@
   "es2015": "./esm2015/ontimize-web-ngx-charts.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "@nois/ng2-nvd3": "git+https://github.com/daominhsangvn/ng2-nvd3.git",
-    "d3": "^3.5.6",
-    "nvd3": "^1.8.4"
+    "d3": "3.5.17",
+    "ontimize-web-ngx-nvd3": "3.0.0",
+    "nvd3": "1.8.6"
   },
   "peerDependencies": {
     "core-js": "2.5.3",
@@ -37,8 +37,8 @@
     "moment": "2.22.2"
   },
   "devDependencies": {
-    "ontimize-web-ngx": "C:\\Users\\patricia.martinez\\Documents\\ontimize web\\ontimize-web-ngx-angular6\\dist\\ontimize-web-ngx-4.0.0-rc.0.tgz",
-    "ontimize-web-ngx-library-tools": "C:\\Users\\patricia.martinez\\Documents\\ontimize web\\ontimize-web-ngx-library-tools\\ontimize-web-ngx-library-tools-2.0.0.tgz",
+    "ontimize-web-ngx": "file:F:/workspaceAngular/ontimize-web-ngx/dist/ontimize-web-ngx-4.0.0-rc.0.tgz",
+    "ontimize-web-ngx-library-tools": "file:F:/workspaceAngular/ontimize-web-ngx-library-tools/ontimize-web-ngx-library-tools-2.0.0.tgz",
     "@angular/flex-layout": "6.0.0-beta.18",
     "@angular/material": "6.4.7",
     "@angular/material-moment-adapter": "6.4.7",

@@ -4,40 +4,29 @@ import { CandlestickChartConfiguration } from './CandlestickChartConfiguration.c
 export class CandlestickChartOptions extends AbstractChartOptions {
 
   getChartOptions() {
-    let params = this.chartConf as CandlestickChartConfiguration;
-
-    if (params.xDataType) {
-      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
-    }
-    if (params.xLabel) {
-      params.x1Axis.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.y1Axis.axisLabel = params.yLabel;
-    }
+    let conf = this.chartConf instanceof CandlestickChartConfiguration ? this.chartConf : new CandlestickChartConfiguration;
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
     let chart = {
       type: this.getChartType(),
-      height: params.height,
-      width: params.width,
+      height: conf.height,
+      width: conf.width,
       x: this.getXValue(),
       y: this.getYValue(),
       low: this.getLow(),
       high: this.getHigh(),
-      xAxis: params.x1Axis.getAxisOptions(),
-      yAxis: params.y1Axis.getAxisOptions(),
-      showXAxis: params.showXAxis,
-      showYAxis: params.showYAxis,
-      rightAlignYAxis: params.rightAlignYAxis,
-      legend: params.legend.getLegendOptions(),
-      showLegend: params.showLegend,
-      zoom: params.zoom.getZoomOptions(),
-      useInteractiveGuideline: params.useInteractiveGuideline,
-      padData: params.padData,
-      clipEdge: params.clidEdge
+      xAxis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions(),
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
+      rightAlignYAxis: conf.rightAlignYAxis,
+      legend: conf.legend.getLegendOptions(),
+      showLegend: conf.showLegend,
+      zoom: conf.zoom.getZoomOptions(),
+      useInteractiveGuideline: conf.useInteractiveGuideline,
+      padData: conf.padData,
+      clipEdge: conf.clidEdge
     };
 
     return chart;

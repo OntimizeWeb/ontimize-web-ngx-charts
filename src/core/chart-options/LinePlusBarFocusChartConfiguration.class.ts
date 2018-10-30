@@ -4,6 +4,8 @@ import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'linePlusBarWithFocusChart';
+
   x1Axis: ChartAxisConfiguration;
   y1Axis: ChartAxisConfiguration;
   switchYAxisOrder: boolean = false;

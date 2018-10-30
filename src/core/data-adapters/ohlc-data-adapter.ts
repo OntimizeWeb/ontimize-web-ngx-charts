@@ -5,17 +5,10 @@ import { OHLCChartConfiguration } from '../chart-options/OHLCChartConfiguration.
 export class OhlcDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
 
-  adaptResult(_data: Array<any>): Object {
-    if ((this.chartConf as OHLCChartConfiguration).chartData) {
-      let chartVal = {
-        values: (this.chartConf as OHLCChartConfiguration).chartData
-      }
-      return chartVal;
-    }
-    else {
+  adaptResult(data: any): Object {
       let values = [];
       let params = this.chartConf as OHLCChartConfiguration;
-      _data.forEach((item: any, _index: number) => {
+      data.forEach((item: any, _index: number) => {
         let val = {
           date: item[params.xColumn],
           open: item[params.openAxis],
@@ -25,11 +18,12 @@ export class OhlcDataAdapter implements ChartDataAdapter {
         }
         values.push(val);
       });
-      let data  = {
+
+      values.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
+      let dataAdapt  = {
         'values': values
       }
-      return data;
-    }
+      return dataAdapt;
   }
 
   constructor(chartconf: ChartConfiguration) {

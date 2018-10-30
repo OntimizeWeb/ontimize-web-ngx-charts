@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { nvD3 } from '@nois/ng2-nvd3';
+import { nvD3 } from 'ontimize-web-ngx-nvd3';
 import { ChartMarginConfiguration } from '../core';
 
 @Injectable()

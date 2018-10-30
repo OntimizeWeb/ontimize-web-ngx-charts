@@ -1,3 +1,24 @@
+## 3.1.2 (2018-10-30)
+### Features
+* **o-chart**
+  * Adding new chart types:
+    * radarChart
+    * parallelCoordinatesChart
+    * bubbleChart
+    * gaugeSimpleChart
+    * stackedAreaChart
+    * gaugeSlimChart
+    * gaugeSpaceChart
+    * gaugeDashboardChart
+    * radialPercentChart
+    * bulletChart
+    * candlestickBarChart
+    * linePlusBarWithFocusChart
+
+### DEPENDENCY UPDATES
+* **Removed**: ng2-nvd3.
+* **Added**:   ontimize-web-ngx-nvd3@3.0.0 (This change does not affect to user)
+
 ## 3.1.1 (2018-10-02)
 ### Features
 * **o-chart**

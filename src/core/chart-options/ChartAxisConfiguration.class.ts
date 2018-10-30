@@ -5,11 +5,15 @@ export class ChartAxisConfiguration {
   rotateLabels: number = 0;
   rotateYLabel: boolean = true;
   showMaxMin: boolean = true;
-  height: number = 60;
-  width: number = 75;
+
   duration: number = 250;
   orient: string = 'bottom';
+  fontSize: number = 12;
+
   tickFormat: any = null;
+  tickValues: Array<number> = null;
+  ticks: number = null;
+
 
   getAxisOptions(): Object {
     let axis = {
@@ -19,11 +23,12 @@ export class ChartAxisConfiguration {
       rotateLabels: this.rotateLabels,
       rotateYLabel: this.rotateYLabel,
       showMaxMin: this.showMaxMin,
-      height: this.height,
-      width: this.width,
       duration: this.duration,
       orient: this.orient,
-      tickFormat: this.tickFormat
+      fontSize: this.fontSize,
+      tickFormat: this.tickFormat,
+      ticks: this.ticks,
+      ticksValues: this.tickValues
     };
     return axis;
   }
