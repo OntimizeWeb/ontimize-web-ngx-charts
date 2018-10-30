@@ -4,6 +4,8 @@ import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LineChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'line';
+
   legend: ChartLegendConfiguration;
   legendPosition: string = 'top';
   showLegend: boolean = true;
@@ -18,10 +20,10 @@ export class LineChartConfiguration extends ChartConfiguration {
   classed: Array<string> = null;
   colors: Array<string> = null;
 
-  showXAxis: boolean = false;
+  showXAxis: boolean = true;
   showYAxis: boolean = true;
-  xAxis1: ChartAxisConfiguration;
-  yAxis1: ChartAxisConfiguration;
+  x1Axis: ChartAxisConfiguration;
+  y1Axis: ChartAxisConfiguration;
   rightAlignYAxis: boolean = false;
 
   focusEnable: boolean = false;
@@ -31,8 +33,8 @@ export class LineChartConfiguration extends ChartConfiguration {
   constructor() {
     super();
     this.legend = new ChartLegendConfiguration();
-    this.xAxis1 = new ChartAxisConfiguration();
-    this.yAxis1 = new ChartAxisConfiguration();
+    this.x1Axis = new ChartAxisConfiguration();
+    this.y1Axis = new ChartAxisConfiguration();
     this.margin = new ChartMarginConfiguration();
   }
 }

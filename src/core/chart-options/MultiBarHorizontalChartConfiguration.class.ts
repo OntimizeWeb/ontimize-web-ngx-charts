@@ -4,6 +4,8 @@ import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 import {  ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 
 export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
+  readonly type: string = 'multiBarHorizontalChart';
+
   showLegend: boolean = true;
   legend: ChartLegendConfiguration;
 

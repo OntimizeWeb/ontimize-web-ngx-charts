@@ -38,6 +38,7 @@ export class MultiBarDataAdapter implements ChartDataAdapter {
           key = self.chartConf.translateService.get(key);
         }
         serie['key'] = key;
+        seriesvalues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
         serie['values'] = seriesvalues[axis];
 
         result.push(serie);

@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
+import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import 'd3';
 import 'nvd3';
 import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util, OServiceBaseComponent } from 'ontimize-web-ngx';
@@ -11,31 +11,37 @@ import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
 import {
-  PieChartConfiguration,
-  LineChartConfiguration,
-  ScatterChartConfiguration,
-  MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration,
-  DonutChartConfiguration,
-  DiscreteBarChartConfiguration
+  PieChartConfiguration, LineChartConfiguration, ScatterChartConfiguration, MultiBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration, DonutChartConfiguration,  DiscreteBarChartConfiguration,
+  BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
+  ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
+  GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration,
+  GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration,
+  RadarChartConfiguration, ParallelCoordinatesChartConfiguration
 } from './../../core';
-import { LinePlusBarFocusChartConfiguration } from '../../core/chart-options/LinePlusBarFocusChartConfiguration.class';
-import { ForceDirectedGraphConfiguration } from '../../core/chart-options/ForceDirectedGraphConfiguration.class';
-import { CandlestickChartConfiguration } from '../../core/chart-options/CandlestickChartConfiguration.class';
-import { OHLCChartConfiguration } from '../../core/chart-options/OHLCChartConfiguration.class';
+
 export const CHART_TYPES = [
-  'line',
-  'discreteBar',
-  'pie',
-  'multiBar',
-  'scatterChart',
+  'bubbleChart',
+  'bulletChart',
   'candlestickBarChart',
-  'ohlcBarChart',
-  'boxPlotChart',
+  'discreteBar',
   'donutChart',
-  'multiBarHorizontalChart',
+  'forceDirectedGraph',
+  'gaugeDashboardChart',
+  'gaugeSimpleChart',
+  'gaugeSlimChart',
+  'gaugeSpaceChart',
+  'line',
   'linePlusBarWithFocusChart',
-  'forceDirectedGraph'
+  'multiBar',
+  'multiBarHorizontalChart',
+  'ohlcBarChart',
+  'parallelCoordinatesChart',
+  'pie',
+  'radarChart',
+  'radialPercentChart',
+  'scatterChart',
+  'stackedAreaChart'
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
@@ -112,29 +118,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    switch (this.type) {
-      case 'forceDirectedGraph':
-        this.configureChart();
-        this.setData(null);
-        return;
-      case 'ohlcBarChart':
-        if (this.chartParameters && this.chartParameters instanceof OHLCChartConfiguration) {
-          if (this.chartParameters.chartData) {
-            this.configureChart();
-            this.setData(null);
-            return;
-          }
-        }
-        break;
-      case 'candlestickBarChart':
-        if (this.chartParameters && this.chartParameters instanceof CandlestickChartConfiguration) {
-          if (this.chartParameters.chartData) {
-            this.configureChart();
-            this.setData(null);
-            return;
-          }
-        }
-    }
 
     super.initialize();
 
@@ -151,6 +134,30 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       this.queryData();
     }
     this.chartService.chartWrapper = this.chartWrapper;
+  }
+
+  ngAfterViewChecked() {
+    let color = undefined;
+    if (this.type === 'gaugeDashboardChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
+    }
+    else if (this.type === 'gaugeSlimChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
+    }
+    else if (this.type === 'gaugeSpaceChart') {
+      color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
+    }
+    else if (this.type === 'radialPercentChart') {
+      color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
+    }
+
+    if (color) {
+      let elements = document.getElementsByClassName('nv-pie-title');
+      for (let i = 0; i < elements.length; i++) {
+        (elements.item(i) as SVGTextElement).style.fill = color;
+      }
+    }
+
   }
 
   ngOnDestroy() {
@@ -175,9 +182,23 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartConfiguration(): ChartConfiguration {
-    let chartConf;
+    let chartConf : ChartConfiguration;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
+
+      chartConf.height = chartConf.height ? chartConf.height : (this.cHeight !== -1) ? this.cHeight : null;
+      chartConf.width = chartConf.width ? chartConf.width : (this.cWidth !== -1) ? this.cWidth : null;
+      chartConf.xLabel = chartConf.xLabel ? chartConf.xLabel : this.xAxisLabel ? this.xAxisLabel : '';
+      chartConf.yLabel = chartConf.yLabel ? chartConf.yLabel : this.yAxisLabel ? this.yAxisLabel : '';
+      chartConf.xDataType = chartConf.xDataType ? chartConf.xDataType : this.xAxisDataType ? this.xAxisDataType : null;
+      chartConf.yDataType = chartConf.yDataType ? chartConf.yDataType : this.yAxisDataType ? this.yAxisDataType : null;
+      chartConf.xAxis = chartConf.xAxis ? chartConf.xAxis : this.xAxis ? this.xAxis : null;
+      chartConf.yAxis = chartConf.yAxis ? chartConf.yAxis : this.yAxisArray ? this.yAxisArray : null;
+
+      chartConf.translateService = this.translateService;
+
+      chartConf.data = this.dataArray ? this.dataArray : null;
+
     } else {
       switch (this.type) {
         case 'line':
@@ -213,39 +234,67 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         case 'ohlcBarChart':
           chartConf = new OHLCChartConfiguration();
           break;
+        case 'bulletChart':
+          chartConf = new BulletChartConfiguration();
+          break;
+        case 'gaugeDashboardChart':
+          chartConf = new GaugeDashboardChartConfiguration();
+          break;
+        case 'gaugeSlimChart':
+          chartConf = new GaugeSlimChartConfiguration();
+          break;
+        case 'gaugeSpaceChart':
+          chartConf = new GaugeSpaceChartConfiguration();
+          break;
+        case 'radialPercentChart':
+          chartConf = new RadialPercentChartConfiguration();
+          break;
+        case 'gaugeSimpleChart':
+          chartConf = new GaugeSimpleChartConfiguration();
+          break;
+        case 'bubbleChart':
+          chartConf = new BubbleChartConfiguration();
+          break;
+        case 'stackedAreaChart':
+          chartConf = new StackedAreaChartConfiguration();
+          break;
+        case 'radarChart':
+          chartConf = new RadarChartConfiguration();
+          break;
+        case 'parallelCoordinatesChart':
+          chartConf = new ParallelCoordinatesChartConfiguration();
+          break;
         default:
           chartConf = new ChartConfiguration();
       }
+
+      chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
+      chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
+
+      chartConf.xLabel = this.xAxisLabel;
+      chartConf.yLabel = this.yAxisLabel;
+
+      chartConf.xDataType = this.xAxisDataType;
+      chartConf.yDataType = this.yAxisDataType;
+
+      chartConf.xAxis = this.xAxis;
+      chartConf.yAxis = this.yAxisArray;
+
+      chartConf.translateService = this.translateService;
+
+      chartConf.data = this.dataArray;
     }
-    chartConf.type = this.type;
-
-    if (this.cHeight !== -1) {
-      chartConf.height = this.cHeight;
-    }
-    if (this.cWidth !== -1) {
-      chartConf.width = this.cWidth;
-    }
-
-    chartConf.xLabel = this.xAxisLabel;
-    chartConf.yLabel = this.yAxisLabel;
-
-    chartConf.xDataType = this.xAxisDataType;
-    chartConf.yDataType = this.yAxisDataType;
-
-    chartConf.xAxis = this.xAxis;
-    chartConf.yAxis = this.yAxisArray;
-
-    chartConf.translateService = this.translateService;
-
-    chartConf.data = this.dataArray;
 
     return chartConf;
   }
 
-
+  public setChartConfiguration(conf: ChartConfiguration) {
+    this.chartParameters = conf;
+    this.configureChart();
+  }
 
   getAdaptData() {
-    if (this.type === 'forceDirectedGraph') {
+    if (this.type === 'forceDirectedGraph' || this.type == 'bulletChart') {
       if (this.dataArray && this.dataArray[0])
         return this.dataArray[0];
       else
@@ -286,13 +335,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
       });
     }
-    if (this.type === 'ohlcBarChart' || this.type === 'candlestickBarChart') {
-      filter = {};
-    }
+    filter = (this.type === 'ohlcBarChart') ? {} : (this.type === 'candlestickBarChart') ? {} : filter;
     this.queryData(filter);
   }
 
-  protected setData(data: any, _sqlTypes?: any, _replace?: boolean) {
+  public setData(data: any, _sqlTypes?: any, _replace?: boolean) {
     let factory = this.getChartDataAdapterFactory();
     let adapter: ChartDataAdapter = factory.getAdapter(this.type);
     let adaptedResult = adapter.adaptResult(data);
@@ -323,7 +370,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       columns.push(params.highAxis);
       columns.push(params.lowAxis);
     }
-    if (this.type === 'candlestickBarChart') {
+    else if (this.type === 'candlestickBarChart') {
       columns = [];
       let params = this.chartParameters as CandlestickChartConfiguration;
       columns.push(params.xColumn);
@@ -331,6 +378,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       columns.push(params.closeAxis);
       columns.push(params.highAxis);
       columns.push(params.lowAxis);
+    }
+    else if (this.type === 'bulletChart') {
+      columns = [];
+      let params = this.chartParameters as BulletChartConfiguration;
+      columns.push(params.markersAxis);
+      columns.push(params.measuresAxis);
+      columns.push(params.rangesAxis);
     }
     return columns;
   }

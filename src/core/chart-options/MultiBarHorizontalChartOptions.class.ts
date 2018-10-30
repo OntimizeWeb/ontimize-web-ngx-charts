@@ -13,59 +13,33 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    const params = this.chartConf as MultiBarHorizontalChartConfiguration;
-    if (params.xDataType) {
-      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
-    }
-    if (params.xLabel) {
-      params.x1Axis.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.y1Axis.axisLabel = params.yLabel;
-    }
-    params.x1Axis.orient = 'left';
+    let conf = this.chartConf instanceof MultiBarHorizontalChartConfiguration ? this.chartConf : new MultiBarHorizontalChartConfiguration();
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+
+    conf.x1Axis.orient = 'left';
 
     let chart = {
       type: this.getChartType(),
-      height: params.height,
-      width: params.width,
-      margin: params.margin.getMarginOptions(),
-      legend: params.legend.getLegendOptions(),
+      height: conf.height,
+      width: conf.width,
+      margin: conf.margin.getMarginOptions(),
+      legend: conf.legend.getLegendOptions(),
       x: this.getXValue(),
       y: this.getYValue(),
-      xAxis: params.x1Axis.getAxisOptions(),
-      yAxis: params.y1Axis.getAxisOptions(),
-      showControls: params.showControls,
-      showValues: params.showValues,
-      duration: params.duration,
-      stacked: params.stacked,
-      valuePadding: params.valuePadding,
-      groupSpacing: params.groupSpacing,
-      showLegend: params.showLegend,
-      showXAxis: params.showXAxis,
-      showYAxis: params.showYAxis,
+      xAxis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions(),
+      showControls: conf.showControls,
+      showValues: conf.showValues,
+      duration: conf.duration,
+      stacked: conf.stacked,
+      valuePadding: conf.valuePadding,
+      groupSpacing: conf.groupSpacing,
+      showLegend: conf.showLegend,
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
     };
     return chart;
-  }
-
-  protected getXAxisConfiguration(): Object {
-    let xAxis = super.getXAxisConfiguration();
-    if (this.chartConf.xDataType !== undefined) {
-      xAxis['tickFormat'] = this.getTickFormatter(this.chartConf.xDataType);
-    }
-    return xAxis;
-  }
-
-  protected getYAxisConfiguration(): Object {
-    let yAxis = super.getYAxisConfiguration();
-
-    if (this.chartConf.yDataType !== undefined) {
-      yAxis['tickFormat'] = this.getTickFormatter(this.chartConf.yDataType);
-    }
-    return yAxis;
   }
 
   protected getXValue() {

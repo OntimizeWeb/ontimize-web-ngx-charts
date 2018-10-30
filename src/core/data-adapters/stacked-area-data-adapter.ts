@@ -2,9 +2,9 @@ import { ChartSeries, ChartDataAdapter } from '../../interfaces';
 import {
   ChartConfiguration
 } from '../../core';
-import { LineChartConfiguration } from '../chart-options/LineChartConfiguration.class';
+import { StackedAreaChartConfiguration } from '../chart-options/StackedAreaChartConfiguration.class';
 
-export class LineDataAdapter implements ChartDataAdapter {
+export class StackedAreaDataAdapter implements ChartDataAdapter {
 
   protected chartConf: ChartConfiguration;
   protected xAxis: string;
@@ -18,9 +18,10 @@ export class LineDataAdapter implements ChartDataAdapter {
       this.yAxis = yAxis && yAxis.length ? yAxis : [];
     }
   }
+
   adaptResult(data: Array<any>): Array<ChartSeries> {
     let result: Array<ChartSeries> = [];
-    let config = (this.chartConf as LineChartConfiguration);
+    let config = (this.chartConf as StackedAreaChartConfiguration);
     if (data && data.length) {
       let seriesValues = this.processSeriesValues(data);
       this.yAxis.forEach((axis: string, _index: number) => {
@@ -28,26 +29,15 @@ export class LineDataAdapter implements ChartDataAdapter {
           'key': axis,
           values: []
         };
-        if (config.isArea && config.isArea[_index]) {
-          serie['area'] = config.isArea[_index];
-        }
-        if (config.colors && config.colors[_index]) {
-          serie['color'] = config.colors[_index];
-        }
-        if (config.strokeWidth && config.strokeWidth[_index]) {
-          serie['strokeWidth'] = config.strokeWidth[_index];
-        }
-        if (config.classed && config.classed[_index]) {
-          serie['classed'] = config.classed[_index];
+        if (config.color && config.color[_index]) {
+          serie['color'] = config.color[_index];
         }
         let key = axis;
         if (config.translateService) {
           key = config.translateService.get(key);
         }
         serie['key'] = key;
-
         seriesValues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
-
         serie['values'] = seriesValues[axis];
         result.push(serie);
       });

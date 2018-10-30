@@ -12,31 +12,28 @@ export class ScatterChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params = this.chartConf as ScatterChartConfiguration;
-    if (params.xDataType) {
-      params.xAxis1.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      params.yAxis1.tickFormat = this.getTickFormatter(params.yDataType);
-    }
+    let conf = this.chartConf instanceof ScatterChartConfiguration ? this.chartConf : new ScatterChartConfiguration ;
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+
     let chart = {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
-      height: params.height,
-      showDistX: params.showDistX,
-      showDistY: params.showDistY,
-      duration: params.duration,
-      xAxis: params.xAxis1.getAxisOptions(),
-      yAxis: params.yAxis1.getAxisOptions(),
-      legend: params.legend.getLegendOptions(),
-      rightAlignYAxis: params.rightAlignYAxis,
-      showXAxis: params.showXAxis,
-      showYAxis: params.showYAxis,
-      showLegend: params.showLegend,
-      margin: params.margin.getMarginOptions(),
-      clipEdge: params.clipEdge,
-      color: params.colors
+      height: conf.height,
+      showDistX: conf.showDistX,
+      showDistY: conf.showDistY,
+      duration: conf.duration,
+      xAxis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions(),
+      legend: conf.legend.getLegendOptions(),
+      rightAlignYAxis: conf.rightAlignYAxis,
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
+      showLegend: conf.showLegend,
+      margin: conf.margin.getMarginOptions(),
+      clipEdge: conf.clipEdge,
+      color: conf.colors
     };
     return chart;
   }

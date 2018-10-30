@@ -4,6 +4,8 @@ import { ForceDirectedGraphNode } from './ForceDirectedGraphNode.class';
 import { ForceDirectedGraphLink } from './ForceDirectedGraphLink.class';
 
 export class ForceDirectedGraphConfiguration extends ChartConfiguration {
+  readonly type: string = 'forceDirectedGraph';
+
   margin: ChartMarginConfiguration;
 
   linkStrength: number = 0.1;

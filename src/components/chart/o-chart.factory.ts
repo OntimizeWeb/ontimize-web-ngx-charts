@@ -1,19 +1,13 @@
 import {
-  ChartConfiguration,
-  LineChartOptions,
-  PieChartOptions,
-  DiscreteBarChartOptions,
-  MultiBarChartOptions,
-  MultiBarHorizontalChartOptions,
-  ScatterChartOptions
+  ChartConfiguration, LineChartOptions, PieChartOptions, DiscreteBarChartOptions, MultiBarChartOptions,
+  MultiBarHorizontalChartOptions, ScatterChartOptions, BulletChartOptions, GaugeDashboardChartOptions,
+  DonutChartOptions, LinePlusBarFocusChartOptions, ForceDirectedGraphOptions, CandlestickChartOptions,
+  OHLCChartOptions, GaugeSlimChartOptions, GaugeSpaceChartOptions, RadialPercentChartOptions,
+  GaugeSimpleChartOptions, BubbleChartOptions, StackedAreaChartOptions, RadarChartOptions,
+  ParallelCoordinatesChartOptions
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
-import { DonutChartOptions } from '../../core/chart-options/DonutChartOptions.class';
-import { LinePlusBarFocusChartOptions } from '../../core/chart-options/LinePlusBarFocusChartOptions.class';
-import { ForceDirectedGraphOptions } from '../../core/chart-options/ForceDirectedGraphOptions.class';
-import { CandlestickChartOptions } from '../../core/chart-options/CandlestickChartOptions.class';
-import { OHLCChartOptions } from '../../core/chart-options/OHLCChartOptions.class';
 
 export class OChartFactory implements ChartFactory {
 
@@ -58,6 +52,37 @@ export class OChartFactory implements ChartFactory {
       case 'ohlcBarChart':
         chartOpts = this.createOhlcBarChart(chartConf);
         break;
+      case 'bulletChart':
+        chartOpts = this.createBulletChartOptions(chartConf);
+        break;
+      case 'gaugeDashboardChart':
+        chartOpts = this.createGaugeDashboardChartOptions(chartConf);
+        break;
+      case 'gaugeSlimChart':
+        chartOpts = this.createGaugeSlimChartOptions(chartConf);
+        break;
+      case 'gaugeSpaceChart':
+        chartOpts = this.createGaugeSpaceChartOptions(chartConf);
+        break;
+      case 'radialPercentChart':
+        chartOpts = this.createRadialPercentChartOptions(chartConf);
+        break;
+      case 'gaugeSimpleChart':
+        chartOpts = this.createGaugeSimpleChartOptions(chartConf);
+        break;
+      case 'bubbleChart':
+        chartOpts = this.createBubbleChartOptions(chartConf);
+        break;
+      case 'stackedAreaChart':
+        chartOpts = this.createStackedAreaChartOptions(chartConf);
+        break;
+      case 'radarChart':
+        chartOpts = this.createRadarChartOptions(chartConf);
+        break;
+      case 'parallelCoordinatesChart':
+        chartOpts = this.createParallelCoordinatesChartOptions(chartConf);
+        break;
+
     }
     return chartOpts;
   }
@@ -115,5 +140,55 @@ export class OChartFactory implements ChartFactory {
   public createOhlcBarChart(chartConf: ChartConfiguration): any {
     let ohlcOptions = new OHLCChartOptions(chartConf);
     return ohlcOptions.getOptions();
+  }
+
+  public createBulletChartOptions(chartConf: ChartConfiguration): any {
+    let bulletOptions = new BulletChartOptions(chartConf);
+    return bulletOptions.getOptions();
+  }
+
+  public createGaugeDashboardChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeDashboardChartOptions(chartConf);
+    return gaugeOptions.getOptions();
+  }
+
+  public createGaugeSlimChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeSlimChartOptions(chartConf);
+    return gaugeOptions.getOptions();
+  }
+
+  public createGaugeSpaceChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeOptions = new GaugeSpaceChartOptions(chartConf);
+    return gaugeOptions.getOptions();
+  }
+
+  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any{
+    let radialPercentOptions = new RadialPercentChartOptions(chartConf);
+    return radialPercentOptions.getOptions();
+  }
+
+  public createGaugeSimpleChartOptions(chartConf: ChartConfiguration): any {
+    let gaugeSimpleOptions = new GaugeSimpleChartOptions(chartConf);
+    return gaugeSimpleOptions.getOptions();
+  }
+
+  public createBubbleChartOptions(chartConf: ChartConfiguration): any {
+    let bubbleOptions = new BubbleChartOptions(chartConf);
+    return bubbleOptions.getOptions();
+  }
+
+  public createStackedAreaChartOptions(chartConf: ChartConfiguration): any {
+    let stackedAreaOptions = new StackedAreaChartOptions(chartConf);
+    return stackedAreaOptions.getOptions();
+  }
+
+  public createRadarChartOptions(chartConf: ChartConfiguration): any {
+    let radarChartOptions = new RadarChartOptions(chartConf);
+    return radarChartOptions.getOptions();
+  }
+
+  public createParallelCoordinatesChartOptions(chartConf: ChartConfiguration): any {
+    let parallelCoordinatesChartOptions = new ParallelCoordinatesChartOptions(chartConf);
+    return parallelCoordinatesChartOptions.getOptions();
   }
 }

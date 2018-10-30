@@ -13,53 +13,36 @@ export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let params = this.chartConf as LinePlusBarFocusChartConfiguration;
-    if (params.xDataType) {
-      params.x1Axis.tickFormat = this.getTickFormatter(params.xDataType);
-    }
-    if (params.yDataType) {
-      params.y1Axis.tickFormat = this.getTickFormatter(params.yDataType);
-    }
-    if (params.xLabel) {
-      params.x1Axis.axisLabel = params.xLabel;
-    }
-    if (params.yLabel) {
-      params.y1Axis.axisLabel = params.yLabel;
-    }
+    let conf = this.chartConf instanceof LinePlusBarFocusChartConfiguration ? this.chartConf : new LinePlusBarFocusChartConfiguration();
+    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
+    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+
     let chart = {
       type: this.getChartType(),
-      height: params.height,
-      width: params.width,
+      height: conf.height,
+      width: conf.width,
       x: this.getXValue(),
       y: this.getYValue(),
-      color: params.colors,
-      xAxis: params.x1Axis.getAxisOptions(),
-      x2Axis: params.x1Axis.getAxisOptions(),
-      y1Axis: params.y1Axis.getAxisOptions(),
-      y2Axis: params.y1Axis.getAxisOptions(),
-      y3Axis: params.y1Axis.getAxisOptions(),
-      y4Axis: params.y1Axis.getAxisOptions(),
-      duration: params.duration,
-      margin: params.margin.getMarginOptions(),
-      switchYAxisOrder: params.switchYAxisOrder,
-      showLabels: params.showLabels,
-      showLegend: params.showLegend,
-      legend: params.legend.getLegendOptions(),
-      isArea: params.isArea,
-      interactive: params.interactive,
-      focusEnable: params.focusEnable,
-      focusShowAxisX: params.focusShowAxisX,
-      focusShowAxisY: params.focusShowAxisY,
+      color: conf.colors,
+      xAxis: conf.x1Axis.getAxisOptions(),
+      x2Axis: conf.x1Axis.getAxisOptions(),
+      y1Axis: conf.y1Axis.getAxisOptions(),
+      y2Axis: conf.y1Axis.getAxisOptions(),
+      y3Axis: conf.y1Axis.getAxisOptions(),
+      y4Axis: conf.y1Axis.getAxisOptions(),
+      duration: conf.duration,
+      margin: conf.margin.getMarginOptions(),
+      switchYAxisOrder: conf.switchYAxisOrder,
+      showLabels: conf.showLabels,
+      showLegend: conf.showLegend,
+      legend: conf.legend.getLegendOptions(),
+      isArea: conf.isArea,
+      interactive: conf.interactive,
+      focusEnable: conf.focusEnable,
+      focusShowAxisX: conf.focusShowAxisX,
+      focusShowAxisY: conf.focusShowAxisY,
     };
     return chart;
-  }
-
-  protected getTicksValues(data: Array<any>): Array<number> {
-    let values = [];
-    data.forEach((item: any, _index: number) => {
-      values.push(item['x']);
-    });
-    return values;
   }
 
 }
