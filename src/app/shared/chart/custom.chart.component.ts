@@ -1,26 +1,12 @@
 import { Injector, forwardRef, ElementRef, OnInit, Optional, Inject, Component, NgModule } from '@angular/core';
 import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { OComponent, OFormComponent, OntimizeService, dataServiceFactory } from 'ontimize-web-ngx';
+import { OFormComponent, OntimizeService, dataServiceFactory } from 'ontimize-web-ngx';
 
-import { nvD3, NvD3Module } from '@nois/ng2-nvd3';
-import {
-  OChartComponent, ChartService,
-  ChartFactory, ChartDataAdapterFactory
-} from 'ontimize-web-ngx-charts';
+import { NvD3Module } from 'ontimize-web-ngx-nvd3';
+import { OChartComponent, ChartFactory, ChartDataAdapterFactory } from 'ontimize-web-ngx-charts';
 
 import { CustomChartFactory } from './custom.chart.factory';
-
-// @OComponent({
-//   selector: 'custom-chart',
-//   providers: [
-//     ChartService,
-//     { provide: OChartComponent, useExisting: forwardRef(() => CustomChartComponent) }
-//   ],
-//   inputs: [
-//     ...OChartComponent.DEFAULT_INPUTS
-//   ]
-// })
 
 @Component({
   selector: 'custom-chart',
@@ -33,7 +19,6 @@ import { CustomChartFactory } from './custom.chart.factory';
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss']
 })
-
 export class CustomChartComponent extends OChartComponent implements OnInit {
 
   constructor(
@@ -63,6 +48,4 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
   declarations: [CustomChartComponent],
   exports: [CustomChartComponent]
 })
-export class CustomChartComponentModule {
-}
-
+export class CustomChartComponentModule { }

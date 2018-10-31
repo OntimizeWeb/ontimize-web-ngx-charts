@@ -1,29 +1,22 @@
-<div layout="column" layout-align="center top" layout-margin>
-<o-row fxFlex>
-<example-comp fxFlex="50" [comp-name]="getBasicId()" [files]="getBasicFiles()">
-  <div layout="row" layout-padding layout-align="center center">
-    <o-chart type="gaugeSimpleChart" flex="75" chart-height="350" entity="EDataGauge" y-axis="value"></o-chart>
-  </div>
-  <div class="body-text-container" layout-padding>
-    <h2>Basic Usage</h2>
-    <p class="body-text">
-      Chart data are provided through an Ontimize service.
-    </p>
-  </div>
-</example-comp>
+<div fxLayout="row" fxLayoutAlign="center stretch">
+  <example-comp fxFlex="50" [comp-name]="getBasicId()" [files]="getBasicFiles()">
+    <o-chart type="gaugeSimpleChart" chart-height="350" entity="EDataGauge" y-axis="value"></o-chart>
+    <div class="body-text-container">
+      <h2>Basic Usage</h2>
+      <p class="body-text">
+        Chart data are provided through an Ontimize service.
+      </p>
+    </div>
+  </example-comp>
 
-<example-comp fxFlex [comp-name]="getCustomId()" [files]="getCustomFiles()">
-  <div layout="row" layout-padding layout-align="center center">
-    <o-chart #gaugeSimple type="gaugeSimpleChart" flex="75" chart-height="350" [chart-parameters]="gaugeSimpleConf"></o-chart>
-  </div>
-  <div class="body-text-container" layout-padding>
-    <h2>Custom Usage</h2>
-    <p class="body-text">
-      Chart data are provided through an independent own service. In this case de data
-      are hard coded in the typescript
-    </p>
-  </div>
-</example-comp>
-
-</o-row>
+  <example-comp fxFlex="50" [comp-name]="getCustomId()" [files]="getCustomFiles()">
+    <o-chart #gaugeSimple type="gaugeSimpleChart" chart-height="350" [chart-parameters]="gaugeSimpleConf"></o-chart>
+    <div class="body-text-container">
+      <h2>Custom Usage</h2>
+      <p class="body-text">
+        Chart data are provided through an independent own service. In this case de data are hard coded in the
+        typescript.
+      </p>
+    </div>
+  </example-comp>
 </div>

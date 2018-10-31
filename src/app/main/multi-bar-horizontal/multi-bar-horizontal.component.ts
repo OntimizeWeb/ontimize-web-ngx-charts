@@ -50,7 +50,7 @@ export class MultiBarHorizontalComponent {
 
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="multiBarHorizontal" x-label="Time" y-label="Amount (€)" layout-fill
+<o-chart type="multiBarHorizontal" x-label="Time" y-label="Amount (€)"
   entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
   x-data-type="time"></o-chart>
 `;

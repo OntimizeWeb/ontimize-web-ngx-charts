@@ -1,11 +1,8 @@
-<div layout="column" layout-align="center top" layout-margin>
+<div fxLayout="column" fxLayoutAlign="center top">
   <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart #scatter type="scatterChart" x-label="Time" y-label="Amount (€)" flex="75" entity="EMovementsGrouped"
-        x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"
-        chart-height="600"></o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <o-chart #scatter type="scatterChart" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" chart-height="600"></o-chart>
+    <div class="body-text-container">
       <h2>Basic Usage</h2>
       <p class="body-text">
         Chart data are provided through an Ontimize service.
@@ -13,15 +10,12 @@
     </div>
   </example-comp>
   <example-comp [comp-name]="getCustomConfigurationId()" [files]="getCustomConfigurationFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart #scatter2 type="scatterChart" x-label="Time" y-label="Amount (€)" flex="75" entity="EMovementsGrouped"
-        x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParameters"
-        chart-height="600"></o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <o-chart #scatter2 type="scatterChart" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParameters" chart-height="600"></o-chart>
+    <div class="body-text-container">
       <h2>Custom Configuration</h2>
       <p class="body-text">
-        Chart configuration are provided for the user in component
+        Chart configuration are provided for the user in component.
       </p>
     </div>
   </example-comp>

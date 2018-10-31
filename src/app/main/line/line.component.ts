@@ -109,11 +109,11 @@ export class LineComponent {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="line" x-label="Time" y-label="Amount (€)" layout-fill
+<o-chart type="line" x-label="Time" y-label="Amount (€)"
   entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
 `;
 const BASIC_USAGE_CONF_HTML_DATA = `
-<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" layout-fill
+<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)"
   entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time" [chart-parameters]="chartParameters">
 </o-chart>
 `;

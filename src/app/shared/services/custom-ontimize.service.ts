@@ -1,8 +1,5 @@
 import { Injector } from '@angular/core';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/share';
+import { Observable } from 'rxjs';
 
 import { OntimizeService, LoginService, AppConfig } from 'ontimize-web-ngx';
 
@@ -82,7 +79,7 @@ export class CustomOntimizeService extends OntimizeService {
     let innerObserver: any;
     const dataObservable = Observable.create(observer => {
       innerObserver = observer
-    }).share();
+    });
 
     this.httpClient.get(url, options).subscribe((resp: any) => {
       if (resp && resp.code === 3) {
@@ -118,6 +115,5 @@ export class CustomOntimizeService extends OntimizeService {
   public delete(kv: Object = {}, entity?: string, sqltypes?: Object): Observable<any> {
     return undefined;
   }
-
 
 }

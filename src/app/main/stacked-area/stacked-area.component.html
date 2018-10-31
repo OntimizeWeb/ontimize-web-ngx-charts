@@ -1,10 +1,8 @@
-<div layout="column" layout-align="center top">
-  <example-comp [comp-name]="getId()" [files]="getFiles()" layout-fill>
-    <div layout="row" layout-fill layout-align="center">
-      <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" flex="75" entity="EMovementPercent"
-        x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"></o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+<div fxLayout="column" fxLayoutAlign="center top">
+  <example-comp [comp-name]="getId()" [files]="getFiles()">
+    <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" entity="EMovementPercent"
+      x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"></o-chart>
+    <div class="body-text-container">
       <h2>Series </h2>
       <p class="body-text">
         It is possible to configure several data series.

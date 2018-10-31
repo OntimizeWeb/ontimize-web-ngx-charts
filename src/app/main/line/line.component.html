@@ -1,43 +1,34 @@
-<div layout="column" layout-align="center top" layout-margin>
+<div fxLayout="column" fxLayoutAlign="center top">
+  <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()">
+    <o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
+      x-data-type="time"></o-chart>
+    <div class="body-text-container">
+      <h2>Basic Usage</h2>
+      <p class="body-text">
+        Chart data are provided through an Ontimize service.
+      </p>
+    </div>
+  </example-comp>
 
-    <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()" layout-fill>
-        <div layout="row" layout-fill layout-align="center">
-            <o-chart type="line" x-label="Time" y-label="Amount (€)" flex="75"
-                entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
-        </div>
-        <div  class="body-text-container" layout-padding>
-            <h2>Basic Usage</h2>
-            <p class="body-text">
-                Chart data are provided through an Ontimize service.
-            </p>
-        </div>
-    </example-comp>
+  <example-comp [comp-name]="getBasicUsageConfId()" [files]="getBasicUsageConfFiles()">
+    <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
+      [chart-parameters]="chartParameters" x-data-type="time"></o-chart>
+    <div class="body-text-container">
+      <h2>Custom configuration </h2>
+      <p class="body-text">
+        Visual configuration of the chart.
+      </p>
+    </div>
+  </example-comp>
 
-    <example-comp [comp-name]="getBasicUsageConfId()" [files]="getBasicUsageConfFiles()" layout-fill>
-        <div layout="row" layout-fill layout-align="center">
-            <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" flex="75"
-                entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" [chart-parameters]="chartParameters" x-data-type="time"></o-chart>
-        </div>
-        <div class="body-text-container" layout-padding>
-            <h2>Custom configuration </h2>
-            <p class="body-text">
-                Visual configuration of the chart.
-            </p>
-        </div>
-    </example-comp>
-
-    <example-comp [comp-name]="getCustomDataId()" [files]="getCustomDataFiles()" layout-fill>
-        <div layout="row" layout-fill layout-align="center">
-            <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" flex="75"
-                entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-                x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>
-        </div>
-        <div class="body-text-container" layout-padding>
-            <h2>Series </h2>
-            <p class="body-text">
-                It is possible to configure several data series.
-            </p>
-        </div>
-    </example-comp>
-
+  <example-comp [comp-name]="getCustomDataId()" [files]="getCustomDataFiles()">
+    <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>
+    <div class="body-text-container">
+      <h2>Series </h2>
+      <p class="body-text">
+        It is possible to configure several data series.
+      </p>
+    </div>
+  </example-comp>
 </div>

@@ -1,13 +1,9 @@
-<div layout="column" layout-align="center top" layout-margin>
-
+<div fxLayout="column" fxLayoutAlign="center top">
   <example-comp [comp-name]="getBasicUsageId()" [files]="getBasicUsageFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart #lineplusbar type="linePlusBarWithFocusChart" flex="75" entity="EMovementsGrouped"
-      x-axis="DATE_" y-axis="MOVEMENT;BALANCE" x-data-type="time"
-      [chart-parameters]="chartParameters" chart-height="500">
+    <o-chart #lineplusbar type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;BALANCE"
+      x-data-type="time" [chart-parameters]="chartParameters" chart-height="500">
     </o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <div class="body-text-container">
       <h2>Basic Usage</h2>
       <p class="body-text">
         Chart data are provided through an Ontimize service.
@@ -16,18 +12,14 @@
   </example-comp>
 
   <example-comp [comp-name]="getCustomConfigurationId()" [files]="getCustomConfigurationFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart #lineplusbar2 type="linePlusBarWithFocusChart" flex="75" entity="EMovementsGrouped"
-      x-axis="DATE_" y-axis="MOVEMENT;BALANCE" x-data-type="time"
-      [chart-parameters]="chartParameters2" chart-height="500">
+    <o-chart #lineplusbar2 type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;BALANCE"
+      x-data-type="time" [chart-parameters]="chartParameters2" chart-height="500">
     </o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <div class="body-text-container">
       <h2>Custom Configuration</h2>
       <p class="body-text">
         Chart data are provided through an Ontimize service.
       </p>
     </div>
   </example-comp>
-
 </div>

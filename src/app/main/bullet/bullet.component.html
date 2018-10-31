@@ -1,9 +1,7 @@
-<div layout="column" layout-align="center top" layout-padding>
+<div fxLayout="column" fxLayoutAlign="center top">
   <example-comp [comp-name]="getBasicId()" [files]="getBasicFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart type="bulletChart" flex="75" chart-height="200" entity="EBullet" [chart-parameters]='chartParameters2'></o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <o-chart type="bulletChart" chart-height="200" entity="EBullet" [chart-parameters]='chartParameters2'></o-chart>
+    <div class="body-text-container">
       <h2>Basic Usage</h2>
       <p class="body-text">
         Chart data are provided through an Ontimize service.
@@ -12,14 +10,12 @@
   </example-comp>
 
   <example-comp [comp-name]="getCustomId()" [files]="getCustomFiles()">
-    <div layout="row" layout-padding layout-align="center center">
-      <o-chart #bulletChart type="bulletChart" flex="75" chart-height="200" [chart-parameters]="chartParameters"></o-chart>
-    </div>
-    <div class="body-text-container" layout-padding>
+    <o-chart #bulletChart type="bulletChart" chart-height="200" [chart-parameters]="chartParameters"></o-chart>
+    <div class="body-text-container">
       <h2>Custom Usage</h2>
       <p class="body-text">
-        Chart data are provided through an independent own service. In this case de data
-        are hard coded in the typescript
+        Chart data are provided through an independent own service. In this case de data are hard coded in the
+        typescript
       </p>
     </div>
   </example-comp>

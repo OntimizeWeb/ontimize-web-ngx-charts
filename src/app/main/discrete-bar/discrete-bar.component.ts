@@ -191,14 +191,14 @@ export class DiscreteBarComponent implements OnInit {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" layout-fill
+<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y"
   entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
 `;
 
 const INSIDE_FORM_HTML_DATA = `
 <o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R"
-  layout="column">
-  <o-row elevation="0" layout-align="space-between center">
+ fxLayout="column">
+  <o-row elevation="0"fxLayoutAlign="space-between center">
     <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
     <o-row elevation="2">
       <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
@@ -213,7 +213,7 @@ const INSIDE_FORM_HTML_DATA = `
 `;
 
 const CUSTOM_DATA_HTML_DATA = `
-<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" layout-fill></o-chart>
+<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data"></o-chart>
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `

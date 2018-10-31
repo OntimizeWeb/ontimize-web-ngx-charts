@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs';
 
 import { OTranslateService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
@@ -18,7 +15,7 @@ import { NavigationBarService } from '../../shared/services/navigation-bar.servi
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.scss']
 })
-export class PieComponent implements OnInit{
+export class PieComponent implements OnInit {
 
   @ViewChild('pieChart')
   protected pieChart: OChartComponent;
@@ -59,11 +56,10 @@ export class PieComponent implements OnInit{
     var self = this;
     let innerObserver: any;
     let dataObservable = Observable.create(observer =>
-      innerObserver = observer).share();
+      innerObserver = observer);
 
     this.http
       .get(url, { headers: headers })
-      // .map((res: any) => res.json())
       .subscribe(res => {
         let data: any = res.json();
         self.serviceResponse = JSON.stringify(data, undefined, 2);
@@ -145,22 +141,19 @@ export class PieComponent implements OnInit{
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="pie" layout-fill entity="EMovementTypesTotal"
+<o-chart type="pie" entity="EMovementTypesTotal"
   x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart type="pie" layout-fill entity="EMovementTypesTotal"
+<o-chart type="pie" entity="EMovementTypesTotal"
 x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_TYPESCRIPT_DATA = `
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs';
 
 import { OTranslateService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
@@ -192,15 +185,13 @@ export class PieComponent{
 
 
 const CUSTOM_DATA_HTML_DATA = `
-<o-chart #pieChart type="pie" [data]="data" layout-fill></o-chart>
+<o-chart #pieChart type="pie" [data]="data"></o-chart>
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs';
 
 import { OChartComponent } from 'ontimize-web-ngx-charts';
 
@@ -241,7 +232,7 @@ export class PieComponent implements OnInit {
     )
 
     this.http.get(url, { headers: headers })
-      .map(response => response.json()).subscribe(data => {
+      .subscribe(data => {
         innerObserver.next(data.values);
       }, error => console.log('Could not load data.'));
     return dataObservable;

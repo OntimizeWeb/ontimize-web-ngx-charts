@@ -191,14 +191,14 @@ const ADAPTED_DATA = `
 `;
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="multiBar" x-label="Time" y-label="Amount (€)" layout-fill
+<o-chart type="multiBar" x-label="Time" y-label="Amount (€)"
   entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
   x-data-type="time"></o-chart>
 `;
 
 const CUSTOM_DATA_HTML_DATA = `
 <o-chart #multiBar type="multiBar" x-label="Time" y-label="Amount (€)"
-    [data]="data" x-data-type="time" layout-fill></o-chart>
+    [data]="data" x-data-type="time"></o-chart>
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
