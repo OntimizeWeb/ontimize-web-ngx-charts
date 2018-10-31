@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ontimize-web-ngx-charts-quickstart": {
+    "ontimize-web-ngx-quickstart-charts": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -60,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ontimize-web-ngx-charts-quickstart:build"
+            "browserTarget": "ontimize-web-ngx-quickstart-charts:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ontimize-web-ngx-charts-quickstart:build:production"
+              "browserTarget": "ontimize-web-ngx-quickstart-charts:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ontimize-web-ngx-charts-quickstart:build"
+            "browserTarget": "ontimize-web-ngx-quickstart-charts:build"
           }
         },
         "test": {
@@ -115,7 +115,7 @@
         }
       }
     },
-    "ontimize-web-ngx-charts-quickstart-e2e": {
+    "ontimize-web-ngx-quickstart-charts-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -124,7 +124,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ontimize-web-ngx-charts-quickstart:serve"
+            "devServerTarget": "ontimize-web-ngx-quickstart-charts:serve"
           }
         },
         "lint": {
@@ -139,7 +139,7 @@
       }
     }
   },
-  "defaultProject": "ontimize-web-ngx-charts-quickstart",
+  "defaultProject": "ontimize-web-ngx-quickstart-charts",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
