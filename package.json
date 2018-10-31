@@ -3,7 +3,6 @@
   "version": "4.0.0",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
-    "preinstall": "npm config set package-lock false",
     "clean": "o-ngx-lib-builder clean",
     "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
@@ -66,14 +65,14 @@
     "@types/node": "7.0.10",
     "@types/uglify-js": "2.6.30",
     "@types/webpack": "4.1.1",
-    "node-sass": "4.7.2",
+    "node-sass": "4.9.4",
     "rimraf": "2.6.2",
-    "gulp": "3.9.1",
+    "gulp": "4.0.0",
     "gulp-cssimport": "6.0.0",
-    "gulp-inline-ng2-template": "4.1.0",
+    "gulp-inline-ng2-template": "5.0.1",
     "gulp-replace": "0.6.1",
     "copyfiles": "1.2.0",
-    "webpack": "3.11.0",
+    "webpack": "4.21.0",
     "typescript": "2.9.2"
   }
 }
