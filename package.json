@@ -3,8 +3,7 @@
   "version": "4.0.0",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
-    "clean": "o-ngx-lib-builder clean",
-    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
+    "build": "o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
   "keywords": [
     "angular",
@@ -27,22 +26,22 @@
   "typings": "./index.d.ts",
   "dependencies": {
     "d3": "3.5.17",
-    "ontimize-web-ngx-nvd3": "3.0.0",
+    "ontimize-web-ngx-nvd3": "file:C:\\workspace\\github\\CHARTS\\ontimize-web-ngx-nvd3\\ontimize-web-ngx-nvd3-4.0.0-rc.0.tgz",
     "nvd3": "1.8.6"
   },
   "peerDependencies": {
-    "core-js": "2.5.3",
-    "rxjs": "5.5.6",
+    "core-js": "2.5.7",
+    "rxjs": "6.3.3",
     "moment": "2.22.2"
   },
   "devDependencies": {
-    "ontimize-web-ngx": "file:F:/workspaceAngular/ontimize-web-ngx/dist/ontimize-web-ngx-4.0.0-rc.0.tgz",
-    "ontimize-web-ngx-library-tools": "file:F:/workspaceAngular/ontimize-web-ngx-library-tools/ontimize-web-ngx-library-tools-2.0.0.tgz",
+    "ontimize-web-ngx": "file:C:\\workspace\\github\\ontimize-web-ng2-VERSIONS\\4.0.0-rc.0\\ontimize-web-ngx\\dist\\ontimize-web-ngx-4.0.0-rc.0.tgz",
+    "ontimize-web-ngx-library-tools": "file:C:\\workspace\\github\\TOOLS\\ontimize-web-ngx-library-tools\\ontimize-web-ngx-library-tools-2.0.0.tgz",
     "@angular/flex-layout": "6.0.0-beta.18",
     "@angular/material": "6.4.7",
     "@angular/material-moment-adapter": "6.4.7",
-    "@angular/cdk": "6.4.7",
     "@angular/animations": "6.1.10",
+    "@angular/cdk": "6.4.7",
     "@angular/common": "6.1.10",
     "@angular/compiler": "6.1.10",
     "@angular/compiler-cli": "6.1.10",
@@ -60,11 +59,13 @@
     "rxjs": "6.3.3",
     "zone.js": "0.8.26",
     "reflect-metadata": "0.1.12",
+    "typescript": "2.9.2",
     "@types/hammerjs": "2.0.34",
     "@types/jasmine": "2.5.46",
     "@types/node": "7.0.10",
     "@types/uglify-js": "2.6.30",
     "@types/webpack": "4.1.1",
+    "ajv": "6.5.4",
     "node-sass": "4.9.4",
     "rimraf": "2.6.2",
     "gulp": "4.0.0",
@@ -72,7 +73,6 @@
     "gulp-inline-ng2-template": "5.0.1",
     "gulp-replace": "0.6.1",
     "copyfiles": "1.2.0",
-    "webpack": "4.21.0",
-    "typescript": "2.9.2"
+    "webpack": "4.21.0"
   }
 }
