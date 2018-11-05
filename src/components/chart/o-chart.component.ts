@@ -63,6 +63,7 @@ export const DEFAULT_INPUTS_O_CHART = [
 ];
 
 @Component({
+  moduleId: module.id,
   selector: 'o-chart',
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
