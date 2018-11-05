@@ -1,9 +1,10 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "4.0.0",
+  "version": "4.0.0-rc.0",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
-    "build": "o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
+    "clean": "o-ngx-lib-builder clean",
+    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
   "keywords": [
     "angular",
@@ -36,7 +37,7 @@
   },
   "devDependencies": {
     "ontimize-web-ngx": "file:C:\\workspace\\github\\ontimize-web-ng2-VERSIONS\\4.0.0-rc.0\\ontimize-web-ngx\\dist\\ontimize-web-ngx-4.0.0-rc.0.tgz",
-    "ontimize-web-ngx-library-tools": "file:C:\\workspace\\github\\TOOLS\\ontimize-web-ngx-library-tools\\ontimize-web-ngx-library-tools-2.0.0.tgz",
+    "ontimize-web-ngx-library-tools": "file:C:\\workspace\\github\\TOOLS\\ontimize-web-ngx-library-tools\\ontimize-web-ngx-library-tools-4.0.0-rc.0.tgz",
     "@angular/flex-layout": "6.0.0-beta.18",
     "@angular/material": "6.4.7",
     "@angular/material-moment-adapter": "6.4.7",
