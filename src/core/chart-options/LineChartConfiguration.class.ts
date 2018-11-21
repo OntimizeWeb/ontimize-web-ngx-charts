@@ -26,6 +26,9 @@ export class LineChartConfiguration extends ChartConfiguration {
   y1Axis: ChartAxisConfiguration;
   rightAlignYAxis: boolean = false;
 
+  forceX: Array<number> = null;
+  forceY: Array<number> = null;
+
   focusEnable: boolean = false;
   focusShowAxisX: boolean = false;
   focusShowAxisY: boolean = false;

@@ -167,6 +167,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
     }
+    let elements = document.getElementsByClassName('nvtooltip xy-tooltip');
+    for(let i = 0; i<elements.length; i++){
+      elements.item(i).remove();
+    }
   }
 
   set data(value: any) {

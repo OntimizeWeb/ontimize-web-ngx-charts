@@ -102,6 +102,16 @@ export class AbstractChartOptions {
           return d3.time.format('%x')(new Date(d));
         };
         break;
+      case 'timeDay':
+        formatter = function(d) {
+          return d3.time.format('%H:%M:%S')(new Date(d));
+        }
+        break;
+      case 'timeDetail':
+        formatter = function(d) {
+          return d3.time.format('%x %H:%M:%S')(new Date(d));
+        }
+        break;
       case 'percentage':
         formatter = function (d) {
           return d3.format(".0%")(d);
