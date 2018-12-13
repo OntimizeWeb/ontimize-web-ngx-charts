@@ -1,0 +1,8 @@
+<o-row>
+  <example-comp fxFlex="50"  comp-name="GAUGE.GAUGE_SLIM_BASIC" comp-desc="GAUGE.GAUGE_SLIM_BASIC.DESC" [files]="getBasicFiles()">
+      <o-chart type="gaugeSlimChart" chart-height="350" entity="EDataGauge" [chart-parameters]="gaugeSlimConf"></o-chart>
+  </example-comp>
+  <example-comp fxFlex comp-name="GAUGE.GAUGE_SLIM_CUSTOM" comp-desc="GAUGE.GAUGE_SLIM_CUSTOM.DESC" [files]="getCustomFiles()">
+      <o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" [chart-parameters]="gaugeSlimConf2"></o-chart>
+  </example-comp>
+</o-row>

@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutAlign="center top">
+
+  <example-comp comp-name="BAR_CHART.DISCRETE_BASIC" comp-desc="BAR_CHART.DISCRETE_BASIC.DESC" [files]="getBasicUsageFiles()"
+    layout-fill>
+    <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+      y-axis="MOVEMENT"></o-chart>
+  </example-comp>
+
+  <example-comp comp-name="BAR_CHART.DISCRETE_INSIDE_FORM" comp-desc="BAR_CHART.DISCRETE_INSIDE_FORM.DESC" [files]="getInsideFormFiles()"
+    layout-fill>
+    <o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail"
+      header-actions="R" fxLayout="column" class="mat-elevation-z4" query-on-init="no">
+      <o-row elevation="0" layout-align="space-between center">
+        <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
+        <o-row elevation="2">
+          <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
+        </o-row>
+      </o-row>
+      <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+        y-axis="MOVEMENT" query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID"></o-chart>
+    </o-form>
+  </example-comp>
+
+  <example-comp comp-name="BAR_CHART.DISCRETE_CUSTOM" comp-desc="BAR_CHART.DISCRETE_CUSTOM.DESC" [files]="getCustomDataFiles()"
+    layout-fill>
+    <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data"></o-chart>
+  </example-comp>
+
+</div>

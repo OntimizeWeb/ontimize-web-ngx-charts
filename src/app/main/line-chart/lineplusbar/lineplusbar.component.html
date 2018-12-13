@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center top">
+
+  <example-comp comp-name="LINE_CHART.LINE_PLUS_LINE_BASIC" comp-desc="LINE_CHART.LINE_PLUS_LINE_BASIC.DESC" [files]="getBasicUsageFiles()">
+    <o-chart #lineplusbar type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;BALANCE"
+      x-data-type="time" [chart-parameters]="chartParameters" chart-height="500">
+    </o-chart>
+  </example-comp>
+
+  <example-comp comp-name="LINE_CHART.LINE_PLUS_LINE_CUSTOM" comp-desc="LINE_CHART.LINE_PLUS_LINE_CUSTOM.DESC" [files]="getCustomConfigurationFiles()">
+    <o-chart #lineplusbar2 type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;BALANCE"
+      x-data-type="time" [chart-parameters]="chartParameters2" chart-height="500">
+    </o-chart>
+  </example-comp>
+
+</div>

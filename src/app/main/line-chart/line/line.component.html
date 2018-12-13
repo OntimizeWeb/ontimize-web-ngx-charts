@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="center top">
+
+    <example-comp comp-name="LINE_CHART.LINE_BASIC" comp-desc="LINE_CHART.LINE_BASIC.DESC" [files]="getBasicUsageFiles()"
+        layout-fill>
+        <o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
+            x-data-type="time"></o-chart>
+    </example-comp>
+
+    <example-comp comp-name="LINE_CHART.LINE_CUSTOM" comp-desc="LINE_CHART.LINE_CUSTOM.DESC" [files]="getBasicUsageConfFiles()"
+        layout-fill>
+        <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_"
+            y-axis="MOVEMENT" [chart-parameters]="chartParameters" x-data-type="time"></o-chart>
+    </example-comp>
+
+    <example-comp comp-name="LINE_CHART.LINE_SERIES" comp-desc="LINE_CHART.LINE_SERIES.DESC" [files]="getCustomDataFiles()"
+        layout-fill>
+        <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+            y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>
+    </example-comp>
+
+</div>
