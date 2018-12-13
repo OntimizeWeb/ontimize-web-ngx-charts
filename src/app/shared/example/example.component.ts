@@ -9,6 +9,7 @@ import { InputConverter } from 'ontimize-web-ngx';
   templateUrl: 'example.component.html',
   inputs: [
     'compName: comp-name',
+    'compDesc: comp-desc',
     'orderedFiles: files',
     'collapsible',
     'collapsed'
@@ -25,13 +26,14 @@ export class ExampleComponent implements OnInit {
 
   public showSource = false;
   compName = '';
+  compDesc: string;
   orderedFiles: Array<string>;
   @InputConverter()
   collapsible: boolean = false;
   @InputConverter()
   collapsed: boolean = false;
   protected html: string = undefined;
-
+  tabHeight = '350px';
   onShowSource: EventEmitter<any> = new EventEmitter<any>();
 
   private tplData: Object;

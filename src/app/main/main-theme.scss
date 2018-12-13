@@ -7,11 +7,53 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .main-sidenav {
-    mat-sidenav {
-      background-color: mat-color($primary);
-      color: mat-color($primary, default-contrast);
+  
+  $white-bg: #fafafa;
+
+  .application-layout-content-wrapper {
+    background: $white-bg;
+  }
+
+  .o-app-sidenav.o-app-sidenav {
+    .o-app-sidenav-menuitem.o-app-sidenav-item .mat-button-focus-overlay {
+      background: none;
     }
+
+    .o-app-sidenav-container {
+      .o-app-sidenav-sidenav {
+        .mat-ripple {
+          display: none;
+        }
+        background: $white-bg;
+
+        .o-app-sidenav-item,
+        .sidenav-toggle {
+          // color: mat-color($primary, 0.54);
+          color: mat-color($primary, 0.72);
+        }
+
+        .o-app-sidenav-menugroup {
+          &:hover {
+            color: mat-color($accent);
+          }
+          color: mat-color($primary, 0.84);
+
+          &.active {
+            background: $white-bg;
+
+            + .o-app-sidenav-menugroup-items-container ul {
+              background: $white-bg;
+              box-shadow: none;
+            }
+          }
+        }
+
+        &.mat-drawer {
+          box-shadow: 1px 0 2px rgba(0,0,0,0.24);
+        }
+      }
+    }
+
   }
 
 }
