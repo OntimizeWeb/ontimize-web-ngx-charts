@@ -43,8 +43,12 @@ export class MultiBarComponent implements OnInit {
         // Configuring x axis...
         chartOps['xAxis']['tickFormat'] =
           function (d) {
-            return d3.time.format('%x')(new Date(d));
+            return d3.time.format('%d/%m/%y')(new Date(d));
           };
+        chartOps['yAxis']['tickFormat'] = function (d) {
+          return d3.format(',f')(d) + '€';
+        };
+
 
         // var xScale = d3.time.scale();
         // chartOps['xScale'] = xScale;
@@ -233,8 +237,12 @@ export class MultiBarComponent {
         // Configuring x axis...
         chartOps['xAxis']['tickFormat'] =
           function (d) {
-            return d3.time.format('%x')(new Date(d));
+            return d3.time.format('%d/%m/%y')(new Date(d));
           };
+          chartOps['yAxis']['tickFormat'] = function (d) {
+            return d3.format(',f')(d) + '€';
+          };
+      
 
         // Configuring y axis...
         var yScale = d3.scale.linear();

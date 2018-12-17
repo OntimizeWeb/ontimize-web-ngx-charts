@@ -19,6 +19,14 @@
         }
       }
 
+      .comp-note {
+        p {
+          mat-icon {
+            color: mat-color($primary, 0.84);
+          }
+        }
+      }
+
       .playground-tabs {
         border-bottom: 1px solid #e0e0e0;
       }

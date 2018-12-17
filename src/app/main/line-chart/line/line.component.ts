@@ -1,7 +1,9 @@
 import { Component, OnInit, Injector, ViewChild, ElementRef } from '@angular/core';
 
 import { OntimizeService, OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent, LineChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, LineChartConfiguration, ChartService } from 'ontimize-web-ngx-charts';
+
+declare var d3: any;
 
 @Component({
 
@@ -38,7 +40,19 @@ export class LineComponent {
 
   }
 
+  ngAfterViewInit() {
+    if (this.lineChartBasic) {
+      let chartService: ChartService = this.lineChartBasic.getChartService();
 
+      let chartOps = chartService.getChartOptions();
+      // Configuring x axis...
+      chartOps['xAxis']['tickFormat'] = function (d) {
+        console.log(d);
+        return d3.time.format('%d/%m/%y')(new Date(d));
+      };
+
+    }
+  }
   getBasicUsageFiles() {
     return [
       {
@@ -91,6 +105,7 @@ export class LineComponent {
     ];
   }
 
+
 }
 
 const BASIC_USAGE_HTML_DATA = `
@@ -136,6 +151,8 @@ const SERIES_TYPESCRIPT_DATA = `
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OChartComponent, LineChartConfiguration } from 'ontimize-web-ngx-charts';
 
+declare var d3: any;
+
 @Component({
   selector: 'line',
   templateUrl: './line.component.html',
@@ -151,4 +168,20 @@ export class LineComponent implements OnInit {
     this.chartParametersSerie = new LineChartConfiguration();
     this.chartParametersSerie.legend.vers = 'furious';
   }
+
+  ngAfterViewInit() {
+    if (this.lineChartBasic) {
+      let chartService: ChartService = this.lineChartBasic.getChartService();
+
+      let chartOps = chartService.getChartOptions();
+      // Configuring x axis...
+      chartOps['xAxis']['tickFormat'] = function (d) {
+        console.log(d);
+        return d3.time.format('%d/%m/%y')(new Date(d));
+      };
+
+    }
+  }
 }`;
+
+

@@ -35,5 +35,12 @@
   <div fxFlex="grow" [class.collapsed]="collapsed" [class.collapsible]="collapsible" class="playground-examples">
     <ng-content></ng-content>
   </div>
+  <div class="comp-note" *ngIf="compNote">
+    <mat-divider></mat-divider>
+    <p fxLayout="row">
+      <mat-icon>thumb_up</mat-icon>
+      <span [innerHTML]="compNote | oTranslate"> </span>
+    </p>
+  </div>
 
 </section>

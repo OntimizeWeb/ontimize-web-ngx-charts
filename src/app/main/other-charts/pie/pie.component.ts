@@ -8,10 +8,8 @@ import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
 import { NavigationBarService } from 'app/shared/services/navigation-bar.service';
 
 @Component({
-
   selector: 'pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.scss']
+  templateUrl: './pie.component.html'
 })
 export class PieComponent implements OnInit {
 
@@ -31,6 +29,7 @@ export class PieComponent implements OnInit {
     this.chartParameters.cornerRadius = 20;
     this.chartParameters.legendPosition = 'bottom';
     this.chartParameters.labelType = 'value';
+
   }
 
   ngOnInit() {

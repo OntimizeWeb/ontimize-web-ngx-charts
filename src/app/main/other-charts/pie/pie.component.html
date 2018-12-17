@@ -1,17 +1,17 @@
-<div fxLayout="column" fxLayoutAlign="center top">
+<div fxLayout="row wrap">
 
     <example-comp comp-name="OTHER_CHARTS.PIE_BASIC" comp-desc="OTHER_CHARTS.PIE_BASIC.DESC" [files]="getBasicUsageFiles()"
-        layout-fill>
-        <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
+        layout-fill fxFlex="50">
+        <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" ></o-chart>
     </example-comp>
 
-    <example-comp comp-name="OTHER_CHARTS.PIE_CUSTOM" comp-desc="OTHER_CHARTS.PIE_CUSTOM.DESC" [files]="getCustomConfigurationFiles()"
-        layout-fill>
+    <example-comp comp-name="OTHER_CHARTS.PIE_CUSTOM"  [files]="getCustomConfigurationFiles()"
+        layout-fill fxFlex="50"> 
         <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
     </example-comp>
 
-    <example-comp comp-name="OTHER_CHARTS.PIE_CUSTOM_SERVICE" comp-desc="OTHER_CHARTS.PIE_CUSTOM_SERVICE.DESC" [files]="getCustomDataFiles()"
-        layout-fill>
+    <example-comp comp-name="OTHER_CHARTS.PIE_CUSTOM_SERVICE" comp-desc="OTHER_CHARTS.PIE_CUSTOM_SERVICE.DESC" comp-note="OTHER_CHARTS.PIE_CUSTOM_SERVICE.NOTE" [files]="getCustomDataFiles()"
+        layout-fill fxFlex="50">
         <o-chart #pieChart type="pie" [data]="data"></o-chart>
     </example-comp>
 

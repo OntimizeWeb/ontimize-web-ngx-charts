@@ -1,10 +1,10 @@
-<div fxLayout="column" fxLayoutAlign="center top">
+<div fxLayout="row" fxLayoutAlign="center top">
   
-  <example-comp comp-name="OTHER_CHARTS.DONUT_BASIC" comp-desc="OTHER_CHARTS.DONUT_BASIC.DESC" [files]="getBasicUsageFiles()">
+  <example-comp comp-name="OTHER_CHARTS.DONUT_BASIC" comp-desc="OTHER_CHARTS.DONUT_BASIC.DESC" [files]="getBasicUsageFiles()" fxFlex="50">
     <o-chart type="donutChart" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" chart-height="400"></o-chart>
   </example-comp>
 
-  <example-comp comp-name="OTHER_CHARTS.DONUT_CUSTOM" comp-desc="OTHER_CHARTS.DONUT_CUSTOM.DESC" [files]="getCustomConfigurationFiles()">
+  <example-comp comp-name="OTHER_CHARTS.DONUT_CUSTOM" comp-desc="OTHER_CHARTS.DONUT_CUSTOM.DESC" [files]="getCustomConfigurationFiles()" fxFlex="50">
     <o-chart #donutConfig type="donutChart" chart-height="400" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
       y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
   </example-comp>

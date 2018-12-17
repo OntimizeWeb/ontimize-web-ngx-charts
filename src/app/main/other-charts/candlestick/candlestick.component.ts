@@ -1,13 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, CandlestickChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
-
+import { OChartComponent, CandlestickChartConfiguration, DataAdapterUtils, ChartService } from 'ontimize-web-ngx-charts';
+declare var d3: any;
 @Component({
   selector: 'app-ohlc',
   templateUrl: './candlestick.component.html'
 })
 export class CandlestickComponent {
 
-  @ViewChild('candlestick')
+  @ViewChild('candlestickbasic')
+  protected candlestickbasic: OChartComponent;
+
+  @ViewChild('candlestickcustom')
   protected candlestick: OChartComponent;
 
   chartParameters: CandlestickChartConfiguration;
@@ -53,6 +56,14 @@ export class CandlestickComponent {
 
     this.candlestick.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
 
+
+    let chartService: ChartService = this.candlestick.getChartService();
+
+    let chartOps = chartService.getChartOptions();
+    // Configuring x axis...
+    chartOps['xAxis']['tickFormat'] = function (d) {
+      return d3.time.format('%d/%m/%y')(new Date(d));
+    };
   }
 
   getBasicUsageFiles() {

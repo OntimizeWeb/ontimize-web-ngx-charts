@@ -10,6 +10,7 @@ import { InputConverter } from 'ontimize-web-ngx';
   inputs: [
     'compName: comp-name',
     'compDesc: comp-desc',
+    'compNote: comp-note',
     'orderedFiles: files',
     'collapsible',
     'collapsed'

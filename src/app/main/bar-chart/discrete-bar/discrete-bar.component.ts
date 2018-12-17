@@ -1,10 +1,10 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 
 import { OntimizeService, OTranslateService, OFormComponent } from 'ontimize-web-ngx';
-import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
 import { NavigationBarService } from 'app/shared/services/navigation-bar.service';
 
-
+declare var d3: any;
 @Component({
   selector: 'discrete-bar',
   templateUrl: './discrete-bar.component.html',
@@ -14,6 +14,9 @@ export class DiscreteBarComponent implements OnInit {
 
   @ViewChild('oForm')
   protected oForm: OFormComponent;
+
+  @ViewChild('discreteBar')
+  protected discreteBar: OChartComponent;
 
   data: Array<Object>;
 
@@ -66,6 +69,13 @@ export class DiscreteBarComponent implements OnInit {
         alert('Impossible to query data!');
       }
     });
+
+    let chartService: ChartService = this.discreteBar.getChartService();
+    let chartOps = chartService.getChartOptions();
+    // Configuring x axis...
+    chartOps['yAxis']['tickFormat'] = function (d) {
+      return d3.format(',f')(d) + '€';
+    };
 
   }
 
@@ -206,7 +216,8 @@ const CUSTOM_DATA_HTML_DATA = `
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component } from '@angular/core';
-import { OntimizeService } from 'ontimize-web-ngx';
+import { OntimizeService, ChartService } from 'ontimize-web-ngx';
+declare var d3: any;
 
 @Component({
   selector: 'discrete-bar',
@@ -220,6 +231,9 @@ export class DiscreteBarComponent {
 
   protected yAxis: string = 'MOVEMENT';
   protected xAxis: string = 'MOVEMENTTYPES';
+
+  @ViewChild('discreteBar')
+  protected discreteBar: OChartComponent;
 
   constructor() {}
 
@@ -247,6 +261,13 @@ export class DiscreteBarComponent {
         alert('Impossible to query data!');
       }
     });
+
+    let chartService: ChartService = this.discreteBar.getChartService();
+    let chartOps = chartService.getChartOptions();
+    // Configuring x axis...
+    chartOps['yAxis']['tickFormat'] = function (d) {
+      return d3.format(',f')(d) + '€';
+    };
 
   }
 

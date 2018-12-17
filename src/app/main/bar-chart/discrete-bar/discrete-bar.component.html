@@ -24,9 +24,9 @@
     </o-form>
   </example-comp>
 
-  <example-comp comp-name="BAR_CHART.DISCRETE_CUSTOM" comp-desc="BAR_CHART.DISCRETE_CUSTOM.DESC" [files]="getCustomDataFiles()"
+  <example-comp comp-name="BAR_CHART.DISCRETE_CUSTOM" comp-desc="BAR_CHART.DISCRETE_CUSTOM.DESC" comp-note="BAR_CHART.DISCRETE_CUSTOM.NOTE" [files]="getCustomDataFiles()"
     layout-fill>
-    <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data"></o-chart>
+    <o-chart #discreteBar type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data"></o-chart>
   </example-comp>
 
 </div>
