@@ -24,38 +24,33 @@ export class GaugeSimpleComponent {
   }
 
   getBasicFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_TYPESCRIPT_DATA
       },
-    ];
+    }
   }
 
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
+      'typescript': {
         'type': 'typescript',
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 }
 

@@ -67,37 +67,31 @@ export class CandlestickComponent {
   }
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_USAGE_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
   getCustomServiceFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_SERVICE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_SERVICE_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { OChartComponent, ForceDirectedGraphConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
@@ -17,7 +17,6 @@ export class DirectedGraphComponent {
     this.chartParameters = new ForceDirectedGraphConfiguration();
     this.chartParameters.charge = -50;
     let nodes = [];
-
 
     for (let i = 1; i < 100; i++) {
       let node = {
@@ -59,20 +58,17 @@ export class DirectedGraphComponent {
 
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss':{
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript':{
         'data': BASIC_USAGE_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 }

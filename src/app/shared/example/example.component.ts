@@ -1,19 +1,25 @@
-import { Component, ElementRef, ViewEncapsulation, EventEmitter, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { InputConverter } from 'ontimize-web-ngx';
 
+export interface IFiles {
+  html?: any;
+  scss?: any;
+  typescript?: any;
+  files?: any[];
+}
 
 @Component({
   selector: 'example-comp',
-  moduleId: module.id,
   styleUrls: ['example.component.scss'],
   templateUrl: 'example.component.html',
   inputs: [
     'compName: comp-name',
     'compDesc: comp-desc',
-    'compNote: comp-note',
-    'orderedFiles: files',
+    'compNote:comp-note',
+    'files',
     'collapsible',
-    'collapsed'
+    'collapsed',
+    'tabHeight: tab-height'
   ],
   outputs: [
     'onShowSource : showSource'
@@ -21,25 +27,31 @@ import { InputConverter } from 'ontimize-web-ngx';
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class.example-comp]': 'true'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent {
 
-  public showSource = false;
+  aditionalTabs: any[];
+  _showSource = false;
   compName = '';
+  compNote;
   compDesc: string;
-  orderedFiles: Array<string>;
+  _files: IFiles = {};
+  tabHeight: string = '350px';
+
   @InputConverter()
   collapsible: boolean = false;
   @InputConverter()
   collapsed: boolean = false;
-  protected html: string = undefined;
-  tabHeight = '350px';
+
   onShowSource: EventEmitter<any> = new EventEmitter<any>();
 
   private tplData: Object;
 
-  constructor(protected elRef: ElementRef) {
+  constructor(
+    protected cd: ChangeDetectorRef
+  ) {
     this.tplData = {};
   }
 
@@ -50,35 +62,40 @@ export class ExampleComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.tplData['html'] = this.initializeData('html');
-    this.tplData['scss'] = this.initializeData('scss');
-    this.tplData['typescript'] = this.initializeData('typescript');
+  ngAfterViewInit() {
+    this.aditionalTabs = this.files.files;
   }
 
-  initializeData(type: string) {
-    let tpl = '';
-    if (this.orderedFiles && this.orderedFiles.length > -1) {
-      this.orderedFiles.forEach((item) => {
-        if (item['type'] === type) {
-          tpl = item['data'];
-        }
-      });
+  get showSource(): boolean {
+    return this._showSource;
+  }
+
+  set showSource(val: boolean) {
+    this._showSource = val;
+  }
+
+  set files(val: IFiles) {
+    if (val.html && val.html.data) {
+      this._files.html = val.html;
     }
-    return tpl;
+    this._files.scss = val.scss;
+    this._files.typescript = val.typescript;
+    this._files.files = val.files;
+    
   }
 
-  hasTplData(type: string) {
-    const tpl = this.tplData[type];
-    if (type === 'html' && this.html !== undefined) {
-      return true;
-    }
-    return tpl ? tpl.length > 0 : false;
+  get files(): IFiles {
+    return this._files;
   }
 
-  getTplData(type: string) {
-    const tpl = this.tplData[type];
-    return tpl ? tpl : '';
+  set html(val: any) {
+    this.files.html = {
+      data: val
+    };
+  }
+
+  get html(): any {
+    return this.files && this.files.html && this.files.html.data ? this.files.html.data : undefined;
   }
 
 }

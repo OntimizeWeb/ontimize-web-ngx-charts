@@ -1,12 +1,9 @@
-import { Component, OnInit, Injector, ViewChild, ElementRef } from '@angular/core';
-
-import { OntimizeService, OTranslateService } from 'ontimize-web-ngx';
+import { Component, ViewChild } from '@angular/core';
 import { OChartComponent, LineChartConfiguration, ChartService } from 'ontimize-web-ngx-charts';
 
 declare var d3: any;
 
 @Component({
-
   selector: 'line',
   templateUrl: './line.component.html'
 })
@@ -26,10 +23,7 @@ export class LineComponent {
 
   protected data: Array<Object>;
 
-  constructor(
-    protected injector: Injector,
-    protected elRef: ElementRef,
-    protected translateService: OTranslateService) {
+  constructor() {
     this.chartParameters = new LineChartConfiguration();
     this.chartParameters.isArea = [true];
     this.chartParameters.interactive = false;
@@ -54,85 +48,72 @@ export class LineComponent {
     }
   }
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': ''
       }
-    ];
+    }
   }
 
 
   getBasicUsageConfFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_CONF_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_USAGE_CONF_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
   getCustomDataFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': SERIES_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': SERIES_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="line" x-label="Time" y-label="Amount (€)" layout-fill
-  entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
+<o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" 
+x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
 `;
 const BASIC_USAGE_CONF_HTML_DATA = `
-<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" layout-fill
-  entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time" [chart-parameters]="chartParameters">
-</o-chart>
+<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_"
+y-axis="MOVEMENT" [chart-parameters]="chartParameters" x-data-type="time"></o-chart>
 `;
+
 const BASIC_USAGE_CONF_TYPESCRIPT_DATA = `
-import { Component, ViewChild, ElementRef, Injector } from '@angular/core';
-import { OChartComponent, LineChartConfiguration } from 'ontimize-web-ngx-charts';
+import { Component, ViewChild } from '@angular/core';
+import { OChartComponent, LineChartConfiguration, ChartService } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  templateUrl: './line.component.html'
 })
 export class LineComponent {
   chartParameters: LineChartConfiguration;
 
-  constructor(
-    protected injector: Injector,
-    protected elRef: ElementRef,
-    protected translateService: OTranslateService) {
+  constructor() {
       this.chartParameters = new LineChartConfiguration();
       this.chartParameters.isArea = [true];
       this.chartParameters.interactive = false;
@@ -142,23 +123,21 @@ export class LineComponent {
 `;
 
 const SERIES_HTML_DATA = `
-<o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)"
-    entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-    x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>
-`;
+<o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>`;
 
 const SERIES_TYPESCRIPT_DATA = `
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { OChartComponent, LineChartConfiguration } from 'ontimize-web-ngx-charts';
 
 declare var d3: any;
 
 @Component({
   selector: 'line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.scss']
+  templateUrl: './line.component.html'
 })
-export class LineComponent implements OnInit {
+
+export class LineComponent {
   @ViewChild('lineChart')
   protected lineChart: OChartComponent;
 

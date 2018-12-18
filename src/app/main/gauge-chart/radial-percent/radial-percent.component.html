@@ -1,9 +1,11 @@
 <o-row>
-  <example-comp fxFlex="50" comp-name="GAUGE.GAUGE_RADIAL_PERCENT_BASIC" comp-desc="GAUGE.GAUGE_RADIAL_PERCENT_BASIC.DESC" [files]="getBasicFiles()">
+  <example-comp fxFlex="50" comp-name="GAUGE.GAUGE_RADIAL_PERCENT_BASIC" comp-desc="GAUGE.GAUGE_RADIAL_PERCENT_BASIC.DESC"
+    [files]="getBasicFiles()">
     <o-chart type="radialPercentChart" chart-height="350" y-axis="value" entity="EDataGauge"></o-chart>
   </example-comp>
 
-  <example-comp fxFlex="50" comp-name="GAUGE.GAUGE_RADIAL_PERCENT_CUSTOM" comp-desc="GAUGE.GAUGE_RADIAL_PERCENT_CUSTOM.DESC" [files]="getCustomFiles()">
+  <example-comp fxFlex="50" comp-name="GAUGE.GAUGE_RADIAL_PERCENT_CUSTOM" comp-desc="GAUGE.GAUGE_RADIAL_PERCENT_CUSTOM.DESC"
+    [files]="getCustomFiles()">
     <o-chart #radialPercent type="radialPercentChart" chart-height="350" [chart-parameters]="radialPercentConf"></o-chart>
   </example-comp>
 

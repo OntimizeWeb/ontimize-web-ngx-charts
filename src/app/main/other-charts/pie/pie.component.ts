@@ -1,41 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { OTranslateService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
 import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
-import { NavigationBarService } from 'app/shared/services/navigation-bar.service';
+
 
 @Component({
   selector: 'pie',
   templateUrl: './pie.component.html'
 })
-export class PieComponent implements OnInit {
-
-  @ViewChild('pieChart')
-  protected pieChart: OChartComponent;
+export class PieComponent {
 
   data: Array<Object>;
   protected serviceResponse: string;
 
   chartParameters: PieChartConfiguration;
 
-  constructor(protected http: Http,
-    protected navigationService: NavigationBarService,
-    protected translateService: OTranslateService) {
+  constructor(protected http: Http) {
 
     this.chartParameters = new PieChartConfiguration();
     this.chartParameters.cornerRadius = 20;
     this.chartParameters.legendPosition = 'bottom';
     this.chartParameters.labelType = 'value';
 
-  }
-
-  ngOnInit() {
-    let title = '';
-    title += this.translateService.get('PIE');
-    this.navigationService.setTitle(title);
   }
 
   ngAfterViewInit() {
@@ -67,65 +55,45 @@ export class PieComponent implements OnInit {
     return dataObservable;
   }
 
-  getBasicUsageId() {
-    return 'Pie Chart (Basic usage)';
-  }
+
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
-        'data': ''
-      },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': ''
       }
-    ];
+    }
   }
 
 
   getCustomConfigurationFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_CONFIGURATION_HTML_DATA
       },
-      {
-        'type': 'scss',
-        'data': ''
-      },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_CONFIGURATION_TYPESCRIPT_DATA
       }
-
-    ];
+    }
   }
 
   getCustomDataFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_DATA_HTML_DATA
       },
-      {
-        'type': 'scss',
-        'data': ''
-      },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_DATA_TYPESCRIPT_DATA
-      },
-      {
-        'type': 'service data',
-        'data': this.serviceResponse
       }
-    ];
+      // },
+      // {
+      //   'type': 'service data',
+      //   'data': this.serviceResponse
+      // }
+    }
   }
 
 }
@@ -141,30 +109,18 @@ x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" [chart-parameters]="chartParameters"></
 `;
 
 const CUSTOM_CONFIGURATION_TYPESCRIPT_DATA = `
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-
-import { OTranslateService } from 'ontimize-web-ngx';
-import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { Component } from '@angular/core';
 import { PieChartConfiguration } from 'ontimize-web-ngx-charts'
 
-import { NavigationBarService } from '../../shared/services/navigation-bar.service';
-
-
 @Component({
-
   selector: 'pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.scss']
+  templateUrl: './pie.component.html'
 })
+
 export class PieComponent{
   chartParameters: PieChartConfiguration;
 
-  constructor(protected http: Http,
-    protected navigationService: NavigationBarService,
-    protected translateService: OTranslateService) {
-
+  constructor() {
     this.chartParameters = new PieChartConfiguration();
     this.chartParameters.cornerRadius = 20;
     this.chartParameters.legendPosition = "bottom";
@@ -179,7 +135,7 @@ const CUSTOM_DATA_HTML_DATA = `
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -187,13 +143,9 @@ import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.scss']
+  templateUrl: './pie.component.html'
 })
 export class PieComponent  {
-
-  @ViewChild('pieChart')
-  protected pieChart: OChartComponent;
   protected data: Array<Object>;
 
   constructor(protected http: Http) { }

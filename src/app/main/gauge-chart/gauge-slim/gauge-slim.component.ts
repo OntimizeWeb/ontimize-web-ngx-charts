@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import {
   OChartComponent, DataAdapterUtils, GaugeSlimChartConfiguration
@@ -38,42 +38,38 @@ export class GaugeSlimComponent {
   }
 
   getBasicFiles() {
-    return [
-      {
+    return {
+      'html': {
         'type': 'html',
         'data': BASIC_DATA_HTML
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_DATA_TYPESCRIPT
       }
-    ];
+    }
   }
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA,
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 }
 
 const BASIC_DATA_HTML = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge" [chart-parameters]="gaugeSlimConf"></o-chart>
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge" 
+[chart-parameters]="gaugeSlimConf"></o-chart>
 `;
 
 const BASIC_DATA_TYPESCRIPT = `
@@ -98,7 +94,8 @@ export class GaugeSlimComponent  {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" [chart-parameters]="gaugeSlimConf2"></o-chart>
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" 
+[chart-parameters]="gaugeSlimConf2"></o-chart>
 `;
 
 const CUSTOM_TYPESCRIPT_DATA = `

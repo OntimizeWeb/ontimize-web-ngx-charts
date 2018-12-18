@@ -14,3 +14,10 @@
 
 @import '../../app/shared/example/example.theme.scss';
 @include example-component-theme($theme);
+
+.nvd3 text,
+.nvd3 .title,
+.nvtooltip
+ {
+  font-family: Roboto !important;
+}

@@ -45,49 +45,43 @@ export class BulletComponent implements OnInit {
   }
 
   getBasicFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_TYPESCRIPT_DATA
       }
-    ];
+    }
+
   }
 
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 }
 
 const BASIC_HTML_DATA = `
-<o-chart type="bulletChart" chart-height="200" entity="EBullet"></o-chart>
+<o-chart type="bulletChart" chart-height="200" entity="EBullet" [chart-parameters]='chartParameters2'></o-chart>
 `;
 
 const BASIC_TYPESCRIPT_DATA = `
 import { Component } from '@angular/core';
-import { OChartComponent} from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-bullet',
@@ -101,7 +95,7 @@ export class BulletComponent {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #bulletChart type="bulletChart"  chart-height="200" [chart-parameters]="chartParameters"></o-chart>
+<o-chart #bulletChart type="bulletChart" chart-height="200" [chart-parameters]="chartParameters"></o-chart>
 `;
 
 const CUSTOM_TYPESCRIPT_DATA = `

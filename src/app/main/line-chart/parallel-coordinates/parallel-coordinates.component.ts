@@ -85,37 +85,31 @@ export class ParallelCoordinatesComponent {
 
 
   getBasicFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_TYPESCRIPT_DATA
       }
-    ];
+    };
   }
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 }
@@ -160,7 +154,7 @@ const CUSTOM_HTML_DATA = `
 
 const CUSTOM_TYPESCRIPT_DATA = `
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, ParallelCoordinatesChartConfiguration } from 'ontimize-web-ngx-charts';
+import { OChartComponent, ParallelCoordinatesChartConfiguration,DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-parallel-coordinates',

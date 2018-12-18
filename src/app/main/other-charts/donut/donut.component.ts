@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component } from '@angular/core';
 import { OChartComponent, DonutChartConfiguration } from 'ontimize-web-ngx-charts';
 
 
@@ -7,12 +7,6 @@ import { OChartComponent, DonutChartConfiguration } from 'ontimize-web-ngx-chart
   templateUrl: './donut.component.html'
 })
 export class DonutComponent {
-
-  @ViewChild('donut')
-  protected donut: OChartComponent;
-
-  @ViewChild('donutConfig')
-  protected donutConfig: OChartComponent;
 
   chartParameters: DonutChartConfiguration;
 
@@ -24,34 +18,29 @@ export class DonutComponent {
   }
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HMTL_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       }
-    ];
+    }
   }
 
 
   getCustomConfigurationFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_CONFIGURATION_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_CONFIGURATION_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 }
@@ -62,7 +51,7 @@ y-axis="MOVEMENT" chart-height="400"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart #donutConfig type="donutChart" chart-height="400"  entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+<o-chart type="donutChart" chart-height="400"  entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
         y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
 `;
 

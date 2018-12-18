@@ -58,47 +58,42 @@ export class OhlcComponent {
   }
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_USAGE_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
 
   getCustomServiceFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_SERVICE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
+      'typescript': {
         'type': 'typescript',
         'data': CUSTOM_SERVICE_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 }
 
-const BASIC_USAGE_HTML_DATA = `
+  const BASIC_USAGE_HTML_DATA = `
 <o-chart #ohlc type="ohlcBarChart" chart-height="600" x-data-type="time"
 [chart-parameters]="chartParameters" entity="EStockExchange"></o-chart>
 `;
 
-const BASIC_USAGE_TYPESCRIPT_DATA = `
+  const BASIC_USAGE_TYPESCRIPT_DATA = `
 import { Component } from '@angular/core';
 import { OHLCChartConfiguration } from 'ontimize-web-ngx-charts';
 
@@ -121,21 +116,20 @@ export class OhlcComponent  {
 }
 `;
 
-const CUSTOM_SERVICE_HTML_DATA = `
+  const CUSTOM_SERVICE_HTML_DATA = `
 <o-chart type="ohlcBarChart" chart-height="600" x-data-type="time"
         [chart-parameters]="chartParameters2"></o-chart>
 `;
 
-const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
+  const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
 import { Component,ViewChild } from '@angular/core';
 import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
-  templateUrl: './ohlc.component.html',
-  styleUrls: ['./ohlc.component.scss']
+  templateUrl: './ohlc.component.html'
 })
-export class OhlcComponent implements OnInit {
+export class OhlcComponent{
 
   @ViewChild('ohlc2')
   protected ohlc2: OChartComponent;
@@ -145,7 +139,6 @@ export class OhlcComponent implements OnInit {
   constructor() {
     this.chartParameters2 = new OHLCChartConfiguration();
   }
-
 
   ngAfterViewInit() {
     let data = [

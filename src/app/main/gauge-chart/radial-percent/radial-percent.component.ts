@@ -5,8 +5,7 @@ import {
 
 @Component({
   selector: 'app-radial-percent',
-  templateUrl: './radial-percent.component.html',
-  styleUrls: ['./radial-percent.component.scss']
+  templateUrl: './radial-percent.component.html'
 })
 export class RadialPercentComponent implements OnInit {
 
@@ -39,20 +38,17 @@ export class RadialPercentComponent implements OnInit {
   }
 
   getBasicFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_TYPESCRIPT_DATA
       }
-    ]
+    }
   }
 
   getCustomId() {
@@ -60,25 +56,22 @@ export class RadialPercentComponent implements OnInit {
   }
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ]
+    }
   }
 }
 
 const BASIC_HTML_DATA = `
-<o-chart type="radialPercentChart" flex="75" chart-height="350" y-axis="value" entity="EDataGauge"></o-chart>
+<o-chart type="radialPercentChart" chart-height="350" y-axis="value" entity="EDataGauge"></o-chart>
 `;
 
 const BASIC_TYPESCRIPT_DATA = `
@@ -89,8 +82,7 @@ import {
 
 @Component({
   selector: 'app-radial-percent',
-  templateUrl: './radial-percent.component.html',
-  styleUrls: ['./radial-percent.component.scss']
+  templateUrl: './radial-percent.component.html'
 })
 export class RadialPercentComponent implements OnInit {
 
@@ -102,7 +94,7 @@ export class RadialPercentComponent implements OnInit {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #radialPercent type="radialPercentChart" flex="75" chart-height="350" [chart-parameters]="radialPercentConf"></o-chart>
+<o-chart #radialPercent type="radialPercentChart" chart-height="350" [chart-parameters]="radialPercentConf"></o-chart>
 `;
 
 const CUSTOM_TYPESCRIPT_DATA = `
@@ -113,8 +105,7 @@ import {
 
 @Component({
   selector: 'app-radial-percent',
-  templateUrl: './radial-percent.component.html',
-  styleUrls: ['./radial-percent.component.scss']
+  templateUrl: './radial-percent.component.html'
 })
 export class RadialPercentComponent implements OnInit {
 

@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { OChartComponent, MultiBarHorizontalChartConfiguration } from 'ontimize-web-ngx-charts';
 
-import { OChartComponent, ChartService, MultiBarHorizontalChartConfiguration } from 'ontimize-web-ngx-charts';
-
+const BASIC_USAGE_HTML_DATA = `
+<o-chart #multiBarHor type="multiBarHorizontalChart" chart-height="600" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped"
+        x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParameters"></o-chart>
+`;
 
 @Component({
   selector: 'multi-bar-horizontal',
@@ -22,25 +25,16 @@ export class MultiBarHorizontalComponent {
   }
 
   getBasicUsageFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': ''
       }
-    ];
+    }
   }
 }
-
-const BASIC_USAGE_HTML_DATA = `
-<o-chart type="multiBarHorizontal" x-label="Time" y-label="Amount (€)" layout-fill
-  entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-  x-data-type="time"></o-chart>
-`;

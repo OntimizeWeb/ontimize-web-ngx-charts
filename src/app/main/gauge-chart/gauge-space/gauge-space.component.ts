@@ -40,20 +40,17 @@ export class GaugeSpaceComponent {
   }
 
   getBasicFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': BASIC_HTML_DATA
       },
-      {
-        'type': 'scss',
-        'data': '',
+      'scss': {
+        'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': BASIC_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 
   getCustomId() {
@@ -61,20 +58,17 @@ export class GaugeSpaceComponent {
   }
 
   getCustomFiles() {
-    return [
-      {
-        'type': 'html',
+    return {
+      'html': {
         'data': CUSTOM_HTML_DATA
       },
-      {
-        'type': 'scss',
+      'scss': {
         'data': ''
       },
-      {
-        'type': 'typescript',
+      'typescript': {
         'data': CUSTOM_TYPESCRIPT_DATA
       }
-    ];
+    }
   }
 }
 
