@@ -1,3 +1,9 @@
+## 3.1.3 (2018-12-18)
+### Bug Fixes
+* **o-chart**
+    * Greater separation between the texts of the legend
+    * Greater margin between the graph and the legend
+
 ## 3.1.2 (2018-10-30)
 ### Features
 * **o-chart**
