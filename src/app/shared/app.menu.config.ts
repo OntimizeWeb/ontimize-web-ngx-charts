@@ -3,7 +3,7 @@ import { MenuRootItem } from 'ontimize-web-ngx';
 export const MENU_CONFIG: MenuRootItem[] = [
   { id: 'introduction', name: 'INTRODUCTION', icon: 'home', route: '/main/home' },
   {
-    id: 'line', name: 'LINE', icon: 'show_chart', opened: false, items: [
+    id: 'line', name: 'LINE_CHARTS', icon: 'show_chart', opened: false, items: [
       { id: 'line', name: 'LINE', icon: 'show_chart', route: '/main/line-chart/line' },
       { id: 'lineplusbar', name: 'LINEPLUSBAR', icon: 'multiline_chart', route: '/main/line-chart/lineplusbar' },
       { id: 'parallelCoordinates', name: 'PARALLELCOORDINATES', icon: 'insert_chart', route: '/main/line-chart/parallelCoordinates' },
