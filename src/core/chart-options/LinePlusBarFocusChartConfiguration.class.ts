@@ -23,6 +23,9 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
   focusShowAxisX: boolean = true;
   focusShowAxisY: boolean = false;
 
+  forceX: Array<number>;
+  forceY: Array<number>;
+
   //Parameter for select chart with bars or line
   bars: Array<boolean>;
   //Parameters for select the chart colors
