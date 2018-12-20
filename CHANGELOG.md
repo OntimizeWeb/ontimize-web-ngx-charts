@@ -1,3 +1,8 @@
+## 3.1.4-rc.0 (2018-12-20)
+### Features
+* **o-chart**
+    * New options to LineChart and LinePlusBarFocusChart
+
 ## 3.1.3 (2018-12-18)
 ### Bug Fixes
 * **o-chart**
