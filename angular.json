@@ -28,7 +28,6 @@
             "styles": [
               "node_modules/ontimize-web-ngx/ontimize.scss",
               "node_modules/ontimize-web-ngx-charts/styles.scss",
-              "node_modules/flag-icon-css/sass/flag-icon.scss",
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],
@@ -88,7 +87,6 @@
             "styles": [
               "node_modules/ontimize-web-ngx/ontimize.scss",
               "node_modules/ontimize-web-ngx-charts/styles.scss",
-              "node_modules/flag-icon-css/sass/flag-icon.scss",
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],
