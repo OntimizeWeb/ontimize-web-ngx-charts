@@ -1,104 +1,49 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { AuthGuardService } from 'ontimize-web-ngx';
 
 import { MainComponent } from './main.component';
 import { HomeModule } from './home/home.module';
-import { LineModule } from './line/line.module';
-import { PieModule } from './pie/pie.module';
-import { DiscreteBarModule } from './discrete-bar/discrete-bar.module';
-import { MultiBarModule } from './multi-bar/multi-bar.module';
-import { MultiBarHorizontalModule } from './multi-bar-horizontal/multi-bar-horizontal.module';
-import { ScatterModule } from './scatter/scatter.module';
-import { DonutModule } from './donut/donut.module';
-import { LineplusbarModule } from './lineplusbar/lineplusbar.module';
-import { DirectedGraphModule } from './directed-graph/directed-graph.module';
-import { CandlestickModule } from './candlestick/candlestick.module';
-import { OhlcModule } from './ohlc/ohlc.module';
-import { GaugeModule } from './gauge/gauge.module';
-import { BubbleModule } from './bubble/bubble.module';
-import { BulletModule } from './bullet/bullet.module';
-import { StackedAreaModule } from './stacked-area/stacked-area.module';
-import { RadarModule } from './radar/radar.module';
-import { ParallelCoordinatesModule } from './parallel-coordinates/parallel-coordinates.module';
+
+import { AreaRoutingModule } from 'app/main/area-chart/area-routing.module';
+import { LineChartModule } from 'app/main/line-chart/line.module';
+import { GaugeModule } from 'app/main/gauge-chart/gauge.module';
+import { BarChartModule } from 'app/main/bar-chart/bar-chart.module';
+import { OtherChartsModule } from 'app/main/other-charts/other-charts.module';
+import { BubbleChartModule } from 'app/main/bubble-chart/bubblechart.module';
+
+export function loadLineModule() {
+  return LineChartModule;
+}
 
 export function loadHomeModule() {
   return HomeModule;
-}
-
-export function loadLineModule() {
-  return LineModule;
-}
-
-export function loadPieModule() {
-  return PieModule;
-}
-
-export function loadDiscreteBarModule() {
-  return DiscreteBarModule;
-}
-
-export function loadMultiBarModule() {
-  return MultiBarModule;
-}
-
-export function loadMultiBarHorizontalModule() {
-  return MultiBarHorizontalModule;
-}
-
-export function loadScatterModule() {
-  return ScatterModule;
-}
-
-export function loadDonutModule(){
-  return DonutModule;
-}
-
-export function loadLinePlusBarModule(){
-  return LineplusbarModule;
-}
-
-export function loadDirectedGraphModule(){
-  return DirectedGraphModule;
-}
-
-export function loadCandlestickModule(){
-  return CandlestickModule;
-}
-
-export function loadOhlcModule(){
-  return OhlcModule;
 }
 
 export function loadGaugeModule() {
   return GaugeModule;
 }
 
+export function loadAreaModule() {
+  return AreaRoutingModule;
+}
+
+export function loadBarModule() {
+  return BarChartModule;
+}
+
+export function loadOtherChartsModule() {
+  return OtherChartsModule;
+}
+
 export function loadBubbleModule() {
-  return BubbleModule;
+  return BubbleChartModule;
 }
 
-export function loadBulletModule() {
-  return BulletModule;
-}
-
-export function loadStackedAreaModule() {
-  return StackedAreaModule;
-}
-
-export function loadRadarModule() {
-  return RadarModule;
-}
-
-export function loadParallelCoordinatesModule() {
-  return ParallelCoordinatesModule;
-}
 
 export const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
-    // canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
@@ -106,75 +51,32 @@ export const routes: Routes = [
         loadChildren: loadHomeModule
       },
       {
-        path: 'line',
+        path: 'line-chart',
         loadChildren: loadLineModule
       },
       {
-        path: 'pie',
-        loadChildren: loadPieModule
+        path: 'bar-chart',
+        loadChildren: loadBarModule
       },
       {
-        path: 'discrete-bar',
-        loadChildren: loadDiscreteBarModule
-      },
-      {
-        path: 'multi-bar',
-        loadChildren: loadMultiBarModule
-      },
-      {
-        path: 'multi-bar-horizontal',
-        loadChildren: loadMultiBarHorizontalModule
-      },
-      {
-        path: 'scatter',
-        loadChildren: loadScatterModule
-      },
-      {
-        path: 'donut',
-        loadChildren: loadDonutModule
-      },
-      {
-        path: 'lineplusbar',
-        loadChildren: loadLinePlusBarModule
-      },
-      {
-        path: 'directedGraph',
-        loadChildren: loadDirectedGraphModule
-      },
-      {
-        path: 'candlestick',
-        loadChildren: loadCandlestickModule
-      },
-      {
-        path: 'ohlc',
-        loadChildren: loadOhlcModule
-      },
-      {
-        path: 'gauge',
-        loadChildren: loadGaugeModule
+        path: 'area',
+        loadChildren: loadAreaModule
       },
       {
         path: 'bubble',
         loadChildren: loadBubbleModule
       },
       {
-        path: 'bullet',
-        loadChildren: loadBulletModule
+        path: 'other-charts',
+        loadChildren: loadOtherChartsModule
       },
       {
-        path: 'stackedArea',
-        loadChildren: loadStackedAreaModule
-      },
-      {
-        path: 'radar',
-        loadChildren: loadRadarModule
-      },
-      {
-        path: 'parallelCoordinates',
-        loadChildren: loadParallelCoordinatesModule
+        path: 'gauge',
+        loadChildren: loadGaugeModule
       }
     ]
-  }
+  },
+
 ];
 
 @NgModule({

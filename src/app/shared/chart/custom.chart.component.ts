@@ -3,10 +3,13 @@ import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { OFormComponent, OntimizeService, dataServiceFactory } from 'ontimize-web-ngx';
 
-import { NvD3Module } from 'ontimize-web-ngx-nvd3';
-import { OChartComponent, ChartFactory, ChartDataAdapterFactory } from 'ontimize-web-ngx-charts';
+import {
+  OChartComponent, ChartService,
+  ChartFactory, ChartDataAdapterFactory
+} from 'ontimize-web-ngx-charts';
 
 import { CustomChartFactory } from './custom.chart.factory';
+import { NvD3Module } from 'ontimize-web-ngx-nvd3';
 
 @Component({
   selector: 'custom-chart',
