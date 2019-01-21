@@ -155,7 +155,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.cd = this.injector.get(ChangeDetectorRef);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     super.initialize();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
@@ -173,8 +173,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.chartService.chartWrapper = this.chartWrapper;
   }
 
-  ngAfterViewChecked() {
-    let color = undefined;
+  ngAfterViewChecked(): void {
+    let color: string;
     switch (this.type) {
       case 'gaugeDashboardChart':
         color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
@@ -192,19 +192,19 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
     }
     if (color) {
-      let elements = document.getElementsByClassName('nv-pie-title');
+      const elements = document.getElementsByClassName('nv-pie-title');
       for (let i = 0; i < elements.length; i++) {
         (elements.item(i) as SVGTextElement).style.fill = color;
       }
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     super.destroy();
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
     }
-    let elements = document.getElementsByClassName('nvtooltip xy-tooltip');
+    const elements = document.getElementsByClassName('nvtooltip xy-tooltip');
     for (let i = 0; i < elements.length; i++) {
       elements.item(i).remove();
     }
@@ -328,12 +328,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return chartConf;
   }
 
-  public setChartConfiguration(conf: ChartConfiguration) {
+  public setChartConfiguration(conf: ChartConfiguration): void {
     this.chartParameters = conf;
     this.configureChart();
   }
 
-  getAdaptData() {
+  getAdaptData(): any {
     if (this.type === 'forceDirectedGraph' || this.type === 'bulletChart') {
       if (this.dataArray && this.dataArray[0]) {
         return this.dataArray[0];
@@ -356,8 +356,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   /**
    * Configures the chart depending on input parameters
    */
-  protected configureChart() {
-    let chartConf: ChartConfiguration = this.getChartConfiguration();
+  protected configureChart(): void {
+    const chartConf: ChartConfiguration = this.getChartConfiguration();
     this.options = this.getChartFactory().createChartOptions(chartConf);
   }
 
@@ -365,12 +365,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return this.chartService;
   }
 
-  protected onFormDataBind(bindedData: Object) {
+  protected onFormDataBind(bindedData: Object): void {
     let filter = {};
-    let keys = Object.keys(this._pKeysEquiv);
+    const keys = Object.keys(this._pKeysEquiv);
     if (keys && keys.length > 0 && bindedData) {
       keys.forEach(item => {
-        let value = bindedData[item];
+        const value = bindedData[item];
         if (value) {
           filter[this._pKeysEquiv[item]] = value;
         }
@@ -406,7 +406,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     switch (this.type) {
       case 'ohlcBarChart':
         columns = [];
-        let OHLCParams = this.chartParameters as OHLCChartConfiguration;
+        const OHLCParams = this.chartParameters as OHLCChartConfiguration;
         columns.push(OHLCParams.xColumn);
         columns.push(OHLCParams.openAxis);
         columns.push(OHLCParams.closeAxis);
@@ -415,7 +415,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'candlestickBarChart':
         columns = [];
-        let candlestickParams = this.chartParameters as CandlestickChartConfiguration;
+        const candlestickParams = this.chartParameters as CandlestickChartConfiguration;
         columns.push(candlestickParams.xColumn);
         columns.push(candlestickParams.openAxis);
         columns.push(candlestickParams.closeAxis);
@@ -424,7 +424,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'bulletChart':
         columns = [];
-        let bulletParams = this.chartParameters as BulletChartConfiguration;
+        const bulletParams = this.chartParameters as BulletChartConfiguration;
         columns.push(bulletParams.markersAxis);
         columns.push(bulletParams.measuresAxis);
         columns.push(bulletParams.rangesAxis);
@@ -440,12 +440,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
    * @returns void
    */
   bindChartEvents(): void {
-    var self = this;
-    let chart = this.getChartService().chart;
+    const chart = this.getChartService().chart;
     if (chart && chart.on) {
-      chart.on('click', function (evt: any) {
-        self.clickEvtEmitter.emit(evt);
-      });
+      chart.on('click', (evt: any) => this.clickEvtEmitter.emit(evt));
     }
   }
 
