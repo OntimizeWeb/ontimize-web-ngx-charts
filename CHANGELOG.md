@@ -1,13 +1,19 @@
+## 3.1.4-rc.1
+### Features
+* **o-chart**: New options to `multiBarHorizontalChart` ([abf65f8](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/abf65f8)):
+  * `valueType`: Defines de format of the value label (`intAgrouped`, `floatAgrouped`, `int`, `float`, `time`, `timeDay`, `timeDetail`, `percentage`)
+  * `barColor`: colors array used to fill the bars of the chart
+
 ## 3.1.4-rc.0 (2018-12-20)
 ### Features
 * **o-chart**
-    * New options to LineChart and LinePlusBarFocusChart
+  * New options to LineChart and LinePlusBarFocusChart
 
 ## 3.1.3 (2018-12-18)
 ### Bug Fixes
 * **o-chart**
-    * Greater separation between the texts of the legend
-    * Greater margin between the graph and the legend
+  * Greater separation between the texts of the legend
+  * Greater margin between the graph and the legend
 
 ## 3.1.2 (2018-10-30)
 ### Features
