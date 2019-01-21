@@ -1,9 +1,10 @@
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
-import {  ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 
 export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
+
   readonly type: string = 'multiBarHorizontalChart';
 
   showLegend: boolean = true;
@@ -25,6 +26,9 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
 
   colors: Array<string> = null;
 
+  public barColors: string[];
+  public valueType: string;
+
   constructor() {
     super();
     this.legend = new ChartLegendConfiguration();
@@ -32,4 +36,5 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
     this.x1Axis = new ChartAxisConfiguration();
     this.y1Axis = new ChartAxisConfiguration();
   }
+
 }
