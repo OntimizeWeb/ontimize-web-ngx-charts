@@ -71,9 +71,9 @@ export class AbstractChartOptions {
 
   protected getTickFormatter(type: string): any {
     switch (type) {
-      case 'intAgrouped':
+      case 'intGrouped':
         return d => d3.format(',d')(d);
-      case 'floatAgrouped':
+      case 'floatGrouped':
         return d => d3.format(',.02f')(d);
       case 'int':
         return d => d3.format('d')(d);

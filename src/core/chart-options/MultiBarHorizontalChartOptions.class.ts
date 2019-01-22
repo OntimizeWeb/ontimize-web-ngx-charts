@@ -16,7 +16,7 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
     const conf = this.chartConf instanceof MultiBarHorizontalChartConfiguration ? this.chartConf : new MultiBarHorizontalChartConfiguration();
     conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
     conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
-    conf.valueType = conf.valueType ? this.getTickFormatter(conf.yDataType) : null;
+    const valueFormat = conf.valueType ? this.getTickFormatter(conf.valueType) : null;
 
     conf.x1Axis.orient = 'left';
 
@@ -34,13 +34,16 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       showValues: conf.showValues,
       duration: conf.duration,
       stacked: conf.stacked,
-      valueFormat: conf.valueType,
+      valueFormat: valueFormat,
       valuePadding: conf.valuePadding,
       groupSpacing: conf.groupSpacing,
       showLegend: conf.showLegend,
       showXAxis: conf.showXAxis,
       showYAxis: conf.showYAxis,
-      barColor: (conf.barColors && conf.barColors.length) ? (_d: any, i: number) => conf.barColors[i % conf.barColors.length] : []
+      barColor: (conf.color && conf.color.length) ? (_d: any, i: number) => conf.color[i % conf.color.length] : [],
+      tooltip: {
+        enabled: conf.showTooltip
+      }
     };
     return chart;
   }

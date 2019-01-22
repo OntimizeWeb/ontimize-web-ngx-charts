@@ -1,8 +1,10 @@
 ## 3.1.4-rc.1
 ### Features
-* **o-chart**: New options to `multiBarHorizontalChart` ([abf65f8](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/abf65f8)):
-  * `valueType`: Defines de format of the value label (`intAgrouped`, `floatAgrouped`, `int`, `float`, `time`, `timeDay`, `timeDetail`, `percentage`)
-  * `barColor`: colors array used to fill the bars of the chart
+* **o-chart**:
+  * New options in `multiBarHorizontalChart`, `pie` and `donutChart` charts
+
+### BREAKING CHANGES
+ * **o-chart**: values `intAgrouped` and `floatAgrouped` for `xDataType`, `yDataType`, `valueType` attributes has been renamed to `intGrouped` and `floatGrouped`
 
 ## 3.1.4-rc.0 (2018-12-20)
 ### Features
