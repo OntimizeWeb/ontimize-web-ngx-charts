@@ -143,7 +143,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
   protected translateService: OTranslateService;
-  protected cd: ChangeDetectorRef;
+  cd: ChangeDetectorRef;
 
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
