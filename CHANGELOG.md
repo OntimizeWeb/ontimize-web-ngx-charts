@@ -7,6 +7,25 @@
 * **Updated**:   ontimize-web-ngx-nvd3@4.0.0-rc.0 (This change does not affect to user)
 * **Updated**:   ontimize-web-ngx@4.0.0-rc.0 (This change does not affect to user)
 
+## 3.1.4-rc.1
+### Features
+* **o-chart**:
+  * New options in `multiBarHorizontalChart`, `pie` and `donutChart` charts
+
+### BREAKING CHANGES
+ * **o-chart**: values `intAgrouped` and `floatAgrouped` for `xDataType`, `yDataType`, `valueType` attributes has been renamed to `intGrouped` and `floatGrouped`
+
+## 3.1.4-rc.0 (2018-12-20)
+### Features
+* **o-chart**
+  * New options to LineChart and LinePlusBarFocusChart
+
+## 3.1.3 (2018-12-18)
+### Bug Fixes
+* **o-chart**
+  * Greater separation between the texts of the legend
+  * Greater margin between the graph and the legend
+
 ## 3.1.2 (2018-10-30)
 ### Features
 * **o-chart**

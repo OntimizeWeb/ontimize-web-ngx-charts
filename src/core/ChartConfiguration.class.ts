@@ -1,5 +1,4 @@
 import { OTranslateService } from 'ontimize-web-ngx';
-import { ChartTitleConfiguration } from './chart-options/ChartTitleConfiguration.class';
 
 export class ChartConfiguration {
   public type: string;

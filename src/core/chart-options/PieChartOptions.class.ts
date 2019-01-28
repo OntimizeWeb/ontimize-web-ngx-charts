@@ -14,6 +14,7 @@ export class PieChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let conf = this.chartConf instanceof PieChartConfiguration ? this.chartConf : new PieChartConfiguration();
+    const valueFormatter = conf.valueType ? this.getTickFormatter(conf.valueType) : null;
 
     let chart = {
       type: this.getChartType(),
@@ -25,14 +26,19 @@ export class PieChartOptions extends AbstractChartOptions {
       labelType: conf.labelType,
       labelThreshold: conf.labelThreshold,
       labelSunbeamLayout: conf.labelSunbeamLayout,
+      labelsOutside: conf.labelsOutside,
       showLegend: conf.showLeyend,
       legendPosition: conf.legendPosition,
       legend: conf.legend.getLegendOptions(),
       cornerRadius: conf.cornerRadius,
       donut: conf.donut,
       donutRatio: conf.donutRatio,
-      pieLabelOutside: conf.pieLabelOutside,
-      donutLabelOutside: conf.donutLabelOutside,
+      color: conf.color,
+      valueFormat: valueFormatter,
+      tooltip: {
+        enabled: conf.showTooltip,
+        valueFormatter: valueFormatter
+      }
     };
     return chart;
   }

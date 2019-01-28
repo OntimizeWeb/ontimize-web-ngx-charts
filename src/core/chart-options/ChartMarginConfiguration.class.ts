@@ -1,5 +1,5 @@
 export class ChartMarginConfiguration {
-  top: number = 20;
+  top: number = 30;
   bottom: number = 40;
   right: number = 40;
   left: number = 60;
