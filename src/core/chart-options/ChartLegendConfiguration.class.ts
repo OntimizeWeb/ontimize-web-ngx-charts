@@ -4,7 +4,7 @@ export class ChartLegendConfiguration {
   align: boolean = true;
   rightAlign: boolean = true;
   maxKeyLength: number = 20;
-  padding: number = 20;
+  padding: number = 40;
   updateState: boolean = true;
   radioButtonMode: boolean = false;
   expanded: boolean = false;
