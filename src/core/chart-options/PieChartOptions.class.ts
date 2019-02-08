@@ -14,7 +14,7 @@ export class PieChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let conf = this.chartConf instanceof PieChartConfiguration ? this.chartConf : new PieChartConfiguration();
-    const valueFormatter = conf.valueType ? this.getTickFormatter(conf.valueType) : null;
+    const valueFormatter = this.getTickFormatter(conf.valueType) || conf.valueType;
 
     let chart = {
       type: this.getChartType(),

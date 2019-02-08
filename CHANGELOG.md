@@ -1,3 +1,7 @@
+## 4.0.0-rc.2
+### Features
+* **PieChartConfiguration, MultiBarHorizontalChartOptions**: the attribute `valueType` now allows a format function from d3 library in addition to a string.
+
 ## 4.0.0-rc.1 (2018-01-17)
 ### DEPENDENCY UPDATES
 * **Updated**:   ontimize-web-ngx@4.0.0-rc.1 (This change does not affect to user)
