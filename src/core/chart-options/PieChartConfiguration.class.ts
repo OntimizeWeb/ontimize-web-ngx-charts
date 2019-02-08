@@ -1,12 +1,13 @@
+import { OColorData } from '../../types/color-data.type';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class PieChartConfiguration extends ChartConfiguration {
 
-  readonly type: string = 'pie';
-  readonly donut: boolean = false;
-  readonly donutRatio: number = 0;
+  public readonly type: string = 'pie';
+  public readonly donut: boolean = false;
+  public readonly donutRatio: number = 0;
 
   public showLeyend: boolean = true;
   public legend: ChartLegendConfiguration;
@@ -29,6 +30,8 @@ export class PieChartConfiguration extends ChartConfiguration {
   public valueType: string;
   /** Enables or disabled the tooltip */
   public showTooltip: boolean = true;
+  /** List of colors for each value in the Y axis of the chart */
+  public colorData: OColorData[];
 
   constructor() {
     super();

@@ -1,6 +1,8 @@
 ## 4.0.0-rc.2
 ### Features
 * **PieChartConfiguration, MultiBarHorizontalChartOptions**: the attribute `valueType` now allows a format function from d3 library in addition to a string.
+* **o-chart**:
+  * New attribute `colorData` for `pie` chart.
 
 ## 4.0.0-rc.1 (2018-01-17)
 ### DEPENDENCY UPDATES

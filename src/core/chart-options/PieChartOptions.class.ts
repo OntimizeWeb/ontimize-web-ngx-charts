@@ -13,10 +13,10 @@ export class PieChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let conf = this.chartConf instanceof PieChartConfiguration ? this.chartConf : new PieChartConfiguration();
+    const conf = this.chartConf instanceof PieChartConfiguration ? this.chartConf : new PieChartConfiguration();
     const valueFormatter = this.getTickFormatter(conf.valueType) || conf.valueType;
 
-    let chart = {
+    const chart = {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: conf.width,
