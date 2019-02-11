@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { BulletChartConfiguration } from './BulletChartConfiguration.class';
 
 export class BulletChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'bulletChart';

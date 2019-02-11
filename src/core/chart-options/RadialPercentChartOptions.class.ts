@@ -1,11 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { RadialPercentChartConfiguration } from './RadialPercentChartConfiguration.class';
 
 export class RadialPercentChartOptions extends AbstractChartOptions {
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'pieChart';

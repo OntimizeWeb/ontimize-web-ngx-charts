@@ -5,7 +5,7 @@
   "scripts": {
     "preinstall": "npm config set package-lock false",
     "clean": "o-ngx-lib-builder clean",
-    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
+    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts",
   },
   "keywords": [
     "angular",
@@ -28,7 +28,7 @@
   "typings": "./index.d.ts",
   "dependencies": {
     "d3": "3.5.17",
-    "ontimize-web-ngx-nvd3": "3.0.0",
+    "ontimize-web-ngx-nvd3": "3.0.1-SNAPSHOT",
     "nvd3": "1.8.6"
   },
   "peerDependencies": {
@@ -61,7 +61,7 @@
     "rxjs": "5.5.6",
     "zone.js": "0.8.20",
     "reflect-metadata": "0.1.12",
-    "@types/hammerjs": "2.0.34",
+    "@types/hammerjs": "2.0.36",
     "@types/jasmine": "2.5.46",
     "@types/node": "7.0.10",
     "@types/source-map": "0.5.7",

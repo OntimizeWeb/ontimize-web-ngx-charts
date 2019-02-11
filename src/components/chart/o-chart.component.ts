@@ -55,6 +55,9 @@ import {
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 
+import 'hammerjs';
+import { Subscription } from 'rxjs';
+
 export const CHART_TYPES = [
   'bubbleChart',
   'bulletChart',
@@ -102,7 +105,6 @@ export const DEFAULT_INPUTS_O_CHART = [
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
   providers: [
-    OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: DEFAULT_INPUTS_O_CHART
@@ -139,6 +141,16 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected formDataSubcribe;
 
+  @Output('onTap')         onTap      = new EventEmitter();
+  @Output('onDoubleTap')   onDoubleTap = new EventEmitter();
+  @Output('onPress')       onPress    = new EventEmitter();
+  @Output('onSwipe')       onSwipe    = new EventEmitter();
+  @Output('onRotate')      onRotate   = new EventEmitter();
+  @Output('onPinch')       onPinch    = new EventEmitter();
+
+
+  protected langSubscription          : Subscription;
+
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
   protected translateService: OTranslateService;
@@ -164,6 +176,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     this.configureChart();
     this.bindChartEvents();
+
+    this.langSubscription = this.translateService.onLanguageChanged.subscribe( _event => {
+      this.configureChart();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -346,7 +362,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartFactory(): ChartFactory {
-    return new OChartFactory();
+    return new OChartFactory(this.translateService);
   }
 
   getChartDataAdapterFactory(): ChartDataAdapterFactory {
@@ -388,7 +404,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.configureChart();
     this.cd.detectChanges();
   }
-
+  
   getAttributesValuesToQuery(): Array<string> {
     let columns = super.getAttributesValuesToQuery();
     if (this.yAxisArray && this.yAxisArray.length) {
@@ -448,6 +464,30 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   onClickEvent(onNext: (value: any) => void): Object {
     return this.clickEvtEmitter.subscribe(onNext);
+  }
+
+  tapChart(event: any) {
+    this.onTap.emit(event);
+  }
+
+  doubleTapChart(event: any) {
+    this.onDoubleTap.emit(event);
+  }
+
+  pressChart(event: any) {
+    this.onPress.emit(event);
+  }
+
+  swipeChart(event: any) {
+    this.onSwipe.emit(event);
+  }
+
+  rotateChart(event: any) {
+    this.onRotate.emit(event);
+  }
+
+  pinchChart(event: any) {
+    this.onPinch.emit(event);
   }
 
 }
