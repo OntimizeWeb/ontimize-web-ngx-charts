@@ -1,4 +1,6 @@
 import { ChartConfiguration } from './ChartConfiguration.class';
+import { OTranslateService } from 'ontimize-web-ngx';
+import { D3LocaleOptions } from './D3LocaleOptions';
 
 declare var d3: any;
 
@@ -6,9 +8,11 @@ export class AbstractChartOptions {
 
   protected chartConf: ChartConfiguration;
   protected type: string;
+  protected d3Locale: D3LocaleOptions;
 
-  constructor(chartConf: ChartConfiguration) {
+  constructor(chartConf: ChartConfiguration, protected translate: OTranslateService) {
     this.chartConf = chartConf;
+    this.d3Locale = new D3LocaleOptions(this.translate);
     this.init(chartConf);
   }
 
@@ -75,46 +79,46 @@ export class AbstractChartOptions {
 
   protected getTickFormatter(type: string) {
     let formatter;
-
+    var format = d3.locale(this.d3Locale.getD3Options());
     switch (type) {
       case 'intAgrouped':
         formatter = function (d) {
-          return d3.format(',d')(d);
+          return format.numberFormat(',d')(d);
         }
         break;
       case 'floatAgrouped':
         formatter = function (d) {
-          return d3.format(',.02f')(d);
+          return format.numberFormat(',.02f')(d);
         }
         break;
       case 'int':
         formatter = function (d) {
-          return d3.format('d')(d);
+          return format.numberFormat('d')(d);
         };
         break;
       case 'float':
         formatter = function (d) {
-          return d3.format('.02f')(d);
+          return format.numberFormat('.02f')(d);
         };
         break;
       case 'time':
         formatter = function (d) {
-          return d3.time.format('%x')(new Date(d));
+          return format.timeFormat('%x')(new Date(d));
         };
         break;
       case 'timeDay':
-        formatter = function(d) {
-          return d3.time.format('%H:%M:%S')(new Date(d));
+        formatter = function (d) {
+          return format.timeFormat('%H:%M:%S')(new Date(d));
         }
         break;
       case 'timeDetail':
-        formatter = function(d) {
-          return d3.time.format('%x %H:%M:%S')(new Date(d));
+        formatter = function (d) {
+          return format.timeFormat('%x %H:%M:%S')(new Date(d));
         }
         break;
       case 'percentage':
         formatter = function (d) {
-          return d3.format(".0%")(d);
+          return format.numberFormat(".0%")(d);
         };
         break;
     }

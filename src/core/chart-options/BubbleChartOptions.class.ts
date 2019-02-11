@@ -1,11 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
-import {  BubbleChartConfiguration } from './BubbleChartConfiguration.class';
+import { BubbleChartConfiguration } from './BubbleChartConfiguration.class';
 
 export class BubbleChartOptions extends AbstractChartOptions {
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   getChartType() {
     return 'packedBubbleChart';

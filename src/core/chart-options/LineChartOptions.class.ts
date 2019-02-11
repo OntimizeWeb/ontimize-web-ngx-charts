@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { LineChartConfiguration } from './LineChartConfiguration.class';
 
 export class LineChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'lineChart';

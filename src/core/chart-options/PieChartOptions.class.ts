@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { PieChartConfiguration } from './PieChartConfiguration.class';
 
 export class PieChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'pieChart';

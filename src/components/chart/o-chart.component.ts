@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import 'd3';
@@ -19,6 +19,9 @@ import {
   GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration,
   RadarChartConfiguration, ParallelCoordinatesChartConfiguration
 } from './../../core';
+
+import 'hammerjs';
+import { Subscription } from 'rxjs';
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -67,7 +70,6 @@ export const DEFAULT_INPUTS_O_CHART = [
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
   providers: [
-    OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: DEFAULT_INPUTS_O_CHART
@@ -104,6 +106,16 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected formDataSubcribe;
 
+  @Output('onTap')         onTap      = new EventEmitter();
+  @Output('onDoubleTap')   onDoubleTap = new EventEmitter();
+  @Output('onPress')       onPress    = new EventEmitter();
+  @Output('onSwipe')       onSwipe    = new EventEmitter();
+  @Output('onRotate')      onRotate   = new EventEmitter();
+  @Output('onPinch')       onPinch    = new EventEmitter();
+
+
+  protected langSubscription          : Subscription;
+
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
   protected translateService: OTranslateService;
@@ -127,6 +139,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     this.configureChart();
     this.bindChartEvents();
+
+    this.langSubscription = this.translateService.onLanguageChanged.subscribe( _event => {
+      this.configureChart();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -167,6 +183,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
     }
+    if(this.langSubscription)
+      this.langSubscription.unsubscribe();
     let elements = document.getElementsByClassName('nvtooltip xy-tooltip');
     for(let i = 0; i<elements.length; i++){
       elements.item(i).remove();
@@ -309,7 +327,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartFactory(): ChartFactory {
-    return new OChartFactory();
+    return new OChartFactory(this.translateService);
   }
 
   getChartDataAdapterFactory(): ChartDataAdapterFactory {
@@ -347,6 +365,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let factory = this.getChartDataAdapterFactory();
     let adapter: ChartDataAdapter = factory.getAdapter(this.type);
     let adaptedResult = adapter.adaptResult(data);
+    this.data = adaptedResult;
     this.setDataArray(adaptedResult);
     this.configureChart();
   }
@@ -414,6 +433,30 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   onClickEvent(onNext: (value: any) => void): Object {
     return this.clickEvtEmitter.subscribe(onNext);
+  }
+
+  tapChart(event: any) {
+    this.onTap.emit(event);
+  }
+
+  doubleTapChart(event: any) {
+    this.onDoubleTap.emit(event);
+  }
+
+  pressChart(event: any) {
+    this.onPress.emit(event);
+  }
+
+  swipeChart(event: any) {
+    this.onSwipe.emit(event);
+  }
+
+  rotateChart(event: any) {
+    this.onRotate.emit(event);
+  }
+
+  pinchChart(event: any) {
+    this.onPinch.emit(event);
   }
 
 }
