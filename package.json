@@ -1,11 +1,11 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "3.1.4-rc.1",
+  "version": "3.1.5-SNAPSHOT",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
     "preinstall": "npm config set package-lock false",
     "clean": "o-ngx-lib-builder clean",
-    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts",
+    "build": "npm run clean && o-ngx-lib-builder build --package ontimize-web-ngx-charts --ng-library ng.ontimizeWebCharts"
   },
   "keywords": [
     "angular",
