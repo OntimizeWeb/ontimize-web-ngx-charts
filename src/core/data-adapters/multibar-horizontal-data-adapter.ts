@@ -28,8 +28,8 @@ export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
           'key': 'series',
           'values': []
         };
-        if (params.colors && params.colors[_index]) {
-          serie['color'] = params.colors[_index];
+        if (params.color && params.color[_index]) {
+          serie['color'] = params.color[_index];
         }
         let key = axis;
         if (self.chartConf.translateService) {
