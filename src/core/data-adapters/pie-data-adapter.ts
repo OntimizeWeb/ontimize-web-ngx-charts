@@ -36,7 +36,10 @@ export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAd
         if (self.chartConf instanceof PieChartConfiguration) {
           const config = (self.chartConf as PieChartConfiguration);
           if (config.colorData && config.colorData.length) {
-            val.color = config.colorData.find(c => c.value.toLowerCase() === val.x.toLowerCase()).color;
+            const colorDataItem = config.colorData.find(c => c.value.toLowerCase() === item[self.xAxis].toLowerCase());
+            if (colorDataItem) {
+              val.color = colorDataItem.color;
+            }
           }
         }
 
