@@ -1,6 +1,7 @@
 import { OTranslateService } from 'ontimize-web-ngx';
 
 export class ChartConfiguration {
+
   public type: string;
   public height: number;
   public width: number;
@@ -8,11 +9,11 @@ export class ChartConfiguration {
   public xLabel: string;
   public yLabel: string;
 
-  public xDataType: string;
-  public yDataType: string;
+  public xDataType: any;
+  public yDataType: any;
 
   public xAxis: string;
-  public yAxis: Array<string>;
+  public yAxis: string[];
 
   public translateService: OTranslateService;
 

@@ -1,30 +1,31 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
-import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
+import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class ScatterChartConfiguration extends ChartConfiguration {
-  readonly type: string = 'scatterChart';
 
-  showDistX: boolean = true;
-  showDistY: boolean = true;
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
+  public readonly type: string = 'scatterChart';
 
-  showLegend: boolean = true;
-  legend: ChartLegendConfiguration;
+  public showDistX: boolean = true;
+  public showDistY: boolean = true;
+  public showXAxis: boolean = true;
+  public showYAxis: boolean = true;
 
-  duration: number = 350;
-  margin: ChartMarginConfiguration;
-  clipEdge: boolean = false;
+  public showLegend: boolean = true;
+  public legend: ChartLegendConfiguration;
 
-  rightAlignYAxis: boolean = false;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
+  public duration: number = 350;
+  public margin: ChartMarginConfiguration;
+  public clipEdge: boolean = false;
 
-  colors: Array<string> = null;
-  shape: Array<string> = null;
-  size: Array<number> = null;
+  public rightAlignYAxis: boolean = false;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
+
+  public color: string[] = null;
+  public shape: string[] = null;
+  public size: number[] = null;
 
   constructor() {
     super();
@@ -33,4 +34,5 @@ export class ScatterChartConfiguration extends ChartConfiguration {
     this.margin = new ChartMarginConfiguration();
     this.legend = new ChartLegendConfiguration();
   }
+
 }

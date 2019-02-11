@@ -1,8 +1,12 @@
 ## 4.0.0-rc.2
 ### Features
 * **PieChartConfiguration, MultiBarHorizontalChartOptions**: the attribute `valueType` now allows a format function from d3 library in addition to a string.
+* **LinePlusBarFocusChartConfiguration**: the attributes `xDataType` and `yDataType` now allows a format function from d3 library in addition to a string.
 * **o-chart**:
   * New attribute `colorData` for `pie` chart.
+
+### BREAKING CHANGES
+ * **o-chart**: attribute `colors` from `LinePlusBarFocusChartConfiguration`, `LineChartConfiguration`, `MultiBarChartConfiguration` and `ScatterChartConfiguration` has been renamed to `color`
 
 ## 4.0.0-rc.1 (2018-01-17)
 ### DEPENDENCY UPDATES

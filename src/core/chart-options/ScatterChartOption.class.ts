@@ -3,6 +3,7 @@ import { ChartConfiguration } from './ChartConfiguration.class';
 import { ScatterChartConfiguration } from './ScatterChartConfiguration.class';
 
 export class ScatterChartOptions extends AbstractChartOptions {
+
   constructor(chartConf: ChartConfiguration) {
     super(chartConf);
   }
@@ -12,11 +13,11 @@ export class ScatterChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions(): Object {
-    let conf = this.chartConf instanceof ScatterChartConfiguration ? this.chartConf : new ScatterChartConfiguration ;
+    const conf = this.chartConf instanceof ScatterChartConfiguration ? this.chartConf : new ScatterChartConfiguration();
     conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
     conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
-    let chart = {
+    const chart = {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
@@ -33,8 +34,9 @@ export class ScatterChartOptions extends AbstractChartOptions {
       showLegend: conf.showLegend,
       margin: conf.margin.getMarginOptions(),
       clipEdge: conf.clipEdge,
-      color: conf.colors
+      color: conf.color
     };
     return chart;
   }
+
 }

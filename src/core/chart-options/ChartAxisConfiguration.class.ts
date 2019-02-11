@@ -1,22 +1,23 @@
 export class ChartAxisConfiguration {
-  axisLabel: string = '';
-  axisLabelDistance: number = 0;
-  staggerLabels: boolean = false;
-  rotateLabels: number = 0;
-  rotateYLabel: boolean = true;
-  showMaxMin: boolean = true;
 
-  duration: number = 250;
-  orient: string = 'bottom';
-  fontSize: number = 12;
+  public axisLabel: string = '';
+  public axisLabelDistance: number = 0;
+  public staggerLabels: boolean = false;
+  public rotateLabels: number = 0;
+  public rotateYLabel: boolean = true;
+  public showMaxMin: boolean = true;
 
-  tickFormat: any = null;
-  tickValues: Array<number> = null;
-  ticks: number = null;
+  public duration: number = 250;
+  public orient: string = 'bottom';
+  public fontSize: number = 12;
 
+  public tickFormat: any = null;
+  public tickValues: number[] = null;
+  public ticks: number = null;
+  public tickPadding: number;
 
-  getAxisOptions(): Object {
-    let axis = {
+  public getAxisOptions(): Object {
+    const axis = {
       axisLabel: this.axisLabel,
       axisLabelDistance: this.axisLabelDistance,
       staggerLabels: this.staggerLabels,
@@ -28,8 +29,10 @@ export class ChartAxisConfiguration {
       fontSize: this.fontSize,
       tickFormat: this.tickFormat,
       ticks: this.ticks,
-      ticksValues: this.tickValues
+      ticksValues: this.tickValues,
+      tickPadding: this.tickPadding
     };
     return axis;
   }
+
 }

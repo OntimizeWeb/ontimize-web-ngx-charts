@@ -3,27 +3,27 @@ import { ChartConfiguration } from './ChartConfiguration.class';
 import { LinePlusBarFocusChartConfiguration } from './LinePlusBarFocusChartConfiguration.class';
 
 export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
+
   constructor(chartConf: ChartConfiguration) {
     super(chartConf);
   }
-
 
   protected getChartType(): string {
     return 'linePlusBarChart';
   }
 
   protected getChartOptions(): Object {
-    let conf = this.chartConf instanceof LinePlusBarFocusChartConfiguration ? this.chartConf : new LinePlusBarFocusChartConfiguration();
-    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
-    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    const conf = this.chartConf instanceof LinePlusBarFocusChartConfiguration ? this.chartConf : new LinePlusBarFocusChartConfiguration();
+    conf.x1Axis.tickFormat = this.getTickFormatter(conf.xDataType) || conf.xDataType;
+    conf.y1Axis.tickFormat = this.getTickFormatter(conf.yDataType) || conf.yDataType;
 
-    let chart = {
+    const chart = {
       type: this.getChartType(),
       height: conf.height,
       width: conf.width,
       x: this.getXValue(),
       y: this.getYValue(),
-      color: conf.colors,
+      color: conf.color,
       xAxis: conf.x1Axis.getAxisOptions(),
       x2Axis: conf.x1Axis.getAxisOptions(),
       y1Axis: conf.y1Axis.getAxisOptions(),
