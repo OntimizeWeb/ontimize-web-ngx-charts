@@ -1,12 +1,8 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { GaugeSimpleChartConfiguration } from './GaugeSimpleChartConfiguration.class';
 
 export class GaugeSimpleChartOptions extends AbstractChartOptions {
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
-
+ 
   protected getChartType(): string {
     return 'gaugeChart';
   }

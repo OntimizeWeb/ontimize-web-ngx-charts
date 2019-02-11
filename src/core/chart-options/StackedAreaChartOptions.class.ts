@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { StackedAreaChartConfiguration } from './StackedAreaChartConfiguration.class';
 
 export class StackedAreaChartOptions extends AbstractChartOptions {
-
-  constructor(conf: ChartConfiguration) {
-    super(conf);
-  }
 
   protected getChartType() {
     return 'stackedAreaChart';

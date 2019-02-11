@@ -8,10 +8,11 @@ import {
 } from '../../core';
 
 import { ChartFactory } from '../../interfaces';
+import { OTranslateService } from 'ontimize-web-ngx';
 
 export class OChartFactory implements ChartFactory {
 
-  constructor() {
+  constructor(protected translate: OTranslateService) {
     //nothing to do
   }
 
@@ -88,107 +89,107 @@ export class OChartFactory implements ChartFactory {
   }
 
   public createLineChartOptions(chartConf: ChartConfiguration): any {
-    let lineChartOpts = new LineChartOptions(chartConf);
+    let lineChartOpts = new LineChartOptions(chartConf, this.translate);
     return lineChartOpts.getOptions();
   }
 
   public createDiscreteBarChartOptions(chartConf: ChartConfiguration): any {
-    let discreteBarChartOpts = new DiscreteBarChartOptions(chartConf);
+    let discreteBarChartOpts = new DiscreteBarChartOptions(chartConf, this.translate);
     return discreteBarChartOpts.getOptions();
   }
 
   public createPieChartOptions(chartConf: ChartConfiguration): any {
-    let pieChartOpts = new PieChartOptions(chartConf);
+    let pieChartOpts = new PieChartOptions(chartConf, this.translate);
     return pieChartOpts.getOptions();
   }
 
   public createMultiBarChartOptions(chartConf: ChartConfiguration): any {
-    let multiBarChartOpts = new MultiBarChartOptions(chartConf);
+    let multiBarChartOpts = new MultiBarChartOptions(chartConf, this.translate);
     return multiBarChartOpts.getOptions();
   }
 
   public createMultiBarHorizontalChartOptions(chartConf: ChartConfiguration): any {
-    let multiBarHorChartOpts = new MultiBarHorizontalChartOptions(chartConf);
+    let multiBarHorChartOpts = new MultiBarHorizontalChartOptions(chartConf, this.translate);
     return multiBarHorChartOpts.getOptions();
   }
 
   public createScatterChartOptions(chartConf: ChartConfiguration): any {
-    let scatterChartOpts = new ScatterChartOptions(chartConf);
+    let scatterChartOpts = new ScatterChartOptions(chartConf, this.translate);
     return scatterChartOpts.getOptions();
   }
 
   public createDonutChartOptions(chartConf: ChartConfiguration): any {
-    let donutChartOptions = new DonutChartOptions(chartConf);
+    let donutChartOptions = new DonutChartOptions(chartConf, this.translate);
     return donutChartOptions.getOptions();
   }
 
   public createLinePlusBarOptions(chartConf: ChartConfiguration): any {
-    let linePlusBarOptions = new LinePlusBarFocusChartOptions(chartConf);
+    let linePlusBarOptions = new LinePlusBarFocusChartOptions(chartConf, this.translate);
     return linePlusBarOptions.getOptions();
   }
 
   public createForceDirectedGraph(chartConf: ChartConfiguration): any {
-    let directedGraphOptions = new ForceDirectedGraphOptions(chartConf);
+    let directedGraphOptions = new ForceDirectedGraphOptions(chartConf, this.translate);
     return directedGraphOptions.getOptions();
   }
 
   public createCandlestickBarChart(chartConf: ChartConfiguration): any {
-    let candlestickOptions = new CandlestickChartOptions(chartConf);
+    let candlestickOptions = new CandlestickChartOptions(chartConf, this.translate);
     return candlestickOptions.getOptions();
   }
 
   public createOhlcBarChart(chartConf: ChartConfiguration): any {
-    let ohlcOptions = new OHLCChartOptions(chartConf);
+    let ohlcOptions = new OHLCChartOptions(chartConf, this.translate);
     return ohlcOptions.getOptions();
   }
 
   public createBulletChartOptions(chartConf: ChartConfiguration): any {
-    let bulletOptions = new BulletChartOptions(chartConf);
+    let bulletOptions = new BulletChartOptions(chartConf, this.translate);
     return bulletOptions.getOptions();
   }
 
   public createGaugeDashboardChartOptions(chartConf: ChartConfiguration): any {
-    let gaugeOptions = new GaugeDashboardChartOptions(chartConf);
+    let gaugeOptions = new GaugeDashboardChartOptions(chartConf, this.translate);
     return gaugeOptions.getOptions();
   }
 
   public createGaugeSlimChartOptions(chartConf: ChartConfiguration): any {
-    let gaugeOptions = new GaugeSlimChartOptions(chartConf);
+    let gaugeOptions = new GaugeSlimChartOptions(chartConf, this.translate);
     return gaugeOptions.getOptions();
   }
 
   public createGaugeSpaceChartOptions(chartConf: ChartConfiguration): any {
-    let gaugeOptions = new GaugeSpaceChartOptions(chartConf);
+    let gaugeOptions = new GaugeSpaceChartOptions(chartConf, this.translate);
     return gaugeOptions.getOptions();
   }
 
-  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any{
-    let radialPercentOptions = new RadialPercentChartOptions(chartConf);
+  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any {
+    let radialPercentOptions = new RadialPercentChartOptions(chartConf, this.translate);
     return radialPercentOptions.getOptions();
   }
 
   public createGaugeSimpleChartOptions(chartConf: ChartConfiguration): any {
-    let gaugeSimpleOptions = new GaugeSimpleChartOptions(chartConf);
+    let gaugeSimpleOptions = new GaugeSimpleChartOptions(chartConf, this.translate);
     return gaugeSimpleOptions.getOptions();
   }
 
   public createBubbleChartOptions(chartConf: ChartConfiguration): any {
-    let bubbleOptions = new BubbleChartOptions(chartConf);
+    let bubbleOptions = new BubbleChartOptions(chartConf, this.translate);
     return bubbleOptions.getOptions();
   }
 
   public createStackedAreaChartOptions(chartConf: ChartConfiguration): any {
-    let stackedAreaOptions = new StackedAreaChartOptions(chartConf);
+    let stackedAreaOptions = new StackedAreaChartOptions(chartConf, this.translate);
     return stackedAreaOptions.getOptions();
   }
 
   public createRadarChartOptions(chartConf: ChartConfiguration): any {
-    let radarChartOptions = new RadarChartOptions(chartConf);
+    let radarChartOptions = new RadarChartOptions(chartConf, this.translate);
     return radarChartOptions.getOptions();
   }
 
   public createParallelCoordinatesChartOptions(chartConf: ChartConfiguration): any {
-    let parallelCoordinatesChartOptions = new ParallelCoordinatesChartOptions(chartConf);
+    let parallelCoordinatesChartOptions = new ParallelCoordinatesChartOptions(chartConf, this.translate);
     return parallelCoordinatesChartOptions.getOptions();
   }
 }

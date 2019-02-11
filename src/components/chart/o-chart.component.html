@@ -1,3 +1,5 @@
 <div fxLayout="row" layout-padding fxLayoutAlign="center center">
-    <nvd3 #nvChart fxFlexFill [options]="options" [data]="getAdaptData()" config="{visible: true, extended: true}"></nvd3>
+    <nvd3 #nvChart fxFlexFill [options]="options" [data]="getAdaptData()" config="{visible: true, extended: true}"
+        (onTap)="tapChart($event)" (onDoubleTap)="doubleTapChart($event)" (onPress)="pressChart($event)" 
+        (onSwipe)="swipeChart($event)" (onRotate)="rotateChart($event)" (onPinch)="pinchChart($event)"></nvd3>
 </div>

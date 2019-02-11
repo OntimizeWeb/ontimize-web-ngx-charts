@@ -1,11 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { ParallelCoordinatesChartConfiguration } from './ParallelCoordinatesChartConfiguration.class';
 
 export class ParallelCoordinatesChartOptions extends AbstractChartOptions {
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   getChartOptions() {
     let conf = (this.chartConf instanceof ParallelCoordinatesChartConfiguration) ? this.chartConf : new ParallelCoordinatesChartConfiguration();

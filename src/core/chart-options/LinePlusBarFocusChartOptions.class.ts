@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { LinePlusBarFocusChartConfiguration } from './LinePlusBarFocusChartConfiguration.class';
 
 export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'linePlusBarChart';

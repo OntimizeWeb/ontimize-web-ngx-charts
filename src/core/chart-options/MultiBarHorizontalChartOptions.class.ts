@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { MultiBarHorizontalChartConfiguration } from './MultiBarHorizontalChartConfiguration.class';
 
 export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'multiBarHorizontalChart';
