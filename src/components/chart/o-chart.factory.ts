@@ -163,7 +163,7 @@ export class OChartFactory implements ChartFactory {
     return gaugeOptions.getOptions();
   }
 
-  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any{
+  public createRadialPercentChartOptions(chartConf: ChartConfiguration): any {
     let radialPercentOptions = new RadialPercentChartOptions(chartConf, this.translate);
     return radialPercentOptions.getOptions();
   }

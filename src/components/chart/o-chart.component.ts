@@ -14,6 +14,7 @@ import {
   OnInit,
   Optional,
   ViewChild,
+  Output,
 } from '@angular/core';
 import {
   dataServiceFactory,
@@ -141,15 +142,15 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected formDataSubcribe;
 
-  @Output('onTap')         onTap      = new EventEmitter();
-  @Output('onDoubleTap')   onDoubleTap = new EventEmitter();
-  @Output('onPress')       onPress    = new EventEmitter();
-  @Output('onSwipe')       onSwipe    = new EventEmitter();
-  @Output('onRotate')      onRotate   = new EventEmitter();
-  @Output('onPinch')       onPinch    = new EventEmitter();
+  @Output('onTap') onTap = new EventEmitter();
+  @Output('onDoubleTap') onDoubleTap = new EventEmitter();
+  @Output('onPress') onPress = new EventEmitter();
+  @Output('onSwipe') onSwipe = new EventEmitter();
+  @Output('onRotate') onRotate = new EventEmitter();
+  @Output('onPinch') onPinch = new EventEmitter();
 
 
-  protected langSubscription          : Subscription;
+  protected langSubscription: Subscription;
 
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
@@ -177,7 +178,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.configureChart();
     this.bindChartEvents();
 
-    this.langSubscription = this.translateService.onLanguageChanged.subscribe( _event => {
+    this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
       this.configureChart();
     });
   }
@@ -404,7 +405,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.configureChart();
     this.cd.detectChanges();
   }
-  
+
   getAttributesValuesToQuery(): Array<string> {
     let columns = super.getAttributesValuesToQuery();
     if (this.yAxisArray && this.yAxisArray.length) {
