@@ -6,11 +6,11 @@
   "scripts": {
     "preinstall": "npm config set package-lock false",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4307",
     "clean": "rimraf dist",
     "production": "npm run clean && ng build --aot=false --target --base-href /ontimize-web-ngx-charts/",
     "production-aot": "ontimize-web-ngx production-aot --href=/ontimize-web-ngx-charts/",
-    "production-aot-server": "ontimize-web-ngx production-aot --href /ontimizeweb/charts/"
+    "production-aot-server": "ontimize-web-ngx production-aot --href /ontimizeweb/v3/charts/"
   },
   "private": true,
   "dependencies": {
