@@ -1,12 +1,8 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { GaugeSpaceChartConfiguration } from './GaugeSpaceChartConfiguration.class';
 
 export class GaugeSpaceChartOptions extends AbstractChartOptions {
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
-
+  
   protected getChartType(): string {
     return 'pieChart';
   }

@@ -1,46 +1,45 @@
-import { ChartConfiguration } from "./ChartConfiguration.class";
-import { ChartMarginConfiguration } from "./ChartMarginConfiguration.class";
-import { ChartLegendConfiguration } from "./ChartLegendConfiguration.class";
-import { ChartAxisConfiguration } from "./ChartAxisConfiguration.class";
-import { ChartControlConfiguration } from "./ChartControlConfiguration.class";
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
+import { ChartControlConfiguration } from './ChartControlConfiguration.class';
+import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
+import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class MultiBarChartConfiguration extends ChartConfiguration {
-    readonly type: string = 'multiBar';
 
-    margin : ChartMarginConfiguration;
+  public readonly type: string = 'multiBar';
 
-    showLegend: boolean = true;
-    legend: ChartLegendConfiguration;
+  public margin: ChartMarginConfiguration;
 
-    duration: number = 500;
-    stacked: boolean = true;
-    hideable: boolean= false;
-    groupSpacing: number = 0.1;
-    reduceXTicks: boolean = true;
+  public showLegend: boolean = true;
+  public legend: ChartLegendConfiguration;
 
-    showControls: boolean = true;
-    control: ChartControlConfiguration;
+  public duration: number = 500;
+  public stacked: boolean = true;
+  public hideable: boolean = false;
+  public groupSpacing: number = 0.1;
+  public reduceXTicks: boolean = true;
 
-    rotateLabels: number = 0;
-    wrapLabels: boolean = false;
+  public showControls: boolean = true;
+  public control: ChartControlConfiguration;
 
-    showXAxis: boolean = true;
-    showYAxis: boolean = true;
-    rightAlignYAxis: boolean = false;
-    x1Axis: ChartAxisConfiguration;
-    y1Axis: ChartAxisConfiguration;
+  public rotateLabels: number = 0;
+  public wrapLabels: boolean = false;
 
-    colors: Array<string> = null;
+  public showXAxis: boolean = true;
+  public showYAxis: boolean = true;
+  public rightAlignYAxis: boolean = false;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
 
+  public color: string[] = null;
 
-
-    constructor(){
-        super();
-        this.margin = new ChartMarginConfiguration();
-        this.legend = new ChartLegendConfiguration();
-        this.x1Axis = new ChartAxisConfiguration();
-        this.y1Axis = new ChartAxisConfiguration();
-        this.control = new ChartControlConfiguration();
-    }
+  constructor() {
+    super();
+    this.margin = new ChartMarginConfiguration();
+    this.legend = new ChartLegendConfiguration();
+    this.x1Axis = new ChartAxisConfiguration();
+    this.y1Axis = new ChartAxisConfiguration();
+    this.control = new ChartControlConfiguration();
+  }
 
 }

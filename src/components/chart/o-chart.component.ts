@@ -1,24 +1,63 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, NgModule, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import 'd3';
 import 'nvd3';
-import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OTranslateService, Util, OServiceBaseComponent } from 'ontimize-web-ngx';
 
-import { OChartFactory } from './o-chart.factory';
-import { ChartService } from '../../services/chart.service';
-import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.class';
-import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
-import { ChartFactory, ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
+import { CommonModule } from '@angular/common';
 import {
-  PieChartConfiguration, LineChartConfiguration, ScatterChartConfiguration, MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration, DonutChartConfiguration, DiscreteBarChartConfiguration,
-  BulletChartConfiguration, GaugeDashboardChartConfiguration, LinePlusBarFocusChartConfiguration,
-  ForceDirectedGraphConfiguration, CandlestickChartConfiguration, OHLCChartConfiguration,
-  GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, RadialPercentChartConfiguration,
-  GaugeSimpleChartConfiguration, BubbleChartConfiguration, StackedAreaChartConfiguration,
-  RadarChartConfiguration, ParallelCoordinatesChartConfiguration
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Injector,
+  NgModule,
+  OnInit,
+  Optional,
+  ViewChild,
+  Output,
+} from '@angular/core';
+import {
+  dataServiceFactory,
+  InputConverter,
+  OFormComponent,
+  OntimizeService,
+  OServiceBaseComponent,
+  OTranslateService,
+  Util,
+} from 'ontimize-web-ngx';
+import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
+
+import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.class';
+import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces';
+import { ChartService } from '../../services/chart.service';
+import {
+  BubbleChartConfiguration,
+  BulletChartConfiguration,
+  CandlestickChartConfiguration,
+  DiscreteBarChartConfiguration,
+  DonutChartConfiguration,
+  ForceDirectedGraphConfiguration,
+  GaugeDashboardChartConfiguration,
+  GaugeSimpleChartConfiguration,
+  GaugeSlimChartConfiguration,
+  GaugeSpaceChartConfiguration,
+  LineChartConfiguration,
+  LinePlusBarFocusChartConfiguration,
+  MultiBarChartConfiguration,
+  MultiBarHorizontalChartConfiguration,
+  OHLCChartConfiguration,
+  ParallelCoordinatesChartConfiguration,
+  PieChartConfiguration,
+  RadarChartConfiguration,
+  RadialPercentChartConfiguration,
+  ScatterChartConfiguration,
+  StackedAreaChartConfiguration,
 } from './../../core';
+import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
+import { OChartFactory } from './o-chart.factory';
+
+import 'hammerjs';
+import { Subscription } from 'rxjs';
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -63,11 +102,11 @@ export const DEFAULT_INPUTS_O_CHART = [
 ];
 
 @Component({
+  moduleId: module.id,
   selector: 'o-chart',
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
   providers: [
-    OTranslateService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: DEFAULT_INPUTS_O_CHART
@@ -104,9 +143,21 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected formDataSubcribe;
 
+  @Output('onTap') onTap = new EventEmitter();
+  @Output('onDoubleTap') onDoubleTap = new EventEmitter();
+  @Output('onPress') onPress = new EventEmitter();
+  @Output('onSwipe') onSwipe = new EventEmitter();
+  @Output('onRotate') onRotate = new EventEmitter();
+  @Output('onPinch') onPinch = new EventEmitter();
+
+
+  protected langSubscription: Subscription;
+
   protected clickEvtEmitter: EventEmitter<any> = new EventEmitter();
   protected chartService: ChartService;
   protected translateService: OTranslateService;
+  cd: ChangeDetectorRef;
+
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
@@ -115,10 +166,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     super(injector);
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
+    this.cd = this.injector.get(ChangeDetectorRef);
   }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     super.initialize();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
@@ -127,6 +178,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     this.configureChart();
     this.bindChartEvents();
+
+    this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
+      this.configureChart();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -136,8 +191,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.chartService.chartWrapper = this.chartWrapper;
   }
 
-  ngAfterViewChecked() {
-    let color = undefined;
+  ngAfterViewChecked(): void {
+    let color: string;
     switch (this.type) {
       case 'gaugeDashboardChart':
         color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
@@ -155,17 +210,21 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
     }
     if (color) {
-      let elements = document.getElementsByClassName('nv-pie-title');
+      const elements = document.getElementsByClassName('nv-pie-title');
       for (let i = 0; i < elements.length; i++) {
         (elements.item(i) as SVGTextElement).style.fill = color;
       }
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     super.destroy();
     if (this.formDataSubcribe) {
       this.formDataSubcribe.unsubscribe();
+    }
+    const elements = document.getElementsByClassName('nvtooltip xy-tooltip');
+    for (let i = 0; i < elements.length; i++) {
+      elements.item(i).remove();
     }
   }
 
@@ -287,12 +346,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return chartConf;
   }
 
-  public setChartConfiguration(conf: ChartConfiguration) {
+  public setChartConfiguration(conf: ChartConfiguration): void {
     this.chartParameters = conf;
     this.configureChart();
   }
 
-  getAdaptData() {
+  getAdaptData(): any {
     if (this.type === 'forceDirectedGraph' || this.type === 'bulletChart') {
       if (this.dataArray && this.dataArray[0]) {
         return this.dataArray[0];
@@ -305,7 +364,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getChartFactory(): ChartFactory {
-    return new OChartFactory();
+    return new OChartFactory(this.translateService);
   }
 
   getChartDataAdapterFactory(): ChartDataAdapterFactory {
@@ -314,9 +373,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   /**
    * Configures the chart depending on input parameters
-   *  */
-  protected configureChart() {
-    let chartConf: ChartConfiguration = this.getChartConfiguration();
+   */
+  protected configureChart(): void {
+    const chartConf: ChartConfiguration = this.getChartConfiguration();
     this.options = this.getChartFactory().createChartOptions(chartConf);
   }
 
@@ -324,12 +383,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return this.chartService;
   }
 
-  protected onFormDataBind(bindedData: Object) {
+  protected onFormDataBind(bindedData: Object): void {
     let filter = {};
-    let keys = Object.keys(this._pKeysEquiv);
+    const keys = Object.keys(this._pKeysEquiv);
     if (keys && keys.length > 0 && bindedData) {
       keys.forEach(item => {
-        let value = bindedData[item];
+        const value = bindedData[item];
         if (value) {
           filter[this._pKeysEquiv[item]] = value;
         }
@@ -339,12 +398,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.queryData(filter);
   }
 
-  public setData(data: any, _sqlTypes?: any, _replace?: boolean) {
-    let factory = this.getChartDataAdapterFactory();
-    let adapter: ChartDataAdapter = factory.getAdapter(this.type);
-    let adaptedResult = adapter.adaptResult(data);
+  public setData(data: any, _sqlTypes?: any, _replace?: boolean): void {
+    const factory = this.getChartDataAdapterFactory();
+    const adapter: ChartDataAdapter = factory.getAdapter(this.type);
+    const adaptedResult = adapter.adaptResult(data);
     this.setDataArray(adaptedResult);
     this.configureChart();
+    this.cd.detectChanges();
   }
 
   getAttributesValuesToQuery(): Array<string> {
@@ -364,7 +424,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     switch (this.type) {
       case 'ohlcBarChart':
         columns = [];
-        let OHLCParams = this.chartParameters as OHLCChartConfiguration;
+        const OHLCParams = this.chartParameters as OHLCChartConfiguration;
         columns.push(OHLCParams.xColumn);
         columns.push(OHLCParams.openAxis);
         columns.push(OHLCParams.closeAxis);
@@ -373,7 +433,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'candlestickBarChart':
         columns = [];
-        let candlestickParams = this.chartParameters as CandlestickChartConfiguration;
+        const candlestickParams = this.chartParameters as CandlestickChartConfiguration;
         columns.push(candlestickParams.xColumn);
         columns.push(candlestickParams.openAxis);
         columns.push(candlestickParams.closeAxis);
@@ -382,7 +442,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'bulletChart':
         columns = [];
-        let bulletParams = this.chartParameters as BulletChartConfiguration;
+        const bulletParams = this.chartParameters as BulletChartConfiguration;
         columns.push(bulletParams.markersAxis);
         columns.push(bulletParams.measuresAxis);
         columns.push(bulletParams.rangesAxis);
@@ -397,19 +457,39 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
    *  Binds chart events.
    * @returns void
    */
-
   bindChartEvents(): void {
-    var self = this;
-    let chart = this.getChartService().chart;
+    const chart = this.getChartService().chart;
     if (chart && chart.on) {
-      chart.on('click', function (evt: any) {
-        self.clickEvtEmitter.emit(evt);
-      });
+      chart.on('click', (evt: any) => this.clickEvtEmitter.emit(evt));
     }
   }
 
   onClickEvent(onNext: (value: any) => void): Object {
     return this.clickEvtEmitter.subscribe(onNext);
+  }
+
+  tapChart(event: any) {
+    this.onTap.emit(event);
+  }
+
+  doubleTapChart(event: any) {
+    this.onDoubleTap.emit(event);
+  }
+
+  pressChart(event: any) {
+    this.onPress.emit(event);
+  }
+
+  swipeChart(event: any) {
+    this.onSwipe.emit(event);
+  }
+
+  rotateChart(event: any) {
+    this.onRotate.emit(event);
+  }
+
+  pinchChart(event: any) {
+    this.onPinch.emit(event);
   }
 
 }

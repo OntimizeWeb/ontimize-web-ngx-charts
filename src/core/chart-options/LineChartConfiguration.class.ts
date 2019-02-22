@@ -1,34 +1,38 @@
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LineChartConfiguration extends ChartConfiguration {
-  readonly type: string = 'line';
 
-  legend: ChartLegendConfiguration;
-  legendPosition: string = 'top';
-  showLegend: boolean = true;
+  public readonly type: string = 'line';
 
-  duration: number = 500;
-  useInteractiveGuideline: boolean = true;
-  interactive: boolean = true;
-  margin: ChartMarginConfiguration;
+  public legend: ChartLegendConfiguration;
+  public legendPosition: string = 'top';
+  public showLegend: boolean = true;
 
-  isArea: Array<boolean> = null;
-  strokeWidth: Array<number> = null;
-  classed: Array<string> = null;
-  colors: Array<string> = null;
+  public duration: number = 500;
+  public useInteractiveGuideline: boolean = true;
+  public interactive: boolean = true;
+  public margin: ChartMarginConfiguration;
 
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
-  rightAlignYAxis: boolean = false;
+  public isArea: boolean[] = null;
+  public strokeWidth: number[] = null;
+  public classed: string[] = null;
+  public color: string[] = null;
 
-  focusEnable: boolean = false;
-  focusShowAxisX: boolean = false;
-  focusShowAxisY: boolean = false;
+  public showXAxis: boolean = true;
+  public showYAxis: boolean = true;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
+  public rightAlignYAxis: boolean = false;
+
+  public forceX: number[] = null;
+  public forceY: number[] = null;
+
+  public focusEnable: boolean = false;
+  public focusShowAxisX: boolean = false;
+  public focusShowAxisY: boolean = false;
 
   constructor() {
     super();
@@ -37,4 +41,5 @@ export class LineChartConfiguration extends ChartConfiguration {
     this.y1Axis = new ChartAxisConfiguration();
     this.margin = new ChartMarginConfiguration();
   }
+
 }

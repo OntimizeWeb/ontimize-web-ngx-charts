@@ -1,14 +1,9 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { RadarChartConfiguration } from './RadarChartConfiguration.class';
 
 declare var d3: any;
 
 export class RadarChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   getChartOptions() {
     let conf = (this.chartConf instanceof RadarChartConfiguration) ? this.chartConf : new RadarChartConfiguration;

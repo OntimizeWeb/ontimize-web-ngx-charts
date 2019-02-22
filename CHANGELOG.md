@@ -1,8 +1,40 @@
+## 4.0.0-rc.2
+### Features
+* **PieChartConfiguration, MultiBarHorizontalChartOptions**: the attribute `valueType` now allows a format function from d3 library in addition to a string.
+* **LinePlusBarFocusChartConfiguration**: the attributes `xDataType` and `yDataType` now allows a format function from d3 library in addition to a string.
+* **o-chart**:
+  * New attribute `colorData` for `pie` chart.
+
+### BREAKING CHANGES
+ * **o-chart**: attribute `colors` from `LinePlusBarFocusChartConfiguration`, `LineChartConfiguration`, `MultiBarChartConfiguration` and `ScatterChartConfiguration` has been renamed to `color`
+
+## 4.0.0-rc.1 (2018-01-17)
+### DEPENDENCY UPDATES
+* **Updated**:   ontimize-web-ngx@4.0.0-rc.1 (This change does not affect to user)
+
+## 4.0.0-rc.0 (2018-11-16)
+### DEPENDENCY UPDATES
+* **Updated**:   ontimize-web-ngx-nvd3@4.0.0-rc.0 (This change does not affect to user)
+* **Updated**:   ontimize-web-ngx@4.0.0-rc.0 (This change does not affect to user)
+
+## 3.1.4-rc.1
+### Features
+* **o-chart**:
+  * New options in `multiBarHorizontalChart`, `pie` and `donutChart` charts
+
+### BREAKING CHANGES
+ * **o-chart**: values `intAgrouped` and `floatAgrouped` for `xDataType`, `yDataType`, `valueType` attributes has been renamed to `intGrouped` and `floatGrouped`
+
+## 3.1.4-rc.0 (2018-12-20)
+### Features
+* **o-chart**
+  * New options to LineChart and LinePlusBarFocusChart
+
 ## 3.1.3 (2018-12-18)
 ### Bug Fixes
 * **o-chart**
-    * Greater separation between the texts of the legend
-    * Greater margin between the graph and the legend
+  * Greater separation between the texts of the legend
+  * Greater margin between the graph and the legend
 
 ## 3.1.2 (2018-10-30)
 ### Features

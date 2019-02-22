@@ -1,12 +1,7 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { LineChartConfiguration } from './LineChartConfiguration.class';
 
 export class LineChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'lineChart';
@@ -25,6 +20,8 @@ export class LineChartOptions extends AbstractChartOptions {
       x2Axis: conf.x1Axis.getAxisOptions(),
       yAxis: conf.y1Axis.getAxisOptions(),
       y2Axis: conf.y1Axis.getAxisOptions(),
+      forceX: conf.forceX,
+      forceY: conf.forceY,
       height: this.getChartHeight(),
       width: conf.width,
       margin: conf.margin.getMarginOptions(),

@@ -6,8 +6,6 @@ const copyfiles = require('copyfiles');
 const cssimport = require("gulp-cssimport");
 const replace = require('gulp-replace');
 
-
-
 const SCSS_CONF = {
   SRC : './styles.scss',
   DIST: './dist'
@@ -18,7 +16,6 @@ gulp.task('styles', (callback) => {
   .pipe(cssimport({}))
     .pipe(gulp.dest(SCSS_CONF.DIST));
 });
-
 
 const FILES = [
   'CHANGELOG.md',

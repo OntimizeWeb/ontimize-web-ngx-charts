@@ -2,6 +2,7 @@ export * from './core/chart-options/ChartConfiguration.class';
 export * from './core/chart-options/AbstractChartOptions.class';
 export * from './core/chart-options/CandlestickChartConfiguration.class';
 export * from './core/chart-options/CandlestickChartOptions.class';
+export * from './core/chart-options/D3LocaleOptions';
 export * from './core/chart-options/DiscreteBarChartConfiguration.class';
 export * from './core/chart-options/DiscreteBarChartOptions.class';
 export * from './core/chart-options/DonutChartConfiguration.class';

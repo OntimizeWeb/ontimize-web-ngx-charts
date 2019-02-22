@@ -1,29 +1,32 @@
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
-import {  ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 
 export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
+
   readonly type: string = 'multiBarHorizontalChart';
 
-  showLegend: boolean = true;
-  legend: ChartLegendConfiguration;
-
-  showControls: boolean = true;
-  showValues: boolean = true;
-
-  margin: ChartMarginConfiguration;
-  valuePadding: number = 60;
-  groupSpacing: number = 0.1;
-  duration: number = 500;
-  stacked: boolean = false;
-
-  showXAxis: boolean = true;
-  showYAxis: boolean = false;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
-
-  colors: Array<string> = null;
+  public showLegend: boolean = true;
+  public legend: ChartLegendConfiguration;
+  /** Allow user to switch between "Grouped" and "Stacked" mode */
+  public showControls: boolean = true;
+  /** Show bar value next to each bar */
+  public showValues: boolean = true;
+  public margin: ChartMarginConfiguration;
+  public valuePadding: number = 60;
+  public groupSpacing: number = 0.1;
+  public duration: number = 500;
+  public stacked: boolean = false;
+  public showXAxis: boolean = true;
+  public showYAxis: boolean = false;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
+  public color: Array<string> = null;
+  /** Formats value(s) */
+  public valueType: string;
+  /** Enables or disabled the tooltip */
+  public showTooltip: boolean = true;
 
   constructor() {
     super();
@@ -32,4 +35,5 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
     this.x1Axis = new ChartAxisConfiguration();
     this.y1Axis = new ChartAxisConfiguration();
   }
+
 }

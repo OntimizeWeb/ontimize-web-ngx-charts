@@ -1,25 +1,24 @@
-import { ChartPoint, ChartDataAdapter } from '../../interfaces';
-import {
-  ChartConfiguration
-} from '../../core';
+import { ChartConfiguration } from '../../core';
+import { ChartDataAdapter, ChartPoint } from '../../interfaces';
+import { PieChartConfiguration } from '../chart-options/PieChartConfiguration.class';
 
-export class PieDataAdapter implements ChartDataAdapter {
+export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAdapter {
 
-  protected chartConf: ChartConfiguration;
+  protected chartConf: T;
   protected xAxis: string;
   protected yAxis: string;
 
-  constructor(chartConf: ChartConfiguration) {
+  constructor(chartConf: T) {
     if (chartConf) {
       this.chartConf = chartConf;
       this.xAxis = this.chartConf.xAxis ? this.chartConf.xAxis : '';
-      let yAxis = this.chartConf.yAxis;
+      const yAxis = this.chartConf.yAxis;
       this.yAxis = yAxis && yAxis.length ? yAxis[0] : '';
     }
   }
 
-  adaptResult(data: Array<any>): Array<ChartPoint> {
-    const values = [];
+  public adaptResult(data: any[]): ChartPoint[] {
+    const values: ChartPoint[] = [];
     const self = this;
     data.forEach((item: any, _index: number) => {
       let itemLabel = item[self.xAxis];
@@ -28,23 +27,36 @@ export class PieDataAdapter implements ChartDataAdapter {
       }
       const filtered = self.filterCategory(itemLabel, values);
       if (filtered && filtered.length === 0) {
-        const val = {
-          'x': itemLabel,
-          'y': Math.abs(item[self.yAxis])
+        const val: ChartPoint = {
+          x: itemLabel,
+          y: Math.abs(item[self.yAxis])
         };
+
+        // Specify color for each value
+        if (self.chartConf instanceof PieChartConfiguration) {
+          const config = (self.chartConf as PieChartConfiguration);
+          if (config.colorData && config.colorData.length) {
+            const colorDataItem = config.colorData.find(c => c.value.toLowerCase() === item[self.xAxis].toLowerCase());
+            if (colorDataItem) {
+              val.color = colorDataItem.color;
+            }
+          }
+        }
+
         values.push(val);
       } else {
-        filtered[0]['y'] += Math.abs(item[self.yAxis]);
+        filtered[0].y += Math.abs(item[self.yAxis]);
       }
     });
     return values;
   }
 
-  filterCategory(category: string, values: Array<Object>) {
-    let filtered = [];
+  public filterCategory(category: string, values: ChartPoint[]): ChartPoint[] {
+    let filtered: ChartPoint[] = [];
     if (values && values.length) {
-      filtered = values.filter((val: Object) => (val['x'] === category));
+      filtered = values.filter((val: ChartPoint) => (val.x === category));
     }
     return filtered;
   }
+
 }

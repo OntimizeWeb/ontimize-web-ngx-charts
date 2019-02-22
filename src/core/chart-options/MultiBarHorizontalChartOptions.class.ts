@@ -1,25 +1,21 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { MultiBarHorizontalChartConfiguration } from './MultiBarHorizontalChartConfiguration.class';
 
 export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
-
-  constructor(chartConf: ChartConfiguration) {
-    super(chartConf);
-  }
 
   protected getChartType(): string {
     return 'multiBarHorizontalChart';
   }
 
   protected getChartOptions(): Object {
-    let conf = this.chartConf instanceof MultiBarHorizontalChartConfiguration ? this.chartConf : new MultiBarHorizontalChartConfiguration();
+    const conf = this.chartConf instanceof MultiBarHorizontalChartConfiguration ? this.chartConf : new MultiBarHorizontalChartConfiguration();
     conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
     conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    const valueFormat = this.getTickFormatter(conf.valueType) || conf.valueType;
 
     conf.x1Axis.orient = 'left';
 
-    let chart = {
+    const chart = {
       type: this.getChartType(),
       height: conf.height,
       width: conf.width,
@@ -33,21 +29,26 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       showValues: conf.showValues,
       duration: conf.duration,
       stacked: conf.stacked,
+      valueFormat: valueFormat,
       valuePadding: conf.valuePadding,
       groupSpacing: conf.groupSpacing,
       showLegend: conf.showLegend,
       showXAxis: conf.showXAxis,
       showYAxis: conf.showYAxis,
+      barColor: (conf.color && conf.color.length) ? (_d: any, i: number) => conf.color[i % conf.color.length] : [],
+      tooltip: {
+        enabled: conf.showTooltip
+      }
     };
     return chart;
   }
 
-  protected getXValue() {
-    return function (d) { return d.label; };
+  protected getXValue(): Function {
+    return d => d.label;
   }
 
-  protected getYValue() {
-    return function (d) {  return d.value; };
+  protected getYValue(): Function {
+    return d => d.value;
   }
 
 }

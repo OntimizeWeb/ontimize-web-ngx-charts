@@ -1,37 +1,40 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
-  readonly type: string = 'linePlusBarWithFocusChart';
 
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
-  switchYAxisOrder: boolean = false;
+  public readonly type: string = 'linePlusBarWithFocusChart';
 
-  showLabels: boolean = false;
-  showLegend: boolean = true;
-  legend: ChartLegendConfiguration;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
+  public switchYAxisOrder: boolean = false;
 
-  duration: number = 350;
-  margin: ChartMarginConfiguration;
-  isArea: any;
-  interactive: boolean = true;
+  public showLabels: boolean = false;
+  public showLegend: boolean = true;
+  public legend: ChartLegendConfiguration;
 
-  focusEnable: boolean = true;
-  focusShowAxisX: boolean = true;
-  focusShowAxisY: boolean = false;
+  public duration: number = 350;
+  public margin: ChartMarginConfiguration;
+  public isArea: any;
+  public interactive: boolean = true;
 
-  //Parameter for select chart with bars or line
-  bars: Array<boolean>;
-  //Parameters for select the chart colors
-  colors: Array<string>;
+  public focusEnable: boolean = true;
+  public focusShowAxisX: boolean = true;
+  public focusShowAxisY: boolean = false;
 
-  //Parameters for create equispaced points in chart
-  //to_zero is priority in the case of two parameters are activated
-  to_zero: Array<boolean>;
-  to_previusValue: Array<boolean>;
+  public forceX: number[];
+  public forceY: number[];
+
+  // Parameter for select chart with bars or line
+  public bars: boolean[];
+  // Parameters for select the chart colors
+  public color: string[];
+
+  // Parameters for create equispaced points in chart to_zero is priority in the case of two parameters are activated
+  public to_zero: boolean[];
+  public to_previusValue: boolean[];
 
   constructor() {
     super();
@@ -42,7 +45,8 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
     this.margin = new ChartMarginConfiguration();
   }
 
-  functionIsArea() {
-    return function (d) { return d.area; };
+  protected functionIsArea(): Function {
+    return d => d.area;
   }
+
 }
