@@ -9,7 +9,7 @@
     "clean": "rimraf dist",
     "production": "npm run clean && ng build --aot false --build-optimizer false --prod --base-href /ontimize-web-ngx-charts/",
     "production-aot": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimize-web-ngx-quickstart-charts/",
-    "production-aot-server": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimizeweb/charts/v4/"
+    "production-aot-server": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimizeweb/charts/"
   },
   "private": true,
   "dependencies": {
