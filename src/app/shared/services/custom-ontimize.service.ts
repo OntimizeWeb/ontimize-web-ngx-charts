@@ -1,7 +1,7 @@
 import { Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OntimizeService, LoginService, AppConfig } from 'ontimize-web-ngx';
+import { OntimizeService, LoginService, AppConfig, Util } from 'ontimize-web-ngx';
 
 export class CustomOntimizeService extends OntimizeService {
 
@@ -46,7 +46,7 @@ export class CustomOntimizeService extends OntimizeService {
 
   public query(kv?: Object, av?: Array<string>, entity?: string,
     sqltypes?: Object): Observable<any> {
-    entity = (this.isNullOrUndef(entity)) ? this.entity : entity;
+    entity = (Util.isDefined(entity)) ? entity : this.entity;
 
     let url = this._urlBase;
     if (entity === 'EMovements') {

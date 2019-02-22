@@ -19,7 +19,7 @@ export class LineplusbarComponent {
     this.chartParameters2.bars = [ true, false];
     this.chartParameters2.to_zero = [true, false];
     this.chartParameters2.to_previusValue = [false, true];
-    this.chartParameters2.colors = ['blue', 'red'];
+    this.chartParameters2.color = ['blue', 'red'];
   }
 
   getBasicUsageFiles() {
@@ -79,7 +79,7 @@ export class LineplusbarComponent {
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_" 
+<o-chart type="linePlusBarWithFocusChart" entity="EMovementsGrouped" x-axis="DATE_"
 y-axis="MOVEMENT;BALANCE" x-data-type="time" [chart-parameters]="chartParameters" chart-height="500"></o-chart>
 `;
 
