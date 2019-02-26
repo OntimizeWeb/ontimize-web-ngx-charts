@@ -1,9 +1,8 @@
-## 4.0.0
+## 4.0.0 (2019-02-22)
 ### DEPENDENCY UPDATES
 * **Updated**:   ontimize-web-nvd3@4.0.0 (This change does not affect to user)
 * **Updated**:   ontimize-web-ngx@4.0.0 (This change does not affect to user)
 
-## 4.0.0-rc.2
 ### Features
 * **PieChartConfiguration, MultiBarHorizontalChartOptions**: the attribute `valueType` now allows a format function from d3 library in addition to a string.
 * **LinePlusBarFocusChartConfiguration**: the attributes `xDataType` and `yDataType` now allows a format function from d3 library in addition to a string.
