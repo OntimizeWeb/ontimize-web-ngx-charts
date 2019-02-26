@@ -1,11 +1,11 @@
-import { ChartDataAdapter } from '../interfaces';
-import { ChartConfiguration } from '../models';
+import { ChartDataAdapter } from '../../interfaces';
+import { ChartConfiguration } from '../ChartConfiguration.class'
 
 export class GaugeDataAdapter implements ChartDataAdapter {
-
   protected chartConf: ChartConfiguration;
   protected xAxis: string;
   protected yAxis: string;
+
 
   constructor(chartConf: ChartConfiguration) {
     if (chartConf) {

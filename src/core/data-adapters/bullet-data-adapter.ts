@@ -1,6 +1,6 @@
-import { ChartDataAdapter } from '../interfaces';
-import { BulletChartConfiguration, ChartConfiguration } from '../models';
-
+import { ChartDataAdapter } from '../../interfaces';
+import { BulletChartConfiguration } from '../chart-options/BulletChartConfiguration.class';
+import { ChartConfiguration } from '../ChartConfiguration.class'
 export class BulletDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
   protected rangesAxis: string;
@@ -23,6 +23,7 @@ export class BulletDataAdapter implements ChartDataAdapter {
     let markers = [];
     let ranges = [];
     let measures = [];
+
 
     data.forEach((item: any, _index: number) => {
       if (item[this.markersAxis]) {
@@ -50,5 +51,4 @@ export class BulletDataAdapter implements ChartDataAdapter {
 
     return result;
   }
-
 }

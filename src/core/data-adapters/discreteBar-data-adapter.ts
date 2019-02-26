@@ -1,5 +1,8 @@
-import { ChartDataAdapter } from '../interfaces';
-import { ChartConfiguration, DiscreteBarChartConfiguration } from '../models';
+import { ChartDataAdapter } from '../../interfaces';
+import {
+  ChartConfiguration
+} from '../../core';
+import { DiscreteBarChartConfiguration } from '../chart-options/DiscreteBarChartConfiguration.class';
 
 export class DiscreteBarDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
@@ -61,5 +64,4 @@ export class DiscreteBarDataAdapter implements ChartDataAdapter {
     }
     return filtered;
   }
-
 }

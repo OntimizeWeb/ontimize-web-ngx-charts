@@ -1,24 +1,11 @@
+import { ChartDataAdapterFactory, ChartDataAdapter } from '../../interfaces';
+
 import {
-  BulletDataAdapter,
-  CandlestickDataAdapter,
-  DiscreteBarDataAdapter,
-  ForceDirectedGraphDataAdapter,
-  GaugeDataAdapter,
-  GaugeSimpleDataAdapter,
-  GenericDataAdapter,
-  LineDataAdapter,
-  LinePlusBarDataAdapter,
-  MultiBarDataAdapter,
-  MultiBarHorizontalDataAdapter,
-  OhlcDataAdapter,
-  ParallelCoordinatesDataAdapter,
-  PieDataAdapter,
-  RadarDataAdapter,
-  ScatterDataAdapter,
-  StackedAreaDataAdapter
-} from '../../adapters';
-import { ChartDataAdapter, ChartDataAdapterFactory } from '../../interfaces';
-import { ChartConfiguration } from '../../models';
+  ChartConfiguration, GenericDataAdapter, PieDataAdapter, GaugeDataAdapter, LineDataAdapter,
+  ScatterDataAdapter, DiscreteBarDataAdapter, MultiBarDataAdapter, MultiBarHorizontalDataAdapter,
+  LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter, CandlestickDataAdapter, OhlcDataAdapter,
+  BulletDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter, RadarDataAdapter, ParallelCoordinatesDataAdapter
+} from '../../core';
 
 export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
 
@@ -28,7 +15,7 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
     this.chartConf = chartConf;
   }
 
-  public getAdapter(chartType: string): ChartDataAdapter {
+  getAdapter(chartType: string): ChartDataAdapter {
     let adapter: ChartDataAdapter;
     switch (chartType) {
       case 'line':
@@ -156,5 +143,4 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
   public createParallelCoordinatesDataAdapter(): ChartDataAdapter {
     return new ParallelCoordinatesDataAdapter(this.chartConf);
   }
-
 }

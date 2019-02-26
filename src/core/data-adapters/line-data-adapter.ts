@@ -1,5 +1,6 @@
-import { ChartDataAdapter, ChartSeries } from '../interfaces';
-import { ChartConfiguration, LineChartConfiguration } from '../models';
+import { ChartConfiguration } from '../../core';
+import { ChartDataAdapter, ChartSeries } from '../../interfaces';
+import { LineChartConfiguration } from '../chart-options/LineChartConfiguration.class';
 
 export class LineDataAdapter implements ChartDataAdapter {
 
