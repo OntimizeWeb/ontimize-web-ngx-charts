@@ -33,7 +33,8 @@ export class PieChartOptions extends AbstractChartOptions {
       tooltip: {
         enabled: conf.showTooltip,
         valueFormatter: valueFormatter
-      }
+      },
+      callback: conf.callback
     };
     return chart;
   }

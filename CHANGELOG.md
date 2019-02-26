@@ -1,6 +1,7 @@
 ## 4.0.0 (2019-02-22)
 ### Features
 * **ChartLegendConfiguration**: new `margin` attribute.
+* **MultiBarHorizontalChartConfiguration**, **PieChartConfiguration**, **DonutChartConfiguration**: new `callback` attribute.
 
 ## 4.0.0 (2019-02-22)
 ### DEPENDENCY UPDATES
