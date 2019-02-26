@@ -1,8 +1,8 @@
-import { ChartSeries, ChartDataAdapter } from '../../interfaces';
-import { ChartConfiguration } from '../../core';
-import { MultiBarHorizontalChartConfiguration } from '../chart-options/MultiBarHorizontalChartConfiguration.class';
+import { ChartDataAdapter, ChartSeries } from '../interfaces';
+import { ChartConfiguration } from '../models';
 
-export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
+export class GenericDataAdapter implements ChartDataAdapter {
+
   protected chartConf: ChartConfiguration;
 
   protected xAxis: string;
@@ -17,9 +17,9 @@ export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
     }
   }
 
+
   adaptResult(data: Array<any>): Array<ChartSeries> {
     let result: Array<ChartSeries> = [];
-    let params = this.chartConf as MultiBarHorizontalChartConfiguration;
     if (data && data.length) {
       let seriesvalues = this.processSeriesValues(data);
       var self = this;
@@ -28,9 +28,6 @@ export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
           'key': 'series',
           'values': []
         };
-        if (params.color && params.color[_index]) {
-          serie['color'] = params.color[_index];
-        }
         let key = axis;
         if (self.chartConf.translateService) {
           key = self.chartConf.translateService.get(key);
@@ -54,8 +51,8 @@ export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
           seriesvalues[axis] = [];
         }
         let val = {
-          'label': item[self.xAxis],
-          'value': item[axis]
+          'x': item[self.xAxis],
+          'y': item[axis]
         };
         seriesvalues[axis].push(val);
       });

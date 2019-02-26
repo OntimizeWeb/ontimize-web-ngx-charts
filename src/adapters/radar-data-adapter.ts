@@ -1,8 +1,8 @@
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration } from '../../core';
-import { RadarChartConfiguration } from '../../core';
+import { ChartDataAdapter } from '../interfaces';
+import { ChartConfiguration, RadarChartConfiguration } from '../models';
 
 export class RadarDataAdapter implements ChartDataAdapter {
+
   chartConf: ChartConfiguration;
 
   constructor(chartConf: ChartConfiguration) {
@@ -20,7 +20,7 @@ export class RadarDataAdapter implements ChartDataAdapter {
     data.forEach((item: any, _index: number) => {
       let val = [];
       dimensions.forEach((dimension: string) => {
-        val.push({ axis: dimension, value: item[dimension]});
+        val.push({ axis: dimension, value: item[dimension] });
       });
 
       result.push({
@@ -32,4 +32,5 @@ export class RadarDataAdapter implements ChartDataAdapter {
 
     return result;
   }
+
 }

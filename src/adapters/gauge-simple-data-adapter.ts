@@ -1,6 +1,5 @@
-import { ChartDataAdapter } from '../../interfaces';
-import { ChartConfiguration } from '../ChartConfiguration.class';
-import { GaugeSimpleChartConfiguration } from '../chart-options/GaugeSimpleChartConfiguration.class';
+import { ChartDataAdapter } from '../interfaces';
+import { ChartConfiguration, GaugeSimpleChartConfiguration } from '../models';
 
 export class GaugeSimpleDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
@@ -36,4 +35,5 @@ export class GaugeSimpleDataAdapter implements ChartDataAdapter {
     }
     return dataAdapt;
   }
+
 }

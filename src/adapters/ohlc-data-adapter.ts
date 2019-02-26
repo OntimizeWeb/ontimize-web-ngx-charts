@@ -1,11 +1,13 @@
-import { OhlcDataAdapter } from './ohlc-data-adapter';
-import { CandlestickChartConfiguration } from '../../core';
+import { ChartDataAdapter } from '../interfaces';
+import { ChartConfiguration, OHLCChartConfiguration } from '../models';
 
-export class CandlestickDataAdapter extends OhlcDataAdapter {
+export class OhlcDataAdapter implements ChartDataAdapter {
+
+  protected chartConf: ChartConfiguration;
 
   adaptResult(data: any): Object {
     let values = [];
-    let params = this.chartConf as CandlestickChartConfiguration;
+    let params = this.chartConf as OHLCChartConfiguration;
     data.forEach((item: any, _index: number) => {
       let val = {
         date: item[params.xColumn],
@@ -14,15 +16,18 @@ export class CandlestickDataAdapter extends OhlcDataAdapter {
         high: item[params.highAxis],
         low: item[params.lowAxis]
       }
-      values.push(val)
+      values.push(val);
     });
 
     values.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
-
     let dataAdapt = {
       'values': values
     }
     return dataAdapt;
+  }
+
+  constructor(chartconf: ChartConfiguration) {
+    this.chartConf = chartconf;
   }
 
 }

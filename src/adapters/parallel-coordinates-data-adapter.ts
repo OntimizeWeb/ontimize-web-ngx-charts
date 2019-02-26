@@ -1,6 +1,5 @@
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration } from '../../core';
-import { ParallelCoordinatesChartConfiguration } from '../../core';
+import { ChartDataAdapter } from '../interfaces';
+import { ChartConfiguration, ParallelCoordinatesChartConfiguration } from '../models';
 
 export class ParallelCoordinatesDataAdapter implements ChartDataAdapter {
   private chartConf: ChartConfiguration;
@@ -19,7 +18,7 @@ export class ParallelCoordinatesDataAdapter implements ChartDataAdapter {
     let dimensions = conf.dimensionData;
 
     data.forEach((item: any, _index: number) => {
-      let val: {[k: string]: any} = {};;
+      let val: { [k: string]: any } = {};;
       dimensions.forEach((dimension: string) => {
         val[dimension['key']] = item[dimension['key']];
       });
@@ -28,4 +27,5 @@ export class ParallelCoordinatesDataAdapter implements ChartDataAdapter {
 
     return values;
   }
+
 }
