@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs';
-
-import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { Headers, Http } from '@angular/http';
 import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
-
+import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'pie',
@@ -41,7 +39,7 @@ export class PieComponent {
     var self = this;
     let innerObserver: any;
     let dataObservable = Observable.create(observer =>
-      innerObserver = observer).share();
+      innerObserver = observer).pipe(share());
 
     this.http
       .get(url, { headers: headers })
@@ -136,8 +134,10 @@ const CUSTOM_DATA_HTML_DATA = `
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers, Http } from '@angular/http';
+import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 import { OChartComponent } from 'ontimize-web-ngx-charts';
 
@@ -166,7 +166,7 @@ export class PieComponent  {
     var self = this;
     let innerObserver: any;
     let dataObservable = Observable.create(observer =>
-      innerObserver = observer).share();
+      innerObserver = observer).pipe(share());
 
     this.http
       .get(url, { headers: headers })
