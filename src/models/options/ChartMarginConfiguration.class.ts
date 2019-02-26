@@ -1,11 +1,12 @@
 export class ChartMarginConfiguration {
-  top: number = 30;
-  bottom: number = 40;
-  right: number = 40;
-  left: number = 60;
 
-  getMarginOptions(): Object {
-    let opt = {
+  public top: number = 30;
+  public bottom: number = 40;
+  public right: number = 40;
+  public left: number = 60;
+
+  public getMarginOptions(): Object {
+    const opt = {
       top: this.top,
       bottom: this.bottom,
       right: this.right,
@@ -13,4 +14,5 @@ export class ChartMarginConfiguration {
     };
     return opt;
   }
+
 }
