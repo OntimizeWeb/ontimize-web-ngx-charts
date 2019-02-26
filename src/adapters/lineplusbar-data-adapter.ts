@@ -1,9 +1,8 @@
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartSeries, ChartPoint } from '../../interfaces/ChartData.interface';
-import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
-import { LinePlusBarFocusChartConfiguration } from '../chart-options/LinePlusBarFocusChartConfiguration.class';
+import { ChartDataAdapter, ChartPoint, ChartSeries } from '../interfaces';
+import { ChartConfiguration, LinePlusBarFocusChartConfiguration } from '../models';
 
 export class LinePlusBarDataAdapter implements ChartDataAdapter {
+
   protected chartConf: ChartConfiguration;
 
   protected xAxis: string;
@@ -72,7 +71,7 @@ export class LinePlusBarDataAdapter implements ChartDataAdapter {
     return seriesvalues;
   }
 
-  //Function to create equispaced point in the chart
+  // Function to create equispaced point in the chart
   beautyResult(data: Array<any>, zeros: boolean): ChartPoint[] {
     let values = [];
     let day = 24 * 60 * 60 * 1000, previusPoint = data[0]['x'], previusValue = 0;
@@ -90,4 +89,5 @@ export class LinePlusBarDataAdapter implements ChartDataAdapter {
     });
     return values;
   }
+
 }

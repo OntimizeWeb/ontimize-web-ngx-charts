@@ -21,13 +21,12 @@ import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OS
 import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
 
-import { ChartConfiguration } from '../../core';
 import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces';
-import { ChartService } from '../../services/chart.service';
 import {
   BubbleChartConfiguration,
   BulletChartConfiguration,
   CandlestickChartConfiguration,
+  ChartConfiguration,
   DiscreteBarChartConfiguration,
   DonutChartConfiguration,
   ForceDirectedGraphConfiguration,
@@ -46,7 +45,8 @@ import {
   RadialPercentChartConfiguration,
   ScatterChartConfiguration,
   StackedAreaChartConfiguration
-} from './../../core';
+} from '../../models';
+import { ChartService } from '../../services/chart.service';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 

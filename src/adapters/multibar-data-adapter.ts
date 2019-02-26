@@ -1,7 +1,5 @@
-import { ChartSeries } from '../../interfaces/ChartData.interface';
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration } from '../chart-options/ChartConfiguration.class';
-import { MultiBarChartConfiguration } from '../chart-options/MultiBarChartConfiguration.class';
+import { ChartDataAdapter, ChartSeries } from '../interfaces';
+import { ChartConfiguration, MultiBarChartConfiguration } from '../models';
 
 export class MultiBarDataAdapter implements ChartDataAdapter {
 

@@ -1,7 +1,8 @@
-import { ChartDataAdapter } from '../../interfaces';
-import { BulletChartConfiguration } from '../chart-options/BulletChartConfiguration.class';
-import { ChartConfiguration } from '../ChartConfiguration.class'
+import { ChartDataAdapter } from '../interfaces';
+import { BulletChartConfiguration, ChartConfiguration } from '../models';
+
 export class BulletDataAdapter implements ChartDataAdapter {
+
   protected chartConf: ChartConfiguration;
   protected rangesAxis: string;
   protected markersAxis: string;
@@ -51,4 +52,5 @@ export class BulletDataAdapter implements ChartDataAdapter {
 
     return result;
   }
+
 }

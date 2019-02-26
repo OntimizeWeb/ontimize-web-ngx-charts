@@ -1,18 +1,30 @@
-import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import {
-  ChartConfiguration, LineDataAdapter, DiscreteBarDataAdapter, PieDataAdapter, MultiBarDataAdapter, ScatterDataAdapter,
-  OhlcDataAdapter, CandlestickDataAdapter, MultiBarHorizontalDataAdapter, LinePlusBarDataAdapter, ForceDirectedGraphDataAdapter,
-  GenericDataAdapter, BulletDataAdapter, GaugeDataAdapter, GaugeSimpleDataAdapter, StackedAreaDataAdapter,
-  RadarDataAdapter, ParallelCoordinatesDataAdapter
-} from '../../core';
+  BulletDataAdapter,
+  CandlestickDataAdapter,
+  DiscreteBarDataAdapter,
+  ForceDirectedGraphDataAdapter,
+  GaugeDataAdapter,
+  GaugeSimpleDataAdapter,
+  GenericDataAdapter,
+  LineDataAdapter,
+  LinePlusBarDataAdapter,
+  MultiBarDataAdapter,
+  MultiBarHorizontalDataAdapter,
+  OhlcDataAdapter,
+  ParallelCoordinatesDataAdapter,
+  PieDataAdapter,
+  RadarDataAdapter,
+  ScatterDataAdapter,
+  StackedAreaDataAdapter
+} from '../adapters';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models';
 
 export class DataAdapterUtils {
 
   public static adapter: ChartDataAdapter = null;
 
-  constructor() {
-
-  }
+  constructor() { }
 
   public static createDataAdapter(chartConf: ChartConfiguration) {
     switch (chartConf.type) {
@@ -75,4 +87,5 @@ export class DataAdapterUtils {
         break;
     }
   }
+
 }
