@@ -1,4 +1,5 @@
 import { OTranslateService } from 'ontimize-web-ngx';
+
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { PieChartOptions } from './PieChartOptions.class';
 

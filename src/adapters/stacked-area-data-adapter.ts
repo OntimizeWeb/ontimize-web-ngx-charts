@@ -1,8 +1,5 @@
-import { ChartSeries, ChartDataAdapter } from '../../interfaces';
-import {
-  ChartConfiguration
-} from '../../core';
-import { StackedAreaChartConfiguration } from '../chart-options/StackedAreaChartConfiguration.class';
+import { ChartDataAdapter, ChartSeries } from '../interfaces';
+import { ChartConfiguration, StackedAreaChartConfiguration } from '../models';
 
 export class StackedAreaDataAdapter implements ChartDataAdapter {
 
@@ -64,4 +61,5 @@ export class StackedAreaDataAdapter implements ChartDataAdapter {
     });
     return seriesValues;
   }
+
 }

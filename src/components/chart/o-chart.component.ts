@@ -1,4 +1,5 @@
 import 'd3';
+import 'hammerjs';
 import 'nvd3';
 
 import { CommonModule } from '@angular/common';
@@ -13,27 +14,19 @@ import {
   NgModule,
   OnInit,
   Optional,
-  ViewChild,
   Output,
+  ViewChild
 } from '@angular/core';
-import {
-  dataServiceFactory,
-  InputConverter,
-  OFormComponent,
-  OntimizeService,
-  OServiceBaseComponent,
-  OTranslateService,
-  Util,
-} from 'ontimize-web-ngx';
+import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OServiceBaseComponent, OTranslateService, Util } from 'ontimize-web-ngx';
 import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
+import { Subscription } from 'rxjs';
 
-import { ChartConfiguration } from '../../core/chart-options/ChartConfiguration.class';
 import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces';
-import { ChartService } from '../../services/chart.service';
 import {
   BubbleChartConfiguration,
   BulletChartConfiguration,
   CandlestickChartConfiguration,
+  ChartConfiguration,
   DiscreteBarChartConfiguration,
   DonutChartConfiguration,
   ForceDirectedGraphConfiguration,
@@ -51,13 +44,11 @@ import {
   RadarChartConfiguration,
   RadialPercentChartConfiguration,
   ScatterChartConfiguration,
-  StackedAreaChartConfiguration,
-} from './../../core';
+  StackedAreaChartConfiguration
+} from '../../models';
+import { ChartService } from '../../services/chart.service';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
-
-import 'hammerjs';
-import { Subscription } from 'rxjs';
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -111,7 +102,6 @@ export const DEFAULT_INPUTS_O_CHART = [
   ],
   inputs: DEFAULT_INPUTS_O_CHART
 })
-
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;

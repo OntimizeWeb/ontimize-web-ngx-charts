@@ -19,4 +19,6 @@ export class ChartConfiguration {
 
   public data: Object;
 
+  public callback: () => void;
+
 }

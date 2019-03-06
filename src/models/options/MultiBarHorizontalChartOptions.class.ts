@@ -38,7 +38,8 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       barColor: (conf.color && conf.color.length) ? (_d: any, i: number) => conf.color[i % conf.color.length] : [],
       tooltip: {
         enabled: conf.showTooltip
-      }
+      },
+      callback: conf.callback
     };
     return chart;
   }

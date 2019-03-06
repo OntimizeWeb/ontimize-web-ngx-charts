@@ -5,7 +5,7 @@ import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
 
-  readonly type: string = 'multiBarHorizontalChart';
+  public readonly type: string = 'multiBarHorizontalChart';
 
   public showLegend: boolean = true;
   public legend: ChartLegendConfiguration;
@@ -22,7 +22,7 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
   public showYAxis: boolean = false;
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
-  public color: Array<string> = null;
+  public color: string[] = null;
   /** Formats value(s) */
   public valueType: string;
   /** Enables or disabled the tooltip */
