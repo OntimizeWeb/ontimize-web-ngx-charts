@@ -74,21 +74,29 @@ export class AbstractChartOptions {
   }
 
   protected getTickFormatter(type: string): any {
+    let localeFormat = d3 && this.d3Locale ? d3.locale(this.d3Locale.getD3Options()) : undefined;
+
     switch (type) {
       case 'intGrouped':
-        return d => d3.format(',d')(d);
+        return localeFormat ? d => localeFormat.numberFormat(',d')(d)
+          : d => d3.format(',d')(d);
       case 'floatGrouped':
-        return d => d3.format(',.02f')(d);
+        return localeFormat ? d => localeFormat.numberFormat(',.02f')(d)
+          : d => d3.format(',.02f')(d);
       case 'int':
-        return d => d3.format('d')(d);
+        return localeFormat ? d => localeFormat.numberFormat('d')(d)
+          : d => d3.format('d')(d);
       case 'float':
-        return d => d3.format('.02f')(d);
+        return localeFormat ? d => localeFormat.numberFormat('.02f')(d)
+          : d => d3.format('.02f')(d);
       case 'time':
-        return d => d3.time.format('%x')(new Date(d));
+        return localeFormat ? d => localeFormat.timeFormat('%x')(new Date(d))
+          : d => d3.time.format('%x')(new Date(d));
       case 'timeDay':
         return d => d3.time.format('%H:%M:%S')(new Date(d));
       case 'timeDetail':
-        return d => d3.time.format('%x %H:%M:%S')(new Date(d));
+        return localeFormat ? d => localeFormat.timeFormat('%x %H:%M:%S')(new Date(d))
+          : d => d3.time.format('%x %H:%M:%S')(new Date(d));
       case 'percentage':
         return d => d3.format('.0%')(d);
       default:
