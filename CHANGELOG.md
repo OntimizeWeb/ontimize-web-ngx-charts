@@ -1,4 +1,8 @@
-## 4.0.0 (2019-02-22)
+## 4.0.2 (2019-05-21)
+### Features
+* **o-chart**: Fix D3 locale options
+
+## 4.0.1 (2019-03-06)
 ### Features
 * **ChartLegendConfiguration**: new `margin` attribute.
 * **MultiBarHorizontalChartConfiguration**, **PieChartConfiguration**, **DonutChartConfiguration**: new `callback` attribute.
