@@ -27,7 +27,7 @@
   "typings": "./index.d.ts",
   "dependencies": {
     "d3": "3.5.17",
-    "ontimize-web-ngx-nvd3": "4.0.0",
+    "ontimize-web-ngx-nvd3": "4.0.1",
     "nvd3": "1.8.6"
   },
   "peerDependencies": {

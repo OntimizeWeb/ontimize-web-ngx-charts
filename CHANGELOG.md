@@ -1,3 +1,7 @@
+## 4.0.3 (2019-05-22)
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-nvd3@4.0.1 (This change does not affect to user)
+
 ## 4.0.2 (2019-05-21)
 ### Features
 * **o-chart**: Fix D3 locale options
