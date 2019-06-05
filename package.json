@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
     "clean": "o-ngx-lib-builder clean",
@@ -57,6 +57,7 @@
     "@ngx-translate/core": "10.0.2",
     "@ngx-translate/http-loader": "3.0.1",
     "core-js": "2.5.7",
+    "fstream": "1.0.12",
     "rxjs": "6.3.3",
     "zone.js": "0.8.26",
     "reflect-metadata": "0.1.12",
