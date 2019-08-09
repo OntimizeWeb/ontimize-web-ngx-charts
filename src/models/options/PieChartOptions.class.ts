@@ -34,7 +34,9 @@ export class PieChartOptions extends AbstractChartOptions {
         enabled: conf.showTooltip,
         valueFormatter: valueFormatter
       },
-      callback: conf.callback
+      callback: conf.callback,
+      startAngle: conf.startAngle,
+      endAngle: conf.endAngle
     };
     return chart;
   }
