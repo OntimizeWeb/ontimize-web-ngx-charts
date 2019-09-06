@@ -1,3 +1,9 @@
+## 4.0.4
+* **o-chart**:
+  * New attribute `noDataMessage` allows configure message to display if no data is provided
+* **PieChartConfiguration**: new attributes `startAngle` and `endAngle` allows  manage the starting/ending angle of the pie/donut chart
+
+
 ## 4.0.3 (2019-05-22)
 ### DEPENDENCY UPDATES
 * **Updated**: ontimize-web-nvd3@4.0.1 (This change does not affect to user)
