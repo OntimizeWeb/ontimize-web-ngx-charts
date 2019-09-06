@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "4.0.5-SNAPSHOT",
+  "version": "4.0.4-1-SNAPSHOT",
   "description": "An implementation of nvD3 for Ontimize Web",
   "scripts": {
     "clean": "o-ngx-lib-builder clean",
