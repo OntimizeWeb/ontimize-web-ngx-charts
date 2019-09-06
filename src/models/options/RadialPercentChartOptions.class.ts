@@ -24,7 +24,8 @@ export class RadialPercentChartOptions extends AbstractChartOptions {
       growOnHover: conf.growOnHover,
       x: this.getXValue(),
       y: this.getYValue(),
-      color: conf.color
+      color: conf.color,
+      noData: conf.noDataMessage
     }
 
     return chart;

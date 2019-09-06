@@ -36,7 +36,8 @@ export class PieChartOptions extends AbstractChartOptions {
       },
       callback: conf.callback,
       startAngle: conf.startAngle,
-      endAngle: conf.endAngle
+      endAngle: conf.endAngle,
+      noData: conf.noDataMessage
     };
     return chart;
   }

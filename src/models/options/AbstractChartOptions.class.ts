@@ -1,5 +1,5 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
 import { OTranslateService } from 'ontimize-web-ngx';
+import { ChartConfiguration } from './ChartConfiguration.class';
 import { D3LocaleOptions } from './D3LocaleOptions';
 
 declare var d3: any;
@@ -37,7 +37,8 @@ export class AbstractChartOptions {
       x: this.getXValue(),
       y: this.getYValue(),
       xAxis: this.getXAxisConfiguration(),
-      yAxis: this.getYAxisConfiguration()
+      yAxis: this.getYAxisConfiguration(),
+      noData : this.chartConf.noDataMessage
     };
   }
 
