@@ -27,8 +27,8 @@
   "typings": "./index.d.ts",
   "dependencies": {
     "d3": "3.5.17",
-    "ontimize-web-ngx-nvd3": "4.0.1",
-    "nvd3": "1.8.6"
+    "nvd3": "1.8.6",
+    "ontimize-web-ngx-nvd3": "4.0.1"
   },
   "peerDependencies": {
     "core-js": "2.5.7",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "ontimize-web-ngx": "4.0.0",
-    "ontimize-web-ngx-library-tools": "4.0.0",
+    "ontimize-web-ngx-library-tools": "4.0.1",
     "@angular/flex-layout": "6.0.0-beta.18",
     "@angular/material": "6.4.7",
     "@angular/material-moment-adapter": "6.4.7",
@@ -76,6 +76,7 @@
     "gulp-inline-ng2-template": "5.0.1",
     "gulp-replace": "0.6.1",
     "copyfiles": "1.2.0",
-    "webpack": "4.21.0"
+    "webpack": "4.21.0",
+    "braces": "2.3.1"
   }
 }
