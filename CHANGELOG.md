@@ -1,7 +1,12 @@
-## 4.0.4
+## 4.0.4(2019-10-07)
 * **o-chart**:
   * New attribute `noDataMessage` allows configure message to display if no data is provided
 * **PieChartConfiguration**: new attributes `startAngle` and `endAngle` allows  manage the starting/ending angle of the pie/donut chart
+
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx-library-tools@4.0.2 (This change does not affect to user)
+* **Updated**: ontimize-web-ngx@4.0.0 (This change does not affect to user)
+
 
 
 ## 4.0.3 (2019-05-22)
