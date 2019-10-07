@@ -1,5 +1,5 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
-import {  ForceDirectedGraphConfiguration } from './ForceDirectedGraphConfiguration.class';
+import { ForceDirectedGraphConfiguration } from './ForceDirectedGraphConfiguration.class';
 
 declare var d3: any;
 
@@ -25,7 +25,8 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
       gravity: conf.gravity,
       theta: conf.theta,
       alpha: conf.alpha,
-      radius: conf.radius
+      radius: conf.radius,
+      noData: conf.noDataMessage
     };
     return chart;
   }

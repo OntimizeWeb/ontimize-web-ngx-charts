@@ -2,7 +2,7 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { GaugeSimpleChartConfiguration } from './GaugeSimpleChartConfiguration.class';
 
 export class GaugeSimpleChartOptions extends AbstractChartOptions {
- 
+
   protected getChartType(): string {
     return 'gaugeChart';
   }
@@ -22,7 +22,8 @@ export class GaugeSimpleChartOptions extends AbstractChartOptions {
       min: conf.min,
       max: conf.max,
       zoneLimit1: conf.zoneLimit1,
-      zoneLimit2: conf.zoneLimit2
+      zoneLimit2: conf.zoneLimit2,
+      noData: conf.noDataMessage
     }
 
     return chart;

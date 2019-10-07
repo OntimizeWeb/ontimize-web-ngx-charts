@@ -32,6 +32,10 @@ export class PieChartConfiguration extends ChartConfiguration {
   public showTooltip: boolean = true;
   /** List of colors for each value in the Y axis of the chart */
   public colorData: OColorData[];
+  /** Function used to manage the starting angle of the pie/donut chart */
+  public startAngle: (d) => number;
+  /** Function used to manage the ending angle of the pie/donut chart */
+  public endAngle: (d) => number;
 
   constructor() {
     super();

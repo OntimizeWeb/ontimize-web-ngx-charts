@@ -15,7 +15,8 @@ export class BubbleChartOptions extends AbstractChartOptions {
       height: this.getChartHeight(),
       width: this.chartConf.width,
       duration: 500,
-      color: conf.color
+      color: conf.color,
+      noData: conf.noDataMessage
     }
 
     return chart;

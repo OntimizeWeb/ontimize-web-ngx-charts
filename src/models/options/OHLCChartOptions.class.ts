@@ -13,24 +13,25 @@ export class OHLCChartOptions extends AbstractChartOptions {
     conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
     let chart = {
-        type: this.getChartType(),
-        height: conf.height,
-        width: conf.width,
-        x: this.getXValue(),
-        y: this.getYValue(),
-        low: this.getLow(),
-        high: this.getHigh(),
-        xAxis: conf.x1Axis.getAxisOptions(),
-        yAxis: conf.y1Axis.getAxisOptions(),
-        showXAxis: conf.showXAxis,
-        showYAxis: conf.showYAxis,
-        rightAlignYAxis: conf.rightAlignYAxis,
-        legend: conf.legend.getLegendOptions(),
-        showLegend: conf.showLegend,
-        zoom: conf.zoom.getZoomOptions(),
-        useInteractiveGuideline: conf.useInteractiveGuideline,
-        padData: conf.padData,
-        clipEdge: conf.clidEdge
+      type: this.getChartType(),
+      height: conf.height,
+      width: conf.width,
+      x: this.getXValue(),
+      y: this.getYValue(),
+      low: this.getLow(),
+      high: this.getHigh(),
+      xAxis: conf.x1Axis.getAxisOptions(),
+      yAxis: conf.y1Axis.getAxisOptions(),
+      showXAxis: conf.showXAxis,
+      showYAxis: conf.showYAxis,
+      rightAlignYAxis: conf.rightAlignYAxis,
+      legend: conf.legend.getLegendOptions(),
+      showLegend: conf.showLegend,
+      zoom: conf.zoom.getZoomOptions(),
+      useInteractiveGuideline: conf.useInteractiveGuideline,
+      padData: conf.padData,
+      clipEdge: conf.clidEdge,
+      noData: conf.noDataMessage
     };
     return chart;
   }

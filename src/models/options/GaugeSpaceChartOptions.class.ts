@@ -2,7 +2,7 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { GaugeSpaceChartConfiguration } from './GaugeSpaceChartConfiguration.class';
 
 export class GaugeSpaceChartOptions extends AbstractChartOptions {
-  
+
   protected getChartType(): string {
     return 'pieChart';
   }
@@ -28,7 +28,8 @@ export class GaugeSpaceChartOptions extends AbstractChartOptions {
       growOnHover: conf.growOnHover,
       x: function (d) { return d.x; },
       y: function (d) { return d.y; },
-      color: [conf.color]
+      color: [conf.color],
+      noData: conf.noDataMessage
     }
 
     return chart;

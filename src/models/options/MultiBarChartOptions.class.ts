@@ -35,6 +35,7 @@ export class MultiBarChartOptions extends AbstractChartOptions {
       rotateLabels: conf.rotateLabels,
       wrapLabels: conf.wrapLabels,
       rightAlignYAxis: conf.rightAlignYAxis,
+      noData: conf.noDataMessage
     };
     return chart;
   }

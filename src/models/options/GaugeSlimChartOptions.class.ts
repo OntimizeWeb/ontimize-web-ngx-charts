@@ -28,7 +28,8 @@ export class GaugeSlimChartOptions extends AbstractChartOptions {
       growOnHover: conf.growOnHover,
       x: function (d) { return d.x; },
       y: function (d) { return d.y; },
-      color: conf.color
+      color: conf.color,
+      noData: conf.noDataMessage
     }
 
     return chart;
