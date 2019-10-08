@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-quickstart-charts",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -34,9 +34,9 @@
     "rxjs": "6.3.3",
     "zone.js": "0.8.26",
     "reflect-metadata": "0.1.12",
-    "ontimize-web-ngx": "4.0.0",
-    "ontimize-web-ngx-charts": "4.0.0",
-    "ontimize-web-ngx-theming": "4.0.0",
+    "ontimize-web-ngx": "4.0.7",
+    "ontimize-web-ngx-charts": "4.0.4",
+    "ontimize-web-ngx-theming": "4.0.2",
     "classlist.js": "^1.1.20150312",
     "intl": "^1.2.5",
     "web-animations-js": "^2.3.1",
