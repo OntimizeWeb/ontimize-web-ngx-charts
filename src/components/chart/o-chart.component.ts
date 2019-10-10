@@ -1,51 +1,13 @@
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, NgModule, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import 'd3';
 import 'hammerjs';
 import 'nvd3';
-
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  forwardRef,
-  Inject,
-  Injector,
-  NgModule,
-  OnInit,
-  Optional,
-  Output,
-  ViewChild
-} from '@angular/core';
 import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OServiceBaseComponent, OTranslateService, Util } from 'ontimize-web-ngx';
 import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
-
 import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces';
-import {
-  BubbleChartConfiguration,
-  BulletChartConfiguration,
-  CandlestickChartConfiguration,
-  ChartConfiguration,
-  DiscreteBarChartConfiguration,
-  DonutChartConfiguration,
-  ForceDirectedGraphConfiguration,
-  GaugeDashboardChartConfiguration,
-  GaugeSimpleChartConfiguration,
-  GaugeSlimChartConfiguration,
-  GaugeSpaceChartConfiguration,
-  LineChartConfiguration,
-  LinePlusBarFocusChartConfiguration,
-  MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration,
-  OHLCChartConfiguration,
-  ParallelCoordinatesChartConfiguration,
-  PieChartConfiguration,
-  RadarChartConfiguration,
-  RadialPercentChartConfiguration,
-  ScatterChartConfiguration,
-  StackedAreaChartConfiguration
-} from '../../models';
+import { BubbleChartConfiguration, BulletChartConfiguration, CandlestickChartConfiguration, ChartConfiguration, DiscreteBarChartConfiguration, DonutChartConfiguration, ForceDirectedGraphConfiguration, GaugeDashboardChartConfiguration, GaugeSimpleChartConfiguration, GaugeSlimChartConfiguration, GaugeSpaceChartConfiguration, LineChartConfiguration, LinePlusBarFocusChartConfiguration, MultiBarChartConfiguration, MultiBarHorizontalChartConfiguration, OHLCChartConfiguration, ParallelCoordinatesChartConfiguration, PieChartConfiguration, RadarChartConfiguration, RadialPercentChartConfiguration, ScatterChartConfiguration, StackedAreaChartConfiguration } from '../../models';
 import { ChartService } from '../../services/chart.service';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
@@ -98,6 +60,7 @@ export const DEFAULT_INPUTS_O_CHART = [
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
   providers: [
+    ChartService,
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
   inputs: DEFAULT_INPUTS_O_CHART
