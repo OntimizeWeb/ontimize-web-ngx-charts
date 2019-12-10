@@ -19,6 +19,9 @@ export class ChartConfiguration {
 
   public data: Object;
 
+  // Message to display if no data is provided
+  public noDataMessage: string;
+
   public callback: () => void;
 
 }

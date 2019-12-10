@@ -8,7 +8,7 @@ export class StackedAreaChartOptions extends AbstractChartOptions {
   }
 
   protected getChartOptions() {
-    let conf = this.chartConf instanceof StackedAreaChartConfiguration ? this.chartConf :  new StackedAreaChartConfiguration();
+    let conf = this.chartConf instanceof StackedAreaChartConfiguration ? this.chartConf : new StackedAreaChartConfiguration();
     conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
     conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
 
@@ -33,7 +33,8 @@ export class StackedAreaChartOptions extends AbstractChartOptions {
       style: conf.style,
       interactive: conf.interactive,
       useVoronoi: conf.useVoronoi,
-      showVoronoi: conf.showVoronoi
+      showVoronoi: conf.showVoronoi,
+      noData: conf.noDataMessage
     };
 
     return chart;

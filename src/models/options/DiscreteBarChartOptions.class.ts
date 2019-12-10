@@ -30,7 +30,8 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
       rightAlignYAxis: conf.rightAlingYAxis,
       legend: conf.legend.getLegendOptions(),
       xAxis: conf.x1Axis.getAxisOptions(),
-      yAxis: conf.y1Axis.getAxisOptions()
+      yAxis: conf.y1Axis.getAxisOptions(),
+      noData: conf.noDataMessage
     };
     return options;
   }

@@ -26,7 +26,8 @@ export class CandlestickChartOptions extends AbstractChartOptions {
       zoom: conf.zoom.getZoomOptions(),
       useInteractiveGuideline: conf.useInteractiveGuideline,
       padData: conf.padData,
-      clipEdge: conf.clidEdge
+      clipEdge: conf.clidEdge,
+      noData: conf.noDataMessage
     };
 
     return chart;

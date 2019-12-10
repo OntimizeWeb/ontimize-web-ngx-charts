@@ -13,7 +13,8 @@ export class ParallelCoordinatesChartOptions extends AbstractChartOptions {
       dimensionData: conf.dimensionData,
       undefinedValuesLabel: conf.undefinedValueLabel,
       color: conf.color,
-      lineTension: conf.lineTension
+      lineTension: conf.lineTension,
+      noData: conf.noDataMessage
     }
     return chart;
   }

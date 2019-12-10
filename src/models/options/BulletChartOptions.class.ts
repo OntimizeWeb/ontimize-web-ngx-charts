@@ -22,7 +22,8 @@ export class BulletChartOptions extends AbstractChartOptions {
       orient: conf.orient,
       ranges: this.getRanges(),
       measures: this.getMeasure(),
-      markers: this.getMarkers()
+      markers: this.getMarkers(),
+      noData: conf.noDataMessage
     }
     return chart;
   }
