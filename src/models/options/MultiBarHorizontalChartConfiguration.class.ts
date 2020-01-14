@@ -23,6 +23,7 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
   public color: string[] = null;
+  public barColor: string[] = null;
   /** Formats value(s) */
   public valueType: string;
   /** Enables or disabled the tooltip */

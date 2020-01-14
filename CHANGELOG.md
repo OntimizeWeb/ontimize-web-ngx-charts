@@ -1,4 +1,9 @@
-## 4.0.4(2019-10-07)
+# 4.0.5
+### Features
+* **MultiBarHorizontalChartConfiguration**: new `barColor` attribute.
+
+## 4.0.4 (2019-10-07)
+### Features
 * **o-chart**:
   * New attribute `noDataMessage` allows configure message to display if no data is provided
 * **PieChartConfiguration**: new attributes `startAngle` and `endAngle` allows  manage the starting/ending angle of the pie/donut chart

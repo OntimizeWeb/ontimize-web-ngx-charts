@@ -35,7 +35,8 @@ export class MultiBarHorizontalChartOptions extends AbstractChartOptions {
       showLegend: conf.showLegend,
       showXAxis: conf.showXAxis,
       showYAxis: conf.showYAxis,
-      barColor: (conf.color && conf.color.length) ? (_d: any, i: number) => conf.color[i % conf.color.length] : [],
+      color: (conf.color && conf.color.length) ? (_d: any, i: number) => conf.color[i % conf.color.length] : null,
+      barColor: (conf.barColor && conf.barColor.length) ? (_d: any, i: number) => conf.barColor[i % conf.barColor.length] : null,
       tooltip: {
         enabled: conf.showTooltip
       },
