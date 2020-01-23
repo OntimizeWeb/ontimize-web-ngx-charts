@@ -54,9 +54,12 @@ export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
           seriesvalues[axis] = [];
         }
         let val = {
-          'label': item[self.xAxis],
-          'value': item[axis]
+          label: item[self.xAxis],
+          value: item[axis]
         };
+        if (self.chartConf.translateService) {
+          val.label = self.chartConf.translateService.get(val.label);
+        }
         seriesvalues[axis].push(val);
       });
     });
