@@ -9,8 +9,9 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let conf = this.chartConf instanceof DiscreteBarChartConfiguration ? this.chartConf : new DiscreteBarChartConfiguration;
-    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
-    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    conf.x1Axis.tickFormat = this.getTickFormatter(conf.xDataType) || conf.xDataType;
+    conf.y1Axis.tickFormat = this.getTickFormatter(conf.yDataType) || conf.yDataType;
+    const valueFormat = this.getTickFormatter(conf.valueType) || conf.valueType;
 
     let options = {
       type: this.getChartType(),
@@ -31,6 +32,7 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
       legend: conf.legend.getLegendOptions(),
       xAxis: conf.x1Axis.getAxisOptions(),
       yAxis: conf.y1Axis.getAxisOptions(),
+      valueFormat: valueFormat,
       noData: conf.noDataMessage
     };
     return options;

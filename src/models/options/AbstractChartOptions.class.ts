@@ -101,7 +101,7 @@ export class AbstractChartOptions {
       case 'percentage':
         return d => d3.format('.0%')(d);
       default:
-        return void 0;
+        return type;
     }
   }
 

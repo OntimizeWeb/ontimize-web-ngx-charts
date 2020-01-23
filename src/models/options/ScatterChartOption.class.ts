@@ -9,8 +9,8 @@ export class ScatterChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     const conf = this.chartConf instanceof ScatterChartConfiguration ? this.chartConf : new ScatterChartConfiguration();
-    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
-    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    conf.x1Axis.tickFormat = this.getTickFormatter(conf.xDataType) || conf.xDataType;
+    conf.y1Axis.tickFormat = this.getTickFormatter(conf.yDataType) || conf.yDataType;
 
     const chart = {
       type: this.getChartType(),

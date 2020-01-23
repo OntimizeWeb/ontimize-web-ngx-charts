@@ -5,8 +5,8 @@ export class CandlestickChartOptions extends AbstractChartOptions {
 
   getChartOptions() {
     let conf = this.chartConf instanceof CandlestickChartConfiguration ? this.chartConf : new CandlestickChartConfiguration;
-    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
-    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    conf.x1Axis.tickFormat = this.getTickFormatter(conf.xDataType) || conf.xDataType;
+    conf.y1Axis.tickFormat = this.getTickFormatter(conf.yDataType) || conf.yDataType;
 
     let chart = {
       type: this.getChartType(),

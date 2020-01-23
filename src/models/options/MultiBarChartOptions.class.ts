@@ -9,8 +9,8 @@ export class MultiBarChartOptions extends AbstractChartOptions {
 
   protected getChartOptions(): Object {
     let conf = this.chartConf instanceof MultiBarChartConfiguration ? this.chartConf : new MultiBarChartConfiguration();
-    conf.x1Axis.tickFormat = conf.xDataType ? this.getTickFormatter(conf.xDataType) : null;
-    conf.y1Axis.tickFormat = conf.yDataType ? this.getTickFormatter(conf.yDataType) : null;
+    conf.x1Axis.tickFormat = this.getTickFormatter(conf.xDataType) || conf.xDataType;
+    conf.y1Axis.tickFormat = this.getTickFormatter(conf.yDataType) || conf.yDataType;
 
     let chart = {
       type: this.getChartType(),

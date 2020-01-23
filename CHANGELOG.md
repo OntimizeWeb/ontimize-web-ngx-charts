@@ -1,6 +1,8 @@
 # 4.0.5
 ### Features
 * **MultiBarHorizontalChartConfiguration**: new `barColor` attribute.
+* **DiscreteBarChartConfiguration**: new `valueType` attribute.
+* **LineChartConfiguration**, **StackedAreaChartConfiguration**, **CandlestickChartConfiguration**, **DiscreteBarChartConfiguration**, **MultiBarHorizontalChartConfiguration**, **MultiBarChartConfiguration**, **OHLCChartConfiguration**, **ScatterChartConfiguration**: attributes `xDataType` and `yDataType` now allows a format function from d3 library in addition to a string.
 
 ## 4.0.4 (2019-10-07)
 ### Features

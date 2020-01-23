@@ -1,31 +1,29 @@
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class DiscreteBarChartConfiguration extends ChartConfiguration {
+
   readonly type: string = 'discreteBar';
 
-  showValues: boolean = true;
-  duration: number = 500;
-
-  showLegend: boolean = false;
-  legend: ChartLegendConfiguration;
-
-  staggerLabels: boolean = false;
-  rotateLabels: number = 0;
-  wrapLabels: boolean = true;
-
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  rightAlingYAxis: boolean = false;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
-
-  margin: ChartMarginConfiguration;
-
-  agroup: boolean = false;
-
+  public showValues: boolean = true;
+  public duration: number = 500;
+  public showLegend: boolean = false;
+  public legend: ChartLegendConfiguration;
+  public staggerLabels: boolean = false;
+  public rotateLabels: number = 0;
+  public wrapLabels: boolean = true;
+  public showXAxis: boolean = true;
+  public showYAxis: boolean = true;
+  public rightAlingYAxis: boolean = false;
+  public x1Axis: ChartAxisConfiguration;
+  public y1Axis: ChartAxisConfiguration;
+  public margin: ChartMarginConfiguration;
+  /** whether group the values with the same key or not */
+  public agroup: boolean = false;
+  /** Value format */
+  public valueType: string;
 
   constructor() {
     super();
@@ -34,4 +32,5 @@ export class DiscreteBarChartConfiguration extends ChartConfiguration {
     this.y1Axis = new ChartAxisConfiguration();
     this.margin = new ChartMarginConfiguration();
   }
+
 }
