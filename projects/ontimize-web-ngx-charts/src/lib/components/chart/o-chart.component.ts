@@ -2,7 +2,6 @@ import 'd3';
 import 'hammerjs';
 import 'nvd3';
 
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -11,45 +10,54 @@ import {
   forwardRef,
   Inject,
   Injector,
-  NgModule,
   OnInit,
   Optional,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import { dataServiceFactory, InputConverter, OFormComponent, OntimizeService, OServiceBaseComponent, OTranslateService, Util } from 'ontimize-web-ngx';
-import { nvD3, NvD3Module } from 'ontimize-web-ngx-nvd3';
+import {
+  dataServiceFactory,
+  InputConverter,
+  OFormComponent,
+  OntimizeService,
+  OServiceBaseComponent,
+  OTranslateService,
+  Util,
+} from 'ontimize-web-ngx';
+import { nvD3 } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
 
-import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces';
-import {
-  BubbleChartConfiguration,
-  BulletChartConfiguration,
-  CandlestickChartConfiguration,
-  ChartConfiguration,
-  DiscreteBarChartConfiguration,
-  DonutChartConfiguration,
-  ForceDirectedGraphConfiguration,
-  GaugeDashboardChartConfiguration,
-  GaugeSimpleChartConfiguration,
-  GaugeSlimChartConfiguration,
-  GaugeSpaceChartConfiguration,
-  LineChartConfiguration,
-  LinePlusBarFocusChartConfiguration,
-  MultiBarChartConfiguration,
-  MultiBarHorizontalChartConfiguration,
-  OHLCChartConfiguration,
-  ParallelCoordinatesChartConfiguration,
-  PieChartConfiguration,
-  RadarChartConfiguration,
-  RadialPercentChartConfiguration,
-  ScatterChartConfiguration,
-  StackedAreaChartConfiguration
-} from '../../models';
+import { ChartDataAdapter, ChartDataAdapterFactory } from '../../interfaces/ChartDataAdapterFactory.interface';
+import { ChartFactory } from '../../interfaces/ChartFactory.interface';
+import { BubbleChartConfiguration } from '../../models/options/BubbleChartConfiguration.class';
+import { BulletChartConfiguration } from '../../models/options/BulletChartConfiguration.class';
+import { CandlestickChartConfiguration } from '../../models/options/CandlestickChartConfiguration.class';
+import { ChartConfiguration } from '../../models/options/ChartConfiguration.class';
+import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
+import { DonutChartConfiguration } from '../../models/options/DonutChartConfiguration.class';
+import { ForceDirectedGraphConfiguration } from '../../models/options/ForceDirectedGraphConfiguration.class';
+import { GaugeDashboardChartConfiguration } from '../../models/options/GaugeDashboardChartConfiguration.class';
+import { GaugeSimpleChartConfiguration } from '../../models/options/GaugeSimpleChartConfiguration.class';
+import { GaugeSlimChartConfiguration } from '../../models/options/GaugeSlimChartConfiguration.class';
+import { GaugeSpaceChartConfiguration } from '../../models/options/GaugeSpaceChartConfiguration.class';
+import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
+import { LinePlusBarFocusChartConfiguration } from '../../models/options/LinePlusBarFocusChartConfiguration.class';
+import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
+import { MultiBarHorizontalChartConfiguration } from '../../models/options/MultiBarHorizontalChartConfiguration.class';
+import { OHLCChartConfiguration } from '../../models/options/OHLCChartConfiguration.class';
+import { ParallelCoordinatesChartConfiguration } from '../../models/options/ParallelCoordinatesChartConfiguration.class';
+import { PieChartConfiguration } from '../../models/options/PieChartConfiguration.class';
+import { RadarChartConfiguration } from '../../models/options/RadarChartConfiguration.class';
+import { RadialPercentChartConfiguration } from '../../models/options/RadialPercentChartConfiguration.class';
+import { ScatterChartConfiguration } from '../../models/options/ScatterChartConfiguration.class';
+import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 import { ChartService } from '../../services/chart.service';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 
+
+// import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces/ChartFactory.interface';
+// import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces/ChartFactory.interface';
 export const CHART_TYPES = [
   'bubbleChart',
   'bulletChart',
@@ -75,7 +83,7 @@ export const CHART_TYPES = [
 ];
 
 export const DEFAULT_INPUTS_O_CHART = [
-  ...OServiceBaseComponent.DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
+  // ...OServiceBaseComponent.DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
 
   'cHeight: chart-height',
   'cWidth: chart-width',
@@ -93,7 +101,6 @@ export const DEFAULT_INPUTS_O_CHART = [
 ];
 
 @Component({
-  moduleId: module.id,
   selector: 'o-chart',
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
@@ -128,7 +135,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected ChartOptions: any;
 
-  @ViewChild('nvChart')
+  @ViewChild('nvChart', { static: false })
   protected chartWrapper: nvD3;
 
   protected formDataSubcribe;

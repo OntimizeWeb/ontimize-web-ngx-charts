@@ -1,5 +1,6 @@
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration, RadarChartConfiguration } from '../models';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { RadarChartConfiguration } from '../models/options/RadarChartConfiguration.class';
 
 export class RadarDataAdapter implements ChartDataAdapter {
 

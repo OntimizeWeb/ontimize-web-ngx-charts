@@ -1,5 +1,7 @@
-import { ChartDataAdapter, ChartPoint } from '../interfaces';
-import { ChartConfiguration, PieChartConfiguration } from '../models';
+import { ChartPoint } from '../interfaces/ChartData.interface';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { PieChartConfiguration } from '../models/options/PieChartConfiguration.class';
 
 export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAdapter {
 

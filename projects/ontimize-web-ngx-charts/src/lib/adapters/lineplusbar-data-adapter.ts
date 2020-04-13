@@ -1,5 +1,8 @@
-import { ChartDataAdapter, ChartPoint, ChartSeries } from '../interfaces';
-import { ChartConfiguration, LinePlusBarFocusChartConfiguration } from '../models';
+import { ChartPoint, ChartSeries } from '../interfaces/ChartData.interface';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { LinePlusBarFocusChartConfiguration } from '../models/options/LinePlusBarFocusChartConfiguration.class';
+
 
 export class LinePlusBarDataAdapter implements ChartDataAdapter {
 

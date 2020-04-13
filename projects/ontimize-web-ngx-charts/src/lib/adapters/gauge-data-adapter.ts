@@ -1,4 +1,4 @@
-import { ChartDataAdapter } from '../interfaces';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 
 export class GaugeDataAdapter implements ChartDataAdapter {

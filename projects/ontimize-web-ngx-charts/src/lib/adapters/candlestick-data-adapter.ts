@@ -1,4 +1,4 @@
-import { CandlestickChartConfiguration } from '../models';
+import { CandlestickChartConfiguration } from '../models/options/CandlestickChartConfiguration.class';
 import { OhlcDataAdapter } from './ohlc-data-adapter';
 
 export class CandlestickDataAdapter extends OhlcDataAdapter {

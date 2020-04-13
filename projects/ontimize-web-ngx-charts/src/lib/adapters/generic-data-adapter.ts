@@ -1,5 +1,6 @@
-import { ChartDataAdapter, ChartSeries } from '../interfaces';
-import { ChartConfiguration } from '../models';
+import { ChartSeries } from '../interfaces/ChartData.interface';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
 
 export class GenericDataAdapter implements ChartDataAdapter {
 

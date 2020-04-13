@@ -1,5 +1,6 @@
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration, ParallelCoordinatesChartConfiguration } from '../models';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { ParallelCoordinatesChartConfiguration } from '../models/options/ParallelCoordinatesChartConfiguration.class';
 
 export class ParallelCoordinatesDataAdapter implements ChartDataAdapter {
 

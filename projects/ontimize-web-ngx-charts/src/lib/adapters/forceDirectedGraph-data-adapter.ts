@@ -1,5 +1,6 @@
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration, ForceDirectedGraphConfiguration } from '../models';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { ForceDirectedGraphConfiguration } from '../models/options/ForceDirectedGraphConfiguration.class';
 
 export class ForceDirectedGraphDataAdapter implements ChartDataAdapter {
 

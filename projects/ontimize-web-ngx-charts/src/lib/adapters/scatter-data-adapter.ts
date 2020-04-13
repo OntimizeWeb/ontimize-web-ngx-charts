@@ -1,5 +1,7 @@
-import { ChartDataAdapter, ChartSeries } from '../interfaces';
-import { ChartConfiguration, ScatterChartConfiguration } from '../models';
+import { ChartSeries } from '../interfaces/ChartData.interface';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { ScatterChartConfiguration } from '../models/options/ScatterChartConfiguration.class';
 
 export class ScatterDataAdapter implements ChartDataAdapter {
 

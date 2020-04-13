@@ -1,9 +1,8 @@
-import { OChartComponentModule } from './components/chart/o-chart.component';
+// import { OChartComponentModule } from './components/chart/o-chart.module';
 
 export * from './components/chart/o-chart.component';
-export * from './components/chart/o-chart.module';
 export * from './components/chart/o-chart.factory';
 
-export const OCHART_MODULES: any = [
-  OChartComponentModule
-];
+// export const OCHART_MODULES: any = [
+//   OChartComponentModule
+// ];

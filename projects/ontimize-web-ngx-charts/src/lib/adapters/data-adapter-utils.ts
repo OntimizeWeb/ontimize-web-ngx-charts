@@ -1,24 +1,22 @@
-import {
-  BulletDataAdapter,
-  CandlestickDataAdapter,
-  DiscreteBarDataAdapter,
-  ForceDirectedGraphDataAdapter,
-  GaugeDataAdapter,
-  GaugeSimpleDataAdapter,
-  GenericDataAdapter,
-  LineDataAdapter,
-  LinePlusBarDataAdapter,
-  MultiBarDataAdapter,
-  MultiBarHorizontalDataAdapter,
-  OhlcDataAdapter,
-  ParallelCoordinatesDataAdapter,
-  PieDataAdapter,
-  RadarDataAdapter,
-  ScatterDataAdapter,
-  StackedAreaDataAdapter
-} from '../adapters';
+import { BulletDataAdapter } from '../adapters/bullet-data-adapter';
+import { CandlestickDataAdapter } from '../adapters/candlestick-data-adapter';
+import { DiscreteBarDataAdapter } from '../adapters/discreteBar-data-adapter';
+import { ForceDirectedGraphDataAdapter } from '../adapters/forceDirectedGraph-data-adapter';
+import { GaugeDataAdapter } from '../adapters/gauge-data-adapter';
+import { GaugeSimpleDataAdapter } from '../adapters/gauge-simple-data-adapter';
+import { GenericDataAdapter } from '../adapters/generic-data-adapter';
+import { LineDataAdapter } from '../adapters/line-data-adapter';
+import { LinePlusBarDataAdapter } from '../adapters/lineplusbar-data-adapter';
+import { MultiBarDataAdapter } from '../adapters/multibar-data-adapter';
+import { MultiBarHorizontalDataAdapter } from '../adapters/multibar-horizontal-data-adapter';
+import { OhlcDataAdapter } from '../adapters/ohlc-data-adapter';
+import { ParallelCoordinatesDataAdapter } from '../adapters/parallel-coordinates-data-adapter';
+import { PieDataAdapter } from '../adapters/pie-data-adapter';
+import { RadarDataAdapter } from '../adapters/radar-data-adapter';
+import { ScatterDataAdapter } from '../adapters/scatter-data-adapter';
+import { StackedAreaDataAdapter } from '../adapters/stacked-area-data-adapter';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration } from '../models';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
 
 export class DataAdapterUtils {
 

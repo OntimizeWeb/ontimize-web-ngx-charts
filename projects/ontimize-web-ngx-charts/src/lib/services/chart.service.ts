@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { nvD3 } from 'ontimize-web-ngx-nvd3';
 
-import { ChartMarginConfiguration } from '../models';
+import { ChartMarginConfiguration } from '../models/options/ChartMarginConfiguration.class';
 
 @Injectable()
 export class ChartService {

@@ -1,5 +1,6 @@
-import { ChartDataAdapter } from '../interfaces';
-import { BulletChartConfiguration, ChartConfiguration } from '../models';
+import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { BulletChartConfiguration } from '../models/options/BulletChartConfiguration.class';
 
 export class BulletDataAdapter implements ChartDataAdapter {
 

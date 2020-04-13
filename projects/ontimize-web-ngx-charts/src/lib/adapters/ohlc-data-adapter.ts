@@ -1,5 +1,6 @@
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
-import { ChartConfiguration, OHLCChartConfiguration } from '../models';
+import { ChartConfiguration } from '../models/ChartConfiguration.class';
+import { OHLCChartConfiguration } from '../models/options/OHLCChartConfiguration.class';
 
 export class OhlcDataAdapter implements ChartDataAdapter {
 
