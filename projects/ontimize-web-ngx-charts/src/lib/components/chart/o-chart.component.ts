@@ -82,8 +82,8 @@ export const CHART_TYPES = [
   'stackedAreaChart'
 ];
 
-export const DEFAULT_INPUTS_O_CHART = [
-  // ...OServiceBaseComponent.DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
+export const DEFAULT_INPUTS_O_CHART: any = [
+  // DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
 
   'cHeight: chart-height',
   'cWidth: chart-width',
@@ -104,11 +104,12 @@ export const DEFAULT_INPUTS_O_CHART = [
   selector: 'o-chart',
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
+  inputs: DEFAULT_INPUTS_O_CHART,
   providers: [
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
   ],
-  inputs: DEFAULT_INPUTS_O_CHART
 })
+
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;
@@ -129,7 +130,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected cWidth: number = -1;
 
   protected _options: any;
-  protected dataArray: Object[] = [];
+  dataArray: Object[] = [];
   protected dataService: any;
   protected yAxisArray: Array<string> = [];
 
