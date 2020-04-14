@@ -61,3 +61,4 @@ export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAd
   }
 
 }
+

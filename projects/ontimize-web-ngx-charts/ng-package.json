@@ -4,6 +4,10 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
+  "umdModuleIds": {
+    "ontimize-web-ngx-nvd3": "ontimizeWebNgxNvd3",
+    "ontimize-web-ngx": "ontimizeWebNgx"
+  },
   "whitelistedNonPeerDependencies": [
     "d3"
   ]

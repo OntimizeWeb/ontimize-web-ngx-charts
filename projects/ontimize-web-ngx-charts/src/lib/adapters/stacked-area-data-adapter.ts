@@ -65,3 +65,4 @@ export class StackedAreaDataAdapter implements ChartDataAdapter {
   }
 
 }
+
