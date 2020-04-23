@@ -35,11 +35,9 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "configurations": {
-          "extractCss": true
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ontimize-web-ngx-charts"
 }
