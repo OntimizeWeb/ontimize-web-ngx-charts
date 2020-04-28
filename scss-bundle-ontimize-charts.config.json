@@ -1,0 +1,8 @@
+{
+  "bundlerOptions": {
+    "entryFile": "./projects/ontimize-web-ngx-charts/styles.scss",
+    "rootDir": "./projects/ontimize-web-ngx-charts/src/lib/components/",
+    "outFile": "./dist/ontimize-web-ngx-charts/styles.scss",
+    "logLevel": "trace"
+  }
+}
