@@ -15,7 +15,7 @@ import { OChartComponent } from 'ontimize-web-ngx-charts';
 })
 export class BubbleComponent {
 
-  @ViewChild('bubbleChart')
+  @ViewChild('bubbleChart', {static: false})
   protected bubbleChart: OChartComponent;
 
   constructor() { }
@@ -113,7 +113,7 @@ export class BubbleComponent {
 })
 export class BubbleComponent {
 
-  @ViewChild('bubbleChart')
+  @ViewChild('bubbleChart', {static: false})
   protected bubbleChart: OChartComponent;
 
   constructor() { }

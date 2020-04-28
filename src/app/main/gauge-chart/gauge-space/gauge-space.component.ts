@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  OChartComponent, DataAdapterUtils, GaugeSpaceChartConfiguration
-} from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, GaugeSpaceChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
+
 @Component({
   selector: 'app-gauge-space',
   templateUrl: './gauge-space.component.html'
 })
 export class GaugeSpaceComponent {
 
-  @ViewChild('gaugeSpace')
+  @ViewChild('gaugeSpace', {static: false})
   protected gaugeSpace: OChartComponent;
 
   gaugeSpaceConf: GaugeSpaceChartConfiguration;

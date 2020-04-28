@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { OChartComponent, ForceDirectedGraphConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
+import { Component, ViewChild } from '@angular/core';
+import { DataAdapterUtils, ForceDirectedGraphConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-directed-graph',
@@ -7,7 +7,7 @@ import { OChartComponent, ForceDirectedGraphConfiguration, DataAdapterUtils } fr
 })
 export class DirectedGraphComponent {
 
-  @ViewChild('directedGraph')
+  @ViewChild('directedGraph', {static: false})
   protected directedGraph: OChartComponent;
 
   chartParameters: ForceDirectedGraphConfiguration;

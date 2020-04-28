@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild, Injector } from '@angular/core';
-import {
-  OChartComponent, DataAdapterUtils, RadialPercentChartConfiguration
-} from 'ontimize-web-ngx-charts';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataAdapterUtils, OChartComponent, RadialPercentChartConfiguration } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-radial-percent',
@@ -9,7 +7,7 @@ import {
 })
 export class RadialPercentComponent implements OnInit {
 
-  @ViewChild('radialPercent')
+  @ViewChild('radialPercent', {static: false})
   protected radialPercent: OChartComponent;
 
   radialPercentConf: RadialPercentChartConfiguration;

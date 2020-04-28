@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { OChartComponent, GaugeSimpleChartConfiguration } from 'ontimize-web-ngx-charts';
+import { Component, ViewChild } from '@angular/core';
+import { GaugeSimpleChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-gauge-simple',
@@ -7,7 +7,7 @@ import { OChartComponent, GaugeSimpleChartConfiguration } from 'ontimize-web-ngx
 })
 export class GaugeSimpleComponent {
 
-  @ViewChild('gaugeSimple')
+  @ViewChild('gaugeSimple', {static: false})
   protected gaugeSimple: OChartComponent;
 
   gaugeSimpleConf: GaugeSimpleChartConfiguration;

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, ParallelCoordinatesChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, OChartComponent, ParallelCoordinatesChartConfiguration } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-parallel-coordinates',
@@ -7,7 +7,7 @@ import { OChartComponent, ParallelCoordinatesChartConfiguration, DataAdapterUtil
 })
 export class ParallelCoordinatesComponent {
 
-  @ViewChild('chart')
+  @ViewChild('chart', {static: false})
   protected chart: OChartComponent;
 
   chartConf: ParallelCoordinatesChartConfiguration;

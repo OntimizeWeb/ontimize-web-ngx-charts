@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, MultiBarHorizontalChartConfiguration } from 'ontimize-web-ngx-charts';
+import { MultiBarHorizontalChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 const BASIC_USAGE_HTML_DATA = `
 <o-chart #multiBarHor type="multiBarHorizontalChart" chart-height="600" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped"
@@ -12,7 +12,7 @@ const BASIC_USAGE_HTML_DATA = `
 })
 export class MultiBarHorizontalComponent {
 
-  @ViewChild('multiBarHor')
+  @ViewChild('multiBarHor', {static: false})
   protected multiBarHor: OChartComponent;
 
   chartParameters: MultiBarHorizontalChartConfiguration;

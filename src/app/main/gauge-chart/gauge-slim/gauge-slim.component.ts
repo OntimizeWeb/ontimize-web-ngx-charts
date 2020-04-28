@@ -1,8 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-
-import {
-  OChartComponent, DataAdapterUtils, GaugeSlimChartConfiguration
-} from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, GaugeSlimChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 @Component({
@@ -11,7 +8,7 @@ import {
 })
 export class GaugeSlimComponent {
 
-  @ViewChild('gaugeSlim')
+  @ViewChild('gaugeSlim', {static: false})
   protected gaugeSlim: OChartComponent;
 
   gaugeSlimConf: GaugeSlimChartConfiguration;

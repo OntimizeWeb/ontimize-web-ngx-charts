@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, LineChartConfiguration, ChartService } from 'ontimize-web-ngx-charts';
+import { ChartService, LineChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 declare var d3: any;
 
@@ -9,10 +9,10 @@ declare var d3: any;
 })
 export class LineComponent {
 
-  @ViewChild('lineChart')
+  @ViewChild('lineChart', {static: false})
   protected lineChart: OChartComponent;
 
-  @ViewChild('lineChartBasic')
+  @ViewChild('lineChartBasic', {static: false})
   protected lineChartBasic: OChartComponent;
 
   protected yAxis = 'MOVEMENT';

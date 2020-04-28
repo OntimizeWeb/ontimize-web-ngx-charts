@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { OChartComponent, RadarChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, OChartComponent, RadarChartConfiguration } from 'ontimize-web-ngx-charts';
 
 const BASIC_HTML_DATA = `
 <o-chart type="radarChart" chart-height="400" entity="EDimensionData" [chart-parameters]="chartConf2"></o-chart>
@@ -48,7 +48,7 @@ import { OChartComponent, RadarChartConfiguration, DataAdapterUtils } from 'onti
 })
 export class RadarComponent  {
 
-  @ViewChild('radar')
+  @ViewChild('radar', {static: false})
   protected radar: OChartComponent;
 
   chartConf: RadarChartConfiguration;
@@ -122,7 +122,7 @@ export class RadarComponent  {
 })
 export class RadarComponent implements OnInit {
 
-  @ViewChild('radar')
+  @ViewChild('radar', {static: false})
   protected radar: OChartComponent;
 
   chartConf: RadarChartConfiguration;

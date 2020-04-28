@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { OChartComponent, BulletChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
+import { BulletChartConfiguration, DataAdapterUtils, OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-bullet',
@@ -8,7 +7,7 @@ import { OChartComponent, BulletChartConfiguration, DataAdapterUtils } from 'ont
 })
 export class BulletComponent implements OnInit {
 
-  @ViewChild('bulletChart')
+  @ViewChild('bulletChart', {static: false})
   protected bulletChart: OChartComponent;
 
   chartParameters: BulletChartConfiguration;

@@ -1,6 +1,6 @@
-import { Component, ViewChild, Injector, ViewEncapsulation } from '@angular/core';
-import { OntimizeService, OFormComponent } from 'ontimize-web-ngx';
-import { OChartComponent, ChartService } from 'ontimize-web-ngx-charts';
+import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
+import { OFormComponent, OntimizeService } from 'ontimize-web-ngx';
+import { ChartService, OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 const BASIC_USAGE_HTML_DATA = `
@@ -47,7 +47,7 @@ export class DiscreteBarComponent {
   protected yAxis: string = 'MOVEMENT';
   protected xAxis: string = 'MOVEMENTTYPES';
 
-  @ViewChild('discreteBar')
+  @ViewChild('discreteBar', {static: false})
   protected discreteBar: OChartComponent;
 
   constructor() {}
@@ -145,10 +145,10 @@ declare var d3: any;
 })
 export class DiscreteBarComponent {
 
-  @ViewChild('oForm')
+  @ViewChild('oForm', {static: false})
   protected oForm: OFormComponent;
 
-  @ViewChild('discreteBar')
+  @ViewChild('discreteBar', {static: false})
   protected discreteBar: OChartComponent;
 
   data: Array<Object>;

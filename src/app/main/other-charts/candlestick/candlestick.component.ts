@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, CandlestickChartConfiguration, DataAdapterUtils, ChartService } from 'ontimize-web-ngx-charts';
+import { CandlestickChartConfiguration, ChartService, DataAdapterUtils, OChartComponent } from 'ontimize-web-ngx-charts';
+
 declare var d3: any;
 @Component({
   selector: 'app-ohlc',
@@ -7,10 +8,10 @@ declare var d3: any;
 })
 export class CandlestickComponent {
 
-  @ViewChild('candlestickbasic')
+  @ViewChild('candlestickbasic', {static: false})
   protected candlestickbasic: OChartComponent;
 
-  @ViewChild('candlestickcustom')
+  @ViewChild('candlestickcustom', {static: false})
   protected candlestick: OChartComponent;
 
   chartParameters: CandlestickChartConfiguration;

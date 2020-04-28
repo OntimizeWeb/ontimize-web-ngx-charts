@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  OChartComponent, DataAdapterUtils, GaugeDashboardChartConfiguration
-} from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, GaugeDashboardChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-gauge-dashboard',
@@ -9,7 +7,7 @@ import {
 })
 export class GaugeDashboardComponent {
 
-  @ViewChild('gaugeDashboard')
+  @ViewChild('gaugeDashboard', {static: false})
   protected gaugeDashboard: OChartComponent;
 
   gaugeDashboardConf: GaugeDashboardChartConfiguration;

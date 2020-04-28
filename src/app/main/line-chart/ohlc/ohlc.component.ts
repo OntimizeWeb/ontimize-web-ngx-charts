@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
+import { DataAdapterUtils, OChartComponent, OHLCChartConfiguration } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'app-ohlc',
@@ -7,7 +7,7 @@ import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontim
 })
 export class OhlcComponent {
 
-  @ViewChild('ohlc2')
+  @ViewChild('ohlc2', {static: false})
   protected ohlc2: OChartComponent;
 
   chartParameters: OHLCChartConfiguration;
