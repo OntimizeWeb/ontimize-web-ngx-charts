@@ -28,7 +28,7 @@ import {
 import { nvD3 } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
 
-import { ChartDataAdapter, ChartDataAdapterFactory } from '../../interfaces/ChartDataAdapterFactory.interface';
+import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import { ChartFactory } from '../../interfaces/ChartFactory.interface';
 import { BubbleChartConfiguration } from '../../models/options/BubbleChartConfiguration.class';
 import { BulletChartConfiguration } from '../../models/options/BulletChartConfiguration.class';
@@ -57,8 +57,6 @@ import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 
 
-// import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces/ChartFactory.interface';
-// import { ChartDataAdapter, ChartDataAdapterFactory, ChartFactory } from '../../interfaces/ChartFactory.interface';
 export const CHART_TYPES = [
   'bubbleChart',
   'bulletChart',
@@ -108,7 +106,7 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   inputs: DEFAULT_INPUTS_O_CHART,
   providers: [
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
-  ],
+  ]
 })
 
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
@@ -366,7 +364,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return new OChartFactory(this.translateService);
   }
 
-  getChartDataAdapterFactory(): ChartDataAdapterFactory {
+  getChartDataAdapterFactory(): OChartDataAdapterFactory {
     return new OChartDataAdapterFactory(this.getChartConfiguration());
   }
 
