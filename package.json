@@ -1,15 +1,15 @@
 {
   "name": "ontimize-web-ngx-quickstart-charts",
-  "version": "4.0.1",
+  "version": "8.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4407",
+    "start": "ng serve --port 4807",
     "clean": "rimraf dist",
     "production": "npm run clean && ng build --aot false --build-optimizer false --prod --base-href /ontimize-web-ngx-charts/",
     "production-aot": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimize-web-ngx-quickstart-charts/",
-    "production-aot-server": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimizeweb/charts/"
+    "production-aot-server": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /"
   },
   "private": true,
   "dependencies": {
@@ -34,8 +34,8 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "reflect-metadata": "0.1.12",
-    "ontimize-web-ngx": "file:ontimize-web-ngx-8.0.0.tgz",
-    "ontimize-web-ngx-charts": "file:ontimize-web-ngx-charts-8.0.0.tgz",
+    "ontimize-web-ngx": "8.0.0-SNAPSHOT-0",
+    "ontimize-web-ngx-charts": "8.0.0-SNAPSHOT-0",
     "ontimize-web-ngx-theming": "4.0.2",
     "classlist.js": "^1.1.20150312",
     "intl": "^1.2.5",
