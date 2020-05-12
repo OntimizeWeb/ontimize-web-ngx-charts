@@ -49,12 +49,13 @@
     "@angular-devkit/build-angular": "~0.803.25",
     "@angular/cli": "8.3.26",
     "@angular/compiler-cli": "~8.2.14",
+    "@angular/http": "^7.2.16",
     "@types/jasmine": "~3.3.8",
     "@types/node": "~8.9.4",
     "acorn": "5.7.4",
-    "minimist": "1.2.2",
     "codelyzer": "5.1.0",
     "hammerjs": "^2.0.8",
+    "handlebars": "4.7.3",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -62,11 +63,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "minimist": "1.2.2",
     "moment": "^2.22.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "handlebars": "4.7.3",
     "typescript": "~3.5.3"
   }
 }
