@@ -7,9 +7,12 @@
     "ng": "ng",
     "start": "ng serve --port 4807",
     "clean": "rimraf dist",
-    "production": "npm run clean && ng build --aot false --build-optimizer false --prod --base-href /ontimize-web-ngx-charts/",
-    "production-aot": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /ontimize-web-ngx-quickstart-charts/",
-    "production-aot-server": "ontimize-web-ngx production-aot --project-name ontimize-web-ngx-quickstart-charts --href /"
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "production": "ng build --prod=true --baseHref==/ontimize-web-ngx-quickstart-charts/",
+    "production-aot-server": "ng build --prod=true --baseHref=/"
   },
   "private": true,
   "dependencies": {
@@ -45,17 +48,25 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.25",
     "@angular/cli": "8.3.26",
-    "@angular/compiler-cli": "8.2.8",
-    "@angular/http": "^7.2.16",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "8.9.4",
-    "codelyzer": "^5.0.1",
-    "compression-webpack-plugin": "1.1.12",
-    "copy-webpack-plugin": "4.5.4",
-    "html-webpack-plugin": "4.0.0-beta.2",
-    "node-sass": "4.9.4",
-    "ontimize-web-ngx-tools": "4.0.0",
-    "ts-node": "~2.0.0",
-    "typescript": "3.5.3"
+    "@angular/compiler-cli": "~8.2.14",
+    "@types/jasmine": "~3.3.8",
+    "@types/node": "~8.9.4",
+    "acorn": "5.7.4",
+    "minimist": "1.2.2",
+    "codelyzer": "5.1.0",
+    "hammerjs": "^2.0.8",
+    "jasmine-core": "^3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "moment": "^2.22.2",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.15.0",
+    "handlebars": "4.7.3",
+    "typescript": "~3.5.3"
   }
 }
