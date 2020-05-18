@@ -30,8 +30,6 @@
     "@angular/platform-server": "8.2.8",
     "@angular/router": "8.2.8",
     "@angular/upgrade": "8.2.8",
-    "@ngx-translate/core": "10.0.2",
-    "@ngx-translate/http-loader": "3.0.1",
     "core-js": "3.6.4",
     "rxjs": "6.5.5",
     "tslib": "^1.10.0",

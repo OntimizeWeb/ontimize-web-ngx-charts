@@ -1,44 +1,26 @@
-
-
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MultiBarModule } from 'app/main/bar-chart/multi-bar/multi-bar.module';
-import { MultiBarHorizontalModule } from 'app/main/bar-chart/multi-bar-horizontal/multi-bar-horizontal.module';
-import { DiscreteBarModule } from 'app/main/bar-chart/discrete-bar/discrete-bar.module';
-import { BulletModule } from 'app/main/bar-chart/bullet/bullet.module';
+import { RouterModule, Routes } from '@angular/router';
 
-export function loadDiscreteBarModule() {
-  return DiscreteBarModule;
-}
 
-export function loadMultiBarModule() {
-  return MultiBarModule;
-}
 
-export function loadMultiBarHorizontalModule() {
-  return MultiBarHorizontalModule;
-}
 
-export function loadBulletModule() {
-  return BulletModule;
-}
 
 const routes: Routes = [
   {
     path: 'bullet',
-    loadChildren: loadBulletModule
+    loadChildren: '../bar-chart/bullet/bullet.module#BulletModule'
   },
   {
     path: 'discrete-bar',
-    loadChildren: loadDiscreteBarModule
+    loadChildren: '../bar-chart/discrete-bar/discrete-bar.module#DiscreteBarModule'
   },
   {
     path: 'multi-bar',
-    loadChildren: loadMultiBarModule
+    loadChildren: '../bar-chart/multi-bar/multi-bar.module#MultiBarModule'
   },
   {
     path: 'multi-bar-horizontal',
-    loadChildren: loadMultiBarHorizontalModule
+    loadChildren: '../bar-chart/multi-bar-horizontal/multi-bar-horizontal.module#MultiBarHorizontalModule'
   },
 ];
 

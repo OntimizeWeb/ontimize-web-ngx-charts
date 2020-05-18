@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { StackedAreaModule } from 'app/main/area-chart/stacked-area/stacked-area.module';
-import { RadarModule } from 'app/main/area-chart/radar/radar.module';
+import { RouterModule, Routes } from '@angular/router';
+
+import { RadarModule } from '../area-chart/radar/radar.module';
+import { StackedAreaModule } from '../area-chart/stacked-area/stacked-area.module';
 
 export function loadStackedAreaModule() {
   return StackedAreaModule;
@@ -14,11 +15,11 @@ export function loadRadarModule() {
 const routes: Routes = [
   {
     path: 'radar',
-    loadChildren: loadRadarModule
+    loadChildren: '../area-chart/radar/radar.module#RadarModule'
   },
   {
     path: 'stackedArea',
-    loadChildren: loadStackedAreaModule
+    loadChildren: '../area-chart/stacked-area/stacked-area.module#StackedAreaModule'
   }
 ];
 

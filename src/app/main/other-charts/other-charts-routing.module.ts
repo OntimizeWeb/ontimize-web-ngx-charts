@@ -1,43 +1,23 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DonutModule } from 'app/main/other-charts/donut/donut.module';
-import { DirectedGraphModule } from 'app/main/other-charts/directed-graph/directed-graph.module';
-import { CandlestickModule } from 'app/main/other-charts/candlestick/candlestick.module';
-import { PieModule } from 'app/main/other-charts/pie/pie.module';
-
-export function loadDonutModule() {
-  return DonutModule;
-}
-
-export function loadDirectedGraphModule() {
-  return DirectedGraphModule;
-}
-
-export function loadCandlestickModule() {
-  return CandlestickModule;
-}
-
-export function loadPieModule() {
-  return PieModule;
-}
+import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
   {
     path: 'donut',
-    loadChildren: loadDonutModule
+    loadChildren: '../other-charts/donut/donut.module#DonutModule'
   },
   {
     path: 'directedGraph',
-    loadChildren: loadDirectedGraphModule
+    loadChildren: '../other-charts/directed-graph/directed-graph.module#DirectedGraphModule'
   },
   {
     path: 'candlestick',
-    loadChildren: loadCandlestickModule
+    loadChildren: '../other-charts/candlestick/candlestick.module#CandlestickModule'
   },
   {
     path: 'pie',
-    loadChildren: loadPieModule
+    loadChildren: '../other-charts/pie/pie.module#PieModule'
   },
 ];
 

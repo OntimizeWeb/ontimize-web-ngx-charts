@@ -1,24 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ScatterModule } from 'app/main/bubble-chart/scatter/scatter.module';
-import { BubbleModule } from 'app/main/bubble-chart/bubble/bubble.module';
+import { RouterModule, Routes } from '@angular/router';
 
 
-export function loadBubbleModule() {
-  return BubbleModule;
-}
-
-export function loadScatterModule() {
-  return ScatterModule;
-}
 const routes: Routes = [
     {
       path: 'bubble',
-      loadChildren: loadBubbleModule
+      loadChildren: '../bubble-chart/bubble/bubble.module#BubbleModule'
     },
     {
       path: 'scatter',
-      loadChildren: loadScatterModule
+      loadChildren: '../bubble-chart/scatter/scatter.module#ScatterModule'
     }
 ];
 

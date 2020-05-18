@@ -1,43 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main.component';
-import { HomeModule } from './home/home.module';
-
-import { AreaRoutingModule } from 'app/main/area-chart/area-routing.module';
-import { LineChartModule } from 'app/main/line-chart/line.module';
-import { GaugeModule } from 'app/main/gauge-chart/gauge.module';
-import { BarChartModule } from 'app/main/bar-chart/bar-chart.module';
-import { OtherChartsModule } from 'app/main/other-charts/other-charts.module';
-import { BubbleChartModule } from 'app/main/bubble-chart/bubblechart.module';
-
-export function loadLineModule() {
-  return LineChartModule;
-}
-
-export function loadHomeModule() {
-  return HomeModule;
-}
-
-export function loadGaugeModule() {
-  return GaugeModule;
-}
-
-export function loadAreaModule() {
-  return AreaRoutingModule;
-}
-
-export function loadBarModule() {
-  return BarChartModule;
-}
-
-export function loadOtherChartsModule() {
-  return OtherChartsModule;
-}
-
-export function loadBubbleModule() {
-  return BubbleChartModule;
-}
 
 
 export const routes: Routes = [
@@ -48,31 +12,31 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        loadChildren: loadHomeModule
+        loadChildren: './home/home.module#HomeModule',
       },
       {
         path: 'line-chart',
-        loadChildren: loadLineModule
+        loadChildren: '../main/line-chart/line.module#LineChartModule'
       },
       {
         path: 'bar-chart',
-        loadChildren: loadBarModule
+        loadChildren: '../main/bar-chart/bar-chart.module#BarChartModule'
       },
       {
         path: 'area',
-        loadChildren: loadAreaModule
+        loadChildren: '../main/area-chart/area-routing.module#AreaRoutingModule'
       },
       {
         path: 'bubble',
-        loadChildren: loadBubbleModule
+        loadChildren: '../main/bubble-chart/bubblechart.module#BubbleChartModule'
       },
       {
         path: 'other-charts',
-        loadChildren: loadOtherChartsModule
+        loadChildren: '../main/other-charts/other-charts.module#OtherChartsModule'
       },
       {
         path: 'gauge',
-        loadChildren: loadGaugeModule
+        loadChildren: '../main/gauge-chart/gauge.module#GaugeModule'
       }
     ]
   },
