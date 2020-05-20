@@ -2,6 +2,10 @@
 ### Features
 * **angular8:** adapt code to Angular 8.
 
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@8.0.0
+
+
 # 4.0.5
 ### Features
 * **MultiBarHorizontalChartConfiguration**:
