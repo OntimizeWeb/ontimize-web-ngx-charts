@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
+import { GaugeDashboardComponent } from './gauge-dashboard/gauge-dashboard.component';
 import { GaugeSimpleComponent } from './gauge-simple/gauge-simple.component';
 import { GaugeSlimComponent } from './gauge-slim/gauge-slim.component';
 import { GaugeSpaceComponent } from './gauge-space/gauge-space.component';
-import { GaugeDashboardComponent } from './gauge-dashboard/gauge-dashboard.component';
 import { RadialPercentComponent } from './radial-percent/radial-percent.component';
 
 const routes: Routes = [

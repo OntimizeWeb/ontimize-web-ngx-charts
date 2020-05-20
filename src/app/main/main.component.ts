@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NavigationBarService } from '../shared/services/navigation-bar.service';
 

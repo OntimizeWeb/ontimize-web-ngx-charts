@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { InputConverter } from 'ontimize-web-ngx';
 
 export interface IFiles {
@@ -81,7 +81,6 @@ export class ExampleComponent {
     this._files.scss = val.scss;
     this._files.typescript = val.typescript;
     this._files.files = val.files;
-    
   }
 
   get files(): IFiles {

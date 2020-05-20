@@ -31,7 +31,7 @@
     "@angular/router": "8.2.8",
     "@angular/upgrade": "8.2.8",
     "core-js": "3.6.4",
-    "rxjs": "6.5.5",
+    "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "reflect-metadata": "0.1.12",

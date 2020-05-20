@@ -15,11 +15,11 @@ export function loadRadarModule() {
 const routes: Routes = [
   {
     path: 'radar',
-    loadChildren: '../area-chart/radar/radar.module#RadarModule'
+    loadChildren: () => import('./radar/radar.module').then(m => m.RadarModule)
   },
   {
     path: 'stackedArea',
-    loadChildren: '../area-chart/stacked-area/stacked-area.module#StackedAreaModule'
+    loadChildren: () => import('./stacked-area/stacked-area.module').then(m => m.StackedAreaModule)
   }
 ];
 

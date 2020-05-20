@@ -4,7 +4,7 @@
     "downlevelIteration": true,
     "importHelpers": true,
     "target": "es5",
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
     "baseUrl": "src",

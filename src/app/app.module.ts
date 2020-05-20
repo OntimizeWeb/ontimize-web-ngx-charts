@@ -1,19 +1,12 @@
-import { NgModule, Injector } from '@angular/core';
-
-import {
-  APP_CONFIG,
-  ONTIMIZE_MODULES,
-  ONTIMIZE_PROVIDERS
-} from 'ontimize-web-ngx';
-
-import { CONFIG } from './app.config';
-import { AppComponent } from './app.component';
+import { Injector, NgModule } from '@angular/core';
+import { APP_CONFIG, ONTIMIZE_MODULES, ONTIMIZE_PROVIDERS, OntimizeWebModule } from 'ontimize-web-ngx';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CONFIG } from './app.config';
 import { MainModule } from './main/main.module';
-
-import { NavigationBarService } from './shared/services/navigation-bar.service';
 import { CustomOntimizeService } from './shared/services/custom-ontimize.service';
+import { NavigationBarService } from './shared/services/navigation-bar.service';
 
 export function getCustomOntimizeServiceProvider(injector: Injector) {
   return new CustomOntimizeService(injector);
@@ -33,7 +26,8 @@ export const customProviders = [
   imports: [
     ONTIMIZE_MODULES,
     MainModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OntimizeWebModule.forRoot(CONFIG),
   ],
   declarations: [
     AppComponent
@@ -43,7 +37,7 @@ export const customProviders = [
   ],
   providers: [
     { provide: APP_CONFIG, useValue: CONFIG },
-    ...ONTIMIZE_PROVIDERS,
+    ONTIMIZE_PROVIDERS,
     ...customProviders
   ]
 })

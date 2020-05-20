@@ -5,19 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
     {
       path: 'line',
-      loadChildren: '../line-chart/line/line.module#LineModule'
+      loadChildren: () => import('./line/line.module').then(m => m.LineModule)
     },
     {
       path: 'lineplusbar',
-      loadChildren: '../line-chart/lineplusbar/lineplusbar.module#LineplusbarModule'
+      loadChildren: () => import('./lineplusbar/lineplusbar.module').then(m => m.LineplusbarModule)
     },
     {
       path: 'ohlc',
-      loadChildren: '../line-chart/ohlc/ohlc.module#OhlcModule'
+      loadChildren: () => import('./ohlc/ohlc.module').then(m => m.OhlcModule)
     },
     {
       path: 'parallelCoordinates',
-      loadChildren: '../line-chart/parallel-coordinates/parallel-coordinates.module#ParallelCoordinatesModule'
+      loadChildren: () => import('./parallel-coordinates/parallel-coordinates.module').then(m => m.ParallelCoordinatesModule)
     },
 ];
 

@@ -5,11 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
     {
       path: 'bubble',
-      loadChildren: '../bubble-chart/bubble/bubble.module#BubbleModule'
+      loadChildren: () => import('./bubble/bubble.module').then(m => m.BubbleModule)
     },
     {
       path: 'scatter',
-      loadChildren: '../bubble-chart/scatter/scatter.module#ScatterModule'
+      loadChildren: () => import('./scatter/scatter.module').then(m => m.ScatterModule)
     }
 ];
 

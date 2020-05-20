@@ -1,8 +1,8 @@
-import { Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { AppConfig, LoginService, OntimizeService, Util } from 'ontimize-web-ngx';
 import { Observable } from 'rxjs';
 
-import { OntimizeService, LoginService, AppConfig, Util } from 'ontimize-web-ngx';
-
+@Injectable()
 export class CustomOntimizeService extends OntimizeService {
 
   constructor(protected injector: Injector) {

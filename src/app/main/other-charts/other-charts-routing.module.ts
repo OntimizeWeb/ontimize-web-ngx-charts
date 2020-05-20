@@ -5,19 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'donut',
-    loadChildren: '../other-charts/donut/donut.module#DonutModule'
+    loadChildren: () => import('./donut/donut.module').then(m => m.DonutModule)
   },
   {
     path: 'directedGraph',
-    loadChildren: '../other-charts/directed-graph/directed-graph.module#DirectedGraphModule'
+    loadChildren: () => import('./directed-graph/directed-graph.module').then(m => m.DirectedGraphModule)
   },
   {
     path: 'candlestick',
-    loadChildren: '../other-charts/candlestick/candlestick.module#CandlestickModule'
+    loadChildren: () => import('./candlestick/candlestick.module').then(m => m.CandlestickModule)
   },
   {
     path: 'pie',
-    loadChildren: '../other-charts/pie/pie.module#PieModule'
+    loadChildren: () => import('./pie/pie.module').then(m => m.PieModule)
   },
 ];
 

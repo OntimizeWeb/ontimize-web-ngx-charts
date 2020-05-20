@@ -1,7 +1,7 @@
 {
   "APP_TITLE" : "Gráficas",
   "VERSION" : "Versión",
-
+  
   "INTRODUCTION": "Introducción",
   "LINE" : "Gráfica de línea",
   "LINEPLUSBAR": "Gráfica de barras y líneas",

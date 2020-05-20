@@ -12,31 +12,31 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        loadChildren: './home/home.module#HomeModule',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'line-chart',
-        loadChildren: '../main/line-chart/line.module#LineChartModule'
+        loadChildren: () => import('./line-chart/line.module').then(m => m.LineChartModule)
       },
       {
         path: 'bar-chart',
-        loadChildren: '../main/bar-chart/bar-chart.module#BarChartModule'
+        loadChildren: () => import('./bar-chart/bar-chart.module').then(m => m.BarChartModule)
       },
       {
         path: 'area',
-        loadChildren: '../main/area-chart/area-routing.module#AreaRoutingModule'
+        loadChildren: () => import('./area-chart/area-routing.module').then(m => m.AreaRoutingModule)
       },
       {
         path: 'bubble',
-        loadChildren: '../main/bubble-chart/bubblechart.module#BubbleChartModule'
+        loadChildren: () => import('./bubble-chart/bubblechart.module').then(m => m.BubbleChartModule)
       },
       {
         path: 'other-charts',
-        loadChildren: '../main/other-charts/other-charts.module#OtherChartsModule'
+        loadChildren: () => import('./other-charts/other-charts.module').then(m => m.OtherChartsModule)
       },
       {
         path: 'gauge',
-        loadChildren: '../main/gauge-chart/gauge.module#GaugeModule'
+        loadChildren: () => import('./gauge-chart/gauge.module').then(m => m.GaugeModule)
       }
     ]
   },

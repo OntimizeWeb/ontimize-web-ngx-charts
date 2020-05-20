@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+
+import { OtherChartsRoutingModule } from '../../main/other-charts/other-charts-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { OtherChartsRoutingModule } from 'app/main/other-charts/other-charts-routing.module';
 
 
 @NgModule({

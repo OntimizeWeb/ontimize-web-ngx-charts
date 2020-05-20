@@ -1,15 +1,11 @@
-import { Injector, forwardRef, ElementRef, OnInit, Optional, Inject, Component, NgModule } from '@angular/core';
-import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { OFormComponent, OntimizeService, dataServiceFactory, OTranslateService } from 'ontimize-web-ngx';
-
-import {
-  OChartComponent, ChartService,
-  ChartFactory, ChartDataAdapterFactory
-} from 'ontimize-web-ngx-charts';
+import { Component, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional } from '@angular/core';
+import { MatIconModule, MatIconRegistry } from '@angular/material';
+import { dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
+import { ChartFactory, OChartComponent } from 'ontimize-web-ngx-charts';
+import { NvD3Module } from 'ontimize-web-ngx-nvd3';
 
 import { CustomChartFactory } from './custom.chart.factory';
-import { NvD3Module } from 'ontimize-web-ngx-nvd3';
 
 @Component({
   selector: 'custom-chart',
@@ -40,7 +36,7 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
     return new CustomChartFactory(this.injector.get(OTranslateService));
   }
 
-  getChartDataAdapterFactory(): ChartDataAdapterFactory {
+  getChartDataAdapterFactory() {
     return super.getChartDataAdapterFactory();
   }
 

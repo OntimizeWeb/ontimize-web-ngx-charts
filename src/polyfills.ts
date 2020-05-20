@@ -13,10 +13,9 @@
  *
  * Learn more in https://angular.io/guide/browser-support
  */
-import 'core-js';
-import 'ontimize-web-ngx';
-import 'ontimize-web-ngx-charts';
+import 'hammerjs/hammer';
 import 'zone.js/dist/zone';
+
 
 
 /***************************************************************************************************
