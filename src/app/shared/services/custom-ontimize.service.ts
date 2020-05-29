@@ -1,18 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
-import { AppConfig, LoginService, OntimizeService, Util } from 'ontimize-web-ngx';
+import { LoginService, OntimizeService, Util } from 'ontimize-web-ngx';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class CustomOntimizeService extends OntimizeService {
+
+
+  public customUrlBase: string;
 
   constructor(protected injector: Injector) {
     super(injector);
   }
 
   public getDefaultServiceConfiguration(serviceName?: string): Object {
-
-    let loginService = this.injector.get(LoginService);
-    let configuration = this.injector.get(AppConfig).getServiceConfiguration();
+    const loginService = this.injector.get(LoginService);
+    const configuration = this._config.getServiceConfiguration();
 
     let servConfig = {};
     if (serviceName && configuration.hasOwnProperty(serviceName)) {
@@ -23,13 +25,8 @@ export class CustomOntimizeService extends OntimizeService {
   }
 
   public configureService(config: any): void {
-    this._urlBase = './assets/dummy-data';
-    this._sessionid = config.session ? config.session.id : -1;
-    this._user = config.session ? config.session.user : '';
-
-    if (config.entity !== undefined) {
-      this.entity = config.entity;
-    }
+    super.configureService(config);
+    this.customUrlBase = './assets/dummy-data';
   }
 
   public startsession(user: string, password: string): Observable<any> {
@@ -48,7 +45,7 @@ export class CustomOntimizeService extends OntimizeService {
     sqltypes?: Object): Observable<any> {
     entity = (Util.isDefined(entity)) ? entity : this.entity;
 
-    let url = this._urlBase;
+    let url = this.customUrlBase;
     if (entity === 'EMovements') {
       url += '/emovements.json';
     } else if (entity === 'EMovementTypes') {
