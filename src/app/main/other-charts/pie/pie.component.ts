@@ -1,5 +1,5 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Headers, Http } from '@angular/http';
 import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class PieComponent {
 
   chartParameters: PieChartConfiguration;
 
-  constructor(protected http: Http) {
+  constructor(protected http: HttpClient) {
 
     this.chartParameters = new PieChartConfiguration();
     this.chartParameters.cornerRadius = 20;
@@ -31,7 +31,7 @@ export class PieComponent {
   }
 
   protected loadJSONData() {
-    let headers: Headers = new Headers();
+    let headers: HttpHeaders = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
 
     let url = './assets/dummy-data/dummy-pie-data.json';
@@ -44,7 +44,7 @@ export class PieComponent {
     this.http
       .get(url, { headers: headers })
       .subscribe(res => {
-        let data: any = res.json();
+        let data: any = res;
         self.serviceResponse = JSON.stringify(data, undefined, 2);
         innerObserver.next(data.values);
       }, error => innerObserver.error(error));
