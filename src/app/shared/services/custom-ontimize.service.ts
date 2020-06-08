@@ -1,12 +1,8 @@
-import { Injectable, Injector } from '@angular/core';
-import { LoginService, OntimizeService, Util } from 'ontimize-web-ngx';
-import { Observable } from 'rxjs';
+import { Injector } from '@angular/core';
+import { LoginService, OntimizeService, ServiceResponse, Util } from 'ontimize-web-ngx';
+import { Observable, Subscriber } from 'rxjs';
 
-@Injectable()
 export class CustomOntimizeService extends OntimizeService {
-
-
-  public customUrlBase: string;
 
   constructor(protected injector: Injector) {
     super(injector);
@@ -25,27 +21,26 @@ export class CustomOntimizeService extends OntimizeService {
   }
 
   public configureService(config: any): void {
-    super.configureService(config);
-    this.customUrlBase = './assets/dummy-data';
+    this._urlBase = './assets/dummy-data/';
   }
 
-  public startsession(user: string, password: string): Observable<any> {
-    return undefined;
-  }
+  // public startsession(user: string, password: string): Observable<any> {
+  //   return undefined;
+  // }
 
-  public endsession(user: string, sessionId: number): Observable<any> {
-    return undefined;
-  }
+  // public endsession(user: string, sessionId: number): Observable<any> {
+  //   return undefined;
+  // }
 
-  public hassession(user: string, sessionId: number): Observable<any> {
-    return undefined;
-  }
+  // public hassession(user: string, sessionId: number): Observable<any> {
+  //   return undefined;
+  // }
 
   public query(kv?: Object, av?: Array<string>, entity?: string,
     sqltypes?: Object): Observable<any> {
     entity = (Util.isDefined(entity)) ? entity : this.entity;
-
-    let url = this.customUrlBase;
+    let url = this._urlBase;
+    console.log(entity);
     if (entity === 'EMovements') {
       url += '/emovements.json';
     } else if (entity === 'EMovementTypes') {
@@ -71,29 +66,91 @@ export class CustomOntimizeService extends OntimizeService {
     const options = {
       headers: this.buildHeaders()
     };
-    const self = this;
 
     let innerObserver: any;
     const dataObservable = Observable.create(observer => {
       innerObserver = observer
     });
 
-    this.httpClient.get(url, options).subscribe((resp: any) => {
-      if (resp && resp.code === 3) {
-        self.redirectLogin(true);
-      } else if (resp.code === 1) {
-        innerObserver.error(resp.message);
-      } else if (resp.code === 0) {
-        innerObserver.next(resp);
-      } else {
-        // Unknow state -> error
-        innerObserver.error('Service unavailable');
-      }
-    }, error => innerObserver.error(error),
-      () => innerObserver.complete());
-
-    return dataObservable;
+    return this.doRequest({
+      method: 'GET',
+      url: url,
+      options: options,
+      successCallback: (resp, subscriber) => {
+        this.customParseSuccessfulQueryResponse(kv, resp, subscriber);
+      },
+      errorCallBack: this.parseUnsuccessfulQueryResponse
+    });
   }
+
+  protected customParseSuccessfulQueryResponse(kv: any, resp: ServiceResponse, subscriber: Subscriber<ServiceResponse>) {
+    if (resp && resp.isUnauthorized()) {
+      this.redirectLogin(true);
+    } else if (resp && resp.isFailed()) {
+      subscriber.error(resp.message);
+    } else if (resp && resp.isSuccessful()) {
+      subscriber.next(resp);
+    } else {
+      // Unknow state -> error
+      subscriber.error('Service unavailable');
+    }
+  }
+
+  // public query(kv?: Object, av?: Array<string>, entity?: string,
+  //   sqltypes?: Object): Observable<any> {
+  //   entity = (Util.isDefined(entity)) ? entity : this.entity;
+  //   let url = this.customUrlBase;
+  //   if (entity === 'EMovements') {
+  //     url += '/emovements.json';
+  //   } else if (entity === 'EMovementTypes') {
+  //     url += '/emovementtypes.json';
+  //   } else if (entity === 'EMovementTypesTotal') {
+  //     url += '/emovementtypestotal.json';
+  //   } else if (entity === 'EMovementsGrouped') {
+  //     url += '/emovementsgrouped.json';
+  //   } else if (entity === 'EAccounts') {
+  //     url += '/eaccounts.json';
+  //   } else if (entity === 'EBullet') {
+  //     url += '/ebullet.json';
+  //   } else if (entity === 'EMovementPercent') {
+  //     url += '/epercentmovements.json';
+  //   } else if (entity === 'EDataGauge') {
+  //     url += '/edatagauge.json';
+  //   } else if (entity === 'EStockExchange') {
+  //     url += '/estockexchange.json';
+  //   } else if (entity === 'EDimensionData') {
+  //     url += '/edimensiondata.json';
+  //   }
+
+  //   const options = {
+  //     headers: this.buildHeaders()
+  //   };
+  //   const self = this;
+
+  //   let innerObserver: any;
+  //   const dataObservable = Observable.create(observer => {
+  //     innerObserver = observer
+  //   });
+
+  //   console.log(this);
+
+  //   this.httpClient.get(url, options).subscribe((resp: any) => {
+  //     if (resp && resp.code === 3) {
+  //       self.redirectLogin(true);
+  //     } else if (resp.code === 1) {
+  //       innerObserver.error(resp.message);
+  //     } else if (resp.code === 0) {
+  //       console.log(resp);
+  //       innerObserver.next(resp);
+  //     } else {
+  //       // Unknow state -> error
+  //       innerObserver.error('Service unavailable');
+  //     }
+  //   }, error => innerObserver.error(error),
+  //     () => innerObserver.complete());
+
+  //   return dataObservable;
+  // }
 
   public advancedQuery(kv?: Object, av?: Array<string>, entity?: string, sqltypes?: Object,
     offset?: number, pagesize?: number, orderby?: Array<Object>): Observable<any> {
