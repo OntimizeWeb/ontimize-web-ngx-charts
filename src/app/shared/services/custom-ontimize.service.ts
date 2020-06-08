@@ -40,7 +40,6 @@ export class CustomOntimizeService extends OntimizeService {
     sqltypes?: Object): Observable<any> {
     entity = (Util.isDefined(entity)) ? entity : this.entity;
     let url = this._urlBase;
-    console.log(entity);
     if (entity === 'EMovements') {
       url += '/emovements.json';
     } else if (entity === 'EMovementTypes') {
