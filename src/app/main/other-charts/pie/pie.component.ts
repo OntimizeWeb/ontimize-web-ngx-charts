@@ -13,15 +13,25 @@ export class PieComponent {
   data: Array<Object>;
   protected serviceResponse: string;
 
-  chartParameters: PieChartConfiguration;
+  chartParameters1: PieChartConfiguration;
+  chartParameters2: PieChartConfiguration;
+  chartParameters3: PieChartConfiguration;
 
   constructor(protected http: HttpClient) {
+    this.chartParameters1 = new PieChartConfiguration();
+    this.chartParameters1.legend.margin.top = 5;
+    this.chartParameters1.legend.margin.bottom = 5;
 
-    this.chartParameters = new PieChartConfiguration();
-    this.chartParameters.cornerRadius = 20;
-    this.chartParameters.legendPosition = 'bottom';
-    this.chartParameters.labelType = 'value';
+    this.chartParameters2 = new PieChartConfiguration();
+    this.chartParameters2.cornerRadius = 20;
+    this.chartParameters2.legendPosition = 'bottom';
+    this.chartParameters2.labelType = 'value';
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
 
+    this.chartParameters3 = new PieChartConfiguration();
+    this.chartParameters3.legend.margin.top = 5;
+    this.chartParameters3.legend.margin.bottom = 5;
   }
 
   ngAfterViewInit() {

@@ -2,11 +2,11 @@
     <example-comp comp-name="BAR_CHAR.MULTIBAR_BASIC" comp-desc="BAR_CHAR.MULTIBAR_BASIC.DESC" comp-note="BAR_CHAR.MULTIBAR_BASIC.NOTE"
         [files]="getBasicUsageFiles()" layout-fill>
         <o-chart type="multiBar" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-            x-data-type="time"></o-chart>
+            x-data-type="time" [chart-parameters]="chartParameters1"></o-chart>
     </example-comp>
 
     <example-comp comp-name="BAR_CHAR.MULTIBAR_CUSTOM_SERIES" comp-desc="BAR_CHAR.MULTIBAR_CUSTOM_SERIES.DESC"
         comp-note="BAR_CHAR.MULTIBAR_CUSTOM_SERIES.NOTE" [files]="getCustomDataFiles()" layout-fill>
-        <o-chart #multiBar type="multiBar" x-label="Time" y-label="Amount (€)" [data]="data" x-data-type="time"></o-chart>
+        <o-chart #multiBar type="multiBar" x-label="Time" y-label="Amount (€)" [data]="data" x-data-type="time" [chart-parameters]="chartParameters2"></o-chart>
     </example-comp>
 </div>
