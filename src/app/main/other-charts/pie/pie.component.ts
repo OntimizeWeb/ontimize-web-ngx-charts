@@ -12,7 +12,7 @@ export class PieComponent {
 
   data: Array<Object>;
   protected serviceResponse: string;
-
+  
   chartParameters: PieChartConfiguration;
 
   constructor(protected http: HttpClient) {
@@ -21,7 +21,6 @@ export class PieComponent {
     this.chartParameters.cornerRadius = 20;
     this.chartParameters.legendPosition = 'bottom';
     this.chartParameters.labelType = 'value';
-
   }
 
   ngAfterViewInit() {

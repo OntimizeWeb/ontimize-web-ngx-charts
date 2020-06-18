@@ -152,8 +152,8 @@ export class RadarComponent implements OnInit {
       '0-60 mph (s)'
     ];
     this.chartConf2.max = 25;
-    this.chartConf2.stepSize = 2;
-
+    this.chartConf2.legend.margin.top = 5;
+    this.chartConf2.height = 300;
   }
 
   ngOnInit() {

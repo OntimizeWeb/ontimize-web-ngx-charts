@@ -14,12 +14,16 @@ export class LineplusbarComponent {
 
     this.chartParameters = new LinePlusBarFocusChartConfiguration();
     this.chartParameters.bars = [true, false];
+    this.chartParameters.legend.margin.top = 5;
+    this.chartParameters.legend.margin.bottom = 5;
 
     this.chartParameters2 = new LinePlusBarFocusChartConfiguration();
     this.chartParameters2.bars = [ true, false];
     this.chartParameters2.to_zero = [true, false];
     this.chartParameters2.to_previusValue = [false, true];
     this.chartParameters2.color = ['blue', 'red'];
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
   }
 
   getBasicUsageFiles() {

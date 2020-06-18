@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OChartComponent, ScatterChartConfiguration } from 'ontimize-web-ngx-charts';
+import { ScatterChartConfiguration } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: 'scatter',
@@ -7,17 +7,22 @@ import { OChartComponent, ScatterChartConfiguration } from 'ontimize-web-ngx-cha
 })
 export class ScatterComponent {
 
-  chartParameters: ScatterChartConfiguration;
+  chartParameters1: ScatterChartConfiguration;
+  chartParameters2: ScatterChartConfiguration;
 
   constructor() {
+    this.chartParameters1 = new ScatterChartConfiguration();
+    this.chartParameters1.legend.margin.top = 5;
+    this.chartParameters1.legend.margin.bottom = 5;
 
-    this.chartParameters = new ScatterChartConfiguration();
+    this.chartParameters2 = new ScatterChartConfiguration();
+    this.chartParameters2.size = [ 2, 1, 2];
+    this.chartParameters2.shape = [ 'circle', 'cross', 'diamond'];
+    this.chartParameters2.color = ['red', 'black', '#7c0000'];
+    this.chartParameters2.showDistX = false;
+    this.chartParameters2.showDistY = false;
+    this.chartParameters2.legend.margin.top = 1;
 
-    this.chartParameters.size = [ 2, 1, 2];
-    this.chartParameters.shape = [ 'circle', 'cross', 'diamond'];
-    this.chartParameters.color = ['red', 'black', '#7c0000'];
-    this.chartParameters.showDistX = false;
-    this.chartParameters.showDistY = false;
   }
 
   getBasicUsageFiles() {
