@@ -18,19 +18,28 @@ export class LineComponent {
   protected yAxis = 'MOVEMENT';
   protected xAxis = 'DATE_';
 
-  chartParameters: LineChartConfiguration;
+  chartParameters1: LineChartConfiguration;
+  chartParameters2: LineChartConfiguration;
   chartParametersSerie: LineChartConfiguration;
 
   protected data: Array<Object>;
 
   constructor() {
-    this.chartParameters = new LineChartConfiguration();
-    this.chartParameters.isArea = [true];
-    this.chartParameters.interactive = false;
-    this.chartParameters.useInteractiveGuideline = false;
+    this.chartParameters1 = new LineChartConfiguration();
+    this.chartParameters1.legend.margin.top = 5;
+    this.chartParameters1.legend.margin.bottom = 5;
+
+    this.chartParameters2 = new LineChartConfiguration();
+    this.chartParameters2.isArea = [true];
+    this.chartParameters2.interactive = false;
+    this.chartParameters2.useInteractiveGuideline = false;
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
 
     this.chartParametersSerie = new LineChartConfiguration();
     this.chartParametersSerie.legend.vers = 'furious';
+    this.chartParametersSerie.legend.margin.top = 5;
+    this.chartParametersSerie.legend.margin.bottom = 5;
 
   }
 

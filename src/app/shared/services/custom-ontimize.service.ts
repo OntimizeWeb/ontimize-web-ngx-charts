@@ -1,12 +1,8 @@
-import { Injectable, Injector } from '@angular/core';
-import { LoginService, OntimizeService, Util } from 'ontimize-web-ngx';
-import { Observable } from 'rxjs';
+import { Injector } from '@angular/core';
+import { LoginService, OntimizeService, ServiceResponse, Util } from 'ontimize-web-ngx';
+import { Observable, Subscriber } from 'rxjs';
 
-@Injectable()
 export class CustomOntimizeService extends OntimizeService {
-
-
-  public customUrlBase: string;
 
   constructor(protected injector: Injector) {
     super(injector);
@@ -25,8 +21,11 @@ export class CustomOntimizeService extends OntimizeService {
   }
 
   public configureService(config: any): void {
-    super.configureService(config);
-    this.customUrlBase = './assets/dummy-data';
+    this._urlBase = './assets/dummy-data/';
+
+    if (config.entity !== undefined) {
+      this.entity = config.entity;
+    }
   }
 
   public startsession(user: string, password: string): Observable<any> {
@@ -44,8 +43,7 @@ export class CustomOntimizeService extends OntimizeService {
   public query(kv?: Object, av?: Array<string>, entity?: string,
     sqltypes?: Object): Observable<any> {
     entity = (Util.isDefined(entity)) ? entity : this.entity;
-
-    let url = this.customUrlBase;
+    let url = this._urlBase;
     if (entity === 'EMovements') {
       url += '/emovements.json';
     } else if (entity === 'EMovementTypes') {
@@ -71,28 +69,28 @@ export class CustomOntimizeService extends OntimizeService {
     const options = {
       headers: this.buildHeaders()
     };
-    const self = this;
-
-    let innerObserver: any;
-    const dataObservable = Observable.create(observer => {
-      innerObserver = observer
+    return this.doRequest({
+      method: 'GET',
+      url: url,
+      options: options,
+      successCallback: (resp, subscriber) => {
+        this.customParseSuccessfulQueryResponse(kv, resp, subscriber);
+      },
+      errorCallBack: this.parseUnsuccessfulQueryResponse
     });
+  }
 
-    this.httpClient.get(url, options).subscribe((resp: any) => {
-      if (resp && resp.code === 3) {
-        self.redirectLogin(true);
-      } else if (resp.code === 1) {
-        innerObserver.error(resp.message);
-      } else if (resp.code === 0) {
-        innerObserver.next(resp);
-      } else {
-        // Unknow state -> error
-        innerObserver.error('Service unavailable');
-      }
-    }, error => innerObserver.error(error),
-      () => innerObserver.complete());
-
-    return dataObservable;
+  protected customParseSuccessfulQueryResponse(kv: any, resp: ServiceResponse, subscriber: Subscriber<ServiceResponse>) {
+    if (resp && resp.isUnauthorized()) {
+      this.redirectLogin(true);
+    } else if (resp && resp.isFailed()) {
+      subscriber.error(resp.message);
+    } else if (resp && resp.isSuccessful()) {
+      subscriber.next(resp);
+    } else {
+      // Unknow state -> error
+      subscriber.error('Service unavailable');
+    }
   }
 
   public advancedQuery(kv?: Object, av?: Array<string>, entity?: string, sqltypes?: Object,

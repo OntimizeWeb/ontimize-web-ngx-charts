@@ -10,7 +10,7 @@ import { NavigationBarService } from '../shared/services/navigation-bar.service'
 export class MainComponent implements OnInit {
 
   protected sectionTitle: string = '';
-  protected version = '2.0.0-rc.0';
+  protected version = '8.0.0-rc.0';
 
   constructor(protected navigationService: NavigationBarService) {
 

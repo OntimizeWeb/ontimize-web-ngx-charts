@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { OntimizeService } from 'ontimize-web-ngx';
-import { ChartService, OChartComponent } from 'ontimize-web-ngx-charts';
+import { ChartService, MultiBarChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 const ADAPTED_DATA = `
 [{"key":"Movement","values":[{"x":1235490657851,"y":951},{"x":1236110357961,"y":-80},{"x":1236402213822,"y":653},{"x":1236611284898,"y":-548},{"x":1242673437363,"y":-949},{"x":1245260962425,"y":552},{"x":1246875825338,"y":432},{"x":1254322811810,"y":1756},{"x":1254388791367,"y":-169},{"x":1255948329905,"y":-23}]},{"key":"Average Balance","values":[{"x":1235490657851,"y":951},{"x":1236110357961,"y":911},{"x":1236402213822,"y":1115.3333333333333},{"x":1236611284898,"y":1080.5},{"x":1242673437363,"y":869.8},{"x":1245260962425,"y":821.3333333333334},{"x":1246875825338,"y":848.4285714285714},{"x":1254322811810,"y":1088.25},{"x":1254388791367,"y":1256},{"x":1255948329905,"y":1387.9}]},{"key":"Total Balance","values":[{"x":1235490657851,"y":951},{"x":1236110357961,"y":871},{"x":1236402213822,"y":1524},{"x":1236611284898,"y":976},{"x":1242673437363,"y":27},{"x":1245260962425,"y":579},{"x":1246875825338,"y":1011},{"x":1254322811810,"y":2767},{"x":1254388791367,"y":2598},{"x":1255948329905,"y":2575}]}]
@@ -155,7 +155,18 @@ export class MultiBarComponent {
   data: Array<Object>;
   protected serviceResponse: string;
 
-  constructor(protected injector: Injector) {  }
+  chartParameters1: MultiBarChartConfiguration;
+  chartParameters2: MultiBarChartConfiguration;
+
+  constructor(protected injector: Injector) {
+    this.chartParameters1 = new MultiBarChartConfiguration();
+    this.chartParameters1.legend.margin.top = 5;
+    this.chartParameters1.legend.margin.bottom = 5;
+
+    this.chartParameters2 = new MultiBarChartConfiguration();
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
+  }
 
   ngAfterViewInit() {
 

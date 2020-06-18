@@ -11,8 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "production": "ng build --prod=true --baseHref==/ontimize-web-ngx-quickstart-charts/",
-    "production-aot-server": "ng build --prod=true --baseHref=/ontimizeweb/v8/charts/"
+    "production": "ng build --prod=true --baseHref=/ontimize-web-ngx-quickstart-charts",
+    "production-aot-server": "ng build --prod=true --baseHref=ontimizeweb/v8/charts/"
   },
   "private": true,
   "dependencies": {
