@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { AngularHighlightJsModule } from 'angular2-highlight-js';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { OChartModule } from 'ontimize-web-ngx-charts';
 
@@ -11,7 +11,7 @@ import { NavigationBarService } from './services/navigation-bar.service';
 @NgModule({
   imports: [
     OntimizeWebModule,
-    HighlightJsModule,
+    AngularHighlightJsModule,
     OChartModule,
     CustomChartComponentModule
   ],
@@ -27,7 +27,6 @@ import { NavigationBarService } from './services/navigation-bar.service';
     CustomChartComponentModule
   ],
   providers: [
-    HighlightJsService,
     NavigationBarService
   ]
 })

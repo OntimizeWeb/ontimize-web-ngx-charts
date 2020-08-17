@@ -41,7 +41,8 @@
     "classlist.js": "^1.1.20150312",
     "intl": "^1.2.5",
     "web-animations-js": "^2.3.2",
-    "angular2-highlight-js": "5.0.1"
+    "angular2-highlight-js": "^8.0.1",
+    "highlight.js": "^9.5.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.25",
