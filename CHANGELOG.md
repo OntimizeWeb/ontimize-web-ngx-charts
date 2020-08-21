@@ -1,4 +1,7 @@
-# 4.0.5
+# 4.0.5(2020-08-21)
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@4.1.3
+
 ### Features
 * **MultiBarHorizontalChartConfiguration**:
   * new `barColor` attribute.
