@@ -4,9 +4,10 @@
   "dependencies": {
     "d3": "3.5.17",
     "nvd3": "1.8.6",
-    "ontimize-web-ngx-nvd3": "8.0.0-SNAPSHOT-0"
+    "nvd3-extra": "1.0.0",
+    "ontimize-web-ngx-nvd3": "8.0.0-SNAPSHOT-1"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "8.0.0-rc.1"
+    "ontimize-web-ngx": "8.0.0"
   }
 }
