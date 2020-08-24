@@ -1,24 +1,67 @@
-# OntimizeWebNgx Charts Beta
+# Ontimize Web Charts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+An implementation of nvD3 and d3 charts library for Ontimize Web.
 
-## Install
 
-Run `npm install` to install al required dependencies.
+* [Github repository](#github)
+* [Examples](#examples)
+* [Installation](#installation)
+* [Usage](#usage)
 
-## Build
+## Github
+Ontimize Web Charts module is stored in [github](https://github.com/OntimizeWeb/ontimize-web-ngx-charts){:target="_blank"} where you can also see/add todos, bugs or feature requests in the [issues](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues){:target="_blank"} section.
 
-Run `npm run build` to execute the build process that will generate the dist folder and a .tgz file.
-You can use this .tgz file to install the library in your project through the package.json file.
+## Examples
 
-## Running unit tests
+Check out examples demo:
+<div>
+  <a href="https://ontimizeweb.github.io/ontimize-web-ngx-charts" target="_blank" class="btn btn--success">
+    <i class="fa fa-play"></i>
+    live demo
+  </a>
+</div>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+  npm install ontimize-web-ngx-charts --save
+```
 
-## Further help
+## Usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Finally, you can use ontimize-web-ngx-charts in your Ontimize Web project.
+
+### Configure angular-cli.json dependencies
+
+You must add the module styles definition in your '*.angular.json*' file styles array:
+
+```bash
+...
+"styles": [
+  ...
+  "../node_modules/ontimize-web-ngx-charts/styles.scss",
+  ....
+],
+...
+```
+
+### Import in an application module
+
+Include the library chart module into your app in the module where you want to use it.
+
+```bash
+...
+import { OChartModule } from 'ontimize-web-ngx-charts';
+...
+
+@NgModule({
+  imports: [
+    OChartModule,
+    /* other imports */
+  ],
+  declarations: ...
+  providers: ...
+})
+export class ExampleModule { }
+```
