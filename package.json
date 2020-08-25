@@ -1,6 +1,22 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "8.0.0-SNAPSHOT-2",
+  "version": "8.0.0",
+  "description": "An implementation of nvD3 for Ontimize Web",
+  "keywords": [
+    "angular",
+    "ontimize-web-ngx",
+    "ontimize-web-ngx-charts",
+    "charts",
+    "d3",
+    "nvD3"
+  ],
+  "author": "IMATIA S.L.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
+  },
+  "license": "Apache-2.0",
+  "main": "./bundles/ontimize-web-ngx-charts.umd.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +25,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
     "@angular/cdk": "~8.2.3",
@@ -28,7 +43,7 @@
     "nvd3": "1.8.6",
     "nvd3-extra": "1.0.0",
     "ontimize-web-ngx": "8.0.0",
-    "ontimize-web-ngx-nvd3": "8.0.0-SNAPSHOT-1",
+    "ontimize-web-ngx-nvd3": "8.0.0",
     "rxjs": "~6.4.0",
     "tslib": "~1.10.0",
     "zone.js": "0.9.1"
