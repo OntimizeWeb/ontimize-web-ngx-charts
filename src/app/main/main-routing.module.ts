@@ -10,6 +10,7 @@ export const routes: Routes = [
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
       {
         path: 'home',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
