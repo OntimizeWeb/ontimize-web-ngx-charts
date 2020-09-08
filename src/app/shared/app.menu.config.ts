@@ -46,7 +46,8 @@ export const MENU_CONFIG: MenuRootItem[] = [
       { id: 'candlestick', name: 'CANDLESTICK', icon: 'insert_chart_outlined', route: '/main/other-charts/candlestick' },
       { id: 'directedGraph', name: 'DIRECTEDGRAPH', icon: 'share', route: '/main/other-charts/directedGraph' }
     ]
-  }
+  },
+  { id: 'about', name: 'ABOUT', route: '/main/about', icon: 'help_outline' }
 
 ];
 
