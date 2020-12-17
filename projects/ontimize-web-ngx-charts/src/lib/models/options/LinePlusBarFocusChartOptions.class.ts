@@ -23,8 +23,6 @@ export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
       x2Axis: conf.x1Axis.getAxisOptions(),
       y1Axis: conf.y1Axis.getAxisOptions(),
       y2Axis: conf.y2Axis.getAxisOptions(),
-      // y3Axis: conf.y1Axis.getAxisOptions(),
-      // y4Axis: conf.y1Axis.getAxisOptions(),
       forceX: conf.forceX,
       forceY: conf.forceY,
       duration: conf.duration,
