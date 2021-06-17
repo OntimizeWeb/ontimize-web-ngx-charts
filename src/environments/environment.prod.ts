@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   versions: {
-    core: '8.0.0',
+    core: '8.3.0',
     charts: '8.0.0',
-    theming: '4.0.2'
+    theming: '8.0.1'
   }
 };
