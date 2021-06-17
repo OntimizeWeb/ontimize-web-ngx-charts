@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { LoginService, OntimizeService, ServiceResponse, Util } from 'ontimize-web-ngx';
+import { OntimizeService, ServiceResponse, Util } from 'ontimize-web-ngx';
 import { Observable, Subscriber } from 'rxjs';
 
 export class CustomOntimizeService extends OntimizeService {
@@ -9,14 +9,12 @@ export class CustomOntimizeService extends OntimizeService {
   }
 
   public getDefaultServiceConfiguration(serviceName?: string): Object {
-    const loginService = this.injector.get(LoginService);
     const configuration = this._config.getServiceConfiguration();
 
     let servConfig = {};
     if (serviceName && configuration.hasOwnProperty(serviceName)) {
       servConfig = configuration[serviceName];
     }
-    servConfig['session'] = loginService.getSessionInfo();
     return servConfig;
   }
 
@@ -82,7 +80,7 @@ export class CustomOntimizeService extends OntimizeService {
 
   protected customParseSuccessfulQueryResponse(kv: any, resp: ServiceResponse, subscriber: Subscriber<ServiceResponse>) {
     if (resp && resp.isUnauthorized()) {
-      this.redirectLogin(true);
+      this.authService.logout();
     } else if (resp && resp.isFailed()) {
       subscriber.error(resp.message);
     } else if (resp && resp.isSuccessful()) {
