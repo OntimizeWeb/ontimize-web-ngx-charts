@@ -3,6 +3,7 @@ import { Injector } from '@angular/core';
 import { ChartService } from './services/chart.service';
 
 export * from './services/chart.service';
+export * from './services/chart-on-demand.service';
 
 export function getChartServiceProvider() {
   return new ChartService();

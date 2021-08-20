@@ -1,0 +1,109 @@
+
+<!-- <o-button type="STROKED" (click)="openDialog()" icon="pivot_table_chart" label="{{ buttonText | oTranslate }}"></o-button> -->
+
+<ng-template #wrapper let-data>
+  <mat-sidenav-container class="mat-sidenav-container" fxFill>
+  
+    <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="mat-sidenav-graphic-gui">
+  
+      <o-form attr="formGraphics" editable-detail="no" show-header="no">
+  
+        <o-column fxFlex layout-padding>
+          <o-column appearance="outline" title="{{ 'X_AXIS' | oTranslate }}">
+            <o-combo #comboXAxis attr="{{'SELECT_X_AXIS' | oTranslate}}" read-only="no" filter="yes" translate="yes"
+              columns="key;value" visible-columns="value" value-column="value"
+              (onValueChange)="captureValueXAxis($event)"></o-combo>
+  
+  
+            <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE' | oTranslate}}" read-only="no" filter="yes"
+              class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
+              columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
+  
+            <!-- <mat-checkbox [(ngModel)]="dateXAxis"> Date </mat-checkbox> -->
+  
+  
+          </o-column>
+          <o-column appearance="outline" title="{{ 'Y_AXIS' | oTranslate }}">
+            <o-combo #comboYAxis attr="{{'SELECT_Y_AXIS' | oTranslate}}" read-only="no" filter="yes" class="form-field"
+              multiple="yes" columns="key;value" visible-columns="value" value-column="value"
+              (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
+  
+            <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE' | oTranslate}}" read-only="no" filter="yes"
+              class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
+              columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
+  
+            <!-- <mat-checkbox [(ngModel)]="dateYAxis"> Date </mat-checkbox> -->
+  
+          </o-column>
+          <o-column title="{{ 'CHART_TYPE' | oTranslate }}" appearance="outline">
+            <o-radio attr="required" label="" [static-data]="getDataArrayRadioGraphics()" value-column="key"
+              columns="key;value" visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)"
+              translate="yes"></o-radio>
+          </o-column>
+  
+          <o-column title="{{ 'CHART_TITLE' | oTranslate }}" appearance="outline">
+            <o-text-input #chartTitle attr=" " label="{{ 'CHART_TITLE' | oTranslate }}" read-only="no" rows="2"
+              layout-padding></o-text-input>
+          </o-column>
+        </o-column>
+      </o-form>
+    </mat-sidenav>
+    <mat-sidenav-content opened mode="side" position="end">
+      <div class="sidenav-container-content" fxLayout="column" fxFlex>
+        <o-button (click)="opened=!opened" [icon]="(sidenav.opened? 'chevron_left':'chevron_right')" type="ICON" label=""
+          [matTooltip]="(sidenav.opened?'HIDE_FILTERS':'SHOW_FILTERS') | oTranslate">
+        </o-button>
+        <o-column fxFlex class="title-sidenav-content">
+  
+          <o-column *ngIf="showPlaceholder" fxFlex class="image-placeholder">
+            <img src="./assets/images/img_grafica_ilustracion_estandar_color.png" fxFlex>
+          </o-column>
+  
+          <o-row>
+            <o-chart #lineChartBasic *ngIf="showLineChart" fxFlex type="line" service="graphics" [entity]="entity"
+              [chart-parameters]="chartParametersLineChart" [x-axis]="comboXAxis.value?.value"
+              [y-axis]="comboYAxis.value?.value.join(';')" query-on-bind="no" x-label="comboXAxis.value?.value"
+              y-label="comboYAxis.value?.value.join(';')" layout-padding class="chart">
+            </o-chart>
+  
+          </o-row>
+  
+            <o-chart #multiBarHorizontal *ngIf="showMultiBarHorizontalChart" fxFill type="multiBarHorizontalChart" service="graphics" [entity]="entity"
+              [chart-parameters]="chartParametersMultiBarHorizontalChart" [x-axis]="comboXAxis.value?.value"
+               [y-axis]="comboYAxis.value?.value.join(';')" query-on-bind="no" x-label="comboXAxis.value?.value"
+              y-label="comboYAxis.value?.value.join(';')"></o-chart>
+  
+  
+  
+          <o-row *ngIf="showMultiBarChart">
+            <o-chart #multiBar type="multiBar" layout-fill service="graphics" [entity]="entity"
+              [x-axis]="comboXAxis.value?.value" fxFlex [y-axis]="comboYAxis.value?.value.join(';')" query-on-bind="no"
+              x-label="comboXAxis.value?.value" y-label="comboYAxis.value?.value.join(';')"
+              [chart-parameters]="chartParametersMultiBarChart"></o-chart>
+          </o-row>
+  
+          <o-row *ngIf="showAreaChart">
+            <o-chart #stackedAreaChart type="stackedAreaChart" service="graphics" [entity]="entity"
+              [chart-parameters]="chartParametersAreaChart" x-label="comboXAxis.value?.value"
+              y-label="comboYAxis.value?.value.join(';')" [x-axis]="comboXAxis.value?.value"
+              [y-axis]="comboYAxis.value?.value.join(';')" query-on-bind="no" fxFlex>
+            </o-chart>
+  
+          </o-row>
+  
+          <o-row *ngIf="showPieChart">
+            <o-chart #pieChart layout-fill type="pie" service="graphics" [entity]="entity"
+              [x-axis]="comboXAxis.value?.value" [y-axis]="comboYAxis.value?.value.join(';')" fxFlex
+              [chart-parameters]="chartParametersPieChart" x-label="comboXAxis.value?.value" query-on-bind="no"
+              vertical-scroll="yes">
+            </o-chart>
+  
+          </o-row>
+        </o-column>
+      </div>
+    </mat-sidenav-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </mat-sidenav-container>
+</ng-template>
