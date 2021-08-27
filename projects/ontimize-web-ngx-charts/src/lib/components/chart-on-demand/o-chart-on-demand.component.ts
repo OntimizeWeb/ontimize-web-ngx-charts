@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatSidenav } from '@angular/material';
 import { OComboComponent, OntimizeService, OValueChangeEvent } from 'ontimize-web-ngx';
 
@@ -8,7 +8,7 @@ import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartCo
 import { MultiBarHorizontalChartConfiguration } from '../../models/options/MultiBarHorizontalChartConfiguration.class';
 import { PieChartConfiguration } from '../../models/options/PieChartConfiguration.class';
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
-import { OChartComponent } from '../../ontimize-web-ngx-charts.module';
+import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
 
 declare var d3: any;
@@ -20,7 +20,7 @@ declare var d3: any;
   styleUrls: ['./o-chart-on-demand.component.css']
 })
 
-export class OChartOnDemandComponent {
+export class OChartOnDemandComponent implements AfterViewInit {
 
   public chartParametersLineChart: LineChartConfiguration;
   public chartParametersDiscreteBarChart: DiscreteBarChartConfiguration;
@@ -30,6 +30,7 @@ export class OChartOnDemandComponent {
   public chartParametersPieChart: PieChartConfiguration;
   public arrayComboYAxis: Array<Object>;
   public entity;
+  public service;
   showLineChart: boolean = false;
   showMultiBarHorizontalChart: boolean = false;
   showMultiBarChart: boolean = false;
@@ -63,19 +64,18 @@ export class OChartOnDemandComponent {
     this.arrayComboYAxis = [];
     this.selectedYAxis = "";
     this._arrayColumns = value;
-    this.comboXAxis.setDataArray(value);
-    this.comboYAxis.setDataArray(value);
-    if (this.comboYAxis.value != undefined) {
-      this.comboYAxis.clearValue();
-    }
-    this.comboXAxis.setValue(undefined);
+    // this.comboXAxis.setDataArray(value);
+    // this.comboYAxis.setDataArray(value);
+    // if (this.comboYAxis.value != undefined) {
+    //   this.comboYAxis.clearValue();
+    // }
+    // this.comboXAxis.setValue(undefined)
 
   }
 
   selectedXAxis: string;
   selectedYAxis: string;
   selectedTypeChart: any;
-
   fixedInViewport = true;
 
   constructor(
@@ -85,19 +85,31 @@ export class OChartOnDemandComponent {
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
-    this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration('graphics'));
+    this.entity = this.data.entity;
+    this.service = this.data.service;
+    this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.service));
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this._configureLineChart(d3Locale);
     this._configureMultiBarHotizontalChart(d3Locale);
     this._configureMultiBarChart(d3Locale);
     this._configAreaChart(d3Locale);
     this._configurePieChart(d3Locale);
-
   }
 
-  openDialog() {
-    this.dialog.open(this.template, { data: this.description });
+  ngAfterViewInit(): void {
+    let columnTitles = [];
+    let columns = Object.keys(this.data.arrayColumns[0]);
+    columns.forEach((element, index) => {
+      columnTitles.push({
+        'key': index,
+        'value': element,
+      });
+    });
+    this.arrayColumns = this.data.arrayColumns;
+    this.comboXAxis.setDataArray(columnTitles);
+    this.comboYAxis.setDataArray(columnTitles);
+    this.comboXAxis.setValue(this.getValue());
+    this.comboYAxis.setValue(this.getValue());
   }
 
   captureValueYAxis(event: any) {
@@ -111,7 +123,6 @@ export class OChartOnDemandComponent {
   captureValueXAxis(event: OValueChangeEvent) {
     this.selectedXAxis = "";
     this.selectedXAxis = event.newValue;
-
     this.showChart();
   }
 
@@ -123,17 +134,10 @@ export class OChartOnDemandComponent {
 
 
   showChart() {
-
     this.hideGraphic();
-
-    console.log("selectedXAxis " + this.selectedXAxis);
-    console.log("array comboYAxis  " + this.arrayComboYAxis);
-    console.log("selectedTypeChart " + this.selectedTypeChart);
-
     if (this.selectedXAxis != undefined) {
       if (this.selectedYAxis != undefined && this.selectedYAxis.length != 0) {
         if (this.selectedTypeChart != undefined) {
-          console.log("Pinto y coloreo");
           this.showGraphic();
         }
       }
@@ -154,44 +158,52 @@ export class OChartOnDemandComponent {
 
 
   showGraphic() {
-
     this.showPlaceholder = false;
-
-    console.log(this.lineChartBasic);
-
     if (this.selectedTypeChart == 1) {
-      setTimeout(() => {
-        this.lineChartBasic.setChartConfiguration(this.chartParametersLineChart);
-        console.log("this.lineChartBasic " + this.lineChartBasic);
-
-        this.showLineChart = true;
-
-      });
+      this.showLineChart = true;
+      this.chartParametersLineChart.xAxis = this.comboXAxis.value.value;
+      this.chartParametersLineChart.yAxis = this.comboYAxis.value.value;
+      this.chartParametersLineChart.xLabel = this.comboXAxis.value.value;
+      this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');;
+      DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
+      // this.lineChartBasic.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 2) {
-      setTimeout(() => {
-        this.showMultiBarHorizontalChart = true;
-        this.multiBarHorizontal.setChartConfiguration(this.chartParametersMultiBarHorizontalChart);
-
-      });
+      this.showMultiBarHorizontalChart = true;
+      this.chartParametersMultiBarHorizontalChart.xAxis = this.comboXAxis.value.value;
+      this.chartParametersMultiBarHorizontalChart.yAxis = this.comboYAxis.value.value;
+      this.chartParametersMultiBarHorizontalChart.xLabel = this.comboXAxis.value.value;
+      this.chartParametersMultiBarHorizontalChart.yLabel = this.comboYAxis.value.value.join(';');
+      DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarHorizontalChart);
+      // this.multiBarHorizontal.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 3) {
-      setTimeout(() => {
-        this.showMultiBarChart = true;
-        this.multiBar.setChartConfiguration(this.chartParametersMultiBarChart);
-
-      });
+      this.showMultiBarChart = true;
+      this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
+      this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
+      this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
+      this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
+      DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
+      // this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 4) {
+      this.showAreaChart = true;
       setTimeout(() => {
-        this.showAreaChart = true;
-        this.stackedAreaChart.setChartConfiguration(this.chartParametersAreaChart);
-
+        this.chartParametersAreaChart.xAxis = this.comboXAxis.value.value;
+        this.chartParametersAreaChart.yAxis = this.comboYAxis.value.value;
+        this.chartParametersAreaChart.xLabel = this.comboXAxis.value.value;
+        this.chartParametersAreaChart.yLabel = this.comboYAxis.value.value.join(';');
+        DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
       });
+      // this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
     else if (this.selectedTypeChart == 5){
+      this.showPieChart = true;
       setTimeout(() => {
-        this.showPieChart = true;
-        this.pieChart.setChartConfiguration(this.chartParametersPieChart);
-
+        this.chartParametersPieChart.xAxis = this.comboXAxis.value.value;
+        this.chartParametersPieChart.yAxis = this.comboYAxis.value.value;
+        this.chartParametersPieChart.xLabel = this.comboXAxis.value.value;
+        this.chartParametersPieChart.yLabel = this.comboYAxis.value.value.join(';');
+        DataAdapterUtils.createDataAdapter(this.chartParametersPieChart);
       });
+      // this.pieChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
   }
 
@@ -227,12 +239,12 @@ export class OChartOnDemandComponent {
     return this.array;
   }
 
-  getValue() {
-    return 1;
-  }
-
   getValueDao(): any[] {
     return this.arrayColumns;
+  }
+
+  getValue() {
+    return [1];
   }
 
 
@@ -242,7 +254,6 @@ export class OChartOnDemandComponent {
 
   captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent){
     var elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
-    console.log("elementXAxis " + elementXAxis);
 
     this.chartParametersLineChart.xDataType = elementXAxis.f;
     this.chartParametersMultiBarHorizontalChart.xDataType = elementXAxis.f;
@@ -253,7 +264,7 @@ export class OChartOnDemandComponent {
     if(elementXAxis != undefined){
       //this.captureValueComboDataTypeYAxis();
     }else{
-    console.log("seleccione eje y");
+    // console.log("seleccione eje y");
     }
   }
 
@@ -262,7 +273,6 @@ export class OChartOnDemandComponent {
     // this.selectedDataType = event.newValue;
     // console.log("this.selectedDataType " + this.selectedDataType);
     let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
-    console.log("elementYAxis " + elementYAxis);
 
     this.chartParametersLineChart.yDataType = elementYAxis.f;
     this.chartParametersMultiBarHorizontalChart.yDataType = elementYAxis.f;
@@ -334,9 +344,7 @@ export class OChartOnDemandComponent {
 
   private _configurePieChart(locale: any): void {
     this.chartParametersPieChart = new PieChartConfiguration();
-
     this.chartParametersPieChart.legendPosition = 'bottom';
-
   }
 
 }
