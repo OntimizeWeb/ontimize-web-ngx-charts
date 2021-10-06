@@ -17,7 +17,7 @@ declare var d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
-  styleUrls: ['./o-chart-on-demand.component.css']
+  styleUrls: ['./o-chart-on-demand.component.scss']
 })
 
 export class OChartOnDemandComponent implements AfterViewInit {
@@ -64,12 +64,12 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.arrayComboYAxis = [];
     this.selectedYAxis = "";
     this._arrayColumns = value;
-    // this.comboXAxis.setDataArray(value);
-    // this.comboYAxis.setDataArray(value);
-    // if (this.comboYAxis.value != undefined) {
-    //   this.comboYAxis.clearValue();
-    // }
-    // this.comboXAxis.setValue(undefined)
+    this.comboXAxis.setDataArray(value);
+    this.comboYAxis.setDataArray(value);
+    if (this.comboYAxis.value != undefined) {
+      this.comboYAxis.clearValue();
+    }
+    this.comboXAxis.setValue(undefined)
 
   }
 
@@ -166,7 +166,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersLineChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');;
       DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
-      // this.lineChartBasic.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+      this.lineChartBasic.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 2) {
       this.showMultiBarHorizontalChart = true;
       this.chartParametersMultiBarHorizontalChart.xAxis = this.comboXAxis.value.value;
@@ -174,7 +174,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersMultiBarHorizontalChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersMultiBarHorizontalChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarHorizontalChart);
-      // this.multiBarHorizontal.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+      this.multiBarHorizontal.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 3) {
       this.showMultiBarChart = true;
       this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
@@ -182,7 +182,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
-      // this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+      this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 4) {
       this.showAreaChart = true;
       setTimeout(() => {
@@ -192,7 +192,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         this.chartParametersAreaChart.yLabel = this.comboYAxis.value.value.join(';');
         DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
       });
-      // this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+      this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
     else if (this.selectedTypeChart == 5){
       this.showPieChart = true;
@@ -203,7 +203,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         this.chartParametersPieChart.yLabel = this.comboYAxis.value.value.join(';');
         DataAdapterUtils.createDataAdapter(this.chartParametersPieChart);
       });
-      // this.pieChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+      this.pieChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
   }
 
