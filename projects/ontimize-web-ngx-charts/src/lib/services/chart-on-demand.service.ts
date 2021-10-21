@@ -14,6 +14,8 @@ export class OChartOnDemandService implements IChartOnDemandService {
 
   openChartOnDemand(dataArray, service, entity) {
     this.dialog.open(OChartOnDemandComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       height: '90%',
       width: '80%',
       data: { arrayColumns: dataArray, service: service, entity: entity }

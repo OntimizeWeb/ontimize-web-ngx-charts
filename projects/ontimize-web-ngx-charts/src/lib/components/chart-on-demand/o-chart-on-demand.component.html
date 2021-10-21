@@ -1,5 +1,5 @@
 <div mat-dialog-title class="dialog-title">
-  <h2>{{ 'CHART_ON_DEMAND_TITLE' | oTranslate }}</h2>
+  <h2>{{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oTranslate }}</h2>
   <div class="main-menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="settings dialog" (click)="showConfigurationMenu()">
       <mat-icon>settings</mat-icon>
@@ -34,10 +34,10 @@
 
       <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no">
         <o-column>
-          <o-text-input attr="name" label="{{ 'CHART_NAME' | oTranslate }}" required="yes"></o-text-input>
+          <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oTranslate }}" required="yes"></o-text-input>
         </o-column>
         <o-column>
-          <o-text-input attr="description" label="{{ 'CHART_SUBTITLE' | oTranslate }}" required="yes"></o-text-input>
+          <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oTranslate }}" required="yes"></o-text-input>
         </o-column>
 
         <o-column fxFlex layout-padding>

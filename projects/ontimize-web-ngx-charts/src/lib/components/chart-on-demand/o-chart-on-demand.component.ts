@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSidenav } from '@angular/material';
 import { OComboComponent, OFormComponent, OntimizeService, OTranslateService, OValueChangeEvent } from 'ontimize-web-ngx';
+import { Subscription } from 'rxjs';
 
 import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
@@ -79,7 +80,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   selectedTypeChart: any;
   fixedInViewport = true;
 
-  protected translateService: OTranslateService;
+  private translateServiceSubscription :Subscription;
 
   constructor(
     private ontimizeService: OntimizeService,
@@ -88,9 +89,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
     private dialogRef: MatDialogRef<any>,
     public dialog: MatDialog,
     protected injector: Injector,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    translateService: OTranslateService
   ) {
-    this.translateService = this.injector.get(OTranslateService);
     this.entity = this.data.entity;
     this.service = this.data.service;
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.service));
@@ -344,7 +345,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   setFullscreenDialog(): void {
     if(!this.fullscreen) {
-      this.dialogRef.updateSize("100vw", "100vh");
+      this.dialogRef.updateSize("100%", "100%");
     } else {
       this.dialogRef.updateSize("90%", "80%");
     }
