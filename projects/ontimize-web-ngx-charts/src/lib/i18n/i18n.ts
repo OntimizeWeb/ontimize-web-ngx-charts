@@ -1,0 +1,25 @@
+export var MAP = {
+  // English
+  'en': {
+    'CHART_ON_DEMAND_TITLE': 'Chart on demand',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.TITLE': 'Save Configuration',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_PLACEHOLDER': 'Name your configuration',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_DESCRIPTION_PLACEHOLDER': 'Add a description',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL': 'Save',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Load Configuration',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No configurations saved',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Load',
+  },
+
+  // Spanish
+  'es': {
+    'CHART_ON_DEMAND_TITLE': 'Gráficas a la carta',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.TITLE': 'Guardar configuración',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_PLACEHOLDER': 'Nombre de tu configuración',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_DESCRIPTION_PLACEHOLDER': 'Añade una descripción',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL': 'Guardar',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Cargar configuración',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No hay configuraciones guardadas',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Cargar',
+  }
+};

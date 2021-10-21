@@ -1,0 +1,20 @@
+<div mat-dialog-title class="dialog-title">
+  <h3>{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE' | oTranslate }}</h3>
+  <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="dialog-content">
+  <mat-form-field class="example-full-width">
+    <mat-selection-list #filterList dense class="o-table-load-filter-dialog-list">
+      <mat-list-option *ngFor="let filter of getPreferencesList() " [value]="filter.name" checkboxPosition="before">
+        <span matLine>{{ filter.name }}</span>
+        <span matLine>{{ filter.description }}</span>
+      </mat-list-option>
+      <mat-list-item *ngIf="emptyList">
+        <span class="empty-filter-list">{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST' | oTranslate }}</span>
+      </mat-list-item>
+    </mat-selection-list>
+  </mat-form-field>
+  <o-button #submit label="{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL' | oTranslate }}" type="RAISED" (click)="loadPreferences()"></o-button>
+</div>

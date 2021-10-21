@@ -1,16 +1,44 @@
 <div mat-dialog-title class="dialog-title">
   <h2>{{ 'CHART_ON_DEMAND_TITLE' | oTranslate }}</h2>
-  <button mat-icon-button aria-label="close dialog" mat-dialog-close>
-    <mat-icon>close</mat-icon>
-  </button>
+  <div class="main-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="settings dialog" (click)="showConfigurationMenu()">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openSavePreferencesDialog()">
+        <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oTranslate }}</span>
+      </button>
+      <button mat-menu-item>
+        <span>{{ 'CHART_ON_DEMAND.SAVE_AS_CONFIGURATION_BUTTON' | oTranslate }}</span>
+      </button>
+      <button mat-menu-item (click)="openLoadPreferencesDialog()">
+        <span>{{ 'CHART_ON_DEMAND.LOAD_CONFIGURATION_BUTTON' | oTranslate }}</span>
+      </button>
+    </mat-menu>
+    <button mat-icon-button aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
+      <mat-icon [ngClass]="{'active' : fullscreen}">content_copy</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </div>
 
 <div mat-dialog-content class="dialog-content">
   <mat-sidenav-container class="mat-sidenav-container" fxFill>
 
-    <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="mat-sidenav-graphic-gui">
+    <mat-sidenav #sidenav [(opened)]="opened" mode="side">
+      <o-button (click)="opened=!opened" icon="menu" type="ICON" label=""
+      [matTooltip]="(sidenav.opened?'HIDE_FILTERS':'SHOW_FILTERS') | oTranslate">
+      </o-button>
 
-      <o-form attr="formGraphics" editable-detail="no" show-header="no">
+      <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no">
+        <o-column>
+          <o-text-input attr="name" label="{{ 'CHART_NAME' | oTranslate }}" required="yes"></o-text-input>
+        </o-column>
+        <o-column>
+          <o-text-input attr="description" label="{{ 'CHART_SUBTITLE' | oTranslate }}" required="yes"></o-text-input>
+        </o-column>
 
         <o-column fxFlex layout-padding>
           <o-column appearance="outline" title="{{ 'X_AXIS' | oTranslate }}">
@@ -21,7 +49,7 @@
             </o-row>
 
             <o-row>
-              <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE' | oTranslate}}" read-only="no" filter="yes"
+              <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE_X' | oTranslate}}" read-only="no" filter="yes"
                 class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
                 columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
             </o-row>
@@ -35,7 +63,7 @@
               multiple="yes" columns="key;value" visible-columns="value" value-column="value"
               (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
 
-            <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE' | oTranslate}}" read-only="no" filter="yes"
+            <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE_Y' | oTranslate}}" read-only="no" filter="yes"
               class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
               columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
 
@@ -48,13 +76,13 @@
               translate="yes"></o-radio>
           </o-column>
         </o-column>
+        <o-column>
+          <o-button attr="basic3" type="BASIC" label="{{ 'CHART_BUTTON_GENERATE' | oTranslate }}" layout-padding color="accent"></o-button>
+        </o-column>
       </o-form>
     </mat-sidenav>
-    <mat-sidenav-content opened mode="side" position="end">
+    <mat-sidenav-content>
       <div class="sidenav-container-content" fxLayout="column" fxFlex>
-        <o-button (click)="opened=!opened" [icon]="(sidenav.opened? 'chevron_left':'chevron_right')" type="ICON" label=""
-          [matTooltip]="(sidenav.opened?'HIDE_FILTERS':'SHOW_FILTERS') | oTranslate">
-        </o-button>
         <o-column fxFlex class="title-sidenav-content">
 
           <o-column *ngIf="showPlaceholder" fxFlex class="image-placeholder">
@@ -67,36 +95,28 @@
 
           <o-row [style.display]="!showLineChart ? 'none' : 'inherit'">
             <o-chart #lineChartBasic fxFlex type="line" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart" chart-height="600" chart-width="550">
+              [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart">
             </o-chart>
-          </o-row>
-
-          <o-row [style.display]="!showMultiBarHorizontalChart ? 'none' : 'inherit'">
-            <o-chart #multiBarHorizontal fxFill type="multiBarHorizontalChart" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersMultiBarHorizontalChart" query-on-bind="no" chart-height="600" chart-width="550"></o-chart>
           </o-row>
 
           <o-row [style.display]="!showMultiBarChart ? 'none' : 'inherit'">
             <o-chart #multiBar type="multiBar" layout-fill [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID" query-on-bind="no"
-              [chart-parameters]="chartParametersMultiBarChart" chart-height="600" chart-width="550"></o-chart>
+              [chart-parameters]="chartParametersMultiBarChart"></o-chart>
           </o-row>
 
           <o-row [style.display]="!showAreaChart ? 'none' : 'inherit'">
             <o-chart #stackedAreaChart type="stackedAreaChart" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex chart-height="600" chart-width="550">
+              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
             </o-chart>
           </o-row>
           
           <o-row [style.display]="!showPieChart ? 'none' : 'inherit'">
             <o-chart #pieChart layout-fill type="pie" [service]="service" [entity]="entity" fxFlex 
-              [chart-parameters]="chartParametersPieChart" query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes" chart-height="600" chart-width="550">
+              [chart-parameters]="chartParametersPieChart" query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes">
             </o-chart>
           </o-row>
         </o-column>
       </div>
     </mat-sidenav-content>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Cancel</button>
-    </mat-dialog-actions>
   </mat-sidenav-container>
 </div>
