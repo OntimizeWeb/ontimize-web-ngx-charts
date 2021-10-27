@@ -1,18 +1,18 @@
 <div mat-dialog-title class="dialog-title">
-  <h2>{{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oTranslate }}</h2>
+  <h2>{{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oChartTranslate }}</h2>
   <div class="main-menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="settings dialog" (click)="showConfigurationMenu()">
       <mat-icon>settings</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="openSavePreferencesDialog()">
-        <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oTranslate }}</span>
+        <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
       <button mat-menu-item>
-        <span>{{ 'CHART_ON_DEMAND.SAVE_AS_CONFIGURATION_BUTTON' | oTranslate }}</span>
+        <span>{{ 'CHART_ON_DEMAND.SAVE_AS_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
       <button mat-menu-item (click)="openLoadPreferencesDialog()">
-        <span>{{ 'CHART_ON_DEMAND.LOAD_CONFIGURATION_BUTTON' | oTranslate }}</span>
+        <span>{{ 'CHART_ON_DEMAND.LOAD_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
     </mat-menu>
     <button mat-icon-button aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
@@ -29,27 +29,27 @@
 
     <mat-sidenav #sidenav [(opened)]="opened" mode="side">
       <o-button (click)="opened=!opened" icon="menu" type="ICON" label=""
-      [matTooltip]="(sidenav.opened?'HIDE_FILTERS':'SHOW_FILTERS') | oTranslate">
+      [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oChartTranslate">
       </o-button>
 
       <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no">
         <o-column>
-          <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oTranslate }}" required="yes"></o-text-input>
+          <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oChartTranslate }}" required="yes"></o-text-input>
         </o-column>
         <o-column>
-          <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oTranslate }}" required="yes"></o-text-input>
+          <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oChartTranslate }}" required="yes"></o-text-input>
         </o-column>
 
         <o-column fxFlex layout-padding>
-          <o-column appearance="outline" title="{{ 'X_AXIS' | oTranslate }}">
+          <o-column appearance="outline" title="{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}">
             <o-row>
-              <o-combo #comboXAxis attr="{{'SELECT_X_AXIS' | oTranslate}}" read-only="no" filter="yes" translate="yes"
+              <o-combo #comboXAxis attr="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}" read-only="no" filter="yes" translate="yes"
                 columns="key;value" visible-columns="value" value-column="value"
                 (onValueChange)="captureValueXAxis($event)"></o-combo>
             </o-row>
 
             <o-row>
-              <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE_X' | oTranslate}}" read-only="no" filter="yes"
+              <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}" read-only="no" filter="yes"
                 class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
                 columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
             </o-row>
@@ -58,31 +58,31 @@
 
 
           </o-column>
-          <o-column appearance="outline" title="{{ 'Y_AXIS' | oTranslate }}">
-            <o-combo #comboYAxis attr="{{'SELECT_Y_AXIS' | oTranslate}}" read-only="no" filter="yes" class="form-field"
+          <o-column appearance="outline" title="{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}">
+            <o-combo #comboYAxis attr="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes" class="form-field"
               multiple="yes" columns="key;value" visible-columns="value" value-column="value"
               (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
 
-            <o-combo #DataTypeXAxis attr="{{'SELECT_DATA_TYPE_Y' | oTranslate}}" read-only="no" filter="yes"
+            <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no" filter="yes"
               class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
               columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
 
             <!-- <mat-checkbox [(ngModel)]="dateYAxis"> Date </mat-checkbox> -->
 
           </o-column>
-          <o-column title="{{ 'CHART_TYPE' | oTranslate }}" appearance="outline">
+          <o-column title="{{ 'CHART_ON_DEMAND.CHART_TYPE' | oChartTranslate }}" appearance="outline">
             <o-radio attr="required" label="" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1"
               columns="key;value" visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)"
               translate="yes"></o-radio>
           </o-column>
         </o-column>
         <o-column>
-          <o-button attr="basic3" type="BASIC" label="{{ 'CHART_BUTTON_GENERATE' | oTranslate }}" layout-padding color="accent"></o-button>
+          <o-button attr="basic3" type="BASIC" label="{{ 'CHART_ON_DEMAND.CHART_BUTTON_GENERATE' | oChartTranslate }}" layout-padding color="accent"></o-button>
         </o-column>
       </o-form>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="sidenav-container-content" fxLayout="column" fxFlex>
+      <div class="sidenav-container-content" [ngClass]="{'opened' : opened}" fxLayout="column" fxFlex>
         <o-column fxFlex class="title-sidenav-content">
 
           <o-column *ngIf="showPlaceholder" fxFlex class="image-placeholder">

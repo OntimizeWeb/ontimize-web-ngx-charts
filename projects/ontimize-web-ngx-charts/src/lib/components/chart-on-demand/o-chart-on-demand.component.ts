@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSidenav } from '@angular/material';
-import { OComboComponent, OFormComponent, OntimizeService, OTranslateService, OValueChangeEvent } from 'ontimize-web-ngx';
-import { Subscription } from 'rxjs';
+import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent } from 'ontimize-web-ngx';
 
 import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
@@ -12,6 +11,7 @@ import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
+
 
 declare var d3: any;
 @Component({
@@ -80,8 +80,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   selectedTypeChart: any;
   fixedInViewport = true;
 
-  private translateServiceSubscription :Subscription;
-
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
@@ -90,7 +88,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     public dialog: MatDialog,
     protected injector: Injector,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    translateService: OTranslateService
   ) {
     this.entity = this.data.entity;
     this.service = this.data.service;

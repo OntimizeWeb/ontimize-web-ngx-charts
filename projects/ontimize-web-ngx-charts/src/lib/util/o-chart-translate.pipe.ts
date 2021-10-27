@@ -1,4 +1,4 @@
-import { Injector, ModuleWithProviders, NgModule, Pipe, PipeTransform } from '@angular/core';
+import { Injector, Pipe, PipeTransform } from '@angular/core';
 import { OTranslateService } from 'ontimize-web-ngx';
 
 import * as CORE_TRANSLATIONS from '../i18n/i18n';
@@ -7,7 +7,7 @@ import * as CORE_TRANSLATIONS from '../i18n/i18n';
   name: 'oChartTranslate',
   pure: false
 })
-export class OFileManagerTranslatePipe implements PipeTransform {
+export class OChartTranslatePipe implements PipeTransform {
 
   protected translateService: OTranslateService;
 
@@ -28,16 +28,16 @@ export class OFileManagerTranslatePipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [OFileManagerTranslatePipe],
-  imports: [],
-  exports: [OFileManagerTranslatePipe]
-})
-export class OFileManagerTranslateModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: OFileManagerTranslateModule,
-      providers: []
-    };
-  }
-}
+// @NgModule({
+//   declarations: [OChartTranslatePipe],
+//   imports: [],
+//   exports: [OChartTranslatePipe]
+// })
+// export class OChartTranslateModule {
+//   static forRoot(): ModuleWithProviders {
+//     return {
+//       ngModule: OChartTranslateModule,
+//       providers: []
+//     };
+//   }
+// }

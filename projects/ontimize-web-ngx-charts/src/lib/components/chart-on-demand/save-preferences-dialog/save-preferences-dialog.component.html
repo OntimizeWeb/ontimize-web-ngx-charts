@@ -1,12 +1,12 @@
 <div mat-dialog-title class="dialog-title">
-  <h3>{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.TITLE' | oTranslate }}</h3>
+  <h3>{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.TITLE' | oChartTranslate }}</h3>
   <button mat-icon-button aria-label="close dialog" mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
 </div>
 <div mat-dialog-content class="dialog-content">
   <mat-form-field class="example-full-width">
-    <input [(ngModel)]="name" matInput placeholder="{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_PLACEHOLDER' | oTranslate }}" required>
+    <input [(ngModel)]="name" matInput placeholder="{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.INPUT_PLACEHOLDER' | oChartTranslate }}" required>
   </mat-form-field>
-  <o-button #submit label="{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL' | oTranslate }}" type="RAISED" (click)="savePreferences()"></o-button>
+  <o-button #submit label="{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL' | oChartTranslate }}" type="RAISED" (click)="savePreferences()"></o-button>
 </div>

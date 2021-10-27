@@ -1,5 +1,5 @@
 <div mat-dialog-title class="dialog-title">
-  <h3>{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE' | oTranslate }}</h3>
+  <h3>{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE' | oChartTranslate }}</h3>
   <button mat-icon-button aria-label="close dialog" mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
@@ -12,9 +12,9 @@
         <span matLine>{{ filter.description }}</span>
       </mat-list-option>
       <mat-list-item *ngIf="emptyList">
-        <span class="empty-filter-list">{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST' | oTranslate }}</span>
+        <span class="empty-filter-list">{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST' | oChartTranslate }}</span>
       </mat-list-item>
     </mat-selection-list>
   </mat-form-field>
-  <o-button #submit label="{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL' | oTranslate }}" type="RAISED" (click)="loadPreferences()"></o-button>
+  <o-button #submit label="{{ 'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL' | oChartTranslate }}" type="RAISED" (click)="loadPreferences()"></o-button>
 </div>

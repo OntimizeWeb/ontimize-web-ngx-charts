@@ -12,7 +12,6 @@ export * from './o-models';
 export * from './o-adapters';
 export * from './o-interfaces';
 export * from './o-services';
-// export * from './util/o-chart-translate.pipe';
 
 @NgModule({
   imports: OCHART_MODULES,
