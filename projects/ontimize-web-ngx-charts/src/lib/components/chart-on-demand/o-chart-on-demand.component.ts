@@ -10,6 +10,7 @@ import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaC
 import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
+import { SavePreferencesAsDialogComponent } from './save-preferences-as-dialog/save-preferences-as-dialog.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
 
@@ -328,6 +329,17 @@ export class OChartOnDemandComponent implements AfterViewInit {
   openSavePreferencesDialog(): void {
     this.dialog
       .open(SavePreferencesDialogComponent, {
+      })
+      .afterClosed()
+      .subscribe((data: String) => {
+        console.log("Data");
+        console.log(data);
+      });
+  }
+
+  openSavePreferencesAsDialog(): void {
+    this.dialog
+      .open(SavePreferencesAsDialogComponent, {
       })
       .afterClosed()
       .subscribe((data: String) => {

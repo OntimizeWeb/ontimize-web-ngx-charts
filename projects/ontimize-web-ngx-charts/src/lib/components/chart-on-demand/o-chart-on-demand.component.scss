@@ -32,6 +32,15 @@
   border: 0;
   .o-form {
     display: none;
+    .section-title {
+      margin-top: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .radio-selection {
+      overflow: hidden;
+    }
   }
   &.mat-drawer-side {
     transform: none;

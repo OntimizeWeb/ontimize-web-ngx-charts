@@ -8,11 +8,12 @@ import { OChartTranslatePipe } from '../../util/o-chart-translate.pipe';
 import { OChartComponentModule } from '../chart/o-chart.module';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { OChartOnDemandComponent } from './o-chart-on-demand.component';
+import { SavePreferencesAsDialogComponent } from './save-preferences-as-dialog/save-preferences-as-dialog.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
 
 @NgModule({
-  declarations: [OChartOnDemandComponent, SavePreferencesDialogComponent, LoadPreferencesDialogComponent, OChartTranslatePipe],
+  declarations: [OChartOnDemandComponent, SavePreferencesDialogComponent, SavePreferencesAsDialogComponent, LoadPreferencesDialogComponent, OChartTranslatePipe],
   imports: [
     CommonModule,
     OntimizeWebModule,
@@ -21,6 +22,6 @@ import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-p
   ],
   exports: [OChartOnDemandComponent],
   providers: [{provide: O_CHART_ON_DEMAND_SERVICE, useClass: OChartOnDemandService}],
-  entryComponents: [OChartOnDemandComponent, SavePreferencesDialogComponent, LoadPreferencesDialogComponent]
+  entryComponents: [OChartOnDemandComponent, SavePreferencesAsDialogComponent, SavePreferencesDialogComponent, LoadPreferencesDialogComponent]
 })
 export class OChartOnDemandComponentModule { }

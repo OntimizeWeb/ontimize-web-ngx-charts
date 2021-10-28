@@ -8,7 +8,7 @@
       <button mat-menu-item (click)="openSavePreferencesDialog()">
         <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="openSavePreferencesAsDialog()">
         <span>{{ 'CHART_ON_DEMAND.SAVE_AS_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
       <button mat-menu-item (click)="openLoadPreferencesDialog()">
@@ -34,46 +34,56 @@
 
       <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no">
         <o-column>
-          <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oChartTranslate }}" required="yes"></o-text-input>
+          <o-row>
+            <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oChartTranslate }}"></o-text-input>
+          </o-row>
         </o-column>
         <o-column>
-          <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oChartTranslate }}" required="yes"></o-text-input>
+          <o-row>
+            <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oChartTranslate }}"></o-text-input>
+          </o-row>
         </o-column>
 
-        <o-column fxFlex layout-padding>
-          <o-column appearance="outline" title="{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}">
+        <o-column>
+          <o-column>
+            <o-row>
+              <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}</span>
+            </o-row>
             <o-row>
               <o-combo #comboXAxis attr="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}" read-only="no" filter="yes" translate="yes"
-                columns="key;value" visible-columns="value" value-column="value"
-                (onValueChange)="captureValueXAxis($event)"></o-combo>
+                  columns="key;value" visible-columns="value" value-column="value"
+                  (onValueChange)="captureValueXAxis($event)"></o-combo>
             </o-row>
-
             <o-row>
               <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}" read-only="no" filter="yes"
                 class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
                 columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
             </o-row>
-
-            <!-- <mat-checkbox [(ngModel)]="dateXAxis"> Date </mat-checkbox> -->
-
-
           </o-column>
-          <o-column appearance="outline" title="{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}">
-            <o-combo #comboYAxis attr="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes" class="form-field"
-              multiple="yes" columns="key;value" visible-columns="value" value-column="value"
-              (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
-
-            <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no" filter="yes"
-              class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
-              columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
-
-            <!-- <mat-checkbox [(ngModel)]="dateYAxis"> Date </mat-checkbox> -->
-
+          <o-column>
+            <o-row>
+              <span class="section-title">{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}</span>
+            </o-row>
+            <o-row>
+              <o-combo #comboYAxis attr="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes" class="form-field"
+                multiple="yes" columns="key;value" visible-columns="value" value-column="value"
+                (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
+            </o-row>
+            <o-row>
+              <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no" filter="yes"
+                class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
+                columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
+            </o-row>
           </o-column>
-          <o-column title="{{ 'CHART_ON_DEMAND.CHART_TYPE' | oChartTranslate }}" appearance="outline">
-            <o-radio attr="required" label="" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1"
+          <o-column>
+            <o-row>
+              <span class="section-title">{{ 'CHART_ON_DEMAND.CHART_TYPE' | oChartTranslate }}</span>
+            </o-row>
+            <o-row class="radio-selection">
+              <o-radio attr="chart-type" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1"
               columns="key;value" visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)"
               translate="yes"></o-radio>
+            </o-row>
           </o-column>
         </o-column>
         <o-column>
