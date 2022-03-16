@@ -31,6 +31,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   public arrayComboYAxis: Array<Object>;
   public entity;
   public service;
+
   showLineChart: boolean = false;
   showMultiBarHorizontalChart: boolean = false;
   showMultiBarChart: boolean = false;
@@ -39,7 +40,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   showPlaceholder: boolean = true;
   dateXAxis: boolean = false;
   dateYAxis: boolean = false;
-
   showConfiguration: boolean = false;
 
   @ViewChild('wrapper', { static: false }) template: TemplateRef<any>;
@@ -329,6 +329,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   openSavePreferencesDialog(): void {
     this.dialog
       .open(SavePreferencesDialogComponent, {
+        minWidth: "576px",
+        minHeight: "336px",
       })
       .afterClosed()
       .subscribe((data: String) => {
@@ -340,6 +342,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   openSavePreferencesAsDialog(): void {
     this.dialog
       .open(SavePreferencesAsDialogComponent, {
+        minWidth: "576px",
+        minHeight: "336px",
       })
       .afterClosed()
       .subscribe((data: String) => {
@@ -349,7 +353,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   openLoadPreferencesDialog(): void {
-    this.dialog.open(LoadPreferencesDialogComponent);
+    this.dialog.open(LoadPreferencesDialogComponent, {
+      minWidth: "576px",
+      minHeight: "336px",
+    }).afterClosed()
+    .subscribe((data: String) => {
+      console.log("Data");
+      console.log(data);
+    });
   }
 
   setFullscreenDialog(): void {

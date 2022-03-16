@@ -24,6 +24,8 @@ export var MAP = {
     'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Load Configuration',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No configurations saved',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Load',
+    'CHART_ON_DEMAND.SELECT_PREFERENCE': 'Save configuration as',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Save configuration as'
   },
 
   // Spanish
@@ -51,5 +53,7 @@ export var MAP = {
     'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Cargar configuración',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No hay configuraciones guardadas',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Cargar',
+    'CHART_ON_DEMAND.SELECT_PREFERENCE': 'Guardar configuración como',
+    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Guardar configuración como'
   }
 };

@@ -16,7 +16,7 @@
       </button>
     </mat-menu>
     <button mat-icon-button aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
-      <mat-icon [ngClass]="{'active' : fullscreen}">content_copy</mat-icon>
+      <mat-icon [ngClass]="{'active' : fullscreen}">filter_none</mat-icon>
     </button>
     <button mat-icon-button aria-label="close dialog" mat-dialog-close>
       <mat-icon>close</mat-icon>
@@ -50,12 +50,12 @@
               <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}</span>
             </o-row>
             <o-row>
-              <o-combo #comboXAxis attr="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}" read-only="no" filter="yes" translate="yes"
+              <o-combo #comboXAxis attr="comboXAxis" label="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}" read-only="no" filter="yes" translate="yes"
                   columns="key;value" visible-columns="value" value-column="value"
                   (onValueChange)="captureValueXAxis($event)"></o-combo>
             </o-row>
             <o-row>
-              <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}" read-only="no" filter="yes"
+              <o-combo #DataTypeXAxis attr="DataTypeXAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}" read-only="no" filter="yes"
                 class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
                 columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
             </o-row>
@@ -65,12 +65,12 @@
               <span class="section-title">{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}</span>
             </o-row>
             <o-row>
-              <o-combo #comboYAxis attr="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes" class="form-field"
+              <o-combo #comboYAxis attr="comboYAxis" label="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes" class="form-field"
                 multiple="yes" columns="key;value" visible-columns="value" value-column="value"
                 (onChange)="captureValueYAxis($event)" translate="yes"></o-combo>
             </o-row>
             <o-row>
-              <o-combo #DataTypeXAxis attr="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no" filter="yes"
+              <o-combo #DataTypeYAxis attr="DataTypeYAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no" filter="yes"
                 class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key"
                 columns="key;value;f" visible-columns="value" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
             </o-row>
@@ -80,14 +80,11 @@
               <span class="section-title">{{ 'CHART_ON_DEMAND.CHART_TYPE' | oChartTranslate }}</span>
             </o-row>
             <o-row class="radio-selection">
-              <o-radio attr="chart-type" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1"
+              <o-radio attr="chartType" label="" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1"
               columns="key;value" visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)"
               translate="yes"></o-radio>
             </o-row>
           </o-column>
-        </o-column>
-        <o-column>
-          <o-button attr="basic3" type="BASIC" label="{{ 'CHART_ON_DEMAND.CHART_BUTTON_GENERATE' | oChartTranslate }}" layout-padding color="accent"></o-button>
         </o-column>
       </o-form>
     </mat-sidenav>
@@ -105,23 +102,23 @@
 
           <o-row [style.display]="!showLineChart ? 'none' : 'inherit'">
             <o-chart #lineChartBasic fxFlex type="line" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart">
+              [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart" chart-height="100%" chart-width="100%">
             </o-chart>
           </o-row>
 
           <o-row [style.display]="!showMultiBarChart ? 'none' : 'inherit'">
             <o-chart #multiBar type="multiBar" layout-fill [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID" query-on-bind="no"
-              [chart-parameters]="chartParametersMultiBarChart"></o-chart>
+              [chart-parameters]="chartParametersMultiBarChart" chart-height="100%" chart-width="100%"></o-chart>
           </o-row>
 
           <o-row [style.display]="!showAreaChart ? 'none' : 'inherit'">
             <o-chart #stackedAreaChart type="stackedAreaChart" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
+              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex chart-height="100%" chart-width="100%">
             </o-chart>
           </o-row>
           
           <o-row [style.display]="!showPieChart ? 'none' : 'inherit'">
-            <o-chart #pieChart layout-fill type="pie" [service]="service" [entity]="entity" fxFlex 
+            <o-chart #pieChart layout-fill type="pie" [service]="service" [entity]="entity" fxFlex chart-height="100%" chart-width="100%"
               [chart-parameters]="chartParametersPieChart" query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes">
             </o-chart>
           </o-row>

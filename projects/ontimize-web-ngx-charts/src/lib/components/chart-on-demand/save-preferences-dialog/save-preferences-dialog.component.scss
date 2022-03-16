@@ -17,5 +17,8 @@
   }
   form {
     margin-top: 24px;
+    textarea {
+      resize: none;
+    }
   }
 }

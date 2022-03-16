@@ -1,7 +1,7 @@
 
 .mat-sidenav-container{
   background-color:#ffffff;
-  animation: all 1s ease-out;
+  transition: all 0.5s;
 }
 
 .mat-sidenav-graphic-gui {
@@ -76,6 +76,10 @@
       height: 19px;
       width: 19px;
       line-height: 19px;
+      .mat-icon {
+        height: 19px;
+        width: 19px;
+      }
     }
     .active { color: #1464a5; }
   }
