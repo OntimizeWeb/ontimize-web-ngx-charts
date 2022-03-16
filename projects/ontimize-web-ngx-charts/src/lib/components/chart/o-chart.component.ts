@@ -18,12 +18,14 @@ import {
 } from '@angular/core';
 import {
   ComponentStateServiceProvider,
+  DefaultComponentStateService,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
   InputConverter,
   OFormComponent,
   OntimizeServiceProvider,
   OServiceBaseComponent,
   OTranslateService,
+  O_COMPONENT_STATE_SERVICE,
   Util
 } from 'ontimize-web-ngx';
 import { nvD3 } from 'ontimize-web-ngx-nvd3';
@@ -107,6 +109,7 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   providers: [
     OntimizeServiceProvider,
     ComponentStateServiceProvider,
+    { provide: O_COMPONENT_STATE_SERVICE, useClass: DefaultComponentStateService },
   ]
 })
 
