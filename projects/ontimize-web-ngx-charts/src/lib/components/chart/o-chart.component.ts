@@ -14,17 +14,17 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import {
-  dataServiceFactory,
+  ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
   InputConverter,
   OFormComponent,
-  OntimizeService,
+  OntimizeServiceProvider,
   OServiceBaseComponent,
   OTranslateService,
-  Util,
+  Util
 } from 'ontimize-web-ngx';
 import { nvD3 } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
@@ -56,7 +56,6 @@ import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaC
 import { ChartService } from '../../services/chart.service';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
-
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -106,7 +105,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   styleUrls: ['./o-chart.component.scss'],
   inputs: DEFAULT_INPUTS_O_CHART,
   providers: [
-    { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] }
+    OntimizeServiceProvider,
+    ComponentStateServiceProvider,
   ]
 })
 
