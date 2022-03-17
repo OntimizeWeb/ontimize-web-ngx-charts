@@ -1,6 +1,10 @@
-## 8.0.1
+## 8.0.1 (2022-03-17)
 ### Features
 * **LinePlusBarFocusChartConfiguration:** Add configuration for y2Axis ([58810a4](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/58810a4))
+
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@8.5.9
+* **Updated**: ng-packagr@5.7.1
 
 ## 8.0.0 (2020-08-25)
 ### DEPENDENCY UPDATES
