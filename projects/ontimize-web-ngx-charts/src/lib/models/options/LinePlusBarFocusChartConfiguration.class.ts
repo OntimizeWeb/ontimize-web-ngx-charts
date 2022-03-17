@@ -9,6 +9,7 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
 
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
+  public y2Axis: ChartAxisConfiguration;
   public switchYAxisOrder: boolean = false;
 
   public showLabels: boolean = false;
@@ -40,6 +41,7 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
     super();
     this.x1Axis = new ChartAxisConfiguration();
     this.y1Axis = new ChartAxisConfiguration();
+    this.y2Axis = new ChartAxisConfiguration();
     this.legend = new ChartLegendConfiguration();
     this.isArea = this.functionIsArea();
     this.margin = new ChartMarginConfiguration();
