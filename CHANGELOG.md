@@ -5,7 +5,6 @@
 ### DEPENDENCY UPDATES
 * **Installed**: xmlhttprequest@1.6.2
 * **Updated**: ontimize-web-ngx@8.5.9
-* **Updated**: ng-packagr@5.7.1
 
 ## 8.0.0 (2020-08-25)
 ### DEPENDENCY UPDATES
