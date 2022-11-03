@@ -5,10 +5,11 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "ontimize-web-ngx-nvd3": "ontimizeWebNgxNvd3",
-      "ontimize-web-ngx": "ontimizeWebNgx"
+      "ontimize-web-ngx": "ontimize-web-ngx"
     }
   },
   "whitelistedNonPeerDependencies": [
-    "d3"
+    "d3",
+    "zone.js"
   ]
 }

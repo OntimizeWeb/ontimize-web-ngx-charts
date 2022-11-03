@@ -17,15 +17,7 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "ontimize-web-ngx-charts": [
-        "dist/ontimize-web-ngx-charts"
-      ],
-      "ontimize-web-ngx-charts/*": [
-        "dist/ontimize-web-ngx-charts/*"
-      ]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,

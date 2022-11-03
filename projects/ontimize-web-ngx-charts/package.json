@@ -17,6 +17,10 @@
   },
   "license": "Apache-2.0",
   "main": "./bundles/ontimize-web-ngx-charts.umd.js",
+  "scripts": {
+    "test": "karma start",
+    "test-watch": "karma start --singleRun=false --autoWatch=true"
+  },
   "dependencies": {
     "d3": "3.5.17",
     "nvd3": "1.8.6",
