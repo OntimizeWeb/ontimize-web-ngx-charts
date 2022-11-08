@@ -7,7 +7,7 @@ export class StackedAreaDataAdapter implements ChartDataAdapter {
 
   protected chartConf: ChartConfiguration;
   protected xAxis: string;
-  protected yAxis: Array<String>;
+  protected yAxis: Array<string>;
 
   constructor(chartConf: ChartConfiguration) {
     if (chartConf) {

@@ -16,7 +16,7 @@ import { SavePreferencesAsDialogComponent } from './save-preferences-as-dialog/s
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
 
-declare var d3: any;
+let d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
@@ -251,7 +251,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent) {
-    var elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
+    let elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
 
     this.chartParametersLineChart.xDataType = elementXAxis.f;
     this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
@@ -344,7 +344,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         minHeight: "336px",
       })
       .afterClosed()
-      .subscribe((data: String) => {
+      .subscribe((data: string) => {
         console.log("Data");
         console.log(data);
       });
@@ -357,7 +357,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         minHeight: "336px",
       })
       .afterClosed()
-      .subscribe((data: String) => {
+      .subscribe((data: string) => {
         console.log("Data");
         console.log(data);
       });
@@ -368,7 +368,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       minWidth: "576px",
       minHeight: "336px",
     }).afterClosed()
-      .subscribe((data: String) => {
+      .subscribe((data: string) => {
         console.log("Data");
         console.log(data);
       });

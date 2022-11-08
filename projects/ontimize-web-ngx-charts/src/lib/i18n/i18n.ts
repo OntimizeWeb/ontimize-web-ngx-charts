@@ -1,4 +1,4 @@
-export var MAP = {
+export const MAP = {
   // English
   'en': {
     'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE': 'Chart on demand',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
@@ -6,13 +6,11 @@ import { MatDialogRef } from '@angular/material';
   templateUrl: './save-preferences-dialog.component.html',
   styleUrls: ['./save-preferences-dialog.component.scss']
 })
-export class SavePreferencesDialogComponent implements OnInit {
-  name: String;
+export class SavePreferencesDialogComponent {
+  name: string;
   constructor(
     public dialog: MatDialogRef<SavePreferencesDialogComponent>) { }
 
-  ngOnInit() {
-  }
   savePreferences(): void {
     if (this.name.length == 0) {
       console.log("Save Preferences")
