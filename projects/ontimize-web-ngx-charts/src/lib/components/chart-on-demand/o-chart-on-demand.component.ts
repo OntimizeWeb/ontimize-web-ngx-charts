@@ -257,12 +257,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
     this.chartParametersAreaChart.xDataType = elementXAxis.f;
     this.chartParametersPieChart.valueType = elementXAxis.f;
-
-    if (elementXAxis != undefined) {
-      //this.captureValueComboDataTypeYAxis();
-    } else {
-      // console.log("seleccione eje y");
-    }
   }
 
 
