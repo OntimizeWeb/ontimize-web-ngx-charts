@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { DialogService, IChartOnDemandService } from 'ontimize-web-ngx';
 
 import { OChartOnDemandComponent } from '../components/chart-on-demand/o-chart-on-demand.component';
+import { Utils } from '../util/utils';
 
 @Injectable()
 export class OChartOnDemandService implements IChartOnDemandService {
@@ -13,13 +14,9 @@ export class OChartOnDemandService implements IChartOnDemandService {
   ) { }
 
   openChartOnDemand(dataArray, service, entity) {
-    this.dialog.open(OChartOnDemandComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      height: '90%',
-      width: '80%',
-      data: { arrayColumns: dataArray, service: service, entity: entity }
-    });
+    let data = { arrayColumns: dataArray, service: service, entity: entity }
+    Utils.openModalVisor(this.dialog, OChartOnDemandComponent, data);
+
   }
 
 }

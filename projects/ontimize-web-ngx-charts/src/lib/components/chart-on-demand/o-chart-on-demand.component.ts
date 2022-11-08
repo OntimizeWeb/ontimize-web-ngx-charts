@@ -9,6 +9,8 @@ import { PieChartConfiguration } from '../../models/options/PieChartConfiguratio
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
+import { OChartPreferences } from '../../types/chart-preferences.type';
+import { Utils } from '../../util/utils';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { SavePreferencesAsDialogComponent } from './save-preferences-as-dialog/save-preferences-as-dialog.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
@@ -32,6 +34,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   public entity;
   public service;
 
+  public currentPreference: OChartPreferences;
+
   showLineChart: boolean = false;
   showMultiBarHorizontalChart: boolean = false;
   showMultiBarChart: boolean = false;
@@ -46,11 +50,12 @@ export class OChartOnDemandComponent implements AfterViewInit {
   @ViewChild('comboXAxis', { static: true }) comboXAxis: OComboComponent;
   @ViewChild('comboYAxis', { static: true }) comboYAxis: OComboComponent;
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
-  @ViewChild('pieChart', {static: false}) pieChart: OChartComponent;
-  @ViewChild('lineChartBasic', {static: false}) lineChartBasic:OChartComponent;
-  @ViewChild('multiBar', {static: false}) multiBar: OChartComponent;
-  @ViewChild('stackedAreaChart', {static:false}) stackedAreaChart: OChartComponent;
-  @ViewChild('formChart', {static:false}) formChart: OFormComponent;
+  @ViewChild('pieChart', { static: false }) pieChart: OChartComponent;
+  @ViewChild('lineChartBasic', { static: false }) lineChartBasic: OChartComponent;
+  @ViewChild('multiBar', { static: false }) multiBar: OChartComponent;
+  @ViewChild('multiHorizoltalBar', { static: false }) multiHorizontalBar: OChartComponent;
+  @ViewChild('stackedAreaChart', { static: false }) stackedAreaChart: OChartComponent;
+  @ViewChild('formChart', { static: false }) formChart: OFormComponent;
   opened: boolean = true;
   fullscreen: boolean = false;
 
@@ -178,6 +183,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
       DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
       this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.selectedTypeChart == 3) {
+      this.showMultiBarChart = true;
+      this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
+      this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
+      this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
+      this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
+      DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
+      this.multiHorizontalBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
+    } else if (this.selectedTypeChart == 4) {
       this.showAreaChart = true;
       this.chartParametersAreaChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersAreaChart.yAxis = this.comboYAxis.value.value;
@@ -186,7 +199,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
       this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
-    else if (this.selectedTypeChart == 4){
+    else if (this.selectedTypeChart == 5) {
       this.showPieChart = true;
       this.chartParametersPieChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersPieChart.yAxis = this.comboYAxis.value.value;
@@ -216,10 +229,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
     });
     this.array.push({
       'key': 3,
-      'value': 'Area'
+      'value': 'Multi Horizontal Bar'
     });
     this.array.push({
       'key': 4,
+      'value': 'Area'
+    });
+    this.array.push({
+      'key': 5,
       'value': 'Pie'
     });
     return this.array;
@@ -233,7 +250,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     return this.arrayColumns;
   }
 
-  captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent){
+  captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent) {
     var elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
 
     this.chartParametersLineChart.xDataType = elementXAxis.f;
@@ -241,15 +258,15 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersAreaChart.xDataType = elementXAxis.f;
     this.chartParametersPieChart.valueType = elementXAxis.f;
 
-    if(elementXAxis != undefined){
+    if (elementXAxis != undefined) {
       //this.captureValueComboDataTypeYAxis();
-    }else{
-    // console.log("seleccione eje y");
+    } else {
+      // console.log("seleccione eje y");
     }
   }
 
 
-  captureValueComboDataTypeYAxis (eventYAxis:OValueChangeEvent ){
+  captureValueComboDataTypeYAxis(eventYAxis: OValueChangeEvent) {
     // this.selectedDataType = event.newValue;
     // console.log("this.selectedDataType " + this.selectedDataType);
     let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
@@ -259,7 +276,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersAreaChart.yDataType = elementYAxis.f;
     this.chartParametersPieChart.valueType = elementYAxis.f;
 
-    if(elementYAxis !=undefined){
+    if (elementYAxis != undefined) {
       this.showChart();
     }
   }
@@ -272,7 +289,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       'key': 1,
       'value': 'Number',
       'f': d => d3.format('d')(d)
-   });
+    });
     this.arrayDataType.push({
       'key': 2,
       'value': 'Decimal ',
@@ -307,7 +324,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersLineChart = new LineChartConfiguration();
   }
 
-  private _configureMultiBarChart(locale: any): void{
+  private _configureMultiBarChart(locale: any): void {
     this.chartParametersMultiBarChart = new MultiBarChartConfiguration();
   }
 
@@ -357,18 +374,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
       minWidth: "576px",
       minHeight: "336px",
     }).afterClosed()
-    .subscribe((data: String) => {
-      console.log("Data");
-      console.log(data);
-    });
+      .subscribe((data: String) => {
+        console.log("Data");
+        console.log(data);
+      });
   }
 
   setFullscreenDialog(): void {
-    if(!this.fullscreen) {
-      this.dialogRef.updateSize("100%", "100%");
-    } else {
-      this.dialogRef.updateSize("90%", "80%");
-    }
+    Utils.setFullscreenDialog(this.fullscreen, this.dialogRef);
     this.fullscreen = !this.fullscreen;
   }
 
