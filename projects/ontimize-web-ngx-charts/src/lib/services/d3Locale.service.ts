@@ -3,7 +3,7 @@ import { OTranslateService } from 'ontimize-web-ngx';
 
 import { D3Locales } from './locales';
 
-let d3: any;
+declare var d3: any;
 
 @Injectable({
   providedIn: 'root'

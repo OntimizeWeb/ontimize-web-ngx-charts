@@ -1,15 +1,16 @@
-<div mat-dialog-title class="dialog-title">
-  <h3>{{ 'CHART_ON_DEMAND.SAVE_PREFERENCES.TITLE' | oChartTranslate }}</h3>
-</div>
-<mat-dialog-content class="dialog-content-preferences">
-  <div mat-subheader class="subheader">{{ 'TABLE.DIALOG.SAVE_CONFIGURATION' | oTranslate }}</div>
-  <form #form fxLayout="column">
+<span mat-dialog-title>{{ 'TABLE.BUTTONS.SAVE_CONFIGURATION' | oTranslate }}</span>
+
+<mat-dialog-content>
+  <div mat-subheader>{{ 'TABLE.DIALOG.SAVE_CONFIGURATION' | oTranslate }}</div>
+  <form #form [formGroup]="formGroup" fxLayout="column">
     <mat-form-field>
-      <input matInput placeholder="{{ 'TABLE.DIALOG.CONFIGURATION_NAME' | oTranslate }}" formControlName="name" required>
-      <mat-error>{{ 'FORM_VALIDATION.REQUIRED' | oTranslate }}</mat-error>
+      <input [(ngModel)]="name" matInput placeholder="{{ 'TABLE.DIALOG.CONFIGURATION_NAME' | oTranslate }}" formControlName="name" required>
+      <mat-error *oMatError="hasError(formGroup.controls['name'], 'required')">{{ 'FORM_VALIDATION.REQUIRED' | oTranslate }}</mat-error>
     </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="{{ 'TABLE.DIALOG.CONFIGURATION_DESCRIPTION' | oTranslate }}" formControlName="description" resize="none" rows="4" cols="50"></textarea>
+
+    <mat-form-field>
+      <textarea [(ngModel)]="description" matInput placeholder="{{ 'TABLE.DIALOG.CONFIGURATION_DESCRIPTION' | oTranslate }}"
+        formControlName="description" rows="4" cols="50"></textarea>
     </mat-form-field>
 
   </form>
@@ -17,9 +18,7 @@
 
 <mat-dialog-actions align="end">
   <button type="button" mat-stroked-button class="mat-primary" [mat-dialog-close]="false" class="o-button-default">
-    {{ 'CANCEL' | oTranslate }}
-  </button>
-  <button type="button" mat-stroked-button class="mat-primary" [mat-dialog-close]="true">
-    {{'SAVE' | oTranslate }}
-  </button>
+    {{ 'CANCEL' | oTranslate }}</button>
+  <button type="button" mat-stroked-button class="mat-primary" (click)="save()" [mat-dialog-close]="true" [disabled]="formGroup.invalid">
+    {{ 'SAVE' | oTranslate }}</button>
 </mat-dialog-actions>

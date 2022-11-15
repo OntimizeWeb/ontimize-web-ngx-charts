@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, TemplateRef, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSidenav } from '@angular/material';
-import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent } from 'ontimize-web-ngx';
+import { MatDialog, MatDialogRef, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
+import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
 
 import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
@@ -9,14 +9,15 @@ import { PieChartConfiguration } from '../../models/options/PieChartConfiguratio
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
-import { OChartPreferences } from '../../types/chart-preferences.type';
+import { PreferencesService } from '../../services/preferences.service';
+import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
+import { PreferencesConfiguration } from '../../types/preferences-configuration.type';
 import { Utils } from '../../util/utils';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
-import { SavePreferencesAsDialogComponent } from './save-preferences-as-dialog/save-preferences-as-dialog.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
 
-let d3: any;
+declare var d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
@@ -31,13 +32,15 @@ export class OChartOnDemandComponent implements AfterViewInit {
   public chartParametersAreaChart: StackedAreaChartConfiguration;
   public chartParametersPieChart: PieChartConfiguration;
   public arrayComboYAxis: Array<Object>;
-  public entity;
-  public service;
 
+  public appliedConfiguration: boolean = false;
+
+  protected snackBarService: SnackBarService;
   public currentPreference: OChartPreferences;
+  public currentConfiguration: PreferencesConfiguration;
+  public preferencesService: PreferencesService;
 
   showLineChart: boolean = false;
-  showMultiBarHorizontalChart: boolean = false;
   showMultiBarChart: boolean = false;
   showAreaChart: boolean = false;
   showPieChart: boolean = false;
@@ -53,7 +56,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   @ViewChild('pieChart', { static: false }) pieChart: OChartComponent;
   @ViewChild('lineChartBasic', { static: false }) lineChartBasic: OChartComponent;
   @ViewChild('multiBar', { static: false }) multiBar: OChartComponent;
-  @ViewChild('multiHorizoltalBar', { static: false }) multiHorizontalBar: OChartComponent;
   @ViewChild('stackedAreaChart', { static: false }) stackedAreaChart: OChartComponent;
   @ViewChild('formChart', { static: false }) formChart: OFormComponent;
   opened: boolean = true;
@@ -62,7 +64,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   private _arrayColumns = [];
   arrayYAxis = [];
-  selectedDataType: any;
 
   @Input() description: string = '';
   @Input() buttonText: string = '';
@@ -70,7 +71,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   set arrayColumns(value: Array<Object>) {
     this.hideChart();
     this.arrayComboYAxis = [];
-    this.selectedYAxis = "";
     this._arrayColumns = value;
     this.comboXAxis.setDataArray(value);
     this.comboYAxis.setDataArray(value);
@@ -80,10 +80,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.comboXAxis.setValue(undefined)
 
   }
-
-  selectedXAxis: string;
-  selectedYAxis: string;
-  selectedTypeChart: any;
   fixedInViewport = true;
 
   constructor(
@@ -95,9 +91,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
     protected injector: Injector,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    this.entity = this.data.entity;
-    this.service = this.data.service;
-    this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.service));
+    this.currentPreference = new DefaultOChartPreferences();
+    this.currentPreference.entity = this.data.entity;
+    this.currentPreference.service = this.data.service;
+    this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
+    this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this._configureLineChart(d3Locale);
     this._configureMultiBarChart(d3Locale);
@@ -117,24 +115,25 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.arrayColumns = this.data.arrayColumns;
     this.comboXAxis.setDataArray(columnTitles);
     this.comboYAxis.setDataArray(columnTitles);
+    this.currentConfiguration = { ENTITY: this.currentPreference.entity };
   }
 
   captureValueYAxis(event: any) {
     this.arrayComboYAxis = [];
-    this.selectedYAxis = "";
+    this.currentPreference.selectedYAxis = "";
     this.arrayComboYAxis = event;
-    this.selectedYAxis = event;
+    this.currentPreference.selectedYAxis = event;
     this.showChart();
   }
 
   captureValueXAxis(event: OValueChangeEvent) {
-    this.selectedXAxis = "";
-    this.selectedXAxis = event.newValue;
+    this.currentPreference.selectedXAxis = "";
+    this.currentPreference.selectedXAxis = event.newValue;
     this.showChart();
   }
 
   captureTypeChart(event: OValueChangeEvent) {
-    this.selectedTypeChart = event.newValue;
+    this.currentPreference.selectedTypeChart = event.newValue;
     this.showChart();
   }
 
@@ -142,9 +141,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   showChart() {
     this.hideChart();
-    if (this.selectedXAxis != undefined) {
-      if (this.selectedYAxis != undefined && this.selectedYAxis.length != 0) {
-        if (this.selectedTypeChart != undefined) {
+    if (this.currentPreference.selectedXAxis != undefined) {
+      if (this.currentPreference.selectedYAxis != undefined && this.currentPreference.selectedYAxis.length != 0) {
+        if (this.currentPreference.selectedTypeChart != undefined) {
           this.configureChart();
         }
       }
@@ -156,7 +155,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   hideChart() {
     this.showLineChart = false;
-    this.showMultiBarHorizontalChart = false;
     this.showMultiBarChart = false;
     this.showPieChart = false;
     this.showAreaChart = false;
@@ -166,7 +164,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   configureChart() {
     this.showPlaceholder = false;
-    if (this.selectedTypeChart == 1) {
+    if (this.currentPreference.selectedTypeChart == 1) {
       this.showLineChart = true;
       this.chartParametersLineChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersLineChart.yAxis = this.comboYAxis.value.value;
@@ -174,7 +172,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
       this.lineChartBasic.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
-    } else if (this.selectedTypeChart == 2) {
+    } else if (this.currentPreference.selectedTypeChart == 2) {
       this.showMultiBarChart = true;
       this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
@@ -182,15 +180,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
       this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
-    } else if (this.selectedTypeChart == 3) {
-      this.showMultiBarChart = true;
-      this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
-      this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
-      this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
-      this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
-      DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
-      this.multiHorizontalBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
-    } else if (this.selectedTypeChart == 4) {
+    } else if (this.currentPreference.selectedTypeChart == 3) {
       this.showAreaChart = true;
       this.chartParametersAreaChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersAreaChart.yAxis = this.comboYAxis.value.value;
@@ -199,7 +189,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
       this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
-    else if (this.selectedTypeChart == 5) {
+    else if (this.currentPreference.selectedTypeChart == 4) {
       this.showPieChart = true;
       this.chartParametersPieChart.xAxis = this.comboXAxis.value.value;
       this.chartParametersPieChart.yAxis = this.comboYAxis.value.value;
@@ -229,14 +219,10 @@ export class OChartOnDemandComponent implements AfterViewInit {
     });
     this.array.push({
       'key': 3,
-      'value': 'Multi Horizontal Bar'
-    });
-    this.array.push({
-      'key': 4,
       'value': 'Area'
     });
     this.array.push({
-      'key': 5,
+      'key': 4,
       'value': 'Pie'
     });
     return this.array;
@@ -257,12 +243,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
     this.chartParametersAreaChart.xDataType = elementXAxis.f;
     this.chartParametersPieChart.valueType = elementXAxis.f;
+
+    this.currentPreference.selectedXAxisType = elementXAxis.f;
+
+
   }
 
 
   captureValueComboDataTypeYAxis(eventYAxis: OValueChangeEvent) {
-    // this.selectedDataType = event.newValue;
-    // console.log("this.selectedDataType " + this.selectedDataType);
     let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
 
     this.chartParametersLineChart.yDataType = elementYAxis.f;
@@ -271,6 +259,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersPieChart.valueType = elementYAxis.f;
 
     if (elementYAxis != undefined) {
+      this.currentPreference.selectedYAxisType = elementYAxis.f;
       this.showChart();
     }
   }
@@ -322,7 +311,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersMultiBarChart = new MultiBarChartConfiguration();
   }
 
-
   private _configAreaChart(locale: any): void {
     this.chartParametersAreaChart = new StackedAreaChartConfiguration();
   }
@@ -336,51 +324,89 @@ export class OChartOnDemandComponent implements AfterViewInit {
   showConfigurationMenu(): void {
     this.showConfiguration = !this.showConfiguration;
   }
-
-  openSavePreferencesDialog(): void {
+  updatePreferences(): void {
+    if (Util.isDefined(this.currentConfiguration.ID)) {
+      this.savePreferences({ name: this.currentConfiguration.NAME, description: this.currentConfiguration.DESCRIPTION }, true);
+    }
+  }
+  openSaveAsPreferencesDialog(): void {
     this.dialog
       .open(SavePreferencesDialogComponent, {
-        minWidth: "576px",
-        minHeight: "336px",
+        panelClass: ['o-dialog-class', 'o-table-dialog']
       })
       .afterClosed()
-      .subscribe((data: string) => {
-        console.log("Data");
-        console.log(data);
+      .subscribe((data: { name: string, description: string }) => {
+        if (Util.isDefined(data) && data) {
+          this.savePreferences(data, false);
+        }
       });
+
+  }
+  savePreferences(data: any, update?: boolean) {
+    let preference = {
+      "name": data.name, "description": data.description,
+      "entity": this.currentPreference.entity, "service": this.currentPreference.service, "type": "chart", "params": {
+        "title": this.currentPreference.title,
+        "subtitle": this.currentPreference.subtitle, "entity": this.currentPreference.entity, "service": this.currentPreference.service, "selectedXAxis": this.currentPreference.selectedXAxis,
+        "selectedYAxis": this.currentPreference.selectedYAxis, "selectedXAxisType": this.currentPreference.selectedXAxisType, "selectedYAxisType": this.currentPreference.selectedYAxisType,
+        "selectedTypeChart": this.currentPreference.selectedTypeChart
+      }
+    }
+
+    if (update) {
+      this.preferencesService.savePreferences(this.currentConfiguration.ID, preference).subscribe(res => {
+        this.showConfirmOperatinInSnackBar(res);
+      });
+    } else {
+      this.preferencesService.saveAsPreferences(preference).subscribe(res => {
+        if (res && res.code === 0) {
+          this.showConfirmOperatinInSnackBar(res);
+        }
+      });
+    }
   }
 
-  openSavePreferencesAsDialog(): void {
-    this.dialog
-      .open(SavePreferencesAsDialogComponent, {
-        minWidth: "576px",
-        minHeight: "336px",
-      })
-      .afterClosed()
-      .subscribe((data: string) => {
-        console.log("Data");
-        console.log(data);
-      });
+  private showConfirmOperatinInSnackBar(res: any) {
+    if (res && res.code === 0) {
+      this.snackBarService.open('MESSAGES.SAVED', { icon: 'check_circle' });
+    }
   }
-
-  openLoadPreferencesDialog(): void {
+  public openLoadPreferencesDialog(): void {
     this.dialog.open(LoadPreferencesDialogComponent, {
-      minWidth: "576px",
-      minHeight: "336px",
+      width: 'calc((75em - 100%) * 1000)',
+      maxWidth: '65vw',
+      minWidth: '30vw',
+      disableClose: true,
+      panelClass: ['o-dialog-class', 'o-table-dialog'],
+      data: { entity: this.currentPreference.entity, service: this.currentPreference.service },
     }).afterClosed()
-      .subscribe((data: string) => {
-        console.log("Data");
-        console.log(data);
+      .subscribe((data: PreferencesConfiguration) => {
+        if (Util.isDefined(data) && data) {
+          this.applyConfiguration(data);
+          this.appliedConfiguration = true;
+        }
+      }, _error => {
+        this.appliedConfiguration = false;
       });
   }
-
+  applyConfiguration(configuration: any) {
+    this.currentConfiguration = configuration;
+    this.currentPreference = JSON.parse(this.currentConfiguration.PREFERENCES);
+    this.showChart();
+  }
   setFullscreenDialog(): void {
     Utils.setFullscreenDialog(this.fullscreen, this.dialogRef);
     this.fullscreen = !this.fullscreen;
+    if (!this.showPlaceholder) {
+      this.configureChart();
+    }
   }
 
-  savePreferences() {
-    console.log("Save Preferences");
+  refreshTitle(value) {
+    this.currentPreference.title = value.newValue;
+  }
+  refreshSubtitle(value) {
+    this.currentPreference.subtitle = value.newValue;
   }
 
 }

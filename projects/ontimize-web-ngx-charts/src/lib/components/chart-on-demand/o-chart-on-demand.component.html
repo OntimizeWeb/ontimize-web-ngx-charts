@@ -5,10 +5,10 @@
       <mat-icon>settings</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openSavePreferencesDialog()">
+      <button mat-menu-item [disabled]="!appliedConfiguration" (click)="updatePreferences()">
         <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
-      <button mat-menu-item (click)="openSavePreferencesAsDialog()">
+      <button mat-menu-item (click)="openSaveAsPreferencesDialog()">
         <span>{{ 'CHART_ON_DEMAND.SAVE_AS_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
       <button mat-menu-item (click)="openLoadPreferencesDialog()">
@@ -16,7 +16,8 @@
       </button>
     </mat-menu>
     <button mat-icon-button aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
-      <mat-icon [ngClass]="{'active' : fullscreen}">filter_none</mat-icon>
+      <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
+      <mat-icon *ngIf="!fullscreen">fullscreen</mat-icon>
     </button>
     <button mat-icon-button aria-label="close dialog" mat-dialog-close>
       <mat-icon>close</mat-icon>
@@ -35,13 +36,15 @@
       <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no">
         <o-column>
           <o-row>
-            <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oChartTranslate }}" read-only="no" appearance="legacy">
+            <o-text-input attr="title" label="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oChartTranslate }}" [data]="currentPreference.title" read-only="no"
+              appearance="legacy" (onValueChange)="refreshTitle($event)">
             </o-text-input>
           </o-row>
         </o-column>
         <o-column>
           <o-row>
-            <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oChartTranslate }}" read-only="no" appearance="legacy">
+            <o-text-input attr="subtitle" label="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oChartTranslate }}" [data]="currentPreference.subtitle"
+              read-only="no" appearance="legacy" (onValueChange)="refreshSubtitle($event)">
             </o-text-input>
           </o-row>
         </o-column>
@@ -52,15 +55,16 @@
               <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}</span>
             </o-row>
             <o-row>
-              <o-combo #comboXAxis attr="comboXAxis" label="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}" read-only="no" filter="yes"
-                translate="yes" columns="key;value" visible-columns="value" value-column="value" appearance="legacy"
-                (onValueChange)="captureValueXAxis($event)">
+              <o-combo #comboXAxis attr="comboXAxis" label="{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}"
+                [data]="currentPreference.selectedXAxis" read-only="no" filter="yes" translate="yes" columns="key;value" visible-columns="value"
+                value-column="value" appearance="legacy" (onValueChange)="captureValueXAxis($event)">
               </o-combo>
             </o-row>
             <o-row>
-              <o-combo #DataTypeXAxis attr="DataTypeXAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}" read-only="no"
-                filter="yes" class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key" columns="key;value;f"
-                visible-columns="value" appearance="legacy" (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
+              <o-combo #DataTypeXAxis attr="DataTypeXAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}"
+                [data]="currentPreference.selectedXAxisType" read-only="no" filter="yes" class="form-field" translate="yes"
+                [static-data]="getArrayDataType()" value-column="key" columns="key;value;f" visible-columns="value" appearance="legacy"
+                (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo>
             </o-row>
           </o-column>
           <o-column>
@@ -68,14 +72,15 @@
               <span class="section-title">{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}</span>
             </o-row>
             <o-row>
-              <o-combo #comboYAxis attr="comboYAxis" label="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" read-only="no" filter="yes"
-                class="form-field" multiple="yes" columns="key;value" visible-columns="value" value-column="value"
-                (onChange)="captureValueYAxis($event)" appearance="legacy" translate="yes"></o-combo>
+              <o-combo #comboYAxis attr="comboYAxis" label="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}"
+                [data]="currentPreference.selectedYAxis" read-only="no" filter="yes" class="form-field" multiple="yes" columns="key;value"
+                visible-columns="value" value-column="value" (onChange)="captureValueYAxis($event)" appearance="legacy" translate="yes"></o-combo>
             </o-row>
             <o-row>
-              <o-combo #DataTypeYAxis attr="DataTypeYAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}" read-only="no"
-                filter="yes" class="form-field" translate="yes" [static-data]="getArrayDataType()" value-column="key" columns="key;value;f"
-                visible-columns="value" appearance="legacy" (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
+              <o-combo #DataTypeYAxis attr="DataTypeYAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}"
+                [data]="currentPreference.selectedYAxisType" read-only="no" filter="yes" class="form-field" translate="yes"
+                [static-data]="getArrayDataType()" value-column="key" columns="key;value;f" visible-columns="value" appearance="legacy"
+                (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
             </o-row>
           </o-column>
           <o-column>
@@ -84,14 +89,15 @@
             </o-row>
             <div>
               <o-radio attr="chartType" label="" [static-data]="getDataArrayRadioGraphics()" value-column="key" value="1" columns="key;value"
-                visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)" appearance="legacy" translate="yes"></o-radio>
+                visible-columns="value" read-only="no" (onValueChange)="captureTypeChart($event)" appearance="legacy" translate="yes"
+                [data]="currentPreference.selectedTypeChart"></o-radio>
             </div>
           </o-column>
         </o-column>
       </o-form>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="sidenav-container-content" [ngClass]="{'opened' : opened}" fxLayout="column" fxFlex>
+      <div id="sidenav-container-content" class="sidenav-container-content" [ngClass]="{'opened' : opened}" fxLayout="column" fxFlex>
         <o-column fxFlex class="title-sidenav-content">
 
           <o-column *ngIf="showPlaceholder" fxFlex class="image-placeholder">
@@ -125,32 +131,33 @@
               </g>
             </svg>
           </o-column>
+          <o-row *ngIf="!showPlaceholder">
+            <o-column>
+              <h2 class="title">{{currentPreference.title}}</h2>
+              <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
+            </o-column>
+          </o-row>
 
           <o-row [style.display]="!showLineChart ? 'none' : 'inherit'">
-            <o-chart #lineChartBasic fxFlex type="line" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart">
+            <o-chart #lineChartBasic fxFlex type="line" [service]="currentPreference.service" [entity]="currentPreference.entity" x-axis="CUSTOMERID"
+              y-axis="CUSTOMERID" [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart">
             </o-chart>
           </o-row>
 
           <o-row [style.display]="!showMultiBarChart ? 'none' : 'inherit'">
-            <o-chart #multiBar type="multiBar" layout-fill [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
-          </o-row>
-
-          <o-row [style.display]="!showMultiBarHorizontalChart ? 'none' : 'inherit'">
-            <o-chart #multiBar type="multiBarHorizontalChart" layout-fill [service]="service" [entity]="entity" x-axis="CUSTOMERID"
-              y-axis="CUSTOMERID" query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
+            <o-chart #multiBar type="multiBar" layout-fill [service]="currentPreference.service" [entity]="currentPreference.entity"
+              x-axis="CUSTOMERID" y-axis="CUSTOMERID" query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
           </o-row>
 
           <o-row [style.display]="!showAreaChart ? 'none' : 'inherit'">
-            <o-chart #stackedAreaChart type="stackedAreaChart" [service]="service" [entity]="entity" x-axis="CUSTOMERID" y-axis="CUSTOMERID"
-              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
+            <o-chart #stackedAreaChart type="stackedAreaChart" [service]="currentPreference.service" [entity]="currentPreference.entity"
+              x-axis="CUSTOMERID" y-axis="CUSTOMERID" [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
             </o-chart>
           </o-row>
 
           <o-row [style.display]="!showPieChart ? 'none' : 'inherit'">
-            <o-chart #pieChart layout-fill type="pie" [service]="service" [entity]="entity" fxFlex [chart-parameters]="chartParametersPieChart"
-              query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes">
+            <o-chart #pieChart layout-fill type="pie" [service]="currentPreference.service" [entity]="currentPreference.entity" fxFlex
+              [chart-parameters]="chartParametersPieChart" query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes">
             </o-chart>
           </o-row>
         </o-column>
