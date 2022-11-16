@@ -83,7 +83,7 @@
                 (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo>
             </o-row>
           </o-column>
-          <o-column>
+          <o-column class="column-type">
             <o-row>
               <span class="section-title">{{ 'CHART_ON_DEMAND.CHART_TYPE' | oChartTranslate }}</span>
             </o-row>
@@ -145,7 +145,7 @@
           </o-row>
 
           <o-row [style.display]="!showMultiBarChart ? 'none' : 'inherit'">
-            <o-chart #multiBar type="multiBar" layout-fill [service]="currentPreference.service" [entity]="currentPreference.entity"
+            <o-chart #multiBar fxFlex type="multiBar" layout-fill [service]="currentPreference.service" [entity]="currentPreference.entity"
               x-axis="CUSTOMERID" y-axis="CUSTOMERID" query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
           </o-row>
 

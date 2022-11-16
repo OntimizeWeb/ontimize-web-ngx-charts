@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
 
@@ -49,7 +49,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   dateYAxis: boolean = false;
   showConfiguration: boolean = false;
 
-  @ViewChild('wrapper', { static: false }) template: TemplateRef<any>;
   @ViewChild('comboXAxis', { static: true }) comboXAxis: OComboComponent;
   @ViewChild('comboYAxis', { static: true }) comboYAxis: OComboComponent;
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
