@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
+import domtoimage from 'dom-to-image';
 import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
-
 import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
@@ -21,7 +21,9 @@ declare var d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
-  styleUrls: ['./o-chart-on-demand.component.scss']
+  styleUrls: ['./o-chart-on-demand.component.scss'],
+  encapsulation: ViewEncapsulation.None
+
 })
 
 export class OChartOnDemandComponent implements AfterViewInit {
@@ -63,6 +65,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   private _arrayColumns = [];
   arrayYAxis = [];
+  sqlTypes = {};
 
   @Input() description: string = '';
   @Input() buttonText: string = '';
@@ -93,6 +96,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference = new DefaultOChartPreferences();
     this.currentPreference.entity = this.data.entity;
     this.currentPreference.service = this.data.service;
+    this.sqlTypes = this.data.sqlTypes;
     this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
@@ -103,15 +107,16 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    let dataArray = this.data.getDataArray();
     let columnTitles = [];
-    let columns = Object.keys(this.data.arrayColumns[0]);
+    let columns = Object.keys(dataArray[0]);
     columns.forEach((element, index) => {
       columnTitles.push({
         'key': index,
         'value': element,
       });
     });
-    this.arrayColumns = this.data.arrayColumns;
+    this.arrayColumns = dataArray;
     this.comboXAxis.setDataArray(columnTitles);
     this.comboYAxis.setDataArray(columnTitles);
     this.currentConfiguration = { ENTITY: this.currentPreference.entity };
@@ -122,12 +127,22 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedYAxis = "";
     this.arrayComboYAxis = event;
     this.currentPreference.selectedYAxis = event;
+    let type = this.sqlTypes[this.currentPreference.selectedYAxis[0]];
+    let elementYAxis = this.arrayDataType.find(item => item.type == type);
+    this.currentPreference.selectedYAxisType = elementYAxis.key;
+
     this.showChart();
   }
 
   captureValueXAxis(event: OValueChangeEvent) {
     this.currentPreference.selectedXAxis = "";
     this.currentPreference.selectedXAxis = event.newValue;
+    if (this.currentPreference.selectedXAxisType == "") {
+      let type = this.sqlTypes[this.currentPreference.selectedXAxis];
+      let elementXAxis = this.arrayDataType.find(item => item.type == type);
+      this.currentPreference.selectedXAxisType = elementXAxis.key;
+    }
+
     this.showChart();
   }
 
@@ -235,32 +250,43 @@ export class OChartOnDemandComponent implements AfterViewInit {
     return this.arrayColumns;
   }
 
+  modifiedValueComboDataTypeXAxis(value) {
+    if (value != undefined) {
+      this.chartParametersLineChart.xDataType = value.f;
+      this.chartParametersMultiBarChart.xDataType = value.f;
+      this.chartParametersAreaChart.xDataType = value.f;
+      this.chartParametersPieChart.valueType = value.f;
+
+      this.currentPreference.selectedXAxisType = value.key;
+    }
+  }
+
   captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent) {
     let elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
-
     this.chartParametersLineChart.xDataType = elementXAxis.f;
     this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
     this.chartParametersAreaChart.xDataType = elementXAxis.f;
     this.chartParametersPieChart.valueType = elementXAxis.f;
 
-    this.currentPreference.selectedXAxisType = elementXAxis.f;
+    this.modifiedValueComboDataTypeXAxis(elementXAxis)
 
 
   }
 
-
-  captureValueComboDataTypeYAxis(eventYAxis: OValueChangeEvent) {
-    let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
-
-    this.chartParametersLineChart.yDataType = elementYAxis.f;
-    this.chartParametersMultiBarChart.yDataType = elementYAxis.f;
-    this.chartParametersAreaChart.yDataType = elementYAxis.f;
-    this.chartParametersPieChart.valueType = elementYAxis.f;
-
-    if (elementYAxis != undefined) {
-      this.currentPreference.selectedYAxisType = elementYAxis.f;
+  modifiedValueComboDataTypeYAxis(value) {
+    if (value != undefined) {
+      this.chartParametersLineChart.yDataType = value.f;
+      this.chartParametersMultiBarChart.yDataType = value.f;
+      this.chartParametersAreaChart.yDataType = value.f;
+      this.chartParametersPieChart.valueType = value.f;
+      this.currentPreference.selectedYAxisType = value.key;
       this.showChart();
     }
+  }
+  captureValueComboDataTypeYAxis(eventYAxis: OValueChangeEvent) {
+    let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
+    this.modifiedValueComboDataTypeYAxis(elementYAxis);
+
   }
 
   arrayDataType: Array<any> = [];
@@ -269,33 +295,39 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.arrayDataType = [];
     this.arrayDataType.push({
       'key': 1,
+      'type': 2,
       'value': 'Number',
       'f': d => d3.format('d')(d)
     });
     this.arrayDataType.push({
       'key': 2,
+      'type': 3,
       'value': 'Decimal ',
       'f': d => d3.format('.02f')(d)
 
     });
     this.arrayDataType.push({
       'key': 3,
+      'type': 93,
       'value': 'Date',
       'f': d => d3.time.format('%x')(new Date(d))
 
     });
     this.arrayDataType.push({
       'key': 4,
+      'type': 4,
       'value': 'Integer',
       'f': d => d3.format('.0%')(d)
 
     });
     this.arrayDataType.push({
       'key': 5,
+      'type': 12,
       'value': 'Name'
     });
     this.arrayDataType.push({
       'key': 6,
+      'type': 1111,
       'value': 'Amount'
     });
     return this.arrayDataType;
@@ -344,7 +376,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   savePreferences(data: any, update?: boolean) {
     let preference = {
       "name": data.name, "description": data.description,
-      "entity": this.currentPreference.entity, "service": this.currentPreference.service, "type": "chart", "params": {
+      "entity": this.currentPreference.entity, "service": this.currentPreference.service, "type": "CHART", "params": {
         "title": this.currentPreference.title,
         "subtitle": this.currentPreference.subtitle, "entity": this.currentPreference.entity, "service": this.currentPreference.service, "selectedXAxis": this.currentPreference.selectedXAxis,
         "selectedYAxis": this.currentPreference.selectedYAxis, "selectedXAxisType": this.currentPreference.selectedXAxisType, "selectedYAxisType": this.currentPreference.selectedYAxisType,
@@ -407,5 +439,23 @@ export class OChartOnDemandComponent implements AfterViewInit {
   refreshSubtitle(value) {
     this.currentPreference.subtitle = value.newValue;
   }
+  exportChart() {
+    var node = document.getElementById('sidenav-container-content');
+    var options = { quality: 1 };
+    var fileName;
+    if (this.currentPreference.title != "") {
+      fileName = this.currentPreference.title;
+    }
+    else {
+      fileName = "Chart on demand " + new Date().getDate();
+    }
+    domtoimage.toJpeg(node, options).then((dataUrl) => {
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `${fileName}.jpg`
+      link.click();
+    });
+  }
+
 
 }

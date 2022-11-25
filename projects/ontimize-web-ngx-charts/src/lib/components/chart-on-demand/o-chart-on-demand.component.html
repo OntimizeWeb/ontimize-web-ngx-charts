@@ -14,6 +14,9 @@
       <button mat-menu-item (click)="openLoadPreferencesDialog()">
         <span>{{ 'CHART_ON_DEMAND.LOAD_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
+      <button mat-menu-item (click)="exportChart()">
+        <span>{{ 'CHART_ON_DEMAND.EXPORT_BUTTON' | oChartTranslate }}</span>
+      </button>
     </mat-menu>
     <button mat-icon-button aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
       <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
@@ -97,8 +100,8 @@
       </o-form>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div id="sidenav-container-content" class="sidenav-container-content" [ngClass]="{'opened' : opened}" fxLayout="column" fxFlex>
-        <o-column fxFlex class="title-sidenav-content">
+      <div class="sidenav-container-content" [ngClass]="{'opened' : opened}" fxLayout="column" fxFlex>
+        <o-column id="sidenav-container-content" fxFlex class="title-sidenav-content">
 
           <o-column *ngIf="showPlaceholder" fxFlex class="image-placeholder">
             <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400"
@@ -139,25 +142,25 @@
           </o-row>
 
           <o-row [style.display]="!showLineChart ? 'none' : 'inherit'">
-            <o-chart #lineChartBasic fxFlex type="line" [service]="currentPreference.service" [entity]="currentPreference.entity" x-axis="CUSTOMERID"
-              y-axis="CUSTOMERID" [chart-parameters]="chartParametersLineChart" query-on-bind="no" layout-padding class="chart">
+            <o-chart #lineChartBasic fxFlex type="line" [service]="currentPreference.service" [entity]="currentPreference.entity"
+              [chart-parameters]="chartParametersLineChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
             </o-chart>
           </o-row>
 
           <o-row [style.display]="!showMultiBarChart ? 'none' : 'inherit'">
             <o-chart #multiBar fxFlex type="multiBar" layout-fill [service]="currentPreference.service" [entity]="currentPreference.entity"
-              x-axis="CUSTOMERID" y-axis="CUSTOMERID" query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
+              query-on-bind="no" [chart-parameters]="chartParametersMultiBarChart"></o-chart>
           </o-row>
 
           <o-row [style.display]="!showAreaChart ? 'none' : 'inherit'">
             <o-chart #stackedAreaChart type="stackedAreaChart" [service]="currentPreference.service" [entity]="currentPreference.entity"
-              x-axis="CUSTOMERID" y-axis="CUSTOMERID" [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
+              [chart-parameters]="chartParametersAreaChart" query-on-bind="no" fxFlex>
             </o-chart>
           </o-row>
 
           <o-row [style.display]="!showPieChart ? 'none' : 'inherit'">
             <o-chart #pieChart layout-fill type="pie" [service]="currentPreference.service" [entity]="currentPreference.entity" fxFlex
-              [chart-parameters]="chartParametersPieChart" query-on-bind="no" x-axis="CUSTOMERID" y-axis="CUSTOMERID" vertical-scroll="yes">
+              [chart-parameters]="chartParametersPieChart" query-on-bind="no" vertical-scroll="yes">
             </o-chart>
           </o-row>
         </o-column>
