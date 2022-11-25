@@ -21,9 +21,7 @@ declare var d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
-  styleUrls: ['./o-chart-on-demand.component.scss'],
-  encapsulation: ViewEncapsulation.None
-
+  styleUrls: ['./o-chart-on-demand.component.scss']
 })
 
 export class OChartOnDemandComponent implements AfterViewInit {
@@ -440,9 +438,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.subtitle = value.newValue;
   }
   exportChart() {
-    var node = document.getElementById('sidenav-container-content');
-    var options = { quality: 1 };
-    var fileName;
+    let node = document.getElementById('sidenav-container-content');
+    let options = { quality: 1 };
+    let fileName;
     if (this.currentPreference.title != "") {
       fileName = this.currentPreference.title;
     }

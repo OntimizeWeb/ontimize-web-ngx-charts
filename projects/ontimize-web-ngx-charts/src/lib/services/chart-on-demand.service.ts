@@ -14,7 +14,6 @@ export class OChartOnDemandService implements IChartOnDemandService {
   ) { }
 
   openChartOnDemand(table:OTableComponent) {
-    //let data = { arrayColumns: dataArray, service: service, entity: entity }
     Utils.openModalVisor(this.dialog, OChartOnDemandComponent, table);
 
   }
