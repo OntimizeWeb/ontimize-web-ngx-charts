@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import domtoimage from 'dom-to-image';
 import { OComboComponent, OFormComponent, OntimizeService, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
@@ -21,7 +21,8 @@ declare var d3: any;
 @Component({
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
-  styleUrls: ['./o-chart-on-demand.component.scss']
+  styleUrls: ['./o-chart-on-demand.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class OChartOnDemandComponent implements AfterViewInit {
@@ -183,6 +184,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersLineChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
+      this.lineChartBasic.entity = this.currentPreference.entity;
+      this.lineChartBasic.service = this.currentPreference.service;
       this.lineChartBasic.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.currentPreference.selectedTypeChart == 2) {
       this.showMultiBarChart = true;
@@ -191,6 +194,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
+      this.multiBar.entity = this.currentPreference.entity;
+      this.multiBar.service = this.currentPreference.service;
       this.multiBar.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     } else if (this.currentPreference.selectedTypeChart == 3) {
       this.showAreaChart = true;
@@ -199,6 +204,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersAreaChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersAreaChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
+      this.stackedAreaChart.entity = this.currentPreference.entity;
+      this.stackedAreaChart.service = this.currentPreference.service;
       this.stackedAreaChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
     else if (this.currentPreference.selectedTypeChart == 4) {
@@ -208,6 +215,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
       this.chartParametersPieChart.xLabel = this.comboXAxis.value.value;
       this.chartParametersPieChart.yLabel = this.comboYAxis.value.value.join(';');
       DataAdapterUtils.createDataAdapter(this.chartParametersPieChart);
+      this.pieChart.entity = this.currentPreference.entity;
+      this.pieChart.service = this.currentPreference.service;
       this.pieChart.setDataArray(DataAdapterUtils.adapter.adaptResult(this.arrayColumns))
     }
   }

@@ -1,126 +1,31 @@
-.mat-sidenav-container {
-  background-color: transparent;
-  transition: all 0.5s;
-}
-
-.mat-sidenav-graphic-gui {
-  background-color: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #dddddd;
-  box-shadow: 0px 2px 4px #00000029;
-}
-
-.title-sidenav-content {
-  background-color: white;
-}
-
-.sidenav-container-content {
-  //background-color: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #dddddd;
-  box-shadow: 0px 2px 4px #00000029;
+.o-dialog-class .mat-dialog-container .mat-dialog-content {
+  max-height: calc(100% - 100px);
   height: 100%;
-  margin-left: 0px;
-
-  &.opened {
-    margin-left: 24px;
-  }
-}
-
-
-.mat-sidenav {
-  min-width: 10%;
-  left: 16px;
-  top: 8px;
-  visibility: visible !important;
-  z-index: 999;
-  border: 0;
-
-  .o-form {
-    display: none;
-
-    .section-title {
-      margin-top: 24px;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-
-    .radio-selection {
-      overflow: hidden;
-    }
-  }
-
-  &.mat-drawer-side {
-    transform: none;
-  }
-
-  &.mat-drawer-opened {
-    border: 1px solid #DEE1E6;
-    border-radius: 4px;
-    top: 0;
-    left: 0;
-    padding: 8px 16px;
-
-    .o-form {
-      display: block;
-    }
-  }
-}
-
-.mat-sidenav-content {
-  z-index: 9;
-}
-
-.dialog-title {
-  position: relative;
-  border-bottom: 1px solid #1464a5;
-
-  h2 {
-    font-size: 16px;
-  }
-
-  .main-menu {
-    position: absolute;
-    top: -5px;
-    right: 0;
-
-    button {
-      margin-left: 18px;
-      height: 19px;
-      width: 19px;
-      line-height: 19px;
-
-      .mat-icon {
-        height: 19px;
-        width: 19px;
-      }
-    }
-
-    .active {
-      color: #1464a5;
-    }
-  }
-}
-
-.dialog-content {
-  height: 100%;
-  max-height: calc(100% - 77px);
-
+  overflow: hidden;
 
   .mat-sidenav-container {
-    flex: none;
+    background-color: transparent;
+    transition: all 0.5s;
+  }
 
-    svg {
-      margin: 24px;
-      width: calc(100% - 48px);
-      height: calc(100% - 48px);
-      max-width: 750px;
-      position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+  .mat-sidenav-graphic-gui {
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 2px 4px #00000029;
+  }
+
+  .title-sidenav-content {
+    background-color: white;
+  }
+
+  .sidenav-container-content {
+    //background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 2px 4px #00000029;
+    height: 100%;
+    margin-left: 0px;
 
     .title {
       margin-left: 60px;
@@ -132,5 +37,108 @@
       margin-left: 60px;
     }
 
+    &.opened {
+      margin-left: 24px;
+    }
+  }
+
+
+  .mat-sidenav {
+    min-width: 10%;
+    left: 16px;
+    top: 8px;
+    visibility: visible !important;
+    z-index: 999;
+    border: 0;
+
+    .o-form {
+      display: none;
+
+      .section-title {
+        margin-top: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .radio-selection {
+        overflow: hidden;
+      }
+    }
+
+    &.mat-drawer-side {
+      transform: none;
+    }
+
+    &.mat-drawer-opened {
+      border: 1px solid #DEE1E6;
+      border-radius: 4px;
+      top: 0;
+      left: 0;
+      padding: 8px 16px;
+
+      .o-form {
+        display: block;
+      }
+    }
+  }
+
+  .mat-sidenav-content {
+    z-index: 9;
+  }
+
+  .dialog-title {
+    position: relative;
+    border-bottom: 1px solid #1464a5;
+
+    h2 {
+      font-size: 16px;
+    }
+
+    .main-menu {
+      position: absolute;
+      top: -5px;
+      right: 0;
+
+      button {
+        margin-left: 18px;
+        height: 19px;
+        width: 19px;
+        line-height: 19px;
+
+        .mat-icon {
+          height: 19px;
+          width: 19px;
+        }
+      }
+
+      .active {
+        color: #1464a5;
+      }
+    }
+  }
+
+  .dialog-content {
+    height: 100%;
+    max-height: calc(100% - 77px);
+
+
+    .mat-sidenav-container {
+      flex: none;
+
+      svg {
+        margin: 24px;
+        width: calc(100% - 48px);
+        height: calc(100% - 48px);
+        max-width: 750px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+
+
+    }
   }
 }

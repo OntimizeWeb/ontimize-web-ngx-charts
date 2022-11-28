@@ -9,6 +9,7 @@
     }
   },
   "whitelistedNonPeerDependencies": [
-    "d3"
+    "d3",
+    "dom-to-image"
   ]
 }
