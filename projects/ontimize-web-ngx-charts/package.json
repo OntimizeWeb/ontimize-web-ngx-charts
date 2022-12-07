@@ -16,7 +16,12 @@
     "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
   },
   "license": "Apache-2.0",
+  "readmeFilename": "README.md",
   "main": "./bundles/ontimize-web-ngx-charts.umd.js",
+  "metadata": "./index.metadata.json",
+  "module": "./index.js",
+  "es2015": "./esm2015/ontimize-web-ngx-charts.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "test": "karma start",
     "test-watch": "karma start --singleRun=false --autoWatch=true"

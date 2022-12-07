@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "removeComments": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": false,
+    "experimentalDecorators": true,
     "declaration": true,
     "noImplicitReturns": true,
     "listFiles": true,
@@ -18,7 +18,8 @@
     "noUnusedParameters": false,
     "lib": [
       "dom",
-      "es2015"
+      "es2015",
+      "es2017"
     ],
   },
   "exclude": [
