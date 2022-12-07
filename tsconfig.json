@@ -5,10 +5,10 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": [
@@ -17,10 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": false,
-    "strictInjectionParameters": true
+    ],
+    "paths": {
+      "ontimize-web-ngx-charts": [
+        "dist/ontimize-web-ngx-charts"
+      ],
+      "ontimize-web-ngx-charts/*": [
+        "dist/ontimize-web-ngx-charts/*"
+      ]
+    }
   }
 }
