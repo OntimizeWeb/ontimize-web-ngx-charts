@@ -112,7 +112,6 @@ export const DEFAULT_INPUTS_O_CHART: any = [
     { provide: O_COMPONENT_STATE_SERVICE, useClass: DefaultComponentStateService },
   ]
 })
-
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;
