@@ -492,5 +492,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   pinchChart(event: any) {
     this.onPinch.emit(event);
   }
+  updateOptions(options: any) {
+    this.setChartConfiguration(options);
+    this.chartWrapper.update();
+  }
 
 }

@@ -8,6 +8,7 @@ export type OChartPreferences = {
   selectedXAxis: string,
   selectedYAxis: string,
   selectedTypeChart: any,
+  selectedDataTypeChart: any,
   selectedXAxisType: string,
   selectedYAxisType: string
 }
@@ -19,6 +20,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
   public selectedXAxis: string;
   public selectedYAxis: string;
   public selectedTypeChart: any;
+  public selectedDataTypeChart: any;
   public selectedXAxisType: string;
   public selectedYAxisType: string;
   constructor() {
@@ -26,7 +28,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
     this.subtitle = '';
     this.entity = '';
     this.service = '';
-    this.selectedXAxis = '';
+    this.selectedXAxis = undefined;
     this.selectedYAxis = '';
     this.selectedXAxisType = '';
     this.selectedYAxisType = '';

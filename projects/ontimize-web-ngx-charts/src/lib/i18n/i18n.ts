@@ -24,9 +24,19 @@ export const MAP = {
     'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL': 'Save',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Load Configuration',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No configurations saved',
-    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Load',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL': 'Load',
     'CHART_ON_DEMAND.SELECT_PREFERENCE': 'Save configuration as',
-    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Save configuration as'
+    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Save configuration as',
+    'CHART_ON_DEMAND.PREVIEW': 'Preview',
+    'CHART_ON_DEMAND.CLEAR': 'Clear',
+    'CHART_ON_DEMAND.LINE': 'Line',
+    'CHART_ON_DEMAND.MULTI_BAR': 'Multi Bar',
+    'CHART_ON_DEMAND.AREA': 'Area',
+    'CHART_ON_DEMAND.PIE': 'Pie',
+    'CHART_ON_DEMAND.CURRENT_PAGE': 'Current page',
+    'CHART_ON_DEMAND.FILTER_DATA': 'Filter data',
+    'CHART_ON_DEMAND.ALL_DATA': 'All data',
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data type'
   },
 
   // Spanish
@@ -54,8 +64,18 @@ export const MAP = {
     'CHART_ON_DEMAND.SAVE_PREFERENCES.BUTTON_LABEL': 'Guardar',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.TITLE': 'Cargar configuración',
     'CHART_ON_DEMAND.LOAD_PREFERENCES.EMPTY_LIST': 'No hay configuraciones guardadas',
-    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL':'Cargar',
+    'CHART_ON_DEMAND.LOAD_PREFERENCES.BUTTON_LABEL': 'Cargar',
     'CHART_ON_DEMAND.SELECT_PREFERENCE': 'Guardar configuración como',
-    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Guardar configuración como'
+    'CHART_ON_DEMAND.SAVE_PREFERENCES_AS.TITLE': 'Guardar configuración como',
+    'CHART_ON_DEMAND.PREVIEW': 'Previsualizar',
+    'CHART_ON_DEMAND.CLEAR': 'Limpiar',
+    'CHART_ON_DEMAND.LINE': 'Línea',
+    'CHART_ON_DEMAND.MULTI_BAR': 'Multi Bar',
+    'CHART_ON_DEMAND.AREA': 'Area',
+    'CHART_ON_DEMAND.PIE': 'Pie',
+    'CHART_ON_DEMAND.CURRENT_PAGE': 'Página actual',
+    'CHART_ON_DEMAND.FILTER_DATA': 'Datos filtrados',
+    'CHART_ON_DEMAND.ALL_DATA': 'Todos los datos',
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Tipo de datos'
   }
 };

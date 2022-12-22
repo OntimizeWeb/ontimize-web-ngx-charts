@@ -20,7 +20,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && scss-bundle -c scss-bundle-ontimize-charts.config.json",
+    "build": "ng build && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
+    "copy-files": "copyfiles -u 3 ./projects/ontimize-web-ngx-charts/assets/chart_animation.json ./dist/assets && echo '----¡Assets copied!----'  ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -41,9 +42,11 @@
     "d3": "3.5.17",
     "dom-to-image": "^2.6.0",
     "hammerjs": "~2.0.8",
+    "lottie-web": "^5.10.0",
+    "ngx-lottie": "7.0.4",
     "nvd3": "1.8.6",
     "nvd3-extra": "1.0.0",
-    "ontimize-web-ngx": "file:ontimize-web-ngx-8.9.0-SNAPSHOT-0.tgz",
+    "ontimize-web-ngx": "8.9.0-SNAPSHOT-0",
     "ontimize-web-ngx-nvd3": "8.0.0",
     "rxjs": "~6.4.0",
     "tslib": "~1.10.0",

@@ -10,6 +10,8 @@
   },
   "whitelistedNonPeerDependencies": [
     "d3",
-    "dom-to-image"
+    "dom-to-image",
+    "lottie-web",
+    "ngx-lottie"
   ]
 }
