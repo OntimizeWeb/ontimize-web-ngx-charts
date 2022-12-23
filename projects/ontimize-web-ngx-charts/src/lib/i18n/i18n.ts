@@ -34,9 +34,9 @@ export const MAP = {
     'CHART_ON_DEMAND.AREA': 'Area',
     'CHART_ON_DEMAND.PIE': 'Pie',
     'CHART_ON_DEMAND.CURRENT_PAGE': 'Current page',
-    'CHART_ON_DEMAND.FILTER_DATA': 'Filter data',
+    'CHART_ON_DEMAND.FILTER_DATA': 'Filtered data',
     'CHART_ON_DEMAND.ALL_DATA': 'All data',
-    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data type'
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data'
   },
 
   // Spanish
@@ -76,6 +76,6 @@ export const MAP = {
     'CHART_ON_DEMAND.CURRENT_PAGE': 'Página actual',
     'CHART_ON_DEMAND.FILTER_DATA': 'Datos filtrados',
     'CHART_ON_DEMAND.ALL_DATA': 'Todos los datos',
-    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Tipo de datos'
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Datos'
   }
 };

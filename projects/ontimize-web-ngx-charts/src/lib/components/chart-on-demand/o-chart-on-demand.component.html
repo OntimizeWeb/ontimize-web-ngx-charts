@@ -31,7 +31,7 @@
 <div #dialog mat-dialog-content class="dialog-container">
   <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" fxFill>
     <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
-      <o-button (click)="change()" icon="menu" type="ICON" label=""
+      <o-button o-button (click)="opened=!opened" icon="menu" type="ICON" label=""
         [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oChartTranslate">
       </o-button>
       <o-form #formChart attr="formChartOnDemand" editable-detail="no" show-header="no" query-on-init="false">
@@ -53,18 +53,10 @@
           read-only="no" filter="yes" translate="yes" columns="key;value" null-selection="false" visible-columns="value" value-column="value"
           appearance="legacy" (onValueChange)="captureValueXAxis($event)">
         </o-combo>
-        <!-- <o-combo #DataTypeXAxis attr="DataTypeXAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_X' | oChartTranslate}}"
-          [data]="currentPreference.selectedXAxisType" read-only="no" filter="yes" class="form-field" translate="yes"
-          [static-data]="getArrayDataType()" value-column="key" columns="key;value;f" visible-columns="value" appearance="legacy"
-          (onValueChange)="captureValueComboDataTypeXAxis($event)"></o-combo> -->
         <span class="section-title">{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}</span>
         <o-combo #comboYAxis attr="comboYAxis" label="{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}" [data]="currentPreference.selectedYAxis"
           read-only="no" filter="yes" class="form-field" multiple="yes" columns="key;value" visible-columns="value" value-column="value"
           (onChange)="captureValueYAxis($event)" appearance="legacy" translate="yes"></o-combo>
-        <!-- <o-combo #DataTypeYAxis attr="DataTypeYAxis" label="{{'CHART_ON_DEMAND.SELECT_DATA_TYPE_Y' | oChartTranslate}}"
-          [data]="currentPreference.selectedYAxisType" read-only="no" filter="yes" class="form-field" translate="yes"
-          [static-data]="getArrayDataType()" value-column="key" columns="key;value;f" visible-columns="value" appearance="legacy"
-          (onValueChange)="captureValueComboDataTypeYAxis($event)"></o-combo> -->
         <span class="section-title">{{ 'CHART_ON_DEMAND.CHART_DATA_TYPE' | oChartTranslate }}</span>
         <mat-radio-group name="DataType" [(ngModel)]="currentPreference.selectedDataTypeChart" fxLayout="column" fxLayoutGap="12px">
           <mat-radio-button *ngFor="let dataType of dataTypes" name="DataType" [value]="dataType.key"
@@ -92,9 +84,8 @@
             <h2 class="title">{{currentPreference.title}}</h2>
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </o-column>
-          <o-row *ngIf="!showPlaceholder">
-            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" [chart-parameters]="chartParameters" query-on-bind="no"
-              query-on-init="no" layout-padding class="chart">
+          <o-row fxFlex [style.display]="showPlaceholder ? 'none' : 'inherit'">
+            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" [chart-parameters]="chartParameters" query-on-bind="no" query-on-init="no" layout-padding class="chart">
             </o-chart>
           </o-row>
         </o-column>

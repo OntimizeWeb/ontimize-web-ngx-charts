@@ -32,6 +32,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
     this.selectedYAxis = '';
     this.selectedXAxisType = '';
     this.selectedYAxisType = '';
+    this.selectedDataTypeChart = 1;
   }
 }
 

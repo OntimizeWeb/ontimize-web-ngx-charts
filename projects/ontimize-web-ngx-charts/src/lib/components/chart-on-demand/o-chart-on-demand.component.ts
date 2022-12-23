@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MatRadioGroup, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import domtoimage from 'dom-to-image';
 import { OColumn, OComboComponent, OFormComponent, OntimizeService, ORadioComponent, OTableComponent, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
@@ -7,7 +7,7 @@ import { LineChartConfiguration } from '../../models/options/LineChartConfigurat
 import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
 import { PieChartConfiguration } from '../../models/options/PieChartConfiguration.class';
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
-import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
+import { ChartConfiguration, DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
@@ -101,6 +101,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this._configAreaChart(this.d3Locale);
     this._configurePieChart(this.d3Locale);
 
+
   }
 
   ngAfterViewInit(): void {
@@ -115,13 +116,12 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
     this.comboXAxis.setDataArray(columnTitles);
     this.comboYAxis.setDataArray(columnTitles);
-    this.chart.entity = this.currentPreference.entity;
-    this.chart.service = this.currentPreference.service;
     this.currentConfiguration = { ENTITY: this.currentPreference.entity };
     this.cd.detectChanges();
   }
   options: AnimationOptions = {
     path: '/assets/chart_animation.json',
+    autoplay: false
   };
 
   protected parseColumnsVisible() {
@@ -259,8 +259,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
       case 4: this.configurePieChart(elementXAxis, elementYAxis);
         break;
     }
-    this.chart.entity = this.currentPreference.entity;
-    this.chart.service = this.currentPreference.service;
     this.chart.setDataArray(DataAdapterUtils.adapter.adaptResult(data))
 
     this.chart.updateOptions(this.chartParameters);
@@ -523,11 +521,5 @@ export class OChartOnDemandComponent implements AfterViewInit {
   enabledPreview() {
     return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis != "" && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
 
-  }
-  change() {
-    this.opened = !this.opened;
-    if (!this.showPlaceholder) {
-      this.configureChart();
-    }
   }
 }

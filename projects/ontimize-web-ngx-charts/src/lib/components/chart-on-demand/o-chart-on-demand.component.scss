@@ -20,6 +20,7 @@
 
     .mat-dialog-actions {
       min-height: auto;
+      margin-top: 50px;
 
       button.chart-clear-button {
         min-width: 80px;
@@ -73,20 +74,23 @@
     &.opened {
       border: 1px solid transparent;
       border-radius: 4px;
+    }
+
+    .title-sidenav-content {
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: #ffffff;
+    }
+
+    .sidenav-container-content {
+      margin-left: 24px;
+      height: 100%;
 
       .title-sidenav-content {
         border: 1px solid transparent;
         border-radius: 4px;
       }
 
-      .sidenav-container-content {
-        margin-left: 24px;
-
-        .title-sidenav-content {
-          border: 1px solid transparent;
-          border-radius: 4px;
-        }
-      }
     }
   }
 
@@ -114,7 +118,8 @@
         margin-top: 0;
         margin-left: 60px;
       }
-      .lottie{
+
+      .lottie {
         height: 100%;
       }
     }
@@ -124,5 +129,6 @@
 }
 
 .chart_title {
+  font-size: 16px;
   margin: 0
 }
