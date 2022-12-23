@@ -168,19 +168,19 @@ export class OChartOnDemandComponent implements AfterViewInit {
         if (this.data.pageable) {
           data = this.data.getDataArray();
         } else {
-          data = this.data.getDataArray();
+          data = this.data.getAllValues();
         } break;
       case 2:
         if (this.data.pageable) {
           data = this.data.getDataArray();
         } else {
-          data = this.data.getDataArray();
+          data = this.data.getAllValues();
         } break;
       case 3:
         if (this.data.pageable) {
           data = this.data.getDataArray();
         } else {
-          data = this.data.getAllValues();
+          data = this.data.getDataArray();
         } break;
     }
     return data;
@@ -208,8 +208,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersLineChart.xAxis = this.comboXAxis.value.value;
     this.chartParametersLineChart.yAxis = this.comboYAxis.value.value;
     this.chartParametersLineChart.xLabel = this.comboXAxis.value.value;
-    this.chartParametersLineChart.xDataType = this.d3Locale.numberFormat('$,.2f');
-    this.chartParametersLineChart.yDataType = this.d3Locale.numberFormat('$,.2f');
+    this.chartParametersLineChart.xDataType = elementXAxis.f;
+    this.chartParametersLineChart.yDataType = elementYAxis.f;
     this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');
     this.chartParameters = this.chartParametersLineChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
@@ -219,8 +219,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
     this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
     this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
-    this.chartParametersLineChart.xDataType = this.d3Locale.numberFormat('$,.2f');
-    this.chartParametersLineChart.yDataType = this.d3Locale.numberFormat('$,.2f');
+    this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
+    this.chartParametersMultiBarChart.yDataType = elementYAxis.f;
     this.chartParameters = this.chartParametersMultiBarChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
   }
@@ -229,8 +229,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersAreaChart.yAxis = this.comboYAxis.value.value;
     this.chartParametersAreaChart.xLabel = this.comboXAxis.value.value;
     this.chartParametersAreaChart.yLabel = this.comboYAxis.value.value.join(';');
-    this.chartParametersLineChart.xDataType = this.d3Locale.numberFormat('$,.2f');
-    this.chartParametersLineChart.yDataType = this.d3Locale.numberFormat('$,.2f');
+    this.chartParametersAreaChart.xDataType = elementXAxis.f;
+    this.chartParametersAreaChart.yDataType = elementYAxis.f;
     this.chartParameters = this.chartParametersAreaChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
   }
