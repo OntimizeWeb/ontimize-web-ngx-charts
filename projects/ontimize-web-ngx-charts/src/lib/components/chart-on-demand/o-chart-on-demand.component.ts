@@ -512,7 +512,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.service = this.data.service;
     this.currentPreference.title = "";
     this.currentPreference.subtitle = "";
-    this.currentPreference.selectedDataTypeChart = "";
+    this.currentPreference.selectedDataTypeChart = 1;
     this.currentPreference.selectedTypeChart = "";
     this.currentPreference.selectedXAxis = undefined;
     this.comboYAxis.clearValue();
