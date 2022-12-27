@@ -301,37 +301,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     return this.arrayColumns;
   }
 
-  modifiedValueComboDataTypeXAxis(value) {
-    if (value != undefined) {
-      this.chartParametersLineChart.xDataType = value.f;
-      this.chartParametersMultiBarChart.xDataType = value.f;
-      this.chartParametersAreaChart.xDataType = value.f;
-      this.chartParametersPieChart.valueType = value.f;
-
-      this.currentPreference.selectedXAxisType = value.key;
-    }
-  }
-
-  captureValueComboDataTypeXAxis(eventXAxis: OValueChangeEvent) {
-    let elementXAxis = this.arrayDataType.find(item => item.key == eventXAxis.newValue);
-    this.modifiedValueComboDataTypeXAxis(elementXAxis)
-  }
-
-  modifiedValueComboDataTypeYAxis(value) {
-    if (value != undefined) {
-      this.chartParametersLineChart.yDataType = value.f;
-      this.chartParametersMultiBarChart.yDataType = value.f;
-      this.chartParametersAreaChart.yDataType = value.f;
-      this.chartParametersPieChart.valueType = value.f;
-      this.currentPreference.selectedYAxisType = value.key;
-    }
-  }
-  captureValueComboDataTypeYAxis(eventYAxis: OValueChangeEvent) {
-    let elementYAxis = this.arrayDataType.find(item => item.key == eventYAxis.newValue);
-    this.modifiedValueComboDataTypeYAxis(elementYAxis);
-
-  }
-
   arrayDataType: Array<any> = this.getArrayDataType();
 
   getArrayDataType() {
