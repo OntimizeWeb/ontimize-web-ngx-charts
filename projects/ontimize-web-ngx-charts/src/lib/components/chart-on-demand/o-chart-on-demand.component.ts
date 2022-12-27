@@ -43,7 +43,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   showPlaceholder: boolean = true;
   dateXAxis: boolean = false;
   dateYAxis: boolean = false;
-  showConfiguration: boolean = false;
   multiSelectionCombo: boolean = false;
   dataTypes = this.getDataType();
   types = this.getDataArrayRadioGraphics();
@@ -390,9 +389,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.chartParametersPieChart.legendPosition = 'bottom';
   }
 
-  showConfigurationMenu(): void {
-    this.showConfiguration = !this.showConfiguration;
-  }
   updatePreferences(): void {
     if (Util.isDefined(this.currentConfiguration.ID)) {
       this.savePreferences({ name: this.currentConfiguration.NAME, description: this.currentConfiguration.DESCRIPTION }, true);

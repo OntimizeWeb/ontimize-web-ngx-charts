@@ -1,7 +1,7 @@
 <div mat-dialog-title class="dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
   {{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oChartTranslate }}
   <div>
-    <mat-icon svgIcon="ontimize:settings" #configurationMenuButton [matMenuTriggerFor]="menu" (click)="showConfigurationMenu()"></mat-icon>
+    <mat-icon svgIcon="ontimize:settings" #configurationMenuButton [matMenuTriggerFor]="menu"></mat-icon>
     <mat-icon aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
       <ng-container *ngIf="fullscreen">fullscreen_exit</ng-container>
       <ng-container *ngIf="!fullscreen">fullscreen</ng-container>
