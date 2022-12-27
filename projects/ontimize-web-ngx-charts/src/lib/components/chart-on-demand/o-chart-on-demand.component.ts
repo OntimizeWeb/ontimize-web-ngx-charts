@@ -1,13 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MatRadioGroup, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import domtoimage from 'dom-to-image';
-import { OColumn, OComboComponent, OFormComponent, OntimizeService, ORadioComponent, OTableComponent, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
+import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, Util } from 'ontimize-web-ngx';
 import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
 import { PieChartConfiguration } from '../../models/options/PieChartConfiguration.class';
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
-import { ChartConfiguration, DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
+import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
@@ -21,7 +21,11 @@ declare var d3: any;
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
   styleUrls: ['./o-chart-on-demand.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    '[class.o-chart-on-demand]': 'true'
+  }
+
 })
 
 export class OChartOnDemandComponent implements AfterViewInit {
@@ -31,7 +35,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   public chartParametersMultiBarChart: MultiBarChartConfiguration;
   public chartParametersAreaChart: StackedAreaChartConfiguration;
   public chartParametersPieChart: PieChartConfiguration;
-  public arrayComboYAxis: Array<Object>;
 
   public appliedConfiguration: boolean = false;
 
@@ -117,9 +120,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   captureValueYAxis(event: any) {
-    this.arrayComboYAxis = [];
     this.currentPreference.selectedYAxis = [];
-    this.arrayComboYAxis = event.value;
     this.currentPreference.selectedYAxis = event.value;
     let type = this.sqlTypes[this.currentPreference.selectedYAxis[0]];
     let elementYAxis = this.arrayDataType.find(item => item.type == type);
