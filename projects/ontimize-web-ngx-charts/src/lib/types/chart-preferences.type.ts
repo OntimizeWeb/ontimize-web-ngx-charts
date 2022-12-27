@@ -6,7 +6,7 @@ export type OChartPreferences = {
   entity: string,
   service: string,
   selectedXAxis: string,
-  selectedYAxis: string,
+  selectedYAxis: string[],
   selectedTypeChart: any,
   selectedDataTypeChart: any,
   selectedXAxisType: string,
@@ -18,7 +18,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
   public entity: string;
   public service: string;
   public selectedXAxis: string;
-  public selectedYAxis: string;
+  public selectedYAxis: string[];
   public selectedTypeChart: any;
   public selectedDataTypeChart: any;
   public selectedXAxisType: string;
@@ -29,7 +29,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
     this.entity = '';
     this.service = '';
     this.selectedXAxis = undefined;
-    this.selectedYAxis = '';
+    this.selectedYAxis = [];
     this.selectedXAxisType = '';
     this.selectedYAxisType = '';
     this.selectedDataTypeChart = 1;

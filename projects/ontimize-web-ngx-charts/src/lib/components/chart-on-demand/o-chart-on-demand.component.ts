@@ -48,9 +48,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   dataTypes = this.getDataType();
   types = this.getDataArrayRadioGraphics();
   chartParameters;
+  comboData: Array<Object>;
 
-  @ViewChild('comboXAxis', { static: true }) comboXAxis: OComboComponent;
-  @ViewChild('comboYAxis', { static: true }) comboYAxis: OComboComponent;
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   @ViewChild('chart', { static: false }) chart: OChartComponent;
   @ViewChild('formChart', { static: false }) formChart: OFormComponent;
@@ -66,18 +65,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   @Input() description: string = '';
   @Input() buttonText: string = '';
-  @Input()
-  set arrayColumns(value: Array<Object>) {
-    this.hideChart();
-    this.arrayComboYAxis = [];
-    this._arrayColumns = value;
-    this.comboXAxis.setDataArray(value);
-    this.comboYAxis.setDataArray(value);
-    if (this.comboYAxis.value != undefined) {
-      this.comboYAxis.clearValue();
-    }
 
-  }
   fixedInViewport = true;
 
   constructor(
@@ -113,9 +101,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         'value': element,
       });
     });
-
-    this.comboXAxis.setDataArray(columnTitles);
-    this.comboYAxis.setDataArray(columnTitles);
+    this.comboData = columnTitles;
     this.currentConfiguration = { ENTITY: this.currentPreference.entity };
     this.cd.detectChanges();
   }
@@ -133,9 +119,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   captureValueYAxis(event: any) {
     this.arrayComboYAxis = [];
-    this.currentPreference.selectedYAxis = "";
-    this.arrayComboYAxis = event;
-    this.currentPreference.selectedYAxis = event;
+    this.currentPreference.selectedYAxis = [];
+    this.arrayComboYAxis = event.value;
+    this.currentPreference.selectedYAxis = event.value;
     let type = this.sqlTypes[this.currentPreference.selectedYAxis[0]];
     let elementYAxis = this.arrayDataType.find(item => item.type == type);
     if (elementYAxis != undefined) {
@@ -144,9 +130,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   }
 
-  captureValueXAxis(event: OValueChangeEvent) {
+  captureValueXAxis(event: any) {
     this.currentPreference.selectedXAxis = "";
-    this.currentPreference.selectedXAxis = event.newValue;
+    this.currentPreference.selectedXAxis = event.value;
     // if (this.currentPreference.selectedXAxisType == "") {
     let type = this.sqlTypes[this.currentPreference.selectedXAxis];
     let elementXAxis = this.arrayDataType.find(item => item.type == type);
@@ -205,40 +191,40 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   configureLineChart(elementXAxis, elementYAxis) {
-    this.chartParametersLineChart.xAxis = this.comboXAxis.value.value;
-    this.chartParametersLineChart.yAxis = this.comboYAxis.value.value;
-    this.chartParametersLineChart.xLabel = this.comboXAxis.value.value;
+    this.chartParametersLineChart.xAxis = this.currentPreference.selectedXAxis;
+    this.chartParametersLineChart.yAxis = this.currentPreference.selectedYAxis;
+    this.chartParametersLineChart.xLabel = this.currentPreference.selectedXAxis;
+    this.chartParametersLineChart.yLabel = this.currentPreference.selectedYAxis.toString();
     this.chartParametersLineChart.xDataType = elementXAxis.f;
     this.chartParametersLineChart.yDataType = elementYAxis.f;
-    this.chartParametersLineChart.yLabel = this.comboYAxis.value.value.join(';');
     this.chartParameters = this.chartParametersLineChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersLineChart);
   }
   configureMultiBarChart(elementXAxis, elementYAxis) {
-    this.chartParametersMultiBarChart.xAxis = this.comboXAxis.value.value;
-    this.chartParametersMultiBarChart.yAxis = this.comboYAxis.value.value;
-    this.chartParametersMultiBarChart.xLabel = this.comboXAxis.value.value;
-    this.chartParametersMultiBarChart.yLabel = this.comboYAxis.value.value.join(';');
+    this.chartParametersMultiBarChart.xAxis = this.currentPreference.selectedXAxis;
+    this.chartParametersMultiBarChart.yAxis = this.currentPreference.selectedYAxis;
+    this.chartParametersMultiBarChart.xLabel = this.currentPreference.selectedXAxis;
+    this.chartParametersMultiBarChart.yLabel = this.currentPreference.selectedYAxis.toString();
     this.chartParametersMultiBarChart.xDataType = elementXAxis.f;
     this.chartParametersMultiBarChart.yDataType = elementYAxis.f;
     this.chartParameters = this.chartParametersMultiBarChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersMultiBarChart);
   }
   configureAreaChart(elementXAxis, elementYAxis) {
-    this.chartParametersAreaChart.xAxis = this.comboXAxis.value.value;
-    this.chartParametersAreaChart.yAxis = this.comboYAxis.value.value;
-    this.chartParametersAreaChart.xLabel = this.comboXAxis.value.value;
-    this.chartParametersAreaChart.yLabel = this.comboYAxis.value.value.join(';');
+    this.chartParametersAreaChart.xAxis = this.currentPreference.selectedXAxis;
+    this.chartParametersAreaChart.yAxis = this.currentPreference.selectedYAxis;
+    this.chartParametersAreaChart.xLabel = this.currentPreference.selectedXAxis;
+    this.chartParametersAreaChart.yLabel = this.currentPreference.selectedYAxis.toString();
     this.chartParametersAreaChart.xDataType = elementXAxis.f;
     this.chartParametersAreaChart.yDataType = elementYAxis.f;
     this.chartParameters = this.chartParametersAreaChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersAreaChart);
   }
   configurePieChart(elementXAxis, elementYAxis) {
-    this.chartParametersPieChart.xAxis = this.comboXAxis.value.value;
-    this.chartParametersPieChart.yAxis = this.comboYAxis.value.value;
-    this.chartParametersPieChart.xLabel = this.comboXAxis.value.value;
-    this.chartParametersPieChart.yLabel = this.comboYAxis.value.value.join(';');
+    this.chartParametersPieChart.xAxis = this.currentPreference.selectedXAxis;
+    this.chartParametersPieChart.yAxis = this.currentPreference.selectedYAxis;
+    this.chartParametersPieChart.xLabel = this.currentPreference.selectedXAxis;
+    this.chartParametersPieChart.yLabel = this.currentPreference.selectedYAxis.toString();
     this.chartParametersPieChart.valueType = elementYAxis.f;
     this.chartParameters = this.chartParametersPieChart;
     DataAdapterUtils.createDataAdapter(this.chartParametersPieChart);
@@ -515,11 +501,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedDataTypeChart = 1;
     this.currentPreference.selectedTypeChart = "";
     this.currentPreference.selectedXAxis = undefined;
-    this.comboYAxis.clearValue();
+    this.currentPreference.selectedYAxis = [];
     this.hideChart();
   }
   enabledPreview() {
-    return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis != "" && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
+    return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis.length != 0 && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
 
   }
 }

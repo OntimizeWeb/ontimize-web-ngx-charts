@@ -16,11 +16,23 @@
     z-index: 999;
     border: 0;
 
+    .container-title {
+      margin-top: 10px
+    }
 
+    .data_options {
+      height: calc(100% - 200px);
+      overflow-y: scroll;
+      margin-top: 10px;
+      margin-bottom: 0;
+
+      .o-form .scrolling {
+        height: 100%;
+      }
+    }
 
     .mat-dialog-actions {
       min-height: auto;
-      margin-top: 50px;
 
       button.chart-clear-button {
         min-width: 80px;
@@ -32,20 +44,23 @@
       margin: 12px 12px 0;
     }
 
-    .o-form {
-      display: none;
-
-      .section-title {
-        margin-top: 24px;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 12px;
-      }
-
-      .radio-selection {
-        overflow: hidden;
-      }
+    .section-title {
+      margin-top: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
     }
+
+    .section-first-title {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .radio-selection {
+      overflow: hidden;
+    }
+
 
     &.mat-drawer-side {
       transform: none;
@@ -74,6 +89,10 @@
     &.opened {
       border: 1px solid transparent;
       border-radius: 4px;
+
+      .sidenav-container-content {
+        margin-left: 24px;
+      }
     }
 
     .title-sidenav-content {
@@ -102,6 +121,7 @@
   .mat-sidenav-content {
     overflow: hidden;
 
+
     .sidenav-container-content {
       margin-left: 66px;
       height: 100%;
@@ -126,9 +146,4 @@
 
   }
 
-}
-
-.chart_title {
-  font-size: 16px;
-  margin: 0
 }
