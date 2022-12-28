@@ -1,8 +1,10 @@
-import { PieChartConfiguration } from './../../models/options/PieChartConfiguration.class';
-import { OChartPreferences } from './../../types/chart-preferences.type';
+import { SQLTypes } from 'ontimize-web-ngx';
+
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { ChartConfiguration } from './../../models/options/ChartConfiguration.class';
-import { SQLTypes } from "ontimize-web-ngx";
+import { DiscreteBarChartConfiguration } from './../../models/options/DiscreteBarChartConfiguration.class';
+import { PieChartConfiguration } from './../../models/options/PieChartConfiguration.class';
+import { OChartPreferences } from './../../types/chart-preferences.type';
 
 declare var d3: any;
 
@@ -17,75 +19,44 @@ export class OChartOnDemandUtils {
       chartConf.yLabel = preferences.selectedYAxis.toString();
 
       switch (preferences.selectedTypeChart) {
-      case 'line':
+        case 'line':
           this.configureLineChart(chartConf, preferences);
-        break;
-      case 'multibar':
+          break;
+        case 'discreteBar':
+          this.configureDiscreteBarChart(chartConf as DiscreteBarChartConfiguration, preferences);
+          break;
+        case 'multiBar':
           this.configureMultiBarChart(chartConf, preferences);
-        break;
-      case 'stackedAreaChart':
+          break;
+        case 'stackedAreaChart':
           this.configureAreaChart(chartConf, preferences);
-        break;
-      case 'pie':
+          break;
+        case 'pie':
+        case 'donutChart':
           this.configurePieChart(chartConf as PieChartConfiguration, preferences);
-        break;
-    }
+          break;
+      }
     }
 
     return chartConf;
   }
 
   protected static configureLineChart(chartConf: ChartConfiguration, preferences: OChartPreferences): void {
-    // this.chartParametersLineChart.xAxis = this.currentPreference.selectedXAxis;
-    // this.chartParametersLineChart.yAxis = this.currentPreference.selectedYAxis;
-    // this.chartParametersLineChart.xLabel = this.currentPreference.selectedXAxis;
-    // this.chartParametersLineChart.yLabel = this.currentPreference.selectedYAxis.toString();
-    // let formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedXAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersLineChart.xDataType = formatCallback;
-    // }
-    // formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedYAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersLineChart.yDataType = formatCallback;
-    // }
+    this.configureAxisFormat(chartConf, preferences);
+  }
+  protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences): void {
+    chartConf.agroup = true;
     this.configureAxisFormat(chartConf, preferences);
   }
   protected static configureMultiBarChart(chartConf: ChartConfiguration, preferences: OChartPreferences): void {
-    // this.chartParametersMultiBarChart.xAxis = this.currentPreference.selectedXAxis;
-    // this.chartParametersMultiBarChart.yAxis = this.currentPreference.selectedYAxis;
-    // this.chartParametersMultiBarChart.xLabel = this.currentPreference.selectedXAxis;
-    // this.chartParametersMultiBarChart.yLabel = this.currentPreference.selectedYAxis.toString();
-    // let formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedXAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersMultiBarChart.xDataType = formatCallback;
-    // }
-    // formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedYAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersMultiBarChart.yDataType = formatCallback;
-    // }
     this.configureAxisFormat(chartConf, preferences);
   }
   protected static configureAreaChart(chartConf: ChartConfiguration, preferences: OChartPreferences): void {
-    // this.chartParametersAreaChart.xAxis = this.currentPreference.selectedXAxis;
-    // this.chartParametersAreaChart.yAxis = this.currentPreference.selectedYAxis;
-    // this.chartParametersAreaChart.xLabel = this.currentPreference.selectedXAxis;
-    // this.chartParametersAreaChart.yLabel = this.currentPreference.selectedYAxis.toString();
-    // let formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedXAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersAreaChart.xDataType = formatCallback;
-    // }
-    // formatCallback = OChartOnDemandUtils.getAxisFormatCallback(this.currentPreference.selectedYAxisType);
-    // if (formatCallback != undefined) {
-    //   this.chartParametersAreaChart.yDataType = formatCallback;
-    // }
     this.configureAxisFormat(chartConf, preferences);
   }
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences): void {
-    // this.chartParametersPieChart.xAxis = this.currentPreference.selectedXAxis;
-    // this.chartParametersPieChart.yAxis = this.currentPreference.selectedYAxis;
-    // this.chartParametersPieChart.xLabel = this.currentPreference.selectedXAxis;
-    // this.chartParametersPieChart.yLabel = this.currentPreference.selectedYAxis.toString();
     chartConf.legendPosition = 'bottom';
+    chartConf.labelType = 'value';
     const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType);
     if (formatCallback != undefined) {
       chartConf.valueType = formatCallback;

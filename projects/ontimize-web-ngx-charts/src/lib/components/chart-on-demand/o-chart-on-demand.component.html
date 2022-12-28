@@ -59,7 +59,7 @@
           <span class="section-title">{{ 'CHART_ON_DEMAND.Y_AXIS' | oChartTranslate }}</span>
           <mat-form-field>
             <mat-label>{{'CHART_ON_DEMAND.SELECT_Y_AXIS' | oChartTranslate}}</mat-label>
-            <mat-select [(ngModel)]="currentPreference.selectedYAxis" (selectionChange)="captureValueYAxis($event)" multiple>
+            <mat-select [(ngModel)]="currentPreference.selectedYAxis[0]" (selectionChange)="captureValueYAxis($event)">
               <mat-option *ngFor="let option of comboData" [value]="option.value">
                 {{option.value | oTranslate}}
               </mat-option>

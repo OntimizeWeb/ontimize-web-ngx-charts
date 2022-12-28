@@ -1,8 +1,9 @@
+import { Subscription } from 'rxjs';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatRadioGroup, MatSidenav } from '@angular/material';
 import domtoimage from 'dom-to-image';
 import { AnimationOptions } from 'ngx-lottie';
-import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util } from 'ontimize-web-ngx';
+import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService } from 'ontimize-web-ngx';
 
 import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
 import { D3LocaleService } from '../../services/d3Locale.service';
@@ -61,6 +62,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   fixedInViewport = true;
 
+  protected langSubscription: Subscription;
+  protected translateService: OTranslateService;
+
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
@@ -77,7 +81,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
     this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
+    this.translateService = this.injector.get(OTranslateService);
+    this.snackBarService = this.injector.get(SnackBarService);
+  }
 
+  ngOnInit(): void {
+    this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
+      this.configureChart();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -106,9 +117,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   captureValueYAxis(event: any) {
-    //TODO manage multiple selection, right now it is only taken into account item of position 0
+    //multiple selection is not available, right now it is creating an array to be able to store data into ChartConfiguration interface
     this.currentPreference.selectedYAxis = [];
-    this.currentPreference.selectedYAxis = event.value;
+    this.currentPreference.selectedYAxis = [event.value];
     let type = this.sqlTypes[this.currentPreference.selectedYAxis[0]];
     this.currentPreference.selectedYAxisType = type != undefined ? type : SQLTypes.OTHER;
   }
@@ -174,6 +185,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.showPlaceholder = false;
     // TODO protect code
     const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference);
+    if (chartParameters) {
+      chartParameters.translateService = this.translateService;
+    }
     const adapter = DataAdapterUtils.createDataAdapter(chartParameters);
     let data = this.captureDataTypeChart();
     this.chart.setDataArray(adapter.adaptResult(data))
@@ -194,7 +208,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
       'value': 'CHART_ON_DEMAND.LINE'
     });
     this.array.push({
-      'key': 'multibar',
+      'key': 'discreteBar',
+      'value': 'CHART_ON_DEMAND.DISCRETE_BAR'
+    });
+    this.array.push({
+      'key': 'multiBar',
       'value': 'CHART_ON_DEMAND.MULTI_BAR'
     });
     this.array.push({
@@ -204,6 +222,10 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.array.push({
       'key': 'pie',
       'value': 'CHART_ON_DEMAND.PIE'
+    });
+    this.array.push({
+      'key': 'donutChart',
+      'value': 'CHART_ON_DEMAND.DONUT'
     });
     return this.array;
   }
