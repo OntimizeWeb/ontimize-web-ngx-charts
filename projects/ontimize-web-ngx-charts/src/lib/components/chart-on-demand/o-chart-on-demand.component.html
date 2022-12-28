@@ -94,7 +94,7 @@
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </o-column>
           <o-row fxFlex [style.display]="showPlaceholder ? 'none' : 'inherit'">
-            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" [chart-parameters]="chartParameters" query-on-bind="no"
+            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no"
               query-on-init="no" layout-padding class="chart">
             </o-chart>
           </o-row>

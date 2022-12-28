@@ -1,3 +1,4 @@
+import { SQLTypes } from 'ontimize-web-ngx';
 
 
 export type OChartPreferences = {
@@ -9,8 +10,8 @@ export type OChartPreferences = {
   selectedYAxis: string[],
   selectedTypeChart: any,
   selectedDataTypeChart: any,
-  selectedXAxisType: string,
-  selectedYAxisType: string
+  selectedXAxisType: number,
+  selectedYAxisType: number
 }
 export class DefaultOChartPreferences implements OChartPreferences {
   public title: string;
@@ -21,8 +22,8 @@ export class DefaultOChartPreferences implements OChartPreferences {
   public selectedYAxis: string[];
   public selectedTypeChart: any;
   public selectedDataTypeChart: any;
-  public selectedXAxisType: string;
-  public selectedYAxisType: string;
+  public selectedXAxisType: number;
+  public selectedYAxisType: number;
   constructor() {
     this.title = '';
     this.subtitle = '';
@@ -30,8 +31,8 @@ export class DefaultOChartPreferences implements OChartPreferences {
     this.service = '';
     this.selectedXAxis = undefined;
     this.selectedYAxis = [];
-    this.selectedXAxisType = '';
-    this.selectedYAxisType = '';
+    this.selectedXAxisType = SQLTypes.OTHER;
+    this.selectedYAxisType = SQLTypes.OTHER;
     this.selectedDataTypeChart = 1;
   }
 }
