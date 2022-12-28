@@ -17,7 +17,7 @@
       <button mat-menu-item (click)="openLoadPreferencesDialog()">
         <span>{{ 'CHART_ON_DEMAND.LOAD_CONFIGURATION_BUTTON' | oChartTranslate }}</span>
       </button>
-      <button mat-menu-item (click)="exportChart()">
+      <button mat-menu-item [disabled]="showPlaceholder" (click)="exportChart()">
         <span>{{ 'CHART_ON_DEMAND.EXPORT_BUTTON' | oChartTranslate }}</span>
       </button>
     </mat-menu>

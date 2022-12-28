@@ -1,15 +1,15 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatRadioGroup, MatSidenav } from '@angular/material';
+import { MatDialog, MatDialogRef, MatRadioGroup, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import domtoimage from 'dom-to-image';
 import { AnimationOptions } from 'ngx-lottie';
 import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util } from 'ontimize-web-ngx';
-
-import { DataAdapterUtils, OChartComponent } from '../../ontimize-web-ngx-charts.module';
+import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
 import { PreferencesConfiguration } from '../../types/preferences-configuration.type';
 import { Utils } from '../../util/utils';
+import { OChartComponent } from '../chart/o-chart.component';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { OChartOnDemandUtils } from './o-chart-on-demand-utils';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
@@ -316,7 +316,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
   exportChart() {
     let node = document.getElementById('sidenav-container-content');
-    let options = { quality: 1 };
+    let options = {
+      bgcolor: 'white', quality: 1
+    };
     let fileName;
     if (this.currentPreference.title != "") {
       fileName = this.currentPreference.title;
