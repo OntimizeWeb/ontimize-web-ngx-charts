@@ -46,6 +46,7 @@ export class OChartOnDemandUtils {
   }
   protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.agroup = true;
+    chartConf.showLegend = true;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureMultiBarChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
