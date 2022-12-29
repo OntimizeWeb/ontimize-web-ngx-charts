@@ -15,6 +15,8 @@ on:
 
 env:
   NPM_REGISTRY: https://registry.npmjs.org/
+  CI_EMAIL: ontimize-web@imatia.com
+  CI_USERNAME: ontimize-web
 
 jobs:
   build:
@@ -77,3 +79,29 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Check out the [changelog](CHANGELOG.md) for version ${{ steps.project.outputs.version }}
+
+      - name: Prepare git information
+        run: |
+          git config user.name "$CI_USERNAME"
+          git config user.email "$CI_EMAIL"
+
+      - name: Create sync branch
+        run: |
+          version=${{ steps.project.outputs.version }}
+          git checkout -b sync/release-$version-to-develop
+
+          npm version $(npm version minor --no-git-tag-version)-SNAPSHOT-0 --no-git-tag-version
+
+          git add .
+          git commit --allow-empty -m "Prepare next development iteration"
+          git push origin sync/release-$version-to-develop
+
+      - name: Create pull request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version=${{ steps.project.outputs.version }}
+          gh pr create -B 8.x.x -H sync/release-$version-to-develop --title "Sync release $version to develop" --body "Automated pull request for synchronizing released version into develop branch"
+
+
+
