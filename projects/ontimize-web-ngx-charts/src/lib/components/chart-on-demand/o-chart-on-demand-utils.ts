@@ -77,14 +77,14 @@ export class OChartOnDemandUtils {
   public static getAxisFormatCallback(axisType:number, axisName:string, oTableOptions: OTableOptions): any {
     //TODO review integer and decimal format...
     if (this.isInteger(axisType)) {
-      return d => d3.format(' 0d')(d);
+      return "intGrouped";
     } else if (this.isDecimal(axisType)) {
       if (this.isCurrency(axisName, oTableOptions)) {
         return d => d3.format('$.02f')(d);
       } else if (this.isPercentage(axisName, oTableOptions)) {
-        return d => d3.format('.0%')(d);
+        return "percentage";
       }
-      return d => d3.format('.02f')(d);
+      return "float";
     } else if (this.isDate(axisType)) {
       return "time";
     }
