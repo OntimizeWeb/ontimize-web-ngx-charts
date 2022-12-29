@@ -72,13 +72,13 @@ export class OChartOnDemandComponent implements AfterViewInit {
     private dialogRef: MatDialogRef<any>,
     public dialog: MatDialog,
     protected injector: Injector,
-    @Inject(MAT_DIALOG_DATA) public data: OTableComponent,
+    @Inject(MAT_DIALOG_DATA) public tableComp: OTableComponent,
   ) {
     this.dialogService = this.injector.get<DialogService>(DialogService as Type<DialogService>);
     this.currentPreference = new DefaultOChartPreferences();
-    this.currentPreference.entity = this.data.entity;
-    this.currentPreference.service = this.data.service;
-    this.sqlTypes = this.data.getSqlTypes();
+    this.currentPreference.entity = this.tableComp.entity;
+    this.currentPreference.service = this.tableComp.service;
+    this.sqlTypes = this.tableComp.getSqlTypes();
     this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
     this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
@@ -111,8 +111,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   };
 
   protected parseColumnsVisible() {
-    const columnsArray = Util.parseArray(this.data.columns);
-    return this.data.oTableOptions.columns.filter(oCol => oCol.type !== "image" && oCol.visible && columnsArray.findIndex(column => column === oCol.attr) > -1).map(
+    const columnsArray = Util.parseArray(this.tableComp.columns);
+    return this.tableComp.oTableOptions.columns.filter(oCol => oCol.type !== "image" && oCol.visible && columnsArray.findIndex(column => column === oCol.attr) > -1).map(
       (x: OColumn) => x.attr
     )
   }
@@ -135,30 +135,37 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedTypeChart = event.newValue;
   }
   captureDataTypeChart(adapter) {
-    //TODO move this method to OChartOnDemandUtils
     let data = [];
     switch (this.currentPreference.selectedDataTypeChart) {
       case 1:
-        if (this.data.pageable) {
-          data = this.data.getValue();
-        } else {
-          data = this.data.getValue();
-        } break;
+        // Independently if it is pageable or not, it has to be returned getValue().
+        data = this.tableComp.getValue();
+        break;
       case 2:
-        if (this.data.pageable) {
+        if (this.tableComp.pageable) {
           this.showPlaceholder = true;
-          this.ontimizeService.query({ '@basic_expression': (this.data.oTableQuickFilterComponent.filterExpression) }, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => { this.chart.setDataArray(adapter.adaptResult(response.data)); this.showPlaceholder = false; });
+          let filter: object = {};
+          const queryArgs = this.tableComp.getQueryArguments(filter);
+          this.ontimizeService.query(queryArgs[0], queryArgs[1], queryArgs[2], queryArgs[3])
+            .subscribe(response => {
+              this.chart.setDataArray(adapter.adaptResult(response.data));
+              this.showPlaceholder = false;
+            });
         } else {
-          data = this.data.getAllValues();
+          data = this.tableComp.getAllValues();
         } break;
       case 3:
 
-        if (this.data.pageable) {
+        if (this.tableComp.pageable) {
           this.showPlaceholder = true;
-          this.ontimizeService.query(undefined, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => { this.chart.setDataArray(adapter.adaptResult(response.data)); this.showPlaceholder = false; });
+          this.ontimizeService.query(this.tableComp.getParentKeysValues(), this.tableComp.searcheableColumns, this.currentPreference.entity, this.tableComp.getSqlTypes())
+            .subscribe(response => {
+              this.chart.setDataArray(adapter.adaptResult(response.data));
+              this.showPlaceholder = false;
+            });
         }
         else {
-          data = this.data.getDataArray();
+          data = this.tableComp.getDataArray();
         } break;
     }
     if (data != undefined) {
@@ -188,8 +195,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
 
   configureChart() {
-    // TODO protect code
-    const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference, this.data.oTableOptions);
+    const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference, this.tableComp.oTableOptions);
     if (chartParameters) {
       chartParameters.translateService = this.translateService;
     }
@@ -360,8 +366,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
     });
   }
   clearCurrentPreferences() {
-    this.currentPreference.entity = this.data.entity;
-    this.currentPreference.service = this.data.service;
+    this.currentPreference.entity = this.tableComp.entity;
+    this.currentPreference.service = this.tableComp.service;
     this.currentPreference.title = "";
     this.currentPreference.subtitle = "";
     this.currentPreference.selectedDataTypeChart = 1;
