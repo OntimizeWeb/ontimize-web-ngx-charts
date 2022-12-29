@@ -1,9 +1,9 @@
 import { Subscription } from 'rxjs';
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, Type, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MatRadioGroup, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
 import domtoimage from 'dom-to-image';
 import { AnimationOptions } from 'ngx-lottie';
-import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService } from 'ontimize-web-ngx';
+import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService } from 'ontimize-web-ngx';
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
@@ -64,7 +64,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   protected langSubscription: Subscription;
   protected translateService: OTranslateService;
-
+  protected dialogService: DialogService;
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
@@ -74,6 +74,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     protected injector: Injector,
     @Inject(MAT_DIALOG_DATA) public data: OTableComponent,
   ) {
+    this.dialogService = this.injector.get<DialogService>(DialogService as Type<DialogService>);
     this.currentPreference = new DefaultOChartPreferences();
     this.currentPreference.entity = this.data.entity;
     this.currentPreference.service = this.data.service;
@@ -132,13 +133,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
   captureTypeChart(event: OValueChangeEvent) {
     this.currentPreference.selectedTypeChart = event.newValue;
-    this.multiSelectionCombo = (this.currentPreference.selectedTypeChart == 1 || this.currentPreference.selectedTypeChart == 2);
   }
-  captureDataTypeChart(): any[] {
+  captureDataTypeChart(adapter) {
     //TODO move this method to OChartOnDemandUtils
-    let data;
+    let data = [];
     switch (this.currentPreference.selectedDataTypeChart) {
-      // TODO case 1 and 2 are identically???
       case 1:
         if (this.data.pageable) {
           data = this.data.getValue();
@@ -147,18 +146,27 @@ export class OChartOnDemandComponent implements AfterViewInit {
         } break;
       case 2:
         if (this.data.pageable) {
-          data = this.data.getDataArray();
+          this.ontimizeService.query({ '@basic_expression': (this.data.oTableQuickFilterComponent.filterExpression) }, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => { this.chart.setDataArray(adapter.adaptResult(response.data)); this.showPlaceholder = false; });
         } else {
           data = this.data.getAllValues();
         } break;
       case 3:
+
         if (this.data.pageable) {
-          data = this.data.getDataArray();
+          this.showPlaceholder = true;
+          this.dialogService.confirm('CONFIRM', 'MESSAGES.CONFIRM_CHART').then(res => {
+            if (res === true) { this.ontimizeService.query(undefined, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => this.chart.setDataArray(adapter.adaptResult(response.data))); this.showPlaceholder = false; }
+            else { this.hideChart(); }
+          });
+
         } else {
           data = this.data.getDataArray();
         } break;
     }
-    return data;
+    if (data != undefined) {
+      this.chart.setDataArray(adapter.adaptResult(data));
+      this.showPlaceholder = false;
+    }
   }
 
 
@@ -182,15 +190,13 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
 
   configureChart() {
-    this.showPlaceholder = false;
     // TODO protect code
     const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference, this.data.oTableOptions);
     if (chartParameters) {
       chartParameters.translateService = this.translateService;
     }
     const adapter = DataAdapterUtils.createDataAdapter(chartParameters);
-    let data = this.captureDataTypeChart();
-    this.chart.setDataArray(adapter.adaptResult(data))
+    this.captureDataTypeChart(adapter);
     this.chart.updateOptions(chartParameters);
   }
 
