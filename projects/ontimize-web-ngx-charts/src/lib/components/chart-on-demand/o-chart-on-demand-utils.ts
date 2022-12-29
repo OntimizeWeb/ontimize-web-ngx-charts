@@ -81,7 +81,7 @@ export class OChartOnDemandUtils {
       return "intGrouped";
     } else if (this.isDecimal(axisType)) {
       if (this.isCurrency(axisName, oTableOptions)) {
-        return d => d3.format('$.02f')(d);
+        return "currency";
       } else if (this.isPercentage(axisName, oTableOptions)) {
         return "percentage";
       }
