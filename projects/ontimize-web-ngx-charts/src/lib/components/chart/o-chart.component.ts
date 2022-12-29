@@ -3,29 +3,17 @@ import 'hammerjs';
 import 'nvd3';
 import 'nvd3-extra';
 
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  forwardRef,
-  Inject,
-  Injector,
-  OnInit,
-  Optional,
-  Output,
-  ViewChild
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import {
   ComponentStateServiceProvider,
-  DefaultComponentStateService,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
+  DefaultComponentStateService,
   InputConverter,
+  O_COMPONENT_STATE_SERVICE,
   OFormComponent,
   OntimizeServiceProvider,
   OServiceBaseComponent,
   OTranslateService,
-  O_COMPONENT_STATE_SERVICE,
   Util
 } from 'ontimize-web-ngx';
 import { nvD3 } from 'ontimize-web-ngx-nvd3';
@@ -33,29 +21,16 @@ import { Subscription } from 'rxjs';
 
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import { ChartFactory } from '../../interfaces/ChartFactory.interface';
-import { BubbleChartConfiguration } from '../../models/options/BubbleChartConfiguration.class';
 import { BulletChartConfiguration } from '../../models/options/BulletChartConfiguration.class';
 import { CandlestickChartConfiguration } from '../../models/options/CandlestickChartConfiguration.class';
 import { ChartConfiguration } from '../../models/options/ChartConfiguration.class';
-import { DiscreteBarChartConfiguration } from '../../models/options/DiscreteBarChartConfiguration.class';
-import { DonutChartConfiguration } from '../../models/options/DonutChartConfiguration.class';
-import { ForceDirectedGraphConfiguration } from '../../models/options/ForceDirectedGraphConfiguration.class';
 import { GaugeDashboardChartConfiguration } from '../../models/options/GaugeDashboardChartConfiguration.class';
-import { GaugeSimpleChartConfiguration } from '../../models/options/GaugeSimpleChartConfiguration.class';
 import { GaugeSlimChartConfiguration } from '../../models/options/GaugeSlimChartConfiguration.class';
 import { GaugeSpaceChartConfiguration } from '../../models/options/GaugeSpaceChartConfiguration.class';
-import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
-import { LinePlusBarFocusChartConfiguration } from '../../models/options/LinePlusBarFocusChartConfiguration.class';
-import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
-import { MultiBarHorizontalChartConfiguration } from '../../models/options/MultiBarHorizontalChartConfiguration.class';
 import { OHLCChartConfiguration } from '../../models/options/OHLCChartConfiguration.class';
-import { ParallelCoordinatesChartConfiguration } from '../../models/options/ParallelCoordinatesChartConfiguration.class';
-import { PieChartConfiguration } from '../../models/options/PieChartConfiguration.class';
-import { RadarChartConfiguration } from '../../models/options/RadarChartConfiguration.class';
 import { RadialPercentChartConfiguration } from '../../models/options/RadialPercentChartConfiguration.class';
-import { ScatterChartConfiguration } from '../../models/options/ScatterChartConfiguration.class';
-import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 import { ChartService } from '../../services/chart.service';
+import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 
@@ -258,73 +233,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.translateService = this.translateService;
       chartConf.data = this.dataArray ? this.dataArray : null;
     } else {
-      switch (this.type) {
-        case 'line':
-          chartConf = new LineChartConfiguration();
-          break;
-        case 'pie':
-          chartConf = new PieChartConfiguration();
-          break;
-        case 'donutChart':
-          chartConf = new DonutChartConfiguration();
-          break;
-        case 'discreteBar':
-          chartConf = new DiscreteBarChartConfiguration();
-          break;
-        case 'multiBar':
-          chartConf = new MultiBarChartConfiguration();
-          break;
-        case 'multiBarHorizontalChart':
-          chartConf = new MultiBarHorizontalChartConfiguration();
-          break;
-        case 'scatterChart':
-          chartConf = new ScatterChartConfiguration();
-          break;
-        case 'linePlusBarWithFocusChart':
-          chartConf = new LinePlusBarFocusChartConfiguration();
-          break;
-        case 'forceDirectedGraph':
-          chartConf = new ForceDirectedGraphConfiguration();
-          break;
-        case 'candlestickBarChart':
-          chartConf = new CandlestickChartConfiguration();
-          break;
-        case 'ohlcBarChart':
-          chartConf = new OHLCChartConfiguration();
-          break;
-        case 'bulletChart':
-          chartConf = new BulletChartConfiguration();
-          break;
-        case 'gaugeDashboardChart':
-          chartConf = new GaugeDashboardChartConfiguration();
-          break;
-        case 'gaugeSlimChart':
-          chartConf = new GaugeSlimChartConfiguration();
-          break;
-        case 'gaugeSpaceChart':
-          chartConf = new GaugeSpaceChartConfiguration();
-          break;
-        case 'radialPercentChart':
-          chartConf = new RadialPercentChartConfiguration();
-          break;
-        case 'gaugeSimpleChart':
-          chartConf = new GaugeSimpleChartConfiguration();
-          break;
-        case 'bubbleChart':
-          chartConf = new BubbleChartConfiguration();
-          break;
-        case 'stackedAreaChart':
-          chartConf = new StackedAreaChartConfiguration();
-          break;
-        case 'radarChart':
-          chartConf = new RadarChartConfiguration();
-          break;
-        case 'parallelCoordinatesChart':
-          chartConf = new ParallelCoordinatesChartConfiguration();
-          break;
-        default:
-          chartConf = new ChartConfiguration();
-      }
+      chartConf = ChartConfigurationUtils.getConfigurationForType(this.type);
 
       chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
       chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
@@ -490,6 +399,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   pinchChart(event: any) {
     this.onPinch.emit(event);
+  }
+  updateOptions(options: any) {
+    this.setChartConfiguration(options);
+    this.chartWrapper.update();
   }
 
 }

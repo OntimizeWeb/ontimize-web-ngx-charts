@@ -33,6 +33,9 @@ export class DiscreteBarChartOptions extends AbstractChartOptions {
       yAxis: conf.y1Axis.getAxisOptions(),
       noData: conf.noDataMessage
     };
+    if (conf.y1Axis.tickFormat) {
+      options['valueFormat'] = conf.y1Axis.tickFormat;
+    }
     return options;
   }
 

@@ -90,6 +90,9 @@ export class AbstractChartOptions {
       case 'float':
         return localeFormat ? d => localeFormat.numberFormat('.02f')(d)
           : d => d3.format('.02f')(d);
+      case 'currency':
+        return localeFormat ? d => localeFormat.numberFormat('$,.02f')(d)
+          : d => d3.format('$,.02f')(d);
       case 'time':
         return localeFormat ? d => localeFormat.timeFormat('%x')(new Date(d))
           : d => d3.time.format('%x')(new Date(d));
@@ -101,6 +104,9 @@ export class AbstractChartOptions {
       case 'percentage':
         return d => d3.format('.0%')(d);
       default:
+        if (typeof type === 'function') {
+          return type;
+        }
         return void 0;
     }
   }
