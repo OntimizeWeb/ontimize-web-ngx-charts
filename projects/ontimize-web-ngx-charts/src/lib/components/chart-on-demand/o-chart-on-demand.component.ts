@@ -141,9 +141,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
       // TODO case 1 and 2 are identically???
       case 1:
         if (this.data.pageable) {
-          data = this.data.getDataArray();
+          data = this.data.getValue();
         } else {
-          data = this.data.getAllValues();
+          data = this.data.getValue();
         } break;
       case 2:
         if (this.data.pageable) {
