@@ -184,7 +184,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   configureChart() {
     this.showPlaceholder = false;
     // TODO protect code
-    const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference);
+    const chartParameters = OChartOnDemandUtils.configureChart(this.currentPreference, this.data.oTableOptions);
     if (chartParameters) {
       chartParameters.translateService = this.translateService;
     }
