@@ -1,67 +1,50 @@
-# Ontimize Web Charts
+<h1 align="center">
+  <div style="display:inline-block;vertical-align: middle;">
+    <a name="logo" href="https://ontimizeweb.github.io/docs/v8/charts/">
+      Ontimize Web Charts
+    </a>
+  </div>
+</h1>
 
-An implementation of nvD3 and d3 charts library for Ontimize Web.
+<p align="center">
+  <a href="#-introduction">Introduction</a> •
+  <a href="#rocket-demo">Demo</a> •
+  <a href="#-ideas">Ideas</a> •
+  <a href="#gear-development">Development</a>
+</p>
+
+## 📜 Introduction
+
+The Ontimize Web Charts is an implementation of nvD3 and d3 charts library for using into OntimizeWeb web applications.
+
+### 📖 Documentation
+
+Check out our [documentation site](https://ontimizeweb.github.io/docs/v8/charts/overview/) to learn how to install and use it into an OntimizeWeb application.
+
+## :rocket: Demo
+
+Check out our demo application in the following [link](https://try.imatia.com/ontimizeweb/v8/charts/).
+
+## 💡 Ideas
+
+We would love any feedback you have or to know when you encounter issues, by filing an issue report on this repo.
 
 
-* [Github repository](#github)
-* [Examples](#examples)
-* [Installation](#installation)
-* [Usage](#usage)
+## :gear: Development
 
-## Github
-Ontimize Web Charts module is stored in [github](https://github.com/OntimizeWeb/ontimize-web-ngx-charts){:target="_blank"} where you can also see/add todos, bugs or feature requests in the [issues](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues){:target="_blank"} section.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
-## Examples
+### Installation
 
-Check out examples demo:
-<div>
-  <a href="https://ontimizeweb.github.io/ontimize-web-ngx-charts" target="_blank" class="btn btn--success">
-    <i class="fa fa-play"></i>
-    live demo
-  </a>
-</div>
+Follow the next steps:
 
-
-## Installation
-
+  - cd repository root
 ```bash
-  npm install ontimize-web-ngx-charts --save
+npm install
 ```
 
-## Usage
 
-Finally, you can use ontimize-web-ngx-charts in your Ontimize Web project.
+### Build `ontimize-web-ngx-charts`
 
-### Configure angular-cli.json dependencies
-
-You must add the module styles definition in your '*.angular.json*' file styles array:
-
-```bash
-...
-"styles": [
-  ...
-  "../node_modules/ontimize-web-ngx-charts/styles.scss",
-  ....
-],
-...
-```
-
-### Import in an application module
-
-Include the library chart module into your app in the module where you want to use it.
-
-```bash
-...
-import { OChartModule } from 'ontimize-web-ngx-charts';
-...
-
-@NgModule({
-  imports: [
-    OChartModule,
-    /* other imports */
-  ],
-  declarations: ...
-  providers: ...
-})
-export class ExampleModule { }
-```
+Run `npm run build && cd dist && npm pack` to execute the build process that will generate the dist folder and a .tgz file.
+You can use this .tgz file to install the library in your project through the package.json file.

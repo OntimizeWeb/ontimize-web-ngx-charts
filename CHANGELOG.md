@@ -1,3 +1,8 @@
+## 8.1.0 (2022-12-29)
+### Features
+
+* **Charts on demand:** Added new feature that allow you to create charts on demand from table data ([d9afc1c](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/d9afc1c46b7f463c8e2dc2845503848401c67324))
+
 ## 8.0.1 (2022-03-17)
 ### Features
 * **LinePlusBarFocusChartConfiguration:** Add configuration for y2Axis ([58810a4](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/58810a4))
@@ -5,7 +10,6 @@
 ### DEPENDENCY UPDATES
 * **Installed**: xmlhttprequest@1.6.2
 * **Updated**: ontimize-web-ngx@8.5.9
-* **Updated**: ng-packagr@5.7.1
 
 ## 8.0.0 (2020-08-25)
 ### DEPENDENCY UPDATES
