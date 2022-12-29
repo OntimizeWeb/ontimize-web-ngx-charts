@@ -47,7 +47,7 @@
     "ngx-lottie": "7.0.4",
     "nvd3": "1.8.6",
     "nvd3-extra": "1.0.0",
-    "ontimize-web-ngx": "8.9.0-SNAPSHOT-0",
+    "ontimize-web-ngx": "8.9.0",
     "ontimize-web-ngx-nvd3": "8.0.0",
     "rxjs": "~6.4.0",
     "tslib": "~1.10.0",

@@ -146,6 +146,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
         } break;
       case 2:
         if (this.data.pageable) {
+          this.showPlaceholder = true;
           this.ontimizeService.query({ '@basic_expression': (this.data.oTableQuickFilterComponent.filterExpression) }, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => { this.chart.setDataArray(adapter.adaptResult(response.data)); this.showPlaceholder = false; });
         } else {
           data = this.data.getAllValues();
@@ -154,12 +155,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
         if (this.data.pageable) {
           this.showPlaceholder = true;
-          this.dialogService.confirm('CONFIRM', 'MESSAGES.CONFIRM_CHART').then(res => {
-            if (res === true) { this.ontimizeService.query(undefined, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => this.chart.setDataArray(adapter.adaptResult(response.data))); this.showPlaceholder = false; }
-            else { this.hideChart(); }
-          });
-
-        } else {
+          this.ontimizeService.query(undefined, this.data.searcheableColumns, this.currentPreference.entity, this.data.getSqlTypes()).subscribe(response => { this.chart.setDataArray(adapter.adaptResult(response.data)); this.showPlaceholder = false; });
+        }
+        else {
           data = this.data.getDataArray();
         } break;
     }
