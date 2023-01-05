@@ -1,3 +1,7 @@
+## 8.1.1
+
+### Bug Fixes
+* **Charts on demand:** Fixed issue that causes the skeleton to not load correctly ([20a497b](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/20a497b)) Closes [#97](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/97)
 ## 8.1.0 (2022-12-29)
 ### Features
 
