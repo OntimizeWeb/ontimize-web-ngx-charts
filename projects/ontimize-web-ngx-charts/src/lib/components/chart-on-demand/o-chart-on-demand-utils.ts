@@ -17,7 +17,6 @@ export class OChartOnDemandUtils {
       chartConf.yAxis = preferences.selectedYAxis;
       chartConf.xLabel = preferences.selectedXAxis;
       chartConf.yLabel = preferences.selectedYAxis.toString();
-
       switch (preferences.selectedTypeChart) {
         case 'line':
           this.configureLineChart(chartConf, preferences, oTableOptions);
@@ -58,6 +57,7 @@ export class OChartOnDemandUtils {
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.legendPosition = 'bottom';
     chartConf.labelType = 'value';
+    chartConf.color = preferences.selectedPalette;
     const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType, preferences.selectedYAxis[0], oTableOptions);
     if (formatCallback != undefined) {
       chartConf.valueType = formatCallback;
@@ -74,8 +74,7 @@ export class OChartOnDemandUtils {
       chartConf.yDataType = formatCallback;
     }
   }
-
-  public static getAxisFormatCallback(axisType:number, axisName:string, oTableOptions: OTableOptions): any {
+  public static getAxisFormatCallback(axisType: number, axisName: string, oTableOptions: OTableOptions): any {
     //TODO review integer and decimal format...
     if (this.isInteger(axisType)) {
       return "intGrouped";
@@ -118,7 +117,7 @@ export class OChartOnDemandUtils {
     ].indexOf(arg) !== -1;
   }
 
-  public static isCurrency(column:string, oTableOptions: OTableOptions): boolean {
+  public static isCurrency(column: string, oTableOptions: OTableOptions): boolean {
     return oTableOptions.columns.filter(oCol => oCol.type === "currency" && oCol.attr === column).length == 1;
   }
 

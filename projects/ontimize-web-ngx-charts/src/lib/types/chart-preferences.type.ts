@@ -11,7 +11,8 @@ export type OChartPreferences = {
   selectedTypeChart: any,
   selectedDataTypeChart: any,
   selectedXAxisType: number,
-  selectedYAxisType: number
+  selectedYAxisType: number,
+  selectedPalette:Array<string>
 }
 export class DefaultOChartPreferences implements OChartPreferences {
   public title: string;
@@ -24,6 +25,7 @@ export class DefaultOChartPreferences implements OChartPreferences {
   public selectedDataTypeChart: any;
   public selectedXAxisType: number;
   public selectedYAxisType: number;
+  public selectedPalette: Array<string>;
   constructor() {
     this.title = '';
     this.subtitle = '';

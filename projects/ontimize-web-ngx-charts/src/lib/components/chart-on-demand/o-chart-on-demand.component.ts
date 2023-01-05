@@ -43,6 +43,13 @@ export class OChartOnDemandComponent implements AfterViewInit {
   dataTypes = this.getDataType();
   types = this.getDataArrayRadioGraphics();
   comboData: Array<Object>;
+  comboPalette: Array<Object> = [
+    {
+      value: 'palette1', colors: ['#E0EDFB', '#B3D3F4', '#80B5ED', '#4D97E6', '#2681E0', '#006BDB', '#0058D2', '#003CC4']
+    },
+    { value: 'palette2', colors: ['#E3ECF4', '#B9D1E4', '#8AB2D2', '#5B93C0', '#377BB3', '#1464A5', '#0E5293', '#063679'] },
+    { value: 'palette3', colors: ['#E9E9F4', '#B9D1E4', '#A3A4D3', '#7E80C1', '#6264B3', '#4649A6', '#373995', '#20217B'] },
+    { value: 'palette4', colors: ['#E2E6EB', '#B7C1CD', '#8797AC', '#566D8B', '#324E72', '#0E2F59', '#0A2348', '#04122E'] }];
 
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   @ViewChild('chart', { static: false }) chart: OChartComponent;
@@ -129,6 +136,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedXAxis = event.value;
     let type = this.sqlTypes[this.currentPreference.selectedXAxis];
     this.currentPreference.selectedXAxisType = type != undefined ? type : SQLTypes.OTHER;
+  }
+  captureValuePalette(event: any) {
+    this.currentPreference.selectedPalette = event.value;
   }
 
   captureTypeChart(event: OValueChangeEvent) {

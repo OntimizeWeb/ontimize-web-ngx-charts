@@ -38,7 +38,9 @@ export const MAP = {
     'CHART_ON_DEMAND.CURRENT_PAGE': 'Current page',
     'CHART_ON_DEMAND.FILTER_DATA': 'Filtered data',
     'CHART_ON_DEMAND.ALL_DATA': 'All data',
-    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data'
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data',
+    'CHART_ON_DEMAND.PALETTE': 'Color palette',
+    'CHART_ON_DEMAND.SELECT_PALETTE': 'Select the color palette'
   },
 
   // Spanish
@@ -80,6 +82,8 @@ export const MAP = {
     'CHART_ON_DEMAND.CURRENT_PAGE': 'Página actual',
     'CHART_ON_DEMAND.FILTER_DATA': 'Datos filtrados',
     'CHART_ON_DEMAND.ALL_DATA': 'Todos los datos',
-    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Datos'
+    'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Datos',
+    'CHART_ON_DEMAND.PALETTE': 'Paleta de colores',
+    'CHART_ON_DEMAND.SELECT_PALETTE': 'Selecciona la paleta de colores'
   }
 };
