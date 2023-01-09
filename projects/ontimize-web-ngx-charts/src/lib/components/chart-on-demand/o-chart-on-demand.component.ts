@@ -106,7 +106,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.cd.detectChanges();
   }
   options: AnimationOptions = {
-    path: '/assets/chart_animation.json',
+    path: './assets/chart_animation.json',
     autoplay: false
   };
 
