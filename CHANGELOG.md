@@ -1,6 +1,6 @@
 ## 8.2.0
 ### Bug Fixes
-* **Charts on demand:** Fixed issue that causes an error when exporting and displaying the skeleton in dark mode ([92ab389](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/92ab389)) Closes [#105](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/105)
+* **Charts on demand:** Fixed issue that causes an error when exporting and displaying the skeleton in dark mode ([a0c4953](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a0c4953)) Closes [#105](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/105)
 ## 8.1.1 (2023-01-09)
 
 ### Bug Fixes
