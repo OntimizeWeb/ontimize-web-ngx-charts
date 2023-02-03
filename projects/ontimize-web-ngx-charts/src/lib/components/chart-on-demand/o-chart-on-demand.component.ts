@@ -369,7 +369,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   exportChart() {
     let node = document.getElementById('sidenav-container-content');
     let options = {
-      bgcolor: 'white', quality: 1
+      quality: 1
     };
     let fileName;
     if (this.currentPreference.title != "") {
