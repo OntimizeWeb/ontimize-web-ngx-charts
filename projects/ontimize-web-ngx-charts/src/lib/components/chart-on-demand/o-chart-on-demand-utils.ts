@@ -1,4 +1,5 @@
 import { OTableOptions, SQLTypes } from 'ontimize-web-ngx';
+import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
 
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { ChartConfiguration } from './../../models/options/ChartConfiguration.class';
@@ -25,7 +26,7 @@ export class OChartOnDemandUtils {
           this.configureDiscreteBarChart(chartConf as DiscreteBarChartConfiguration, preferences, oTableOptions);
           break;
         case 'multiBar':
-          this.configureMultiBarChart(chartConf, preferences, oTableOptions);
+          this.configureMultiBarChart(chartConf as MultiBarChartConfiguration, preferences, oTableOptions);
           break;
         case 'stackedAreaChart':
           this.configureAreaChart(chartConf, preferences, oTableOptions);
@@ -48,7 +49,8 @@ export class OChartOnDemandUtils {
     chartConf.showLegend = true;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
-  protected static configureMultiBarChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+  protected static configureMultiBarChart(chartConf: MultiBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+    chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureAreaChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {

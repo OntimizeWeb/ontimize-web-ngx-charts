@@ -52,7 +52,7 @@
             <mat-label>{{'CHART_ON_DEMAND.SELECT_PALETTE' | oChartTranslate}}</mat-label>
             <mat-select [(ngModel)]="currentPreference.selectedPalette" (selectionChange)="captureValuePalette($event)">
               <mat-option *ngFor="let option of comboPalette" [value]="option.colors">
-                {{option.value | oChartTranslate}}
+                <mat-icon style="width:100%" svgIcon="ontimize:{{option.value}}"></mat-icon>
               </mat-option>
             </mat-select>
           </mat-form-field>
