@@ -1,4 +1,5 @@
 import { OTableOptions, SQLTypes } from 'ontimize-web-ngx';
+import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
 
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { ChartConfiguration } from './../../models/options/ChartConfiguration.class';
@@ -17,7 +18,6 @@ export class OChartOnDemandUtils {
       chartConf.yAxis = preferences.selectedYAxis;
       chartConf.xLabel = preferences.selectedXAxis;
       chartConf.yLabel = preferences.selectedYAxis.toString();
-
       switch (preferences.selectedTypeChart) {
         case 'line':
           this.configureLineChart(chartConf, preferences, oTableOptions);
@@ -26,7 +26,7 @@ export class OChartOnDemandUtils {
           this.configureDiscreteBarChart(chartConf as DiscreteBarChartConfiguration, preferences, oTableOptions);
           break;
         case 'multiBar':
-          this.configureMultiBarChart(chartConf, preferences, oTableOptions);
+          this.configureMultiBarChart(chartConf as MultiBarChartConfiguration, preferences, oTableOptions);
           break;
         case 'stackedAreaChart':
           this.configureAreaChart(chartConf, preferences, oTableOptions);
@@ -49,7 +49,8 @@ export class OChartOnDemandUtils {
     chartConf.showLegend = true;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
-  protected static configureMultiBarChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+  protected static configureMultiBarChart(chartConf: MultiBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+    chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureAreaChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
@@ -58,6 +59,7 @@ export class OChartOnDemandUtils {
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.legendPosition = 'bottom';
     chartConf.labelType = 'value';
+    chartConf.color = preferences.selectedPalette;
     const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType, preferences.selectedYAxis[0], oTableOptions);
     if (formatCallback != undefined) {
       chartConf.valueType = formatCallback;
@@ -74,8 +76,7 @@ export class OChartOnDemandUtils {
       chartConf.yDataType = formatCallback;
     }
   }
-
-  public static getAxisFormatCallback(axisType:number, axisName:string, oTableOptions: OTableOptions): any {
+  public static getAxisFormatCallback(axisType: number, axisName: string, oTableOptions: OTableOptions): any {
     //TODO review integer and decimal format...
     if (this.isInteger(axisType)) {
       return "intGrouped";
@@ -118,7 +119,7 @@ export class OChartOnDemandUtils {
     ].indexOf(arg) !== -1;
   }
 
-  public static isCurrency(column:string, oTableOptions: OTableOptions): boolean {
+  public static isCurrency(column: string, oTableOptions: OTableOptions): boolean {
     return oTableOptions.columns.filter(oCol => oCol.type === "currency" && oCol.attr === column).length == 1;
   }
 
