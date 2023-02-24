@@ -1,7 +1,7 @@
-<svg width="100" height="100">
-  <rect x="0" y="0" width="20" height="20" fill="#E3ECF4"></rect>
-    <rect x="20" y="0" width="20" height="20" fill="#B9D1E4"></rect>
-    <rect x="40" y="0" width="20" height="20" fill="#5B93C0"></rect>
-    <rect x="60" y="0" width="20" height="20" fill="#1464A5"></rect>
-    <rect x="80" y="0" width="20" height="20" fill="#063679"></rect>
+<svg width="100" height="100">  
+<rect x="0" y="0" width="20" height="20" fill="#003CC4"></rect>
+<rect x="20" y="0" width="20" height="20" fill="#006BDB"></rect>
+<rect x="40" y="0" width="20" height="20" fill="#4D97E6"></rect>  
+<rect x="60" y="0" width="20" height="20" fill="#B3D3F4"></rect>
+<rect x="80" y="0" width="20" height="20" fill="#E0EDFB"></rect>    
 </svg>

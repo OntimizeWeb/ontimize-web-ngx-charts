@@ -46,13 +46,13 @@ export class OChartOnDemandComponent implements AfterViewInit {
   dataTypes = this.getDataType();
   types = this.getDataArrayRadioGraphics();
   comboData: Array<Object>;
-  comboPalette: Array<Object> = [
+  comboPalette = [
     {
-      value: 'palette1', colors: ['#E0EDFB', '#B3D3F4', '#80B5ED', '#4D97E6', '#2681E0', '#006BDB', '#0058D2', '#003CC4']
+      value: 'palette1', colors: ['#003CC4', '#0058D2', '#006BDB', '#2681E0', '#4D97E6', '#80B5ED', '#B3D3F4', '#E0EDFB']
     },
-    { value: 'palette2', colors: ['#E3ECF4', '#B9D1E4', '#8AB2D2', '#5B93C0', '#377BB3', '#1464A5', '#0E5293', '#063679'] },
-    { value: 'palette3', colors: ['#E9E9F4', '#B9D1E4', '#A3A4D3', '#7E80C1', '#6264B3', '#4649A6', '#373995', '#20217B'] },
-    { value: 'palette4', colors: ['#E2E6EB', '#B7C1CD', '#8797AC', '#566D8B', '#324E72', '#0E2F59', '#0A2348', '#04122E'] }];
+    { value: 'palette2', colors: ['#063679', '#0E5293', '#1464A5', '#377BB3', '#5B93C0', '#8AB2D2', '#B9D1E4', '#E3ECF4'] },
+    { value: 'palette3', colors: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] },
+    { value: 'palette4', colors: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] }];
 
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   @ViewChild('chart', { static: false }) chart: OChartComponent;
@@ -394,10 +394,15 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedTypeChart = "";
     this.currentPreference.selectedXAxis = undefined;
     this.currentPreference.selectedYAxis = [];
+    this.currentPreference.selectedPalette = undefined;
     this.hideChart();
   }
   enabledPreview() {
     return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis.length != 0 && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
 
+  }
+  getPaletteIcon() {
+    const foundObject = this.comboPalette.find(color => color.colors == this.currentPreference.selectedPalette)
+    return "ontimize:" + foundObject.value + "";
   }
 }
