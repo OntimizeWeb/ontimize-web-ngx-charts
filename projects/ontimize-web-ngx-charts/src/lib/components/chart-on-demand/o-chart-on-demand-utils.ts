@@ -1,7 +1,6 @@
 import { OTableOptions, SQLTypes } from 'ontimize-web-ngx';
 import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
-import { MultiBarHorizontalChartConfiguration } from '../../models/options/MultiBarHorizontalChartConfiguration.class';
 import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
