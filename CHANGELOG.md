@@ -1,8 +1,10 @@
-## 8.2.0
+## 8.2.0 (2023-03-01)
+### Features
+* **Charts on demand:** Added new option to select the color palette of a graph ([a0ebe03](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a0ebe03)) Closes [#98](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/98)
 ### Bug Fixes
-* **Charts on demand:** Fixed issue that causes an error when exporting and displaying the skeleton in dark mode ([92ab389](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/92ab389)) Closes [#105](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/105)
-## 8.1.1 (2023-01-09)
+* **Charts on demand:** Fixed issue that causes an error when exporting and displaying the skeleton in dark mode ([a0c4953](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a0c4953)) Closes [#105](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/105)
 
+## 8.1.1 (2023-01-09)
 ### Bug Fixes
 * **Charts on demand:** Fixed issue that causes the skeleton to not load correctly ([20a497b](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/20a497b)) Closes [#97](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/97)
 
