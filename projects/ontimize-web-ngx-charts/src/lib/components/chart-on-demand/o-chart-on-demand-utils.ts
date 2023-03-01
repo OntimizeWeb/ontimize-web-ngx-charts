@@ -1,5 +1,7 @@
 import { OTableOptions, SQLTypes } from 'ontimize-web-ngx';
+import { LineChartConfiguration } from '../../models/options/LineChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../../models/options/MultiBarChartConfiguration.class';
+import { StackedAreaChartConfiguration } from '../../models/options/StackedAreaChartConfiguration.class';
 
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { ChartConfiguration } from './../../models/options/ChartConfiguration.class';
@@ -20,7 +22,7 @@ export class OChartOnDemandUtils {
       chartConf.yLabel = preferences.selectedYAxis.toString();
       switch (preferences.selectedTypeChart) {
         case 'line':
-          this.configureLineChart(chartConf, preferences, oTableOptions);
+          this.configureLineChart(chartConf as LineChartConfiguration, preferences, oTableOptions);
           break;
         case 'discreteBar':
           this.configureDiscreteBarChart(chartConf as DiscreteBarChartConfiguration, preferences, oTableOptions);
@@ -29,7 +31,7 @@ export class OChartOnDemandUtils {
           this.configureMultiBarChart(chartConf as MultiBarChartConfiguration, preferences, oTableOptions);
           break;
         case 'stackedAreaChart':
-          this.configureAreaChart(chartConf, preferences, oTableOptions);
+          this.configureAreaChart(chartConf as StackedAreaChartConfiguration, preferences, oTableOptions);
           break;
         case 'pie':
         case 'donutChart':
@@ -41,19 +43,22 @@ export class OChartOnDemandUtils {
     return chartConf;
   }
 
-  protected static configureLineChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+  protected static configureLineChart(chartConf: LineChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+    chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.agroup = true;
     chartConf.showLegend = true;
+    chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureMultiBarChart(chartConf: MultiBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
-  protected static configureAreaChart(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+  protected static configureAreaChart(chartConf: StackedAreaChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
+    chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {

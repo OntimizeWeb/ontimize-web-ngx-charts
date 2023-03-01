@@ -25,7 +25,7 @@ export class DiscreteBarChartConfiguration extends ChartConfiguration {
   margin: ChartMarginConfiguration;
 
   agroup: boolean = false;
-
+  public color: string[] = null;
 
   constructor() {
     super();
