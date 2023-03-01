@@ -47,6 +47,18 @@
               {{ type.value | oChartTranslate}}
             </mat-radio-button>
           </mat-radio-group>
+          <span class="section-title">{{ 'CHART_ON_DEMAND.PALETTE' | oChartTranslate }}</span>
+          <mat-form-field>
+            <mat-label>{{'CHART_ON_DEMAND.SELECT_PALETTE' | oChartTranslate}}</mat-label>
+            <mat-select [(ngModel)]="currentPreference.selectedPalette" (selectionChange)="captureValuePalette($event)">
+              <mat-select-trigger *ngIf="currentPreference.selectedPalette">
+                <mat-icon class="palette_icon" [svgIcon]="getPaletteIcon()"></mat-icon>
+              </mat-select-trigger>
+              <mat-option *ngFor="let option of comboPalette" [value]="option.colors">
+                <mat-icon class="palette_icon" svgIcon="ontimize:{{option.value}}"></mat-icon>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
           <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oChartTranslate }}</span>
           <mat-form-field>
             <mat-label>{{'CHART_ON_DEMAND.SELECT_X_AXIS' | oChartTranslate}}</mat-label>
