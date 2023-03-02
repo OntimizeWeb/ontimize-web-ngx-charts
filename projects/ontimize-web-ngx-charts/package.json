@@ -1,0 +1,41 @@
+{
+  "name": "ontimize-web-ngx-charts",
+  "version": "8.2.0",
+  "description": "An implementation of nvD3 for Ontimize Web",
+  "keywords": [
+    "angular",
+    "ontimize-web-ngx",
+    "ontimize-web-ngx-charts",
+    "charts",
+    "d3",
+    "nvD3"
+  ],
+  "author": "IMATIA S.L.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "main": "./bundles/ontimize-web-ngx-charts.umd.js",
+  "metadata": "./index.metadata.json",
+  "module": "./index.js",
+  "es2015": "./esm2015/ontimize-web-ngx-charts.js",
+  "typings": "./index.d.ts",
+  "scripts": {
+    "test": "karma start",
+    "test-watch": "karma start --singleRun=false --autoWatch=true"
+  },
+  "dependencies": {
+    "d3": "3.5.17",
+    "nvd3": "1.8.6",
+    "nvd3-extra": "1.0.0",
+    "ontimize-web-ngx-nvd3": "8.0.0",
+    "dom-to-image": "^2.6.0",
+    "lottie-web": "^5.10.0",
+    "ngx-lottie": "7.0.4"
+  },
+  "peerDependencies": {
+    "ontimize-web-ngx": "8.9.0"
+  }
+}

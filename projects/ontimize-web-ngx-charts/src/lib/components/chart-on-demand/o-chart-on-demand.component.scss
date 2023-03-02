@@ -1,0 +1,147 @@
+.o-dialog-class .mat-dialog-container .o-chart-on-demand {
+  .mat-dialog-title {
+    .mat-icon {
+      cursor: pointer;
+    }
+  }
+
+  .mat-dialog-content {
+    //height - toolbar-height - padding-top
+    max-height: calc(100% - 36px - 16px);
+    height: 100%;
+    padding-top: 16px;
+    padding-bottom: 0;
+
+
+    .mat-sidenav {
+      left: 16px;
+      top: 8px;
+      visibility: visible !important;
+      z-index: 999;
+      border: 0;
+
+      .container-title {
+        margin-top: 10px;
+      }
+
+      .data_options {
+        height: calc(100% - 150px);
+        overflow-y: scroll;
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding-right: 10px;
+
+        .o-form .scrolling {
+          height: 100%;
+        }
+      }
+
+      .mat-dialog-actions {
+        min-height: auto;
+
+        button.chart-clear-button {
+          min-width: 80px;
+        }
+      }
+
+      .mat-radio-group {
+        font-size: 14px;
+        margin: 12px 12px 0;
+      }
+
+      .section-title {
+        margin-top: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .section-first-title {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .radio-selection {
+        overflow: hidden;
+      }
+
+      &.mat-drawer-side {
+        transform: none;
+      }
+
+      &.mat-drawer-opened {
+        border: 1px solid #DEE1E6;
+        border-radius: 4px;
+        top: 0;
+        left: 0;
+        padding: 8px 16px;
+
+        .o-form {
+          display: block;
+        }
+      }
+    }
+
+    .mat-sidenav-container {
+      background-color: transparent;
+
+      border: 1px solid transparent;
+      border-radius: 4px;
+
+      &.opened {
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        .sidenav-container-content {
+          margin-left: 24px;
+        }
+      }
+
+      .title-sidenav-content {
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
+    }
+
+    .title-sidenav-content {
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .mat-sidenav-content {
+      overflow: hidden;
+
+      .sidenav-container-content {
+        margin-left: 66px;
+        height: 100%;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+
+        .title {
+          margin-left: 60px;
+          margin-bottom: 4px;
+        }
+
+        .subtitle {
+          margin-top: 0;
+          margin-left: 60px;
+        }
+
+        .lottie {
+          height: 100%;
+        }
+      }
+
+    }
+
+  }
+}
+
+.mat-select-panel {
+  width: 150px;
+}
+
+.palette_icon {
+  width: 100%;
+}
