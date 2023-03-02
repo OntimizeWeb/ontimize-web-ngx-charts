@@ -47,8 +47,8 @@
     "ngx-lottie": "7.0.4",
     "nvd3": "1.8.6",
     "nvd3-extra": "1.0.0",
-    "ontimize-web-ngx": "file:ontimize-web-ngx-8.11.0-SNAPSHOT-0.tgz",
-    "ontimize-web-ngx-nvd3": "file:ontimize-web-ngx-nvd3-8.0.0.tgz",
+    "ontimize-web-ngx": "file:../ontimize-web-ngx/dist/ontimize-web-ngx-8.11.0-SNAPSHOT-0.tgz",
+    "ontimize-web-ngx-nvd3": "file:../ontimize-web-ngx-nvd3/dist/ontimize-web-ngx-nvd3-8.0.0.tgz",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
