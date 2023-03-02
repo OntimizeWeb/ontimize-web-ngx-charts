@@ -113,7 +113,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected ChartOptions: any;
 
-  @ViewChild('nvChart', { static: false })
+  @ViewChild('nvChart')
   protected chartWrapper: nvD3;
 
   protected formDataSubcribe;

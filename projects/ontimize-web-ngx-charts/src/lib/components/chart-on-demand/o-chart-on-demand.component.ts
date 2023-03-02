@@ -54,11 +54,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
     { value: 'palette3', colors: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] },
     { value: 'palette4', colors: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] }];
 
-  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
-  @ViewChild('chart', { static: false }) chart: OChartComponent;
-  @ViewChild('formChart', { static: false }) formChart: OFormComponent;
-  @ViewChild('radioType', { static: false }) radioType: MatRadioGroup;
-  @ViewChild('radioDataType', { static: false }) radioDataType: MatRadioGroup;
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('chart') chart: OChartComponent;
+  @ViewChild('formChart') formChart: OFormComponent;
+  @ViewChild('radioType') radioType: MatRadioGroup;
+  @ViewChild('radioDataType') radioDataType: MatRadioGroup;
   opened: boolean = true;
   fullscreen: boolean = false;
 
