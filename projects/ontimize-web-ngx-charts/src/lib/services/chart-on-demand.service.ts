@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogService, IChartOnDemandService, OTableComponent } from 'ontimize-web-ngx';
 
 import { OChartOnDemandComponent } from '../components/chart-on-demand/o-chart-on-demand.component';

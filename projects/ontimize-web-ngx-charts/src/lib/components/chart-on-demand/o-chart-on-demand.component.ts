@@ -1,6 +1,8 @@
 import { Subscription } from 'rxjs';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, Type, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MatRadioGroup, MatSidenav, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatRadioGroup } from '@angular/material/radio';
+import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
 import { AnimationOptions } from 'ngx-lottie';
 import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry } from 'ontimize-web-ngx';

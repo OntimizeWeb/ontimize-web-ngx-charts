@@ -1,5 +1,4 @@
 import 'd3';
-import 'hammerjs';
 import 'nvd3';
 import 'nvd3-extra';
 
