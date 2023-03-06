@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "8.2.0",
+  "version": "9.0.0",
   "description": "An implementation of nvD3 for Ontimize Web",
   "keywords": [
     "angular",
@@ -30,12 +30,12 @@
     "d3": "3.5.17",
     "nvd3": "1.8.6",
     "nvd3-extra": "1.0.0",
-    "ontimize-web-ngx-nvd3": "8.0.0",
+    "ontimize-web-ngx-nvd3": "file:../../ontimize-web-ngx-nvd3/dist/ontimize-web-ngx-nvd3-8.0.0.tgz",
     "dom-to-image": "^2.6.0",
     "lottie-web": "^5.10.0",
     "ngx-lottie": "7.0.4"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "8.9.0"
+    "ontimize-web-ngx": "file:../../ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz",
   }
 }

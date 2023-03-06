@@ -58,7 +58,7 @@ export const CHART_TYPES = [
 ];
 
 export const DEFAULT_INPUTS_O_CHART: any = [
-  ...DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
+  //...DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
 
   'cHeight: chart-height',
   'cWidth: chart-width',
