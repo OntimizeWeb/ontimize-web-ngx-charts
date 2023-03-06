@@ -36,6 +36,6 @@
     "ngx-lottie": "7.0.4"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "file:../../ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz",
+    "ontimize-web-ngx": "file:../../ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz"
   }
 }
