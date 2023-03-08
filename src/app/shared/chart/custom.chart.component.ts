@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional } from '@angular/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
 import { ChartFactory, OChartComponent } from 'ontimize-web-ngx-charts';
 import { NvD3Module } from 'ontimize-web-ngx-nvd3';
