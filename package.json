@@ -31,9 +31,10 @@
     "@angular/router": "~9.1.13",
     "@angular/upgrade": "~9.1.13",
     "highlight.js": "^11.7.0",
-    "ontimize-web-ngx": "file:../ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz",
-    "ontimize-web-ngx-theming": "file:../ontimize-web-ngx-theming/dist/ontimize-web-ngx-theming-9.0.0.tgz",
-    "ontimize-web-ngx-charts": "file:ontimize-web-ngx-charts-9.0.0.tgz",
+    "ngx-highlightjs": "^4.1.0-beta",
+    "ontimize-web-ngx": "C:/Users/tomas.fuentes/repos/ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz",
+    "ontimize-web-ngx-theming": "C:/Users/tomas.fuentes/repos/ontimize-web-ngx-theming/dist/ontimize-web-ngx-theming-9.0.0.tgz",
+    "ontimize-web-ngx-charts": "C:/Users/tomas.fuentes/repos/ontimize-web-ngx-charts/dist/ontimize-web-ngx-charts-9.0.0.tgz",
     "rxjs": "~6.6.7",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

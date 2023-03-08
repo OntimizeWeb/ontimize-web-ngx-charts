@@ -21,26 +21,16 @@ export class HighlightComponent implements OnInit, OnDestroy {
   protected clipboard: any;
   templateContent: any;
   templateType: any;
+  templateTypeArray: Array<string>;
 
   constructor(protected elRef: ElementRef) {
   }
 
-  ngOnInit() {
-    if (window['Clipboard'] && !this.clipboard) {
-      const copyBtn = this.elRef.nativeElement.querySelectorAll('button#copy-btn');
-      if (copyBtn.length) {
-        const self = this;
-        const element = copyBtn[0];
-        this.clipboard = new window['Clipboard'](element);
-        this.clipboard.on('success', function (e) {
-          self.showTooltip(e.trigger, 'Copied!');
-        });
-        // this.clipboard.on('error', function(e) {
-        //     console.log(e);
-        // });
-      }
-
-    }
+  ngOnInit(): void {
+    this.templateTypeArray = this.parseTemplateType();
+  }
+  parseTemplateType() {
+    return [this.templateType === 'scss' ? 'css' : this.templateType];
   }
 
   showTooltip(elem, msg) {
