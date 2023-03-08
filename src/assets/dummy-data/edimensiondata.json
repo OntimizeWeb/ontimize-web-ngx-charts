@@ -1,0 +1,76 @@
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "name": "AMC Ambassador Brougham",
+      "economy (mpg)": "13",
+      "cylinders": "8",
+      "displacement (cc)": "360",
+      "power (hp)": "175",
+      "weight (lb)": "3821",
+      "0-60 mph (s)": "11",
+      "year": "73"
+    },
+    {
+      "name": "AMC Ambassador DPL",
+      "economy (mpg)": "15",
+      "cylinders": "8",
+      "displacement (cc)": "390",
+      "power (hp)": "190",
+      "weight (lb)": "3850",
+      "0-60 mph (s)": "8.5",
+      "year": "70"
+    },
+    {
+      "name": "AMC Ambassador SST",
+      "economy (mpg)": "17",
+      "cylinders": "8",
+      "displacement (cc)": "304",
+      "power (hp)": "150",
+      "weight (lb)": "3672",
+      "0-60 mph (s)": "11.5",
+      "year": "72"
+    },
+    {
+      "name": "AMC Concord DL 6",
+      "economy (mpg)": "20.2",
+      "cylinders": "6",
+      "displacement (cc)": "232",
+      "power (hp)": "90",
+      "weight (lb)": "3265",
+      "0-60 mph (s)": "18.2",
+      "year": "79"
+    },
+    {
+      "name": "AMC Concord DL",
+      "economy (mpg)": "18.1",
+      "cylinders": "6",
+      "displacement (cc)": "258",
+      "power (hp)": "120",
+      "weight (lb)": "3410",
+      "0-60 mph (s)": "15.1",
+      "year": "78"
+    },
+    {
+      "name": "AMC Concord DL",
+      "economy (mpg)": "23",
+      "cylinders": "4",
+      "displacement (cc)": "151",
+      "power (hp)": "",
+      "weight (lb)": "3035",
+      "0-60 mph (s)": "20.5",
+      "year": "82"
+    },
+    {
+      "name": "AMC Concord",
+      "economy (mpg)": "19.4",
+      "cylinders": "6",
+      "displacement (cc)": "232",
+      "power (hp)": "90",
+      "weight (lb)": "3210",
+      "0-60 mph (s)": "17.2",
+      "year": "78"
+    }
+  ]
+}

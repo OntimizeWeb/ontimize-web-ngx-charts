@@ -1,0 +1,31 @@
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "STARTDATE": 1137173367571,
+      "OFFICEID": "0002",
+      "ENTITYID": "2095",
+      "ANID": "1061103749",
+      "CUSTOMER": "Wing Andersen Jons",
+      "ACCOUNTID": 7310,
+      "BALANCE": 2575,
+      "CDID": "95",
+      "ACCOUNT": "2095 0002 95 1061103749",
+      "CUSTOMERID": 19365
+    }
+  ],
+  "sqlColumnTypes": {
+    "CDID": 12,
+    "ACCOUNT": 12,
+    "BALANCE": 8,
+    "ACCOUNTID": 4,
+    "CUSTOMER": 12,
+    "ENDDATE": 93,
+    "OFFICEID": 12,
+    "CUSTOMERID": 4,
+    "ENTITYID": 12,
+    "ANID": 12,
+    "STARTDATE": 93
+  }
+}

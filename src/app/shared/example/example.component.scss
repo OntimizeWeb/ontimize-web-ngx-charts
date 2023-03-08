@@ -1,0 +1,51 @@
+.example-comp {
+  & > section {
+    margin: 12px;
+  }
+
+  .playground-toolbar {
+    .comp-description {
+      font-size: .8em;
+      line-height: 1em;
+    }
+
+    
+  }
+
+  .comp-note {
+    font-size: .9em;
+    padding: 12px 24px;
+
+    p {
+      mat-icon {
+        padding-right: 12px;
+        border-right: 3px solid;
+      }
+
+      span {
+        padding: 0 12px;
+      }
+    }
+  }
+
+  .collapsible {
+    overflow: hidden;
+    -webkit-transition: max-height 1.8s;
+    -moz-transition: max-height 1.8s;
+    transition: max-height 1.8s;
+    max-height: 2500px;
+
+    &.collapsed {
+      max-height: 0;
+    }
+  }
+
+  .o-form form.inner-form {
+    position: relative;
+  }
+
+  .mat-tab-body-wrapper {
+    height: 100%;
+  }
+
+}

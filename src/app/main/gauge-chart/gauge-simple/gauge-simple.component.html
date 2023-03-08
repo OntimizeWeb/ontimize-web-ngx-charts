@@ -1,0 +1,10 @@
+<o-row>
+  <example-comp fxFlex="50" comp-name="GAUGE.GAUGE_SIMPLE_BASIC" comp-desc="GAUGE.GAUGE_SIMPLE_BASIC.DESC" [files]="getBasicFiles()">
+    <o-chart type="gaugeSimpleChart" chart-height="350" entity="EDataGauge" y-axis="value"></o-chart>
+  </example-comp>
+
+  <example-comp fxFlex comp-name="GAUGE.GAUGE_SIMPLE_CUSTOM" comp-desc="GAUGE.GAUGE_SIMPLE_CUSTOM.DESC" [files]="getCustomFiles()">
+    <o-chart #gaugeSimple type="gaugeSimpleChart" chart-height="350" [chart-parameters]="gaugeSimpleConf"></o-chart>
+  </example-comp>
+
+</o-row>

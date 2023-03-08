@@ -1,0 +1,33 @@
+{
+  "APP_TITLE" : "Gráficas",
+  "VERSION" : "Versión",
+  
+  "INTRODUCTION": "Introducción",
+  "LINE" : "Gráfica de línea",
+  "LINEPLUSBAR": "Gráfica de barras y líneas",
+  "PIE"  : "Gráfica circular",
+  "DONUT": "Gráfica donut",
+  "DISCRETE_BAR"  : "Gráfica de barras discreta",
+  "MULTI_BAR"  : "Gráfica de barras múltiple",
+  "MULTI_BAR_HORIZONTAL" :  "Gráfica de barras múltiple horizontal",
+  "SCATTER": "Gráfica de puntos",
+  "DIRECTEDGRAPH": "Grafo diridigo",
+  "CANDLESTICK": "Gráfico de barras de velas",
+  "OHLCCHART": "Gráfico de barras OHLC",
+
+  "DATE_":"Fecha de movimiento",
+  "MOVEMENT":"Movimiento",
+  "MOVEMENTTYPES":"Tipo de movimiento",
+  "BALANCE": "Saldo Total",
+  "AVERAGE": "Saldo medio",
+
+  "BUBBLE": "Gráfico de burbujas",
+  "GAUGE": "Gráficos Gauge",
+  "GAUGEDASHBOARD": "Gráfico Gauge Dashboard",
+  "GAUGESIMPLE": "Gráfico Gauge Simple",
+  "GAUGESLIM": "Gráfico Gauge Slim",
+  "GAUGESPACE": "Gráfico Gauge Space",
+  "RADIALPERCENT": "Gráfico Porcentaje Circular",
+  "PARALLELCOORDINATES": "Gráfico de coordenadas paralelas",
+  "RADAR": "Gráfica radar"
+}
