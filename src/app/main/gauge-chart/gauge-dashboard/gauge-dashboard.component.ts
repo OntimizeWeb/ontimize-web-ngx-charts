@@ -7,7 +7,7 @@ import { DataAdapterUtils, GaugeDashboardChartConfiguration, OChartComponent } f
 })
 export class GaugeDashboardComponent {
 
-  @ViewChild('gaugeDashboard', {static: false})
+  @ViewChild('gaugeDashboard')
   protected gaugeDashboard: OChartComponent;
 
   gaugeDashboardConf: GaugeDashboardChartConfiguration;

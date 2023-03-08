@@ -122,7 +122,7 @@ export class RadarComponent  {
 })
 export class RadarComponent implements OnInit {
 
-  @ViewChild('radar', {static: false})
+  @ViewChild('radar')
   protected radar: OChartComponent;
 
   chartConf: RadarChartConfiguration;

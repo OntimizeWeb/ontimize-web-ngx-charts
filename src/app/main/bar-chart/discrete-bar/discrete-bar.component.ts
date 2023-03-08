@@ -145,10 +145,10 @@ declare var d3: any;
 })
 export class DiscreteBarComponent {
 
-  @ViewChild('oForm', {static: false})
+  @ViewChild('oForm')
   protected oForm: OFormComponent;
 
-  @ViewChild('discreteBar', {static: false})
+  @ViewChild('discreteBar')
   protected discreteBar: OChartComponent;
 
   data: Array<Object>;

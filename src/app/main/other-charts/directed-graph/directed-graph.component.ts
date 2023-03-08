@@ -7,7 +7,7 @@ import { DataAdapterUtils, ForceDirectedGraphConfiguration, OChartComponent } fr
 })
 export class DirectedGraphComponent {
 
-  @ViewChild('directedGraph', {static: false})
+  @ViewChild('directedGraph')
   protected directedGraph: OChartComponent;
 
   chartParameters: ForceDirectedGraphConfiguration;

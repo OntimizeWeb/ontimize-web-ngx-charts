@@ -146,7 +146,7 @@ declare var d3: any;
 })
 export class MultiBarComponent {
 
-  @ViewChild('multiBar', {static: false})
+  @ViewChild('multiBar')
   protected multiBar: OChartComponent;
 
   protected yAxis = 'MOVEMENT';

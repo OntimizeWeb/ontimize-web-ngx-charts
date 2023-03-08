@@ -7,7 +7,7 @@ import { DataAdapterUtils, GaugeSpaceChartConfiguration, OChartComponent } from 
 })
 export class GaugeSpaceComponent {
 
-  @ViewChild('gaugeSpace', {static: false})
+  @ViewChild('gaugeSpace')
   protected gaugeSpace: OChartComponent;
 
   gaugeSpaceConf: GaugeSpaceChartConfiguration;
