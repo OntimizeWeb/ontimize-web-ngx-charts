@@ -27,9 +27,8 @@ export class GaugeDashboardComponent {
 
     let data = [{ 'x': 'value', 'y': 77.34 }];
 
-    DataAdapterUtils.createDataAdapter(this.gaugeDashboardConf);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
-    this.gaugeDashboard.setDataArray(dataAdapt);
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.gaugeDashboardConf);
+    this.gaugeDashboard.setDataArray(dataAdapt.adaptResult(data));
     this.gaugeDashboard.setChartConfiguration(this.gaugeDashboardConf);
   }
 
@@ -91,7 +90,7 @@ export class GaugeDashboardComponent {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #gaugeDashboard type="gaugeDashboardChart" chart-height="350" 
+<o-chart #gaugeDashboard type="gaugeDashboardChart" chart-height="350"
 [chart-parameters]="gaugeDashboardConf"></o-chart>
 `;
 

@@ -52,9 +52,9 @@ export class OhlcComponent {
     this.chartParameters2.lowAxis = 'low';
     this.chartParameters2.closeAxis = 'close';
 
-    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+    this.ohlc2.setDataArray(dataAdapt.adaptResult(data));
   }
 
   getBasicUsageFiles() {
@@ -88,12 +88,12 @@ export class OhlcComponent {
   }
 }
 
-  const BASIC_USAGE_HTML_DATA = `
+const BASIC_USAGE_HTML_DATA = `
 <o-chart #ohlc type="ohlcBarChart" chart-height="600" x-data-type="time"
 [chart-parameters]="chartParameters" entity="EStockExchange"></o-chart>
 `;
 
-  const BASIC_USAGE_TYPESCRIPT_DATA = `
+const BASIC_USAGE_TYPESCRIPT_DATA = `
 import { Component } from '@angular/core';
 import { OHLCChartConfiguration } from 'ontimize-web-ngx-charts';
 
@@ -116,12 +116,12 @@ export class OhlcComponent  {
 }
 `;
 
-  const CUSTOM_SERVICE_HTML_DATA = `
+const CUSTOM_SERVICE_HTML_DATA = `
 <o-chart type="ohlcBarChart" chart-height="600" x-data-type="time"
         [chart-parameters]="chartParameters2"></o-chart>
 `;
 
-  const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
+const CUSTOM_SERVICE_TYPESCRIPT_DATA = `
 import { Component,ViewChild } from '@angular/core';
 import { OChartComponent, OHLCChartConfiguration, DataAdapterUtils } from 'ontimize-web-ngx-charts';
 

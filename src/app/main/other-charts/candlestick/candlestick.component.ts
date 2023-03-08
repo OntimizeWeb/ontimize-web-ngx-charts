@@ -53,9 +53,9 @@ export class CandlestickComponent {
     this.chartParameters2.lowAxis = 'low';
     this.chartParameters2.closeAxis = 'close';
 
-    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.candlestick.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+    this.candlestick.setDataArray(dataAdapt.adaptResult(data));
 
 
     let chartService: ChartService = this.candlestick.getChartService();

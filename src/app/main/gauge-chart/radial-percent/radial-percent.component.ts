@@ -24,10 +24,9 @@ export class RadialPercentComponent implements OnInit {
     this.radialPercentConf.color = ['#EB984E', '#1A5276'];
 
     let data = [{ 'x': 'value', 'y': 13.91 }];
-    DataAdapterUtils.createDataAdapter(this.radialPercentConf);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.radialPercentConf);
 
-    this.radialPercent.setDataArray(dataAdapt);
+    this.radialPercent.setDataArray(dataAdapt.adaptResult(data));
     this.radialPercent.setChartConfiguration(this.radialPercentConf);
   }
 

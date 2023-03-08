@@ -52,8 +52,8 @@ export class DirectedGraphComponent {
   }
 
   ngAfterViewInit() {
-    DataAdapterUtils.createDataAdapter(this.chartParameters);
-    this.directedGraph.setDataArray(DataAdapterUtils.adapter.adaptResult([]));
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.chartParameters);
+    this.directedGraph.setDataArray(dataAdapt.adaptResult([]));
   }
 
 
@@ -62,10 +62,10 @@ export class DirectedGraphComponent {
       'html': {
         'data': BASIC_USAGE_HTML_DATA
       },
-      'scss':{
+      'scss': {
         'data': ''
       },
-      'typescript':{
+      'typescript': {
         'data': BASIC_USAGE_TYPESCRIPT_DATA
       }
     }

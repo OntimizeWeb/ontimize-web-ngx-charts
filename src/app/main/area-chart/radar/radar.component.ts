@@ -198,8 +198,8 @@ export class RadarComponent implements OnInit {
         'Stream Music': 0.05
       }
     ];
-    DataAdapterUtils.createDataAdapter(this.chartConf);
-    this.radar.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+    let dataAdapt = DataAdapterUtils.createDataAdapter(this.chartConf);
+    this.radar.setDataArray(dataAdapt.adaptResult(data));
   }
 
   getBasicId() {
