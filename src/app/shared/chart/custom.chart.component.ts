@@ -14,7 +14,7 @@ import { CustomChartFactory } from './custom.chart.factory';
     { provide: OntimizeService, useFactory: dataServiceFactory, deps: [Injector] },
     { provide: OChartComponent, useExisting: forwardRef(() => CustomChartComponent) }
   ],
-  inputs: OChartComponent.DEFAULT_INPUTS_O_CHART,
+
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss']
 })

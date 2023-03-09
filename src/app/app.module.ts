@@ -1,5 +1,5 @@
 import { Injector, NgModule } from '@angular/core';
-import { APP_CONFIG, ONTIMIZE_MODULES, ONTIMIZE_PROVIDERS, OntimizeWebModule } from 'ontimize-web-ngx';
+import { APP_CONFIG, ONTIMIZE_PROVIDERS, OntimizeWebModule, OntimizeWebTranslateModule, OPermissionsModule } from 'ontimize-web-ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +8,8 @@ import { MainModule } from './main/main.module';
 import { CustomOntimizeService } from './shared/services/custom-ontimize.service';
 import { NavigationBarService } from './shared/services/navigation-bar.service';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function getHighlightLanguages() {
   return {
@@ -33,14 +35,17 @@ export const customProviders = [
 
 @NgModule({
   imports: [
-    ONTIMIZE_MODULES,
+    BrowserModule,
+    BrowserAnimationsModule,
+    OntimizeWebTranslateModule,
+    OPermissionsModule,
     MainModule,
     AppRoutingModule,
     OntimizeWebModule.forRoot(CONFIG),
+    HighlightModule
   ],
   declarations: [
-    AppComponent,
-    HighlightModule
+    AppComponent
   ],
   bootstrap: [
     AppComponent
