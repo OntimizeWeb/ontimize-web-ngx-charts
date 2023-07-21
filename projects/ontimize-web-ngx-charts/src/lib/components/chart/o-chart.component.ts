@@ -16,7 +16,6 @@ import {
   OTranslateService,
   Util
 } from 'ontimize-web-ngx';
-import { nvD3 } from 'ontimize-web-ngx-nvd3';
 import { Subscription } from 'rxjs';
 
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
@@ -93,11 +92,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   public static CHART_TYPES = CHART_TYPES;
 
   /* Inputs */
-  protected type: string;
-  protected xAxis: string;
-  protected yAxis: string;
-  protected xAxisLabel: string;
-  protected yAxisLabel: string;
+  type: string;
+  xAxis: string;
+  yAxis: string;
+  xAxisLabel: string;
+  yAxisLabel: string;
   protected xAxisDataType: string;
   protected yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
@@ -113,8 +112,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   protected ChartOptions: any;
 
-  @ViewChild('nvChart', { static: false })
-  protected chartWrapper: nvD3;
+
 
   protected formDataSubcribe;
 
@@ -124,7 +122,74 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @Output('onSwipe') onSwipe = new EventEmitter();
   @Output('onRotate') onRotate = new EventEmitter();
   @Output('onPinch') onPinch = new EventEmitter();
+  multi = [
+    {
+      "name": "Germany",
+      "series": [
+        {
+          "name": "1990",
+          "value": 62000000
+        },
+        {
+          "name": "2010",
+          "value": 73000000
+        },
+        {
+          "name": "2011",
+          "value": 89400000
+        }
+      ]
+    },
 
+    {
+      "name": "USA",
+      "series": [
+        {
+          "name": "1990",
+          "value": 250000000
+        },
+        {
+          "name": "2010",
+          "value": 309000000
+        },
+        {
+          "name": "2011",
+          "value": 311000000
+        }
+      ]
+    },
+
+    {
+      "name": "France",
+      "series": [
+        {
+          "name": "1990",
+          "value": 58000000
+        },
+        {
+          "name": "2010",
+          "value": 50000020
+        },
+        {
+          "name": "2011",
+          "value": 58000000
+        }
+      ]
+    },
+    {
+      "name": "UK",
+      "series": [
+        {
+          "name": "1990",
+          "value": 57000000
+        },
+        {
+          "name": "2010",
+          "value": 62000000
+        }
+      ]
+    }
+  ];
 
   protected langSubscription: Subscription;
 
@@ -132,7 +197,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected chartService: ChartService;
   protected translateService: OTranslateService;
   cd: ChangeDetectorRef;
-
+  chartData: any[] = [];
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
@@ -142,6 +207,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
     this.cd = this.injector.get(ChangeDetectorRef);
+    this.getAdaptData();
   }
 
   ngOnInit(): void {
@@ -157,13 +223,14 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
       this.configureChart();
     });
+    this.chartData = this.getAdaptData();
   }
 
   ngAfterViewInit(): void {
     if (this.queryOnInit && this.dataService !== undefined) {
       this.queryData();
     }
-    this.chartService.chartWrapper = this.chartWrapper;
+    //this.chartService.chartWrapper = this.chartWrapper;
   }
 
   ngAfterViewChecked(): void {
@@ -402,7 +469,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
   updateOptions(options: any) {
     this.setChartConfiguration(options);
-    this.chartWrapper.update();
+    this.chartData = this.getAdaptData();
   }
 
 }

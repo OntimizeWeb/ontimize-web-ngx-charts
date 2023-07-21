@@ -1,10 +1,29 @@
-import { ChartSeries } from '../interfaces/ChartData.interface';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 import { LineChartConfiguration } from '../models/options/LineChartConfiguration.class';
 
-export class LineDataAdapter implements ChartDataAdapter {
+interface CustomLineChartSeries extends LineChartSeries {
+  area?: boolean;
+  color?: string;
+  strokeWidth?: number;
+  classed?: string;
+}
 
+interface LineChartSeries {
+  name: string;
+  series: ChartDataPoint[]; // Updated to use ChartDataPoint[]
+}
+
+// Adjusted ChartDataPoint to include optional x and y properties
+interface ChartDataPoint {
+  name?: Date;
+  value?: number;
+  x?: Date; // Optional x property for the date
+  y?: number; // Optional y property for the value
+}
+
+
+export class LineDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;
   protected xAxis: string;
   protected yAxis: string[];
@@ -18,62 +37,63 @@ export class LineDataAdapter implements ChartDataAdapter {
     }
   }
 
-  public adaptResult(data: any[]): ChartSeries[] {
-    const result: ChartSeries[] = [];
-    const config = (this.chartConf as LineChartConfiguration);
+  public adaptResult(data: any[]): CustomLineChartSeries[] {
+    const result: CustomLineChartSeries[] = [];
+    const config = this.chartConf as LineChartConfiguration;
     if (data && data.length) {
-      const seriesValues = this.processSeriesValues(data);
-      this.yAxis.forEach((axis: string, _index: number) => {
-        const serie: ChartSeries = {
-          key: axis,
-          values: []
+      const adaptedData = this.adaptDataFormat(data);
+      adaptedData.forEach(({ name, series }) => {
+        const lineChartSeries: CustomLineChartSeries = {
+          name: name,
+          series: series.map(({ name: x, value: y }) => ({ x, y }))
         };
-        if (config.isArea && config.isArea[_index]) {
-          serie.area = config.isArea[_index];
+
+        const index = this.yAxis.indexOf(name);
+        if (config.isArea && config.isArea[index]) {
+          lineChartSeries.area = config.isArea[index];
         }
-        if (config.color && config.color[_index]) {
-          serie.color = config.color[_index];
+        if (config.color && config.color[index]) {
+          lineChartSeries.color = config.color[index];
         }
-        if (config.strokeWidth && config.strokeWidth[_index]) {
-          serie.strokeWidth = config.strokeWidth[_index];
+        if (config.strokeWidth && config.strokeWidth[index]) {
+          lineChartSeries.strokeWidth = config.strokeWidth[index];
         }
-        if (config.classed && config.classed[_index]) {
-          serie.classed = config.classed[_index];
+        if (config.classed && config.classed[index]) {
+          lineChartSeries.classed = config.classed[index];
         }
-        let key = axis;
+        let key = name;
         if (config.translateService) {
           key = config.translateService.get(key);
         }
-        serie.key = key;
+        lineChartSeries.name = key;
 
-        seriesValues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
-
-        serie.values = seriesValues[axis];
-        result.push(serie);
+        result.push(lineChartSeries);
       });
     }
     return result;
   }
 
-  public processSeriesValues(data: any[]): Object {
-    const seriesValues = {};
+  private adaptDataFormat(data: any[]): { name: string; series: ChartDataPoint[] }[] {
+    const seriesValues: { [key: string]: ChartDataPoint[] } = {};
     const self = this;
     data.forEach((item: any, _index: number) => {
       self.yAxis.forEach((axis: string, _indexAxis: number) => {
-        if (seriesValues[axis] === undefined) {
+        if (!seriesValues[axis]) {
           seriesValues[axis] = [];
         }
-        if (item[axis] === undefined) {
-          return;
+        if (item[axis] !== undefined) {
+          const dataPoint: ChartDataPoint = {
+            name: new Date(item[self.xAxis]),
+            value: item[axis]
+          };
+          seriesValues[axis].push(dataPoint);
         }
-        const val = {
-          x: item[self.xAxis],
-          y: item[axis]
-        };
-        seriesValues[axis].push(val);
       });
     });
-    return seriesValues;
-  }
 
+    return Object.keys(seriesValues).map(name => ({
+      name,
+      series: seriesValues[name]
+    }));
+  }
 }
