@@ -11,17 +11,15 @@ interface CustomLineChartSeries extends LineChartSeries {
 
 interface LineChartSeries {
   name: string;
-  series: ChartDataPoint[]; // Updated to use ChartDataPoint[]
+  series: ChartDataPoint[];
 }
 
-// Adjusted ChartDataPoint to include optional x and y properties
 interface ChartDataPoint {
   name?: Date;
   value?: number;
-  x?: Date; // Optional x property for the date
-  y?: number; // Optional y property for the value
+  x?: Date;
+  y?: number;
 }
-
 
 export class LineDataAdapter implements ChartDataAdapter {
   protected chartConf: ChartConfiguration;

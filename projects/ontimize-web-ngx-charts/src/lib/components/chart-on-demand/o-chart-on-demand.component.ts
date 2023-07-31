@@ -15,6 +15,7 @@ import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-p
 import { OChartOnDemandUtils } from './o-chart-on-demand-utils';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
+
 declare var d3: any;
 const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
@@ -221,7 +222,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
     const adapter = DataAdapterUtils.createDataAdapter(chartParameters);
     this.captureDataTypeChart(adapter);
-    this.chart.updateOptions(chartParameters);
+    this.chart.updateOptions(chartParameters, this.currentPreference.selectedTypeChart);
   }
 
 

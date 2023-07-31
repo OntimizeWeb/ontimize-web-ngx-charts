@@ -3,7 +3,7 @@ import 'hammerjs';
 import 'nvd3';
 import 'nvd3-extra';
 
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import {
   ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
@@ -101,9 +101,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
   @InputConverter()
-  protected cHeight: number = -1;
+  cHeight: number = 300;
   @InputConverter()
-  protected cWidth: number = -1;
+  cWidth: number = 300;
 
   protected _options: any;
   dataArray: Object[] = [];
@@ -201,7 +201,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector
+    protected injector: Injector, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver
   ) {
     super(injector);
     this.translateService = this.injector.get(OTranslateService);
@@ -211,7 +211,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.chartData = this.getAdaptData();
     super.initialize();
+    //this.configureChartType();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
     if (Util.isDefined(this.state['type'])) {
@@ -223,7 +225,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
       this.configureChart();
     });
-    this.chartData = this.getAdaptData();
+
   }
 
   ngAfterViewInit(): void {
@@ -232,6 +234,35 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     //this.chartService.chartWrapper = this.chartWrapper;
   }
+
+  // configureChartType() {
+  //   switch (this.type) {
+  //     case 'pie':
+  //     case 'donutChart':
+  //       this.loadComponent('ngx-charts-pie-chart');
+  //       break;
+  //     case 'line':
+  //       this.loadComponent('ngx-charts-line-chart');
+  //       break;
+  //     case 'multiBarHorizontalChart':
+  //       this.loadComponent('ngx-charts-bar-horizontal');
+  //       break;
+  //     case 'discreteBar':
+  //       this.loadComponent('ngx-charts-bar-vertical');
+  //       break;
+  //     case 'stackedAreaChart':
+  //       this.loadComponent('ngx-charts-area-chart');
+  //       break;
+  //     default:
+  //       console.error('Invalid chart type:', this.type);
+  //       break;
+  //   }
+  // }
+  // private loadComponent(componentName: string) {
+  //   const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentName);
+  //   this.viewContainerRef.clear();
+  //   this.viewContainerRef.createComponent(componentFactory);
+  // }
 
   ngAfterViewChecked(): void {
     let color: string;
@@ -467,9 +498,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   pinchChart(event: any) {
     this.onPinch.emit(event);
   }
-  updateOptions(options: any) {
-    this.setChartConfiguration(options);
-    this.chartData = this.getAdaptData();
+  updateOptions(options: any, type: string) {
+    //this.setChartConfiguration(options);
+    this.ngOnInit();
+    this.type = type;
   }
 
 }

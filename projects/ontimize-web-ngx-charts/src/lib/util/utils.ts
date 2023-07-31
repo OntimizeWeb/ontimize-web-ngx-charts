@@ -20,4 +20,7 @@ export class Utils {
       data: data
     });
   }
+  static adaptColorScheme(colorScheme: string[]): { domain: string[] } {
+    return { domain: colorScheme };
+  }
 }

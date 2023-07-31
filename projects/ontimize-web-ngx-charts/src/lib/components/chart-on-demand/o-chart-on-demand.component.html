@@ -101,8 +101,9 @@
             <h2 class="title">{{currentPreference.title}}</h2>
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start start" fxFlex [style.display]="showPlaceholder ? 'none' : 'inherit'">
-            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
+          <div [style.display]="showPlaceholder ? 'none' : 'inherit'">
+            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" chart-width="700" query-on-init="no" layout-padding
+              class="chart">
             </o-chart>
           </div>
         </div>
