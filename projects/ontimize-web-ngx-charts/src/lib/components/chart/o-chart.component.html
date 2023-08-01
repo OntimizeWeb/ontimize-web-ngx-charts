@@ -10,7 +10,7 @@
     <ngx-charts-bar-horizontal *ngSwitchCase="'multiBarHorizontalChart'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]"
       [yAxisLabel]="yAxisLabel" [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" scheme="air"></ngx-charts-bar-horizontal>
 
-    <ngx-charts-bar-vertical *ngSwitchCase="'discreteBar'||'multiBar'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
+    <ngx-charts-bar-vertical *ngSwitchCase="'discreteBar'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
       [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" scheme="air"></ngx-charts-bar-vertical>
 
     <ngx-charts-line-chart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel" [gradient]="true"
@@ -18,6 +18,9 @@
 
     <ngx-charts-area-chart-stacked *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
       [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" scheme="air"></ngx-charts-area-chart-stacked>
+
+    <ngx-charts-bar-vertical-stacked *ngSwitchCase="'multiBar'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
+      [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()"> </ngx-charts-bar-vertical-stacked>
 
   </ng-container>
 </div>
