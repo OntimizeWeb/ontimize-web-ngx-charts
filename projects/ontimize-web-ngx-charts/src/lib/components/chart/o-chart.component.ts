@@ -72,7 +72,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'xAxisDataType: x-data-type',
   'yAxisDataType: y-data-type',
   'data',
-  'chartParameters: chart-parameters'
+  'chartParameters: chart-parameters',
+  'color'
 ];
 
 @Component({
@@ -101,18 +102,17 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
   @InputConverter()
-  cHeight: number = 300;
+  cHeight: number;
   @InputConverter()
-  cWidth: number = 300;
+  cWidth: number;
 
   protected _options: any;
   dataArray: Object[] = [];
   protected dataService: any;
   protected yAxisArray: Array<string> = [];
+  color: Object = "air";
 
   protected ChartOptions: any;
-
-
 
   protected formDataSubcribe;
 
@@ -235,6 +235,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     //this.chartService.chartWrapper = this.chartWrapper;
   }
 
+  formatTimestamp(timestamp: number): string {
+    const date = new Date(timestamp);
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = date.getUTCFullYear().toString();
+
+    return `${day}/${month}/${year}`;
+  }
+  formatDate(date: number): string {
+    const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    return formattedDate;
+  }
   // configureChartType() {
   //   switch (this.type) {
   //     case 'pie':
