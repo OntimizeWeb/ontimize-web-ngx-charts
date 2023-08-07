@@ -1,7 +1,5 @@
 import 'd3';
 import 'hammerjs';
-import 'nvd3';
-import 'nvd3-extra';
 
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import {
@@ -98,8 +96,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   yAxis: string;
   xAxisLabel: string;
   yAxisLabel: string;
-  protected xAxisDataType: string;
-  protected yAxisDataType: string;
+  xAxisDataType: string;
+  xFormatting: any;
+  yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
   @InputConverter()
   cHeight: number;
@@ -122,74 +121,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @Output('onSwipe') onSwipe = new EventEmitter();
   @Output('onRotate') onRotate = new EventEmitter();
   @Output('onPinch') onPinch = new EventEmitter();
-  multi = [
-    {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "1990",
-          "value": 62000000
-        },
-        {
-          "name": "2010",
-          "value": 73000000
-        },
-        {
-          "name": "2011",
-          "value": 89400000
-        }
-      ]
-    },
 
-    {
-      "name": "USA",
-      "series": [
-        {
-          "name": "1990",
-          "value": 250000000
-        },
-        {
-          "name": "2010",
-          "value": 309000000
-        },
-        {
-          "name": "2011",
-          "value": 311000000
-        }
-      ]
-    },
-
-    {
-      "name": "France",
-      "series": [
-        {
-          "name": "1990",
-          "value": 58000000
-        },
-        {
-          "name": "2010",
-          "value": 50000020
-        },
-        {
-          "name": "2011",
-          "value": 58000000
-        }
-      ]
-    },
-    {
-      "name": "UK",
-      "series": [
-        {
-          "name": "1990",
-          "value": 57000000
-        },
-        {
-          "name": "2010",
-          "value": 62000000
-        }
-      ]
-    }
-  ];
 
   protected langSubscription: Subscription;
 
@@ -211,6 +143,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.xFormatting = this.getTickFormatter(this.xAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
     //this.configureChartType();
@@ -234,7 +167,33 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
     //this.chartService.chartWrapper = this.chartWrapper;
   }
-
+  getTickFormatter(type: string): any {
+    switch (type) {
+      case 'intGrouped':
+        return d => d.toLocaleString();
+      case 'floatGrouped':
+        return d => d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      case 'int':
+        return d => Math.round(d).toLocaleString();
+      case 'float':
+        return d => d.toFixed(2);
+      case 'currency':
+        return d => d.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      case 'time':
+        return d => new Date(d).toLocaleDateString();
+      case 'timeDay':
+        return d => new Date(d).toLocaleTimeString();
+      case 'timeDetail':
+        return d => new Date(d).toLocaleString();
+      case 'percentage':
+        return d => (d * 100).toFixed(0) + '%';
+      default:
+        if (typeof type === 'function') {
+          return type;
+        }
+        return void 0;
+    }
+  }
   formatTimestamp(timestamp: number): string {
     const date = new Date(timestamp);
     const day = date.getUTCDate().toString().padStart(2, '0');

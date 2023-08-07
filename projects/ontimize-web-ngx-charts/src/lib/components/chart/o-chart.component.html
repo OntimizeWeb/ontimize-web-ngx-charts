@@ -8,20 +8,22 @@
       [labels]="true" [explodeSlices]="false" [doughnut]="true" [gradient]="true" [scheme]="color"></ngx-charts-pie-chart>
 
     <ngx-charts-bar-horizontal *ngSwitchCase="'multiBarHorizontalChart'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]"
-      [yAxisLabel]="yAxisLabel" [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()"
-      [scheme]="color"></ngx-charts-bar-horizontal>
+      [yAxisLabel]="yAxisLabel" [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color"
+      [xAxisTickFormatting]="xFormatting"></ngx-charts-bar-horizontal>
 
     <ngx-charts-bar-vertical *ngSwitchCase="'discreteBar'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
-      [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color"></ngx-charts-bar-vertical>
+      [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+      showDataLabel="true"></ngx-charts-bar-vertical>
 
     <ngx-charts-line-chart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel" [gradient]="true"
-      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="formatDate"></ngx-charts-line-chart>
+      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"></ngx-charts-line-chart>
 
     <ngx-charts-area-chart-stacked *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [gradient]="true"
-      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="formatDate"></ngx-charts-area-chart-stacked>
+      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"></ngx-charts-area-chart-stacked>
 
     <ngx-charts-bar-vertical-stacked *ngSwitchCase="'multiBar'" [xAxisLabel]="xAxisLabel" [view]="[cWidth, cHeight]" [yAxisLabel]="yAxisLabel"
-      [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color"> </ngx-charts-bar-vertical-stacked>
+      [gradient]="true" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting">
+    </ngx-charts-bar-vertical-stacked>
 
   </ng-container>
 </div>
