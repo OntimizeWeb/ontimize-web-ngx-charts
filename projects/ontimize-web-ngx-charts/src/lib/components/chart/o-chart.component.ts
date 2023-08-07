@@ -1,7 +1,7 @@
 import 'd3';
 import 'hammerjs';
 
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output } from '@angular/core';
 import {
   ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
@@ -133,7 +133,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver
+    protected injector: Injector
   ) {
     super(injector);
     this.translateService = this.injector.get(OTranslateService);
