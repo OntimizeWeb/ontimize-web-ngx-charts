@@ -1,5 +1,4 @@
 import 'd3';
-import 'hammerjs';
 
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output } from '@angular/core';
 import {

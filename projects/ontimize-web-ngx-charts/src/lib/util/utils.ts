@@ -1,4 +1,4 @@
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Constants } from "./constants";
 
 export class Utils {

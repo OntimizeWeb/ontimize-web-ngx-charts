@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { OTableBaseDialogClass } from 'ontimize-web-ngx';
 
 @Component({
