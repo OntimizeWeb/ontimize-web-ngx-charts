@@ -7,7 +7,7 @@ import { DataAdapterUtils, OChartComponent, RadialPercentChartConfiguration } fr
 })
 export class RadialPercentComponent implements OnInit {
 
-  @ViewChild('radialPercent', {static: false})
+  @ViewChild('radialPercent')
   protected radialPercent: OChartComponent;
 
   radialPercentConf: RadialPercentChartConfiguration;

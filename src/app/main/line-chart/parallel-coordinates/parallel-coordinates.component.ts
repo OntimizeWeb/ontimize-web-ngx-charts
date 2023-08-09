@@ -7,7 +7,7 @@ import { DataAdapterUtils, OChartComponent, ParallelCoordinatesChartConfiguratio
 })
 export class ParallelCoordinatesComponent {
 
-  @ViewChild('chart', {static: false})
+  @ViewChild('chart')
   protected chart: OChartComponent;
 
   chartConf: ParallelCoordinatesChartConfiguration;

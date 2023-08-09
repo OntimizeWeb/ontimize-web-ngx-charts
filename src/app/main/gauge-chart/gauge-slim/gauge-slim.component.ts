@@ -8,7 +8,7 @@ import { DataAdapterUtils, GaugeSlimChartConfiguration, OChartComponent } from '
 })
 export class GaugeSlimComponent {
 
-  @ViewChild('gaugeSlim', {static: false})
+  @ViewChild('gaugeSlim')
   protected gaugeSlim: OChartComponent;
 
   gaugeSlimConf: GaugeSlimChartConfiguration;

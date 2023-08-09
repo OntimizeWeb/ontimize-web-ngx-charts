@@ -12,7 +12,7 @@ const BASIC_USAGE_HTML_DATA = `
 })
 export class MultiBarHorizontalComponent {
 
-  @ViewChild('multiBarHor', {static: false})
+  @ViewChild('multiBarHor')
   protected multiBarHor: OChartComponent;
 
   chartParameters: MultiBarHorizontalChartConfiguration;

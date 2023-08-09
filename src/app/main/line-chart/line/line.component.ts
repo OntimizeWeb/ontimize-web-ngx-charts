@@ -9,10 +9,10 @@ declare var d3: any;
 })
 export class LineComponent {
 
-  @ViewChild('lineChart', { static: false })
+  @ViewChild('lineChart')
   protected lineChart: OChartComponent;
 
-  @ViewChild('lineChartBasic', { static: false })
+  @ViewChild('lineChartBasic')
   protected lineChartBasic: OChartComponent;
 
   protected yAxis = 'MOVEMENT';

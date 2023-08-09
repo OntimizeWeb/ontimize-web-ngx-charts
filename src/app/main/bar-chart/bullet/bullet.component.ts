@@ -7,7 +7,7 @@ import { BulletChartConfiguration, DataAdapterUtils, OChartComponent } from 'ont
 })
 export class BulletComponent implements OnInit {
 
-  @ViewChild('bulletChart', {static: false})
+  @ViewChild('bulletChart')
   protected bulletChart: OChartComponent;
 
   chartParameters: BulletChartConfiguration;

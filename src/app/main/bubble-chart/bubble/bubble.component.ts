@@ -113,7 +113,7 @@ export class BubbleComponent {
 })
 export class BubbleComponent {
 
-  @ViewChild('bubbleChart', {static: false})
+  @ViewChild('bubbleChart')
   protected bubbleChart: OChartComponent;
 
   constructor() { }
