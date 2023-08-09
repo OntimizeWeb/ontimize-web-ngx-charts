@@ -25,9 +25,7 @@ export class RadialPercentComponent implements OnInit {
 
     let data = [{ 'x': 'value', 'y': 13.91 }];
     DataAdapterUtils.createDataAdapter(this.radialPercentConf);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
 
-    this.radialPercent.setDataArray(dataAdapt);
     this.radialPercent.setChartConfiguration(this.radialPercentConf);
   }
 

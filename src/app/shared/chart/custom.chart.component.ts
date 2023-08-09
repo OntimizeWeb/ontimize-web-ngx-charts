@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional, ViewContainerRef } from '@angular/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material';
 import { dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
 import { ChartFactory, OChartComponent } from 'ontimize-web-ngx-charts';
-import { NvD3Module } from 'ontimize-web-ngx-nvd3';
+
 
 import { CustomChartFactory } from './custom.chart.factory';
 
@@ -23,9 +23,9 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector) {
+    protected injector: Injector, ref:ViewContainerRef, com:ComponentFactoryResolver) {
 
-    super(form, elRef, injector);
+    super(form, elRef, injector,ref, com);
   }
 
   public ngOnInit() {
@@ -43,7 +43,7 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [CommonModule, NvD3Module, CommonModule, MatIconModule],
+  imports: [CommonModule, CommonModule, MatIconModule],
   declarations: [CustomChartComponent],
   exports: [CustomChartComponent]
 })

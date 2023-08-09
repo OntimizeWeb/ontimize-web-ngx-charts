@@ -29,8 +29,7 @@ export class GaugeSlimComponent {
     let data = [{ 'x': 'value', 'y': 65.8 }];
 
     DataAdapterUtils.createDataAdapter(this.gaugeSlimConf2);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
-    this.gaugeSlim.setDataArray(dataAdapt);
+
     this.gaugeSlim.setChartConfiguration(this.gaugeSlimConf2);
   }
 
@@ -65,7 +64,7 @@ export class GaugeSlimComponent {
 }
 
 const BASIC_DATA_HTML = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge" 
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge"
 [chart-parameters]="gaugeSlimConf"></o-chart>
 `;
 
@@ -91,7 +90,7 @@ export class GaugeSlimComponent  {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" 
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350"
 [chart-parameters]="gaugeSlimConf2"></o-chart>
 `;
 

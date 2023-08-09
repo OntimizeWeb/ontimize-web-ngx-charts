@@ -146,7 +146,7 @@ declare var d3: any;
 })
 export class MultiBarComponent {
 
-  @ViewChild('multiBar', {static: false})
+  @ViewChild('multiBar', { static: false })
   protected multiBar: OChartComponent;
 
   protected yAxis = 'MOVEMENT';
@@ -157,7 +157,9 @@ export class MultiBarComponent {
 
   chartParameters1: MultiBarChartConfiguration;
   chartParameters2: MultiBarChartConfiguration;
-
+  colorScheme = {
+    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+  };
   constructor(protected injector: Injector) {
     this.chartParameters1 = new MultiBarChartConfiguration();
     this.chartParameters1.legend.margin.top = 5;

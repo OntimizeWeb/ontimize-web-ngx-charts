@@ -23,7 +23,9 @@ export class DonutComponent {
     this.chartParameters2.legend.margin.top = 5;
     this.chartParameters2.legend.margin.bottom = 5;
   }
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   getBasicUsageFiles() {
     return {
       'html': {

@@ -53,7 +53,6 @@ export class DirectedGraphComponent {
 
   ngAfterViewInit() {
     DataAdapterUtils.createDataAdapter(this.chartParameters);
-    this.directedGraph.setDataArray(DataAdapterUtils.adapter.adaptResult([]));
   }
 
 

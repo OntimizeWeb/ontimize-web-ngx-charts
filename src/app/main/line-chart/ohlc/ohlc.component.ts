@@ -54,7 +54,7 @@ export class OhlcComponent {
 
     DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+
   }
 
   getBasicUsageFiles() {

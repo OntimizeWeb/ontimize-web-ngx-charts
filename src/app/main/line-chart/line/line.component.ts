@@ -9,15 +9,17 @@ declare var d3: any;
 })
 export class LineComponent {
 
-  @ViewChild('lineChart', {static: false})
+  @ViewChild('lineChart', { static: false })
   protected lineChart: OChartComponent;
 
-  @ViewChild('lineChartBasic', {static: false})
+  @ViewChild('lineChartBasic', { static: false })
   protected lineChartBasic: OChartComponent;
 
   protected yAxis = 'MOVEMENT';
   protected xAxis = 'DATE_';
-
+  colorScheme = {
+    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+  };
   chartParameters1: LineChartConfiguration;
   chartParameters2: LineChartConfiguration;
   chartParametersSerie: LineChartConfiguration;
@@ -103,7 +105,7 @@ export class LineComponent {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" 
+<o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements"
 x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"></o-chart>
 `;
 const BASIC_USAGE_CONF_HTML_DATA = `
