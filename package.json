@@ -46,6 +46,7 @@
     "lottie-web": "^5.10.0",
     "ngx-lottie": "7.0.4",
     "nvd3": "1.8.6",
+    "ontimize-web-ngx": "file:ontimize-web-ngx-9.0.0.tgz",
     "nvd3-extra": "1.0.0",
     "rxjs": "~6.6.7",
     "tslib": "^2.0.0",
