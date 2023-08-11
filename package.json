@@ -44,7 +44,7 @@
     "dom-to-image": "^2.6.0",
     "ontimize-web-ngx": "file:ontimize-web-ngx-9.0.0.tgz",
     "rxjs": "~6.6.7",
-    "tslib": "^1.10.0",
+    "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
