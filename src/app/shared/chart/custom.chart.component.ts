@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ComponentFactoryResolver, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional, ViewContainerRef } from '@angular/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material';
 import { dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
 import { ChartFactory, OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 import { CustomChartFactory } from './custom.chart.factory';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'custom-chart',
