@@ -40,16 +40,11 @@
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
-    "@swimlane/ngx-charts": "^14.0.0",
-    "d3": "3.5.17",
+    "@swimlane/ngx-charts": "^13.0.4",
     "dom-to-image": "^2.6.0",
-    "lottie-web": "^5.10.0",
-    "ngx-lottie": "7.0.4",
-    "nvd3": "1.8.6",
     "ontimize-web-ngx": "file:ontimize-web-ngx-9.0.0.tgz",
-    "nvd3-extra": "1.0.0",
     "rxjs": "~6.6.7",
-    "tslib": "^2.0.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

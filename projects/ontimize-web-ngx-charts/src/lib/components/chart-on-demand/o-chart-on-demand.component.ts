@@ -4,7 +4,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatRadioGroup } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
-import { AnimationOptions } from 'ngx-lottie';
 import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry } from 'ontimize-web-ngx';
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
 import { D3LocaleService } from '../../services/d3Locale.service';
@@ -125,10 +124,10 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentConfiguration = { ENTITY: this.currentPreference.entity };
     this.cd.detectChanges();
   }
-  options: AnimationOptions = {
-    path: './assets/chart_animation.json',
-    autoplay: false
-  };
+  // options: AnimationOptions = {
+  //   path: './assets/chart_animation.json',
+  //   autoplay: false
+  // };
 
   protected parseColumnsVisible() {
     const columnsArray = Util.parseArray(this.tableComp.columns);
