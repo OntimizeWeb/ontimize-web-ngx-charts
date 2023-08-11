@@ -13,7 +13,7 @@
  *
  * Learn more in https://angular.io/guide/browser-support
  */
-import 'hammerjs/hammer';
+
 import 'zone.js/dist/zone';
 
 
