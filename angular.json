@@ -129,7 +129,6 @@
       }
     }
   },
-  "defaultProject": "ontimize-web-ngx-quickstart-charts",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
