@@ -3,6 +3,7 @@
   "compilerOptions": {
     "downlevelIteration": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es2018",
     "module": "es2020",
     "moduleResolution": "node",
