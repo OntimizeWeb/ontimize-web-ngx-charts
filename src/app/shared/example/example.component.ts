@@ -40,9 +40,9 @@ export class ExampleComponent {
   _files: IFiles = {};
   tabHeight: string = '350px';
 
-  @InputConverter()
+
   collapsible: boolean = false;
-  @InputConverter()
+
   collapsed: boolean = false;
 
   onShowSource: EventEmitter<any> = new EventEmitter<any>();
