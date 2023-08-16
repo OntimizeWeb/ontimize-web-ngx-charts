@@ -5,7 +5,6 @@ import {
   ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
   DefaultComponentStateService,
-  InputConverter,
   O_COMPONENT_STATE_SERVICE,
   OFormComponent,
   OntimizeServiceProvider,
@@ -163,9 +162,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   xFormatting: any;
   yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
-  @InputConverter()
+
   cHeight: number;
-  @InputConverter()
   cWidth: number;
 
   protected _options: any;
