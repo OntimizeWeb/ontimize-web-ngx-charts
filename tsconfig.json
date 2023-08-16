@@ -4,7 +4,7 @@
     "downlevelIteration": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "moduleResolution": "node",
     "outDir": "./dist",
@@ -18,6 +18,7 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   }
 }
