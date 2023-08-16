@@ -10,7 +10,6 @@
     "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "typeRoots": [
       "node_modules/@types"
