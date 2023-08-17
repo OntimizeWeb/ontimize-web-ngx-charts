@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, Type, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatRadioGroup } from '@angular/material/radio';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatLegacyRadioGroup as MatRadioGroup } from '@angular/material/legacy-radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
 import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry } from 'ontimize-web-ngx';
