@@ -2,6 +2,11 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli": {
+    "cache": {
+      "enabled": false
+    }
+  },
   "projects": {
     "ontimize-web-ngx-quickstart-charts": {
       "root": "",
@@ -93,8 +98,6 @@
               "src/assets/js/keyboard.js"
             ],
             "styles": [
-              "node_modules/ontimize-web-ngx/ontimize.scss",
-              "node_modules/ontimize-web-ngx-charts/styles.scss",
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],

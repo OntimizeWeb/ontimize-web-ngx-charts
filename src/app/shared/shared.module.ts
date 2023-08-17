@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AngularHighlightJsModule } from 'angular2-highlight-js';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { OChartModule } from 'ontimize-web-ngx-charts';
 
@@ -12,7 +11,6 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 @NgModule({
   imports: [
     OntimizeWebModule,
-    AngularHighlightJsModule,
     OChartModule,
     CustomChartComponentModule,
     ClipboardModule

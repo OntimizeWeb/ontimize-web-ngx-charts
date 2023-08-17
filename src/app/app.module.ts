@@ -1,8 +1,4 @@
 import { Injector, NgModule } from '@angular/core';
-import hljs from 'highlight.js/lib/highlight';
-import css from 'highlight.js/lib/languages/css';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
 import { APP_CONFIG, ONTIMIZE_PROVIDERS, OntimizeWebModule } from 'ontimize-web-ngx';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,10 +10,15 @@ import { NavigationBarService } from './shared/services/navigation-bar.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('xml', xml);
+export function getHighlightLanguages() {
+  return {
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+    css: () => import('highlight.js/lib/languages/css'),
+    xml: () => import('highlight.js/lib/languages/xml')
+  };
+}
 
 export function getCustomOntimizeServiceProvider(injector: Injector) {
   return new CustomOntimizeService(injector);
@@ -39,6 +40,7 @@ export const customProviders = [
     BrowserAnimationsModule,
     MainModule,
     AppRoutingModule,
+    HighlightModule,
     OntimizeWebModule.forRoot(CONFIG),
     FlexLayoutModule
   ],
@@ -51,7 +53,14 @@ export const customProviders = [
   providers: [
     { provide: APP_CONFIG, useValue: CONFIG },
     ONTIMIZE_PROVIDERS,
-    ...customProviders
+    ...customProviders,
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        lineNumbers: true,
+        languages: getHighlightLanguages()
+      }
+    },
   ]
 })
 export class AppModule { }
