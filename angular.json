@@ -31,10 +31,7 @@
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],
-            "scripts": [
-              "src/assets/js/domchange.js",
-              "src/assets/js/keyboard.js"
-            ],
+            "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -136,6 +133,12 @@
     },
     "@schematics/angular:directive": {
       "prefix": "app"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   }
 }
