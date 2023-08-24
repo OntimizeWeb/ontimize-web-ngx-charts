@@ -12,7 +12,7 @@ export class PieChartConfiguration extends ChartConfiguration {
   public showLeyend: boolean = true;
   public legend: ChartLegendConfiguration;
   /** Position of the legend (top or right) */
-  public legendPosition: 'top' | 'right' | 'bottom' = 'top';
+  public legendPosition: 'bellow' | 'right' | 'bottom' = 'bellow';
   public duration: number = 500;
   public cornerRadius: number = 0;
   public margin: ChartMarginConfiguration;

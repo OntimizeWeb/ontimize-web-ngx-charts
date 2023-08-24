@@ -2,7 +2,6 @@ import { OTranslateService } from 'ontimize-web-ngx';
 import { ChartConfiguration } from './ChartConfiguration.class';
 import { D3LocaleOptions } from './D3LocaleOptions';
 
-declare var d3: any;
 
 export class AbstractChartOptions {
 
@@ -74,35 +73,26 @@ export class AbstractChartOptions {
     };
   }
 
-  protected getTickFormatter(type: string): any {
-    let localeFormat = d3 && this.d3Locale ? d3.locale(this.d3Locale.getD3Options()) : undefined;
-
+  getTickFormatter(type: string): any {
     switch (type) {
       case 'intGrouped':
-        return localeFormat ? d => localeFormat.numberFormat(',d')(d)
-          : d => d3.format(',d')(d);
+        return d => d.toLocaleString();
       case 'floatGrouped':
-        return localeFormat ? d => localeFormat.numberFormat(',.02f')(d)
-          : d => d3.format(',.02f')(d);
+        return d => d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'int':
-        return localeFormat ? d => localeFormat.numberFormat('d')(d)
-          : d => d3.format('d')(d);
+        return d => Math.round(d).toLocaleString();
       case 'float':
-        return localeFormat ? d => localeFormat.numberFormat('.02f')(d)
-          : d => d3.format('.02f')(d);
+        return d => d.toFixed(2);
       case 'currency':
-        return localeFormat ? d => localeFormat.numberFormat('$,.02f')(d)
-          : d => d3.format('$,.02f')(d);
+        return d => d.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
-        return localeFormat ? d => localeFormat.timeFormat('%x')(new Date(d))
-          : d => d3.time.format('%x')(new Date(d));
+        return d => new Date(d).toLocaleDateString();
       case 'timeDay':
-        return d => d3.time.format('%H:%M:%S')(new Date(d));
+        return d => new Date(d).toLocaleTimeString();
       case 'timeDetail':
-        return localeFormat ? d => localeFormat.timeFormat('%x %H:%M:%S')(new Date(d))
-          : d => d3.time.format('%x %H:%M:%S')(new Date(d));
+        return d => new Date(d).toLocaleString();
       case 'percentage':
-        return d => d3.format('.0%')(d);
+        return d => (d * 100).toFixed(0) + '%';
       default:
         if (typeof type === 'function') {
           return type;

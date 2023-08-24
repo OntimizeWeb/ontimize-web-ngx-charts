@@ -1,6 +1,6 @@
 
 
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import {
   ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
@@ -13,6 +13,7 @@ import {
   Util
 } from 'ontimize-web-ngx';
 import { Subscription } from 'rxjs';
+import { PieChartComponent, BarHorizontalComponent, BarVerticalComponent, LineChartComponent, AreaChartStackedComponent, BarVerticalStackedComponent, BaseChartComponent } from '@swimlane/ngx-charts';
 
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import { ChartFactory } from '../../interfaces/ChartFactory.interface';
@@ -28,6 +29,7 @@ import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
+import { PieChartConfiguration } from '../../o-models';
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -151,6 +153,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;
   public static CHART_TYPES = CHART_TYPES;
+  @ViewChild('pieChart') pieChart: ElementRef<PieChartComponent>;
+  @ViewChild('donutChart') donutChart: ElementRef<PieChartComponent>;
+  @ViewChild('horizontalBarChart') horizontalBarChart: ElementRef<BarHorizontalComponent>;
+  @ViewChild('verticalBarChart') verticalBarChart: ElementRef<BarVerticalComponent>;
+  @ViewChild('lineChart') lineChart: ElementRef<LineChartComponent>;
+  @ViewChild('stackedAreaChart') stackedAreaChart: ElementRef<AreaChartStackedComponent>;
+  @ViewChild('multiBarChart') multiBarChart: ElementRef<BarVerticalStackedComponent>;
 
   /* Inputs */
   type: string;
@@ -160,11 +169,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   yAxisLabel: string;
   xAxisDataType: string;
   xFormatting: any;
+  yFormatting: any;
   yAxisDataType: string;
   protected chartParameters: ChartConfiguration;
 
-  cHeight: number;
-  cWidth: number;
+  cHeight: number = undefined;
+  cWidth: number = undefined;
 
   protected _options: any;
   dataArray: Object[] = [];
@@ -205,6 +215,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.xFormatting = this.getTickFormatter(this.xAxisDataType);
+    this.yFormatting = this.getTickFormatter(this.yAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
     //this.configureChartType();
@@ -227,6 +238,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       this.queryData();
     }
     //this.chartService.chartWrapper = this.chartWrapper;
+
   }
   getTickFormatter(type: string): any {
     switch (type) {
@@ -267,34 +279,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     const formattedDate = new Date(date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
     return formattedDate;
   }
-  // configureChartType() {
-  //   switch (this.type) {
-  //     case 'pie':
-  //     case 'donutChart':
-  //       this.loadComponent('ngx-charts-pie-chart');
-  //       break;
-  //     case 'line':
-  //       this.loadComponent('ngx-charts-line-chart');
-  //       break;
-  //     case 'multiBarHorizontalChart':
-  //       this.loadComponent('ngx-charts-bar-horizontal');
-  //       break;
-  //     case 'discreteBar':
-  //       this.loadComponent('ngx-charts-bar-vertical');
-  //       break;
-  //     case 'stackedAreaChart':
-  //       this.loadComponent('ngx-charts-area-chart');
-  //       break;
-  //     default:
-  //       console.error('Invalid chart type:', this.type);
-  //       break;
-  //   }
-  // }
-  // private loadComponent(componentName: string) {
-  //   const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentName);
-  //   this.viewContainerRef.clear();
-  //   this.viewContainerRef.createComponent(componentFactory);
-  // }
 
   ngAfterViewChecked(): void {
     let color: string;
@@ -414,6 +398,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
    * Configures the chart depending on input parameters
    */
   protected configureChart(): void {
+
+
     const chartConf: ChartConfiguration = this.getChartConfiguration();
     this.options = this.getChartFactory().createChartOptions(chartConf);
   }
@@ -442,7 +428,52 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     const adapter: ChartDataAdapter = factory.getAdapter(this.type);
     const adaptedResult = adapter.adaptResult(data);
     this.setDataArray(adaptedResult);
+
     this.configureChart();
+
+    let config = this.getChartConfiguration();
+    switch (this.type) {
+      case 'pie':
+        this.pieChart['view'] = [this.cWidth, this.cHeight];
+        this.pieChart['view'] = [config.width, config.height];
+        this.pieChart['labels'] = config['showLabels'];;
+        this.pieChart['legend'] = config['showLeyend'];
+        this.pieChart['legendPosition'] = config['legendPosition'];
+        this.pieChart['tooltipDisabled'] = !config['showTooltip'];
+        break;
+      case 'donutChart':
+        this.donutChart['view'] = [this.cWidth, this.cHeight];
+        this.donutChart['view'] = [config.width, config.height];
+        this.donutChart['labels'] = config['showLabels'];
+        this.donutChart['legend'] = config['showLeyend'];
+        this.donutChart['legendPosition'] = config['legendPosition'];
+        this.donutChart['tooltipDisabled'] = !config['showTooltip'];
+        break;
+      case 'stackedAreaChart':
+        this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
+        this.stackedAreaChart['view'] = [config.width, config.height];
+        this.stackedAreaChart['labels'] = config['showLabels'];
+        this.stackedAreaChart['legend'] = config['showLeyend'];
+        this.stackedAreaChart['legendPosition'] = config['legendPosition'];
+        this.stackedAreaChart['tooltipDisabled'] = !config['showTooltip'];
+        break;
+      case 'multiBarHorizontalChart':
+        this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
+        this.horizontalBarChart['view'] = [config.width, config.height];
+        this.horizontalBarChart['labels'] = config['showLabels'];
+        this.horizontalBarChart['legend'] = config['showLeyend'];
+        this.horizontalBarChart['legendPosition'] = config['legendPosition'];
+        break;
+      case 'line':
+        this.lineChart['view'] = [this.cWidth, this.cHeight];
+        this.lineChart['view'] = [config.width, config.height];
+        this.lineChart['labels'] = config['showLabels'];
+        this.lineChart['legend'] = config['showLeyend'];
+        this.lineChart['legendPosition'] = config['legendPosition'];
+        this.lineChart['tooltipDisabled'] = !config['showTooltip'];
+        break;
+    }
+
     this.cd.detectChanges();
   }
 
