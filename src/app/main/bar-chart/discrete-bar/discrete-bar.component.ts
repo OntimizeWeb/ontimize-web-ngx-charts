@@ -136,7 +136,7 @@ export class DiscreteBarComponent {
 `;
 
 
-declare var d3: any;
+
 @Component({
   selector: 'discrete-bar',
   templateUrl: './discrete-bar.component.html',
@@ -160,7 +160,9 @@ export class DiscreteBarComponent {
 
   constructor(protected injector: Injector) {}
 
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   ngAfterViewInit() {
 
     if (this.oForm) {
@@ -196,11 +198,7 @@ export class DiscreteBarComponent {
     });
 
     let chartService: ChartService = this.discreteBar.getChartService();
-    let chartOps = chartService.getChartOptions();
-    // Configuring x axis...
-    chartOps['yAxis']['tickFormat'] = function (d) {
-      return d3.format(',f')(d) + '€';
-    };
+
 
   }
 

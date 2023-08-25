@@ -16,7 +16,9 @@ export class PieComponent {
   chartParameters1: PieChartConfiguration;
   chartParameters2: PieChartConfiguration;
   chartParameters3: PieChartConfiguration;
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   constructor(protected http: HttpClient) {
 
     this.chartParameters1 = new PieChartConfiguration();
@@ -25,6 +27,7 @@ export class PieComponent {
 
     this.chartParameters2 = new PieChartConfiguration();
     this.chartParameters2.cornerRadius = 20;
+    this.chartParameters2.showLeyend = false;
     this.chartParameters2.legendPosition = 'bottom';
     this.chartParameters2.labelType = 'value';
     this.chartParameters2.legend.margin.top = 5;

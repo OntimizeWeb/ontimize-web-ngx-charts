@@ -1,35 +1,32 @@
-.main-container {
-  position: absolute;
-  top: 64px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  overflow: auto;
+.mat-slide-toggle {
+  margin: 8px 0;
 }
 
-.main-sidenav {
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+.o-table-column-centered {
+  text-align: center;
 }
 
-mat-sidenav {
-  width: 250px;
-  .mat-sidenav-content{
-    overflow: hidden;
+o-app-layout-sidenav {
+  text-align: right;
+  display: block;
+
+  .version {
+    padding: 12px;
+    font-size: .9em;
   }
 
 }
 
-.navigation-toolbar {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 100;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+a.active .new {
+  color: black;
 }
 
-.version {
-  padding: 8px;
-  font-size: 0.85em;
-  cursor: default;
+.new {
+  margin: 5px 5px 5px 8px;
+  padding: 0 2px 0 2px;
+  border-width: 1px;
+  border-style: dashed;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
 }

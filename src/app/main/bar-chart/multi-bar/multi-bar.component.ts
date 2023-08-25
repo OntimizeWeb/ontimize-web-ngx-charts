@@ -139,7 +139,7 @@ export class MultiBarComponent {
 `;
 
 
-declare var d3: any;
+
 @Component({
   selector: 'multi-bar',
   templateUrl: './multi-bar.component.html'
@@ -158,7 +158,7 @@ export class MultiBarComponent {
   chartParameters1: MultiBarChartConfiguration;
   chartParameters2: MultiBarChartConfiguration;
   colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
   };
   constructor(protected injector: Injector) {
     this.chartParameters1 = new MultiBarChartConfiguration();
@@ -175,16 +175,10 @@ export class MultiBarComponent {
     if (this.multiBar) {
       let chartService: ChartService = this.multiBar.getChartService();
       if (chartService) {
-        let chartOps = chartService.getChartOptions();
+
 
         // Configuring x axis...
-        chartOps['xAxis']['tickFormat'] =
-          function (d) {
-            return d3.time.format('%d/%m/%y')(new Date(d));
-          };
-        chartOps['yAxis']['tickFormat'] = function (d) {
-          return d3.format(',f')(d) + '€';
-        };
+
 
 
         // var xScale = d3.time.scale();
@@ -193,9 +187,8 @@ export class MultiBarComponent {
         //   maxdate = new Date(2009, 10, 1);
         // chartOps['xDomain'] = [mindate, maxdate];
         // Configuring y axis...
-        var yScale = d3.scale.linear();
-        chartOps['yScale'] = yScale;
-        chartOps['yDomain'] = [-1000, 6000];
+
+
       }
     }
 

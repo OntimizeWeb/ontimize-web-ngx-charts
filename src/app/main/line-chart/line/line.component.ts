@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ChartService, LineChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
-declare var d3: any;
+
 
 @Component({
   selector: 'line',
@@ -18,7 +18,7 @@ export class LineComponent {
   protected yAxis = 'MOVEMENT';
   protected xAxis = 'DATE_';
   colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+    domain: ['#8ab2d2', '#eeeeee', '#c5c5c5']
   };
   chartParameters1: LineChartConfiguration;
   chartParameters2: LineChartConfiguration;
@@ -46,17 +46,7 @@ export class LineComponent {
   }
 
   ngAfterViewInit() {
-    if (this.lineChartBasic) {
-      let chartService: ChartService = this.lineChartBasic.getChartService();
 
-      let chartOps = chartService.getChartOptions();
-      // Configuring x axis...
-      chartOps['xAxis']['tickFormat'] = function (d) {
-        console.log(d);
-        return d3.time.format('%d/%m/%y')(new Date(d));
-      };
-
-    }
   }
   getBasicUsageFiles() {
     return {

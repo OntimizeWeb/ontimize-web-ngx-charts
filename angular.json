@@ -21,6 +21,11 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -98,6 +103,8 @@
               "src/assets/js/keyboard.js"
             ],
             "styles": [
+              "node_modules/ontimize-web-ngx/ontimize.scss",
+              "node_modules/ontimize-web-ngx-charts/styles.scss",
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],
