@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "15.0.0",
+  "version": "15.0.0-SNAPSHOT-0",
   "description": "An implementation of nvD3 for Ontimize Web",
   "keywords": [
     "angular",
@@ -29,7 +29,7 @@
   "dependencies": {
     "dom-to-image": "^2.6.0",
     "@swimlane/ngx-charts": "^20.4.0",
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "ontimize-web-ngx": "file:ontimize-web-ngx-15.0.0.tgz"
