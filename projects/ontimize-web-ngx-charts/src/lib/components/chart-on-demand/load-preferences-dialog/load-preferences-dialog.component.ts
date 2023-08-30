@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { MatLegacySelectionList as MatSelectionList, MatLegacyListOption as MatListOption } from '@angular/material/legacy-list';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSelectionList, MatListOption } from '@angular/material/list';
 import { DialogService, Util } from 'ontimize-web-ngx';
 import { PreferencesService } from '../../../services/preferences.service';
 import { PreferencesConfiguration } from '../../../types/preferences-configuration.type';
