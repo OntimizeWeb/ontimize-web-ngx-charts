@@ -94,7 +94,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.sqlTypes = this.tableComp.getSqlTypes();
     this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
-    this.d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this.translateService = this.injector.get(OTranslateService);
     this.snackBarService = this.injector.get(SnackBarService);
   }
