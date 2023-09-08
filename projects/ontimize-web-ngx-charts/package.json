@@ -28,8 +28,9 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "@swimlane/ngx-charts": "^20.4.0",
-    "tslib": "^2.3.0"
+    "@swimlane/ngx-charts": "^20.4.1",
+    "tslib": "^2.3.0",
+    "nvd3": "^1.8.6"
   },
   "peerDependencies": {
     "ontimize-web-ngx": "file:ontimize-web-ngx-15.0.0.tgz"

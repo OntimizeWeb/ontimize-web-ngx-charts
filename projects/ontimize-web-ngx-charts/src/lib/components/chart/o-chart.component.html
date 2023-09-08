@@ -1,29 +1,31 @@
 <div>
   <ng-container [ngSwitch]="type">
 
-    <ngx-charts-pie-chart #pieChart *ngSwitchCase="'pie'" fxFlexFill class="chart" [results]="getAdaptData()" [legend]="false" [labels]="true"
-      [explodeSlices]="false" [doughnut]="false" [scheme]="color" arcWidth="0,5"></ngx-charts-pie-chart>
+    <ngx-charts-pie-chart #pieChart *ngSwitchCase="'pie'" fxFlexFill class="chart" [results]="getAdaptData()" [labels]="true" [explodeSlices]="false"
+      [doughnut]="false" [scheme]="color"></ngx-charts-pie-chart>
 
     <ngx-charts-pie-chart #donutChart *ngSwitchCase="'donutChart'" fxFlexFill class="chart" [view]="[cWidth, cHeight]" [results]="getAdaptData()"
       [legend]="false" [labels]="true" [explodeSlices]="false" [doughnut]="true" [scheme]="color"></ngx-charts-pie-chart>
 
-    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
       [yAxisTickFormatting]="yFormatting"></ngx-charts-bar-horizontal>
 
-    <ngx-charts-bar-vertical #verticalBarChart *ngSwitchCase="'discreteBar'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true"
-      [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" showDataLabel="true"
+    <ngx-charts-bar-vertical #verticalBarChart *ngSwitchCase="'discreteBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
       [yAxisTickFormatting]="yFormatting"></ngx-charts-bar-vertical>
 
     <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true"
-      [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"></ngx-charts-line-chart>
+      [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
+      [showGridLines]="showGridLines"></ngx-charts-line-chart>
 
     <ngx-charts-area-chart-stacked #stackedAreaChart *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
       [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
       [yAxisTickFormatting]="yFormatting"></ngx-charts-area-chart-stacked>
 
-    <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true"
-      [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting">
+    <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+      [yAxisTickFormatting]="yFormatting">
     </ngx-charts-bar-vertical-stacked>
 
   </ng-container>

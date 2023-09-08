@@ -5,6 +5,7 @@ import {
   ComponentStateServiceProvider,
   DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
   DefaultComponentStateService,
+  InputConverter,
   O_COMPONENT_STATE_SERVICE,
   OFormComponent,
   OntimizeServiceProvider,
@@ -135,7 +136,9 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'yAxisDataType: y-data-type',
   'data',
   'chartParameters: chart-parameters',
-  'color'
+  'color',
+  'showGridLines: show-grid-lines',
+  'showDataLabel:show-data-label'
 ];
 
 @Component({
@@ -171,6 +174,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   xFormatting: any;
   yFormatting: any;
   yAxisDataType: string;
+  @InputConverter()
+  showGridLines: boolean = false;
+  @InputConverter()
+  showDataLabel: boolean = true;
   protected chartParameters: ChartConfiguration;
 
   cHeight: number = undefined;
@@ -440,6 +447,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.pieChart['legend'] = config['showLeyend'];
         this.pieChart['legendPosition'] = config['legendPosition'];
         this.pieChart['tooltipDisabled'] = !config['showTooltip'];
+        this.pieChart['scheme'] = config['color'];
         break;
       case 'donutChart':
         this.donutChart['view'] = [this.cWidth, this.cHeight];
@@ -448,6 +456,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.donutChart['legend'] = config['showLeyend'];
         this.donutChart['legendPosition'] = config['legendPosition'];
         this.donutChart['tooltipDisabled'] = !config['showTooltip'];
+        this.donutChart['scheme'] = config['color'];
         break;
       case 'stackedAreaChart':
         this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
@@ -463,6 +472,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.horizontalBarChart['labels'] = config['showLabels'];
         this.horizontalBarChart['legend'] = config['showLeyend'];
         this.horizontalBarChart['legendPosition'] = config['legendPosition'];
+        this.horizontalBarChart['xAxis'] = config['showXAxis'];
+        this.horizontalBarChart['yAxis'] = config['showYAxis'];
+        this.horizontalBarChart['showGridLines'] = this.showGridLines;
         break;
       case 'line':
         this.lineChart['view'] = [this.cWidth, this.cHeight];
@@ -471,6 +483,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.lineChart['legend'] = config['showLeyend'];
         this.lineChart['legendPosition'] = config['legendPosition'];
         this.lineChart['tooltipDisabled'] = !config['showTooltip'];
+        this.lineChart['xAxis'] = config['showXAxis'];
+        this.lineChart['yAxis'] = config['showYAxis'];
         break;
     }
 
