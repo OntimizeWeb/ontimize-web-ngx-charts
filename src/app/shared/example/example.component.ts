@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { InputConverter } from 'ontimize-web-ngx';
 
 export interface IFiles {
   html?: any;
