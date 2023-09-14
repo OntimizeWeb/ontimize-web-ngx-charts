@@ -1,11 +1,17 @@
-
-
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import {
+  AreaChartStackedComponent,
+  BarHorizontalComponent,
+  BarVerticalComponent,
+  BarVerticalStackedComponent,
+  LineChartComponent,
+  PieChartComponent
+} from '@swimlane/ngx-charts';
+import {
+  BooleanInputConverter,
   ComponentStateServiceProvider,
-  DEFAULT_INPUTS_O_SERVICE_BASE_COMPONENT,
   DefaultComponentStateService,
-  InputConverter,
+  NumberInputConverter,
   O_COMPONENT_STATE_SERVICE,
   OFormComponent,
   OntimizeServiceProvider,
@@ -14,7 +20,6 @@ import {
   Util
 } from 'ontimize-web-ngx';
 import { Subscription } from 'rxjs';
-import { PieChartComponent, BarHorizontalComponent, BarVerticalComponent, LineChartComponent, AreaChartStackedComponent, BarVerticalStackedComponent, BaseChartComponent } from '@swimlane/ngx-charts';
 
 import { ChartDataAdapter } from '../../interfaces/ChartDataAdapterFactory.interface';
 import { ChartFactory } from '../../interfaces/ChartFactory.interface';
@@ -30,7 +35,7 @@ import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
-import { PieChartConfiguration } from '../../o-models';
+
 
 export const CHART_TYPES = [
   'bubbleChart',
@@ -174,13 +179,16 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   xFormatting: any;
   yFormatting: any;
   yAxisDataType: string;
-  @InputConverter()
+  @BooleanInputConverter()
   showGridLines: boolean = false;
-  @InputConverter()
+  @BooleanInputConverter()
   showDataLabel: boolean = true;
   protected chartParameters: ChartConfiguration;
 
+  @NumberInputConverter()
   cHeight: number = undefined;
+
+  @NumberInputConverter()
   cWidth: number = undefined;
 
   protected _options: any;
