@@ -33,6 +33,6 @@
     "nvd3": "^1.8.6"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "file:ontimize-web-ngx-15.0.0.tgz"
+    "ontimize-web-ngx": "file:ontimize-web-ngx-15.0.0-SNAPSHOT-2.tgz"
   }
 }
