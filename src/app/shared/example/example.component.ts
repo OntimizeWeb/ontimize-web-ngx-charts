@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-
 export interface IFiles {
   html?: any;
   scss?: any;
