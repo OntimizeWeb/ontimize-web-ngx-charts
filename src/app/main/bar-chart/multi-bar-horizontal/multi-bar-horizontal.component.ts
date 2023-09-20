@@ -16,7 +16,53 @@ export class MultiBarHorizontalComponent {
   protected multiBarHor: OChartComponent;
 
   chartParameters: MultiBarHorizontalChartConfiguration;
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
+  data = [
+    {
+      "name": "Germany",
+      "value": 40632,
+      "extra": {
+        "code": "de"
+      }
+    },
+    {
+      "name": "United States",
+      "value": 50000,
+      "extra": {
+        "code": "us"
+      }
+    },
+    {
+      "name": "France",
+      "value": 36745,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "United Kingdom",
+      "value": 36240,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "Spain",
+      "value": 33000,
+      "extra": {
+        "code": "es"
+      }
+    },
+    {
+      "name": "Italy",
+      "value": 35800,
+      "extra": {
+        "code": "it"
+      }
+    }
+  ];
   constructor() {
     this.chartParameters = new MultiBarHorizontalChartConfiguration();
     this.chartParameters.margin.left = 100;

@@ -153,6 +153,187 @@ export class MultiBarComponent {
   protected xAxis = 'DATE_';
 
   data: Array<Object>;
+
+
+
+
+
+  data2 =
+    [
+      {
+        "name": 1235490657851,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 951
+          },
+          {
+            "name": "Average Balance",
+            "value": 951
+          },
+          {
+            "name": "Total Balance",
+            "value": 951
+          }
+        ]
+      },
+      {
+        "name": 1236110357961,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -80
+          },
+          {
+            "name": "Average Balance",
+            "value": 911
+          },
+          {
+            "name": "Total Balance",
+            "value": 871
+          }
+        ]
+      },
+      {
+        "name": 1236402213822,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 653
+          },
+          {
+            "name": "Average Balance",
+            "value": 1115.3333333333333
+          },
+          {
+            "name": "Total Balance",
+            "value": 1524
+          }
+        ]
+      },
+      {
+        "name": 1236611284898,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -548
+          },
+          {
+            "name": "Average Balance",
+            "value": 1080.5
+          },
+          {
+            "name": "Total Balance",
+            "value": 976
+          }
+        ]
+      },
+      {
+        "name": 1242673437363,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -949
+          },
+          {
+            "name": "Average Balance",
+            "value": 869.8
+          },
+          {
+            "name": "Total Balance",
+            "value": 27
+          }
+        ]
+      },
+      {
+        "name": 1245260962425,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 552
+          },
+          {
+            "name": "Average Balance",
+            "value": 821.3333333333334
+          },
+          {
+            "name": "Total Balance",
+            "value": 579
+          }
+        ]
+      },
+      {
+        "name": 1246875825338,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 432
+          },
+          {
+            "name": "Average Balance",
+            "value": 848.4285714285714
+          },
+          {
+            "name": "Total Balance",
+            "value": 1011
+          }
+        ]
+      },
+      {
+        "name": 1254322811810,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 1756
+          },
+          {
+            "name": "Average Balance",
+            "value": 1088.25
+          },
+          {
+            "name": "Total Balance",
+            "value": 2767
+          }
+        ]
+      },
+      {
+        "name": 1254388791367,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -169
+          },
+          {
+            "name": "Average Balance",
+            "value": 1256
+          },
+          {
+            "name": "Total Balance",
+            "value": 2598
+          }
+        ]
+      },
+      {
+        "name": 1255948329905,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -23
+          },
+          {
+            "name": "Average Balance",
+            "value": 1387.9
+          },
+          {
+            "name": "Total Balance",
+            "value": 2575
+          }
+        ]
+      }
+    ]
+
+
+
   protected serviceResponse: string;
 
   chartParameters1: MultiBarChartConfiguration;

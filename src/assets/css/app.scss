@@ -1,26 +1,11 @@
-@use 'ontimize-web-ngx/theming/themes/ontimize.scss' as theme;
-@use 'ontimize-web-ngx/theming/ontimize-theme.scss';
+@use 'ontimize-web-ngx/theming/themes/implatform-fashion-default-theme.scss' as theme;
+@use 'ontimize-web-ngx/theming/implatform-fashion-theme.scss' as theme-styles;
 @use 'ontimize-web-ngx/theme.scss' as ontimize-web-ngx-theme;
-@use 'ontimize-web-ngx/theming/ontimize-theme-lite.scss';
 @use '../../app/shared/example/example.theme.scss' as example;
 @use '../../app/main/main-theme.scss' as main;
 
-@include ontimize-theme.ontimize-theme-styles(theme.$theme);
-
-// Include ontimize-lite theme
-@include ontimize-theme-lite.ontimize-theme-styles-lite(theme.$theme, ontimize-theme-lite.$typography);
-
-// After define theme, it is necessary to transfer color and typography to Ontimize Web framework
-@include ontimize-web-ngx-theme.o-material-theme(theme.$theme, ontimize-theme.$typography);
-
-
+@include ontimize-web-ngx-theme.o-material-theme(theme.$theme, theme-styles.$typography);
+@include theme-styles.implatform-fashion-theme-styles(theme.$theme);
 @include example.example-component-theme(theme.$theme);
 
-
 @include main.main-theme(theme.$theme);
-
-.nvd3 text,
-.nvd3 .title,
-.nvtooltip {
-  font-family: Roboto !important;
-}
