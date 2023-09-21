@@ -12,7 +12,9 @@ export class RadialPercentChartConfiguration extends ChartConfiguration {
   legendPosition: string = 'top';
   title: string = '';
   titleOffset: number = 0;
-  color: Array<string> = ['green', 'grey'];
+  public color: {
+    domain: []
+  };
   duration: number = 500;
   growOnHover: boolean = false;
 }

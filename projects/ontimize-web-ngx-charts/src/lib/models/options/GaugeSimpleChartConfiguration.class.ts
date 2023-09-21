@@ -3,7 +3,7 @@ import { ChartConfiguration } from './ChartConfiguration.class';
 export class GaugeSimpleChartConfiguration extends ChartConfiguration {
   readonly type: string = 'gaugeSimpleChart';
 
-  color: Array<string> = ['#88ac67', '#f78f20', '#db4e4e'];
+  public color= { domain: ['#88ac67', '#f78f20', '#db4e4e'] };
   title: string = '';
   showMinMaxLabels: boolean = false;
   min: number = 0;

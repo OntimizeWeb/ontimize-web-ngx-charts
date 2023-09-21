@@ -20,6 +20,11 @@ export class OChartOnDemandUtils {
       chartConf.yAxis = preferences.selectedYAxis;
       chartConf.xLabel = preferences.selectedXAxis;
       chartConf.yLabel = preferences.selectedYAxis.toString();
+      chartConf.color = preferences.selectedPalette;
+      chartConf.xDataType = preferences.selectedXDataType;
+      chartConf.yDataType = preferences.selectedYDataType;
+      // chartConf.xDataType=preferences.selectedXAxisType
+      // chartConf.yDataType=preferences.selectedYAxisType
       switch (preferences.selectedTypeChart) {
         case 'line':
           this.configureLineChart(chartConf as LineChartConfiguration, preferences, oTableOptions);
@@ -49,7 +54,7 @@ export class OChartOnDemandUtils {
   }
   protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
     chartConf.agroup = true;
-    chartConf.showLegend = true;
+    chartConf.showLegend = false;
     chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
@@ -62,7 +67,7 @@ export class OChartOnDemandUtils {
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
-    chartConf.legendPosition = 'bottom';
+    chartConf.showLeyend = false;
     chartConf.labelType = 'value';
     chartConf.color = preferences.selectedPalette;
     const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType, preferences.selectedYAxis[0], oTableOptions);

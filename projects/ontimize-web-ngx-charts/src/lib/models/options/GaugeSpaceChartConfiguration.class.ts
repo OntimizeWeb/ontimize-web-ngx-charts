@@ -9,7 +9,6 @@ export class GaugeSpaceChartConfiguration extends ChartConfiguration {
   legendPosition: string = 'top';
   title: string = '';
   titleOffset: number = 0;
-  color: string = 'blue';
   duration: number = 500;
   growOnHover: boolean = false;
 }

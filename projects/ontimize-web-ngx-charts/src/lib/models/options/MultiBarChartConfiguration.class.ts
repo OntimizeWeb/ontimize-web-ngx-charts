@@ -31,7 +31,9 @@ export class MultiBarChartConfiguration extends ChartConfiguration {
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
 
-  public color: string[] = null;
+  public color: {
+    domain: []
+  } = null;
 
   constructor() {
     super();

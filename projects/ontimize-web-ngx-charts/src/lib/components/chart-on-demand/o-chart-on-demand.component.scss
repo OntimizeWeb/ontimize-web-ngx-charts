@@ -115,6 +115,18 @@
       /* Centrar verticalmente */
     }
 
+    .dark-sidenav-content {
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Centrar horizontalmente */
+      justify-content: center;
+      /* Centrar verticalmente */
+    }
+
     .mat-sidenav-content {
       overflow: hidden;
 

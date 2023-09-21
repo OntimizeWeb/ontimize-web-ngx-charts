@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatRadioGroup } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
-import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry } from 'ontimize-web-ngx';
+import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry, AppearanceService } from 'ontimize-web-ngx';
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
 import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
@@ -50,11 +50,12 @@ export class OChartOnDemandComponent implements AfterViewInit {
   comboData: Array<Object>;
   comboPalette = [
     {
-      value: 'palette1', colors: ['#003CC4', '#0058D2', '#006BDB', '#2681E0', '#4D97E6', '#80B5ED', '#B3D3F4', '#E0EDFB']
+      value: 'palette1', colors: { domain: ['#003CC4', '#0058D2', '#006BDB', '#2681E0', '#4D97E6', '#80B5ED', '#B3D3F4', '#E0EDFB'] }
     },
-    { value: 'palette2', colors: ['#063679', '#0E5293', '#1464A5', '#377BB3', '#5B93C0', '#8AB2D2', '#B9D1E4', '#E3ECF4'] },
-    { value: 'palette3', colors: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] },
-    { value: 'palette4', colors: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] }];
+    { value: 'palette2', colors: { domain: ['#063679', '#0E5293', '#1464A5', '#377BB3', '#5B93C0', '#8AB2D2', '#B9D1E4', '#E3ECF4'] } },
+    { value: 'palette3', colors: { domain: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] } },
+    { value: 'palette4', colors: { domain: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] } }]
+    ;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   @ViewChild('chart') chart: OChartComponent;
@@ -68,6 +69,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   arrayYAxis = [];
   sqlTypes = {};
   public d3Locale;
+  isDarkMode: boolean;
 
   @Input() description: string = '';
   @Input() buttonText: string = '';
@@ -86,6 +88,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     protected injector: Injector,
     private ontimizeMatIconRegistry: OntimizeMatIconRegistry,
     @Inject(MAT_DIALOG_DATA) public tableComp: OTableComponent,
+    private appearanceService: AppearanceService
   ) {
     this.dialogService = this.injector.get<DialogService>(DialogService as Type<DialogService>);
     this.currentPreference = new DefaultOChartPreferences();
@@ -108,6 +111,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
       })
 
     }
+    this.appearanceService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -141,12 +147,14 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedYAxis = [event.value];
     let type = this.sqlTypes[this.currentPreference.selectedYAxis[0]];
     this.currentPreference.selectedYAxisType = type != undefined ? type : SQLTypes.OTHER;
+    this.currentPreference.selectedYDataType = SQLTypes.getSQLTypeKey(type);
   }
 
   captureValueXAxis(event: any) {
     this.currentPreference.selectedXAxis = event.value;
     let type = this.sqlTypes[this.currentPreference.selectedXAxis];
     this.currentPreference.selectedXAxisType = type != undefined ? type : SQLTypes.OTHER;
+    this.currentPreference.selectedXDataType = SQLTypes.getSQLTypeKey(type);
   }
   captureValuePalette(event: any) {
     this.currentPreference.selectedPalette = event.value;
@@ -405,5 +413,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   getPaletteIcon() {
     const foundObject = this.comboPalette.find(color => color.colors == this.currentPreference.selectedPalette)
     return "ontimize:" + foundObject.value + "";
+  }
+  get chartClass(): string {
+    return this.isDarkMode ? 'dark-sidenav-content' : 'title-sidenav-content';
   }
 }

@@ -8,6 +8,7 @@ import {
   PieChartComponent
 } from '@swimlane/ngx-charts';
 import {
+  AppearanceService,
   BooleanInputConverter,
   ComponentStateServiceProvider,
   DefaultComponentStateService,
@@ -164,10 +165,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @ViewChild('pieChart') pieChart: ElementRef<PieChartComponent>;
   @ViewChild('donutChart') donutChart: ElementRef<PieChartComponent>;
   @ViewChild('horizontalBarChart') horizontalBarChart: ElementRef<BarHorizontalComponent>;
-  @ViewChild('verticalBarChart') verticalBarChart: ElementRef<BarVerticalComponent>;
   @ViewChild('lineChart') lineChart: ElementRef<LineChartComponent>;
   @ViewChild('stackedAreaChart') stackedAreaChart: ElementRef<AreaChartStackedComponent>;
   @ViewChild('multiBarChart') multiBarChart: ElementRef<BarVerticalStackedComponent>;
+  @ViewChild('discreteBarChart') discreteBarChart: ElementRef<BarVerticalComponent>;
 
   /* Inputs */
   type: string;
@@ -216,10 +217,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected translateService: OTranslateService;
   cd: ChangeDetectorRef;
   chartData: any[] = [];
+  isDarkMode: boolean;
+
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector
+    protected injector: Injector,
+    private appearanceService: AppearanceService
   ) {
     super(injector);
     this.translateService = this.injector.get(OTranslateService);
@@ -245,9 +249,14 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.langSubscription = this.translateService.onLanguageChanged.subscribe(_event => {
       this.configureChart();
     });
-
+    this.appearanceService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
   }
 
+  get chartClass(): string {
+    return this.isDarkMode ? 'dark-chart' : '';
+  }
   ngAfterViewInit(): void {
     if (this.queryOnInit && this.dataService !== undefined) {
       this.queryData();
@@ -268,6 +277,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'currency':
         return d => d.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
+      case 'TIME':
+      case 'TIMESTAMP':
+      case 'DATE':
         return d => new Date(d).toLocaleDateString();
       case 'timeDay':
         return d => new Date(d).toLocaleTimeString();
@@ -295,31 +307,31 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return formattedDate;
   }
 
-  ngAfterViewChecked(): void {
-    let color: string;
-    switch (this.type) {
-      case 'gaugeDashboardChart':
-        color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
-        break;
-      case 'gaugeSlimChart':
-        color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
-        break;
-      case 'gaugeSpaceChart':
-        color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
-        break;
-      case 'radialPercentChart':
-        color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
-        break;
-      default:
-        break;
-    }
-    if (color) {
-      const elements = document.getElementsByClassName('nv-pie-title');
-      for (let i = 0; i < elements.length; i++) {
-        (elements.item(i) as SVGTextElement).style.fill = color;
-      }
-    }
-  }
+  // ngAfterViewChecked(): void {
+  //   let color: string;
+  //   switch (this.type) {
+  //     case 'gaugeDashboardChart':
+  //       color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
+  //       break;
+  //     case 'gaugeSlimChart':
+  //       color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
+  //       break;
+  //     case 'gaugeSpaceChart':
+  //       color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
+  //       break;
+  //     case 'radialPercentChart':
+  //       color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   if (color) {
+  //     const elements = document.getElementsByClassName('nv-pie-title');
+  //     for (let i = 0; i < elements.length; i++) {
+  //       (elements.item(i) as SVGTextElement).style.fill = color;
+  //     }
+  //   }
+  // }
 
   ngOnDestroy(): void {
     super.destroy();
@@ -399,6 +411,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     } else {
       return this.dataArray;
     }
+
   }
 
   getChartFactory(): ChartFactory {
@@ -446,6 +459,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
     this.configureChart();
 
+    this.configureParams();
+
+    this.cd.detectChanges();
+  }
+  configureParams() {
     let config = this.getChartConfiguration();
     switch (this.type) {
       case 'pie':
@@ -455,7 +473,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.pieChart['legend'] = config['showLeyend'];
         this.pieChart['legendPosition'] = config['legendPosition'];
         this.pieChart['tooltipDisabled'] = !config['showTooltip'];
-        this.pieChart['scheme'] = config['color'];
+        if (Util.isDefined(config['color'])) {
+          this.pieChart['scheme'] = config['color'];
+        }
+        if (Util.isDefined(config['xDataType'])) {
+          this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
         break;
       case 'donutChart':
         this.donutChart['view'] = [this.cWidth, this.cHeight];
@@ -464,7 +487,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.donutChart['legend'] = config['showLeyend'];
         this.donutChart['legendPosition'] = config['legendPosition'];
         this.donutChart['tooltipDisabled'] = !config['showTooltip'];
-        this.donutChart['scheme'] = config['color'];
+        if (Util.isDefined(config['color'])) {
+          this.donutChart['scheme'] = config['color'];
+        }
+        //this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
         break;
       case 'stackedAreaChart':
         this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
@@ -473,6 +499,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.stackedAreaChart['legend'] = config['showLeyend'];
         this.stackedAreaChart['legendPosition'] = config['legendPosition'];
         this.stackedAreaChart['tooltipDisabled'] = !config['showTooltip'];
+        if (Util.isDefined(config['color'])) {
+          this.stackedAreaChart['scheme'] = config['color'];
+        }
+        // this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        // this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         break;
       case 'multiBarHorizontalChart':
         this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
@@ -483,6 +514,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.horizontalBarChart['xAxis'] = config['showXAxis'];
         this.horizontalBarChart['yAxis'] = config['showYAxis'];
         this.horizontalBarChart['showGridLines'] = this.showGridLines;
+        if (Util.isDefined(config['color'])) {
+          this.horizontalBarChart['scheme'] = config['color'];
+        }
+        //this.horizontalBarChart['scheme'] = config['color'];
+        // this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        // this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         break;
       case 'line':
         this.lineChart['view'] = [this.cWidth, this.cHeight];
@@ -493,12 +530,44 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.lineChart['tooltipDisabled'] = !config['showTooltip'];
         this.lineChart['xAxis'] = config['showXAxis'];
         this.lineChart['yAxis'] = config['showYAxis'];
+        if (Util.isDefined(config['color'])) {
+          this.lineChart['scheme'] = config['color'];
+        }
+        // this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        // this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        break;
+      case 'discreteBar':
+        this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
+        this.discreteBarChart['view'] = [config.width, config.height];
+        this.discreteBarChart['labels'] = config['showLabels'];
+        this.discreteBarChart['legend'] = config['showLeyend'];
+        this.discreteBarChart['legendPosition'] = config['legendPosition'];
+        this.discreteBarChart['tooltipDisabled'] = !config['showTooltip'];
+        this.discreteBarChart['xAxis'] = config['showXAxis'];
+        this.discreteBarChart['yAxis'] = config['showYAxis'];
+        this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(config['color'])) {
+          this.discreteBarChart['scheme'] = config['color'];
+        }
+        break;
+      case 'multiBar':
+        this.multiBarChart['view'] = [this.cWidth, this.cHeight];
+        this.multiBarChart['view'] = [config.width, config.height];
+        this.multiBarChart['labels'] = config['showLabels'];
+        this.multiBarChart['legend'] = config['showLeyend'];
+        this.multiBarChart['legendPosition'] = config['legendPosition'];
+        this.multiBarChart['tooltipDisabled'] = !config['showTooltip'];
+        this.multiBarChart['xAxis'] = config['showXAxis'];
+        this.multiBarChart['yAxis'] = config['showYAxis'];
+        this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(config['color'])) {
+          this.multiBarChart['scheme'] = config['color'];
+        }
         break;
     }
-
-    this.cd.detectChanges();
   }
-
   getAttributesValuesToQuery(): Array<string> {
     let columns = super.getAttributesValuesToQuery();
     if (this.yAxisArray && this.yAxisArray.length) {
@@ -584,9 +653,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.onPinch.emit(event);
   }
   updateOptions(options: any, type: string) {
-    //this.setChartConfiguration(options);
-    this.ngOnInit();
+    super.initialize();
+    this.setChartConfiguration(options);
     this.type = type;
+    this.configureParams();
   }
 
 }

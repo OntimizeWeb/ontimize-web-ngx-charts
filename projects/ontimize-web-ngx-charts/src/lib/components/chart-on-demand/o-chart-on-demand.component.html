@@ -95,7 +95,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="sidenav-container-content">
-        <div fxLayout="column" id="sidenav-container-content" fxFlex class="title-sidenav-content">
+        <div fxLayout="column" id="sidenav-container-content" fxFlex [ngClass]="chartClass">
           <!-- <ng-lottie height="95%" class="lottie" [options]="options" *ngIf="showPlaceholder" fxFlex></ng-lottie> -->
           <div fxLayout="column" fxLayoutAlign="start start" *ngIf="!showPlaceholder">
             <h2 class="title">{{currentPreference.title}}</h2>

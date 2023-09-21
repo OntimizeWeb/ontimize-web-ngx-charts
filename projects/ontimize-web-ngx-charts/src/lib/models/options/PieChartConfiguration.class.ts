@@ -25,7 +25,9 @@ export class PieChartConfiguration extends ChartConfiguration {
   public labelSunbeamLayout: boolean = true;
   /** Whether pie chart labels should be outside the slices instead of inside them */
   public labelsOutside: boolean = false;
-  public color: string[];
+  public color: {
+    domain: []
+  };
   /** Formats value(s) */
   public valueType: string;
   /** Enables or disabled the tooltip */
