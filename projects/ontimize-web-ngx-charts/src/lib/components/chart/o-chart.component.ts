@@ -197,7 +197,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   protected dataService: any;
   protected yAxisArray: Array<string> = [];
   color: Object = "air";
-
   protected ChartOptions: any;
 
   protected formDataSubcribe;
@@ -261,8 +260,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (this.queryOnInit && this.dataService !== undefined) {
       this.queryData();
     }
-    //this.chartService.chartWrapper = this.chartWrapper;
-
   }
   getTickFormatter(type: string): any {
     switch (type) {
@@ -490,7 +487,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         if (Util.isDefined(config['color'])) {
           this.donutChart['scheme'] = config['color'];
         }
-        //this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+        if (Util.isDefined(config['xDataType'])) {
+          this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
         break;
       case 'stackedAreaChart':
         this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
@@ -502,8 +501,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         if (Util.isDefined(config['color'])) {
           this.stackedAreaChart['scheme'] = config['color'];
         }
-        // this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        // this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(config['xDataType'])) {
+          this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
+        if (Util.isDefined(config['yDataType'])) {
+          this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        }
         break;
       case 'multiBarHorizontalChart':
         this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
@@ -517,9 +520,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         if (Util.isDefined(config['color'])) {
           this.horizontalBarChart['scheme'] = config['color'];
         }
-        //this.horizontalBarChart['scheme'] = config['color'];
-        // this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        // this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(config['xDataType'])) {
+          this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
+        if (Util.isDefined(config['yDataType'])) {
+          this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        }
         break;
       case 'line':
         this.lineChart['view'] = [this.cWidth, this.cHeight];
@@ -533,8 +539,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         if (Util.isDefined(config['color'])) {
           this.lineChart['scheme'] = config['color'];
         }
-        // this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        // this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(config['xDataType'])) {
+          this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
+        if (Util.isDefined(config['yDataType'])) {
+          this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        }
         break;
       case 'discreteBar':
         this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
@@ -545,10 +555,14 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.discreteBarChart['tooltipDisabled'] = !config['showTooltip'];
         this.discreteBarChart['xAxis'] = config['showXAxis'];
         this.discreteBarChart['yAxis'] = config['showYAxis'];
-        this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         if (Util.isDefined(config['color'])) {
           this.discreteBarChart['scheme'] = config['color'];
+        }
+        if (Util.isDefined(config['xDataType'])) {
+          this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
+        if (Util.isDefined(config['yDataType'])) {
+          this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         }
         break;
       case 'multiBar':
@@ -560,10 +574,14 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.multiBarChart['tooltipDisabled'] = !config['showTooltip'];
         this.multiBarChart['xAxis'] = config['showXAxis'];
         this.multiBarChart['yAxis'] = config['showYAxis'];
-        this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         if (Util.isDefined(config['color'])) {
           this.multiBarChart['scheme'] = config['color'];
+        }
+        if (Util.isDefined(config['xDataType'])) {
+          this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+        }
+        if (Util.isDefined(config['yDataType'])) {
+          this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
         }
         break;
     }
@@ -653,9 +671,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.onPinch.emit(event);
   }
   updateOptions(options: any, type: string) {
-    super.initialize();
-    this.setChartConfiguration(options);
     this.type = type;
+    this.setChartConfiguration(options);
     this.configureParams();
   }
 
