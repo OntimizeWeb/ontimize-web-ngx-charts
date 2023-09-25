@@ -15,7 +15,7 @@
 
 ## 📜 Introduction
 
-The Ontimize Web Charts is an implementation of nvD3 and d3 charts library for using into OntimizeWeb web applications.
+The Ontimize Web Charts is an implementation of ngx-charts and d3 charts library for using into OntimizeWeb web applications.
 
 ### 📖 Documentation
 
@@ -32,7 +32,7 @@ We would love any feedback you have or to know when you encounter issues, by fil
 
 ## :gear: Development
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
 
 ### Installation
 
