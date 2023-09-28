@@ -236,7 +236,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.yFormatting = this.getTickFormatter(this.yAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
-    //this.configureChartType();
 
     this.yAxisArray = Util.parseArray(this.yAxis);
     if (Util.isDefined(this.state['type'])) {
