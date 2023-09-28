@@ -481,8 +481,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'donutChart':
-        this.donutChart['view'] = [this.cWidth, this.cHeight];
-        this.donutChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.donutChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.donutChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.donutChart['labels'] = config['showLabels'];
         this.donutChart['legend'] = config['showLeyend'];
         this.donutChart['legendPosition'] = config['legendPosition'];
@@ -495,8 +499,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'stackedAreaChart':
-        this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
-        this.stackedAreaChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.stackedAreaChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.stackedAreaChart['labels'] = config['showLabels'];
         this.stackedAreaChart['legend'] = config['showLeyend'];
         this.stackedAreaChart['legendPosition'] = config['legendPosition'];
@@ -512,8 +520,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'multiBarHorizontalChart':
-        this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
-        this.horizontalBarChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.horizontalBarChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.horizontalBarChart['labels'] = config['showLabels'];
         this.horizontalBarChart['legend'] = config['showLeyend'];
         this.horizontalBarChart['legendPosition'] = config['legendPosition'];
@@ -531,8 +543,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'line':
-        this.lineChart['view'] = [this.cWidth, this.cHeight];
-        this.lineChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.lineChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.lineChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.lineChart['labels'] = config['showLabels'];
         this.lineChart['legend'] = config['showLeyend'];
         this.lineChart['legendPosition'] = config['legendPosition'];
@@ -550,8 +566,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'discreteBar':
-        this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
-        this.discreteBarChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.discreteBarChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.discreteBarChart['labels'] = config['showLabels'];
         this.discreteBarChart['legend'] = config['showLeyend'];
         this.discreteBarChart['legendPosition'] = config['legendPosition'];
@@ -569,8 +589,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
       case 'multiBar':
-        this.multiBarChart['view'] = [this.cWidth, this.cHeight];
-        this.multiBarChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.multiBarChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.multiBarChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.multiBarChart['labels'] = config['showLabels'];
         this.multiBarChart['legend'] = config['showLeyend'];
         this.multiBarChart['legendPosition'] = config['legendPosition'];
