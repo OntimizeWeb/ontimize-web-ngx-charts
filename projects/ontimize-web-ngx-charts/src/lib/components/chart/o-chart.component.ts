@@ -463,8 +463,12 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let config = this.getChartConfiguration();
     switch (this.type) {
       case 'pie':
-        this.pieChart['view'] = [this.cWidth, this.cHeight];
-        this.pieChart['view'] = [config.width, config.height];
+        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          this.pieChart['view'] = [config.width, config.height];
+        }
+        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          this.pieChart['view'] = [this.cWidth, this.cHeight];
+        }
         this.pieChart['labels'] = config['showLabels'];;
         this.pieChart['legend'] = config['showLeyend'];
         this.pieChart['legendPosition'] = config['legendPosition'];
