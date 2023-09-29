@@ -31,7 +31,9 @@ export class LinePlusBarFocusChartConfiguration extends ChartConfiguration {
   // Parameter for select chart with bars or line
   public bars: boolean[];
   // Parameters for select the chart colors
-  public color: string[];
+  public color: {
+    domain: []
+  };
 
   // Parameters for create equispaced points in chart to_zero is priority in the case of two parameters are activated
   public to_zero: boolean[];

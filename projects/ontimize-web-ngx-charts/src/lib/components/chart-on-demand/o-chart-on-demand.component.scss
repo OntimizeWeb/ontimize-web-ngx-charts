@@ -1,11 +1,11 @@
-.o-dialog-class .mat-dialog-container .o-chart-on-demand {
-  .mat-dialog-title {
+.o-dialog-class .mat-mdc-dialog-container .o-chart-on-demand {
+  .mat-mdc-dialog-title {
     .mat-icon {
       cursor: pointer;
     }
   }
 
-  .mat-dialog-content {
+  .mat-mdc-dialog-content {
     //height - toolbar-height - padding-top
     max-height: calc(100% - 36px - 16px);
     height: 100%;
@@ -36,7 +36,7 @@
         }
       }
 
-      .mat-dialog-actions {
+      .mat-mdc-dialog-actions {
         min-height: auto;
 
         button.chart-clear-button {
@@ -44,7 +44,7 @@
         }
       }
 
-      .mat-radio-group {
+      .mat-mdc-radio-group {
         font-size: 14px;
         margin: 12px 12px 0;
       }
@@ -107,6 +107,24 @@
     .title-sidenav-content {
       border: 1px solid transparent;
       border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Centrar horizontalmente */
+      justify-content: center;
+      /* Centrar verticalmente */
+    }
+
+    .dark-sidenav-content {
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Centrar horizontalmente */
+      justify-content: center;
+      /* Centrar verticalmente */
     }
 
     .mat-sidenav-content {
@@ -138,7 +156,7 @@
   }
 }
 
-.mat-select-panel {
+.mat-mdc-select-panel {
   width: 150px;
 }
 

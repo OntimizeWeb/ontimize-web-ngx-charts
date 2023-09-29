@@ -26,7 +26,7 @@ export class DataAdapterUtils {
     let adapter: ChartDataAdapter = null;
     switch (chartConf.type) {
       case 'line':
-        adapter = new LineDataAdapter(chartConf);
+        adapter = new StackedAreaDataAdapter(chartConf);
         break;
       case 'discreteBar':
         adapter = new DiscreteBarDataAdapter(chartConf);

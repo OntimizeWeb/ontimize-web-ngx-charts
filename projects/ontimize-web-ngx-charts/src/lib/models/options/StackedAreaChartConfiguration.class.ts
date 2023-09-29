@@ -27,7 +27,9 @@ export class StackedAreaChartConfiguration extends ChartConfiguration {
   useVoronoi: boolean = true;
   showVoronoi: boolean = false;
 
-  color: Array<string>;
+  color: {
+    domain: []
+  };
 
   constructor() {
     super();

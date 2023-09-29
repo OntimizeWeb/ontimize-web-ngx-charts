@@ -12,7 +12,7 @@ export class PieChartConfiguration extends ChartConfiguration {
   public showLeyend: boolean = true;
   public legend: ChartLegendConfiguration;
   /** Position of the legend (top or right) */
-  public legendPosition: 'top' | 'right' | 'bottom' = 'top';
+  public legendPosition: 'bellow' | 'right' | 'bottom' = 'bellow';
   public duration: number = 500;
   public cornerRadius: number = 0;
   public margin: ChartMarginConfiguration;
@@ -25,7 +25,9 @@ export class PieChartConfiguration extends ChartConfiguration {
   public labelSunbeamLayout: boolean = true;
   /** Whether pie chart labels should be outside the slices instead of inside them */
   public labelsOutside: boolean = false;
-  public color: string[];
+  public color: {
+    domain: []
+  };
   /** Formats value(s) */
   public valueType: string;
   /** Enables or disabled the tooltip */

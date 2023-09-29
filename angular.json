@@ -10,12 +10,17 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ontimize-web-ngx-charts/tsconfig.lib.json",
             "project": "projects/ontimize-web-ngx-charts/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ontimize-web-ngx-charts/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -23,21 +28,16 @@
             "tsConfig": "projects/ontimize-web-ngx-charts/tsconfig.spec.json",
             "karmaConfig": "projects/ontimize-web-ngx-charts/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ontimize-web-ngx-charts/tsconfig.lib.json",
-              "projects/ontimize-web-ngx-charts/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
   },
-  "defaultProject": "ontimize-web-ngx-charts"
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
 }

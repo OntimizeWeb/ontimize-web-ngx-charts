@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { OTableBaseDialogClass } from 'ontimize-web-ngx';
 
 @Component({
@@ -12,11 +12,11 @@ export class SavePreferencesDialogComponent extends OTableBaseDialogClass {
   public name: string;
   public description: string;
 
-  public formGroup: FormGroup = new FormGroup({
-    name: new FormControl('', [
+  public formGroup: UntypedFormGroup = new UntypedFormGroup({
+    name: new UntypedFormControl('', [
       Validators.required
     ]),
-    description: new FormControl('')
+    description: new UntypedFormControl('')
   });
 
   constructor(

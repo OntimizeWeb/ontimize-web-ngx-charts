@@ -95,14 +95,15 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="sidenav-container-content">
-        <div fxLayout="column" id="sidenav-container-content" fxFlex class="title-sidenav-content">
-          <ng-lottie height="95%" class="lottie" [options]="options" *ngIf="showPlaceholder" fxFlex></ng-lottie>
+        <div fxLayout="column" id="sidenav-container-content" fxFlex [ngClass]="chartClass">
+          <!-- <ng-lottie height="95%" class="lottie" [options]="options" *ngIf="showPlaceholder" fxFlex></ng-lottie> -->
           <div fxLayout="column" fxLayoutAlign="start start" *ngIf="!showPlaceholder">
             <h2 class="title">{{currentPreference.title}}</h2>
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start start" fxFlex [style.display]="showPlaceholder ? 'none' : 'inherit'">
-            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
+          <div [style.display]="showPlaceholder ? 'none' : 'inherit'">
+            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" chart-width="700" query-on-init="no" layout-padding
+              class="chart">
             </o-chart>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { ChartPoint } from '../interfaces/ChartData.interface';
+import { AdaptedDataItem } from '../interfaces/ChartData.interface';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 import { PieChartConfiguration } from '../models/options/PieChartConfiguration.class';
@@ -18,19 +18,22 @@ export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAd
     }
   }
 
-  public adaptResult(data: any[]): ChartPoint[] {
-    const values: ChartPoint[] = [];
+  public adaptResult(data: any[]): AdaptedDataItem[] {
+    const adaptedData: AdaptedDataItem[] = [];
     const self = this;
     data.forEach((item: any, _index: number) => {
       let itemLabel = item[self.xAxis];
       if (self.chartConf.translateService) {
         itemLabel = self.chartConf.translateService.get(itemLabel);
       }
-      const filtered = self.filterCategory(itemLabel, values);
+
+      const filtered = self.filterCategory(itemLabel, adaptedData);
+      const value = Math.abs(item[self.yAxis]);
+
       if (filtered && filtered.length === 0) {
-        const val: ChartPoint = {
-          x: itemLabel,
-          y: Math.abs(item[self.yAxis])
+        const adaptedItem: AdaptedDataItem = {
+          name: itemLabel,
+          value: value
         };
 
         // Specify color for each value
@@ -39,26 +42,20 @@ export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAd
           if (config.colorData && config.colorData.length) {
             const colorDataItem = config.colorData.find(c => c.value.toLowerCase() === item[self.xAxis].toLowerCase());
             if (colorDataItem) {
-              val.color = colorDataItem.color;
+              adaptedItem.color = colorDataItem.color;
             }
           }
         }
 
-        values.push(val);
+        adaptedData.push(adaptedItem);
       } else {
-        filtered[0].y += Math.abs(item[self.yAxis]);
+        filtered[0].value += value;
       }
     });
-    return values;
+    return adaptedData;
   }
 
-  public filterCategory(category: string, values: ChartPoint[]): ChartPoint[] {
-    let filtered: ChartPoint[] = [];
-    if (values && values.length) {
-      filtered = values.filter((val: ChartPoint) => (val.x === category));
-    }
-    return filtered;
+  public filterCategory(category: string, data: AdaptedDataItem[]): AdaptedDataItem[] {
+    return data.filter((item: AdaptedDataItem) => item.name === category);
   }
-
 }
-

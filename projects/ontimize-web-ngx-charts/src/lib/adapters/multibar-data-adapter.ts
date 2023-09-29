@@ -1,4 +1,3 @@
-import { ChartSeries } from '../interfaces/ChartData.interface';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 import { MultiBarChartConfiguration } from '../models/options/MultiBarChartConfiguration.class';
@@ -19,52 +18,45 @@ export class MultiBarDataAdapter implements ChartDataAdapter {
     }
   }
 
-  public adaptResult(data: any[]): ChartSeries[] {
-    const result: ChartSeries[] = [];
+  public adaptResult(data: any[]): any[] {
+    const result: any[] = [];
     const params = this.chartConf as MultiBarChartConfiguration;
+
     if (data && data.length) {
       const seriesvalues = this.processSeriesValues(data);
-      const self = this;
-      this.yAxis.forEach((axis: string, _index: number) => {
-        const serie: ChartSeries = {
-          key: 'series',
-          values: []
-        };
-        if (params.color && params.color[_index]) {
-          serie.color = params.color[_index];
-        }
-        let key = axis;
-        if (self.chartConf.translateService) {
-          key = self.chartConf.translateService.get(key);
-        }
-        serie.key = key;
-        seriesvalues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
-        serie.values = seriesvalues[axis];
 
-        result.push(serie);
-      });
+      for (const date in seriesvalues) {
+        if (seriesvalues.hasOwnProperty(date)) {
+          const item = seriesvalues[date];
+          const entry: any = {
+            name: Number(date),
+            series: []
+          };
+
+          for (const axis of this.yAxis) {
+            const value = item[axis] || 0;
+            entry.series.push({ name: axis, value: value });
+          }
+
+          result.push(entry);
+        }
+      }
     }
     return result;
   }
 
   public processSeriesValues(data: Object[]): Object {
     const seriesvalues = {};
-    const self = this;
     data.forEach((item: any, _index: number) => {
-
-      self.yAxis.forEach((axis: string, _axisIndex: number) => {
-        if (seriesvalues[axis] === undefined) {
-          seriesvalues[axis] = [];
-        }
-        const val = {
-          x: item[self.xAxis],
-          y: item[axis]
-        };
-        seriesvalues[axis].push(val);
+      const date = item[this.xAxis];
+      if (!seriesvalues[date]) {
+        seriesvalues[date] = {};
+      }
+      this.yAxis.forEach((axis: string, _axisIndex: number) => {
+        seriesvalues[date][axis] = item[axis];
       });
     });
     return seriesvalues;
   }
 
 }
-

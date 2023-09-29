@@ -30,7 +30,7 @@ export class OChartDataAdapterFactory implements ChartDataAdapterFactory {
     let adapter: ChartDataAdapter;
     switch (chartType) {
       case 'line':
-        adapter = this.createLineDataAdapter();
+        adapter = this.createStackedAreaDataAdapter();
         break;
       case 'discreteBar':
         adapter = this.createDiscreteBarDataAdapter();

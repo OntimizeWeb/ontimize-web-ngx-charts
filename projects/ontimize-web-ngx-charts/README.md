@@ -1,6 +1,6 @@
 # Ontimize Web Charts
 
-An implementation of nvD3 and d3 charts library for Ontimize Web.
+An implementation of @swimlane/ngx-charts for Ontimize Web.
 
 
 * [Github repository](#github)

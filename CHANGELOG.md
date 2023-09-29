@@ -1,3 +1,10 @@
+## 15.0.0-beta.0 (2023-09-29)
+### Features
+* Migration to Angular 15.
+* Migration to Angular Material 15.
+* The nvd3 library has been replaced by ngx-charts.
+* **o-chart**: New `color`, `show-grid-lines` and `show-data-label` inputs.
+
 ## 8.2.0 (2023-03-01)
 ### Features
 * **Charts on demand:** Added new option to select the color palette of a graph ([a0ebe03](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a0ebe03)) Closes [#98](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/98)

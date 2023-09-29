@@ -5,5 +5,7 @@ export class ParallelCoordinatesChartConfiguration extends ChartConfiguration {
   dimensionData: Array<Object>;
   undefinedValueLabel: string = 'Undefined Value';
   lineTension: number = 1;
-  color: Array<string>;
+  public color: {
+    domain: []
+  };
 }

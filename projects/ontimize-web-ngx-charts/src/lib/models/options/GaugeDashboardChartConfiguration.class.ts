@@ -10,7 +10,9 @@ export class GaugeDashboardChartConfiguration extends ChartConfiguration {
   duration: number = 500;
   titleOffset: number = -25;
   title: string = '';
-  color: Array<string>;
+  public color: {
+    domain: []
+  };
 
   margin: ChartMarginConfiguration;
 

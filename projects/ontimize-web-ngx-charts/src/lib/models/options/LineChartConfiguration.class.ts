@@ -19,7 +19,9 @@ export class LineChartConfiguration extends ChartConfiguration {
   public isArea: boolean[] = null;
   public strokeWidth: number[] = null;
   public classed: string[] = null;
-  public color: string[] = null;
+  public color: {
+    domain: []
+  } = null;
 
   public showXAxis: boolean = true;
   public showYAxis: boolean = true;

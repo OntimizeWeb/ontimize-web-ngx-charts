@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { nvD3 } from 'ontimize-web-ngx-nvd3';
 
 import { ChartMarginConfiguration } from '../models/options/ChartMarginConfiguration.class';
 
 @Injectable()
 export class ChartService {
   private _chart: any;
-  private _chartWrapper: nvD3;
+  private _chartWrapper;
 
   public get chart() {
     return this._chart;
   }
 
-  public get chartWrapper(): nvD3 {
+  public get chartWrapper() {
     return this._chartWrapper;
   }
 
-  public set chartWrapper(chart: nvD3) {
+  public set chartWrapper(chart) {
     this._chartWrapper = chart;
     if (this._chartWrapper) {
       this._chart = (this._chartWrapper as any).chart;

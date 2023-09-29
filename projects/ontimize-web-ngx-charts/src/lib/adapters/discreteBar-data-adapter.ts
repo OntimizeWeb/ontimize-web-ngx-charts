@@ -2,6 +2,11 @@ import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interfac
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 import { DiscreteBarChartConfiguration } from '../models/options/DiscreteBarChartConfiguration.class';
 
+interface ChartDataPoint {
+  name: string;
+  value: number;
+}
+
 export class DiscreteBarDataAdapter implements ChartDataAdapter {
 
   protected chartConf: ChartConfiguration;
@@ -17,8 +22,8 @@ export class DiscreteBarDataAdapter implements ChartDataAdapter {
     }
   }
 
-  adaptResult(data: Array<any>): Object {
-    const values = [];
+  adaptResult(data: Array<any>): ChartDataPoint[] {
+    const values: ChartDataPoint[] = [];
     const self = this;
     const params = this.chartConf as DiscreteBarChartConfiguration;
     data.forEach((item: any, _index: number) => {
@@ -29,39 +34,31 @@ export class DiscreteBarDataAdapter implements ChartDataAdapter {
       const filtered = self.filterCategory(itemLabel, values);
       if (params.agroup) {
         if (filtered && filtered.length === 0) {
-          const val = {
-            'x': itemLabel,
-            'y': item[self.yAxis]
+          const val: ChartDataPoint = {
+            'name': itemLabel,
+            'value': item[self.yAxis]
           };
           values.push(val);
         } else {
-          filtered[0]['y'] += item[self.yAxis];
+          filtered[0]['value'] += item[self.yAxis];
         }
       } else {
-        const val = {
-          'x': itemLabel,
-          'y': item[self.yAxis]
+        const val: ChartDataPoint = {
+          'name': itemLabel,
+          'value': item[self.yAxis]
         };
         values.push(val);
       }
     });
-    let result = {
-      key: self.xAxis,
-      values: values
-    };
-    if (self.chartConf.translateService) {
-      result['key'] = self.chartConf.translateService.get(self.xAxis);
-    }
 
-    return result;
+    return values;
   }
 
-  filterCategory(category: string, values: Array<Object>) {
-    let filtered = [];
+  filterCategory(category: string, values: ChartDataPoint[]): ChartDataPoint[] {
+    let filtered: ChartDataPoint[] = [];
     if (values && values.length) {
-      filtered = values.filter((val: Object) => (val['x'] === category));
+      filtered = values.filter((val: ChartDataPoint) => val.name === category);
     }
     return filtered;
   }
-
 }

@@ -1,71 +1,33 @@
-import { ChartSeries } from '../interfaces/ChartData.interface';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
-import { MultiBarHorizontalChartConfiguration } from '../models/options/MultiBarHorizontalChartConfiguration.class';
+
+interface ChartDataPoint {
+  name: string;
+  value: number;
+}
 
 export class MultiBarHorizontalDataAdapter implements ChartDataAdapter {
-
-  protected chartConf: ChartConfiguration;
-
-  protected xAxis: string;
-  protected yAxis: Array<string>;
+  private chartConf: ChartConfiguration;
 
   constructor(chartConf: ChartConfiguration) {
-    if (chartConf) {
-      this.chartConf = chartConf;
-      this.xAxis = this.chartConf.xAxis ? this.chartConf.xAxis : '';
-      let yAxis = this.chartConf.yAxis;
-      this.yAxis = yAxis && yAxis.length ? yAxis : [];
-    }
+    this.chartConf = chartConf;
   }
 
-  adaptResult(data: Array<any>): Array<ChartSeries> {
-    let result: Array<ChartSeries> = [];
-    let params = this.chartConf as MultiBarHorizontalChartConfiguration;
-    if (data && data.length) {
-      let seriesvalues = this.processSeriesValues(data);
-      var self = this;
-      this.yAxis.forEach((axis: string, _index: number) => {
-        let serie: ChartSeries = {
-          'key': 'series',
-          'values': []
-        };
-        if (params.color && params.color[_index]) {
-          serie['color'] = params.color[_index];
-        }
-        let key = axis;
-        if (self.chartConf.translateService) {
-          key = self.chartConf.translateService.get(key);
-        }
-        serie['key'] = key;
-        serie['values'] = seriesvalues[axis];
-
-        result.push(serie);
-      });
+  adaptResult(data: Array<any>): Array<ChartDataPoint> {
+    if (!data || data.length === 0) {
+      return [];
     }
-    return result;
-  }
 
-  processSeriesValues(data: Array<Object>): Object {
-    let seriesvalues = {};
-    var self = this;
-    data.forEach((item: any, _index: number) => {
-
-      self.yAxis.forEach((axis: string, _axisIndex: number) => {
-        if (seriesvalues[axis] === undefined) {
-          seriesvalues[axis] = [];
-        }
-        let val = {
-          label: item[self.xAxis],
-          value: item[axis]
-        };
-        if (self.chartConf.translateService) {
-          val.label = self.chartConf.translateService.get(val.label);
-        }
-        seriesvalues[axis].push(val);
-      });
+    return data.map(item => {
+      const name = this.capitalizeFirstLetter(item[this.chartConf.xAxis]);
+      return {
+        name: name,
+        value: item[this.chartConf.yAxis[0]]
+      };
     });
-    return seriesvalues;
   }
 
+  private capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
 }

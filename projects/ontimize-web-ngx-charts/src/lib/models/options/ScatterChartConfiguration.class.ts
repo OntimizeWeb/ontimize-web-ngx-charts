@@ -23,7 +23,9 @@ export class ScatterChartConfiguration extends ChartConfiguration {
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
 
-  public color: string[] = null;
+  public color: {
+    domain: []
+  };
   public shape: string[] = null;
   public size: number[] = null;
 

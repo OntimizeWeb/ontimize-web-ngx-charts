@@ -2,17 +2,14 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "ontimize-web-ngx-nvd3": "ontimizeWebNgxNvd3",
-      "ontimize-web-ngx": "ontimize-web-ngx"
-    }
+    "entryFile": "src/public-api.ts"
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "d3",
     "dom-to-image",
     "lottie-web",
     "ngx-lottie",
-    "zone.js"
+    "zone.js",
+    "@swimlane/ngx-charts"
   ]
 }

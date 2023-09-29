@@ -3,7 +3,9 @@ import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
 
 export class RadarChartConfiguration extends ChartConfiguration {
   readonly type: string = 'radarChart';
-  color: Array<string>;
+  public color: {
+    domain: []
+  };
   min: number = 0;
   max: number = 1;
   stepSize: number = 0.1;

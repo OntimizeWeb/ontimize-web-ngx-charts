@@ -19,6 +19,9 @@ export class ChartConfiguration {
 
   public data: Object;
 
+  public color: {
+    domain: string[]
+  };
   // Message to display if no data is provided
   public noDataMessage: string;
 

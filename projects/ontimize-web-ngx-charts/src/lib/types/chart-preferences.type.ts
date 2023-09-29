@@ -12,7 +12,11 @@ export type OChartPreferences = {
   selectedDataTypeChart: any,
   selectedXAxisType: number,
   selectedYAxisType: number,
-  selectedPalette:Array<string>
+  selectedXDataType: string,
+  selectedYDataType: string,
+  selectedPalette: {
+    domain: []
+  }
 }
 export class DefaultOChartPreferences implements OChartPreferences {
   public title: string;
@@ -25,7 +29,11 @@ export class DefaultOChartPreferences implements OChartPreferences {
   public selectedDataTypeChart: any;
   public selectedXAxisType: number;
   public selectedYAxisType: number;
-  public selectedPalette: Array<string>;
+  selectedXDataType: string;
+  selectedYDataType: string;
+  public selectedPalette: {
+    domain: []
+  };
   constructor() {
     this.title = '';
     this.subtitle = '';
@@ -35,6 +43,8 @@ export class DefaultOChartPreferences implements OChartPreferences {
     this.selectedYAxis = [];
     this.selectedXAxisType = SQLTypes.OTHER;
     this.selectedYAxisType = SQLTypes.OTHER;
+    this.selectedXDataType = "";
+    this.selectedYDataType = "";
     this.selectedDataTypeChart = 1;
   }
 }

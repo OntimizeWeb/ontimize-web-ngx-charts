@@ -62,33 +62,33 @@ export class ChartConfigurationUtils {
       case 'bulletChart':
         chartConf = new BulletChartConfiguration();
         break;
-      case 'gaugeDashboardChart':
-        chartConf = new GaugeDashboardChartConfiguration();
-        break;
-      case 'gaugeSlimChart':
-        chartConf = new GaugeSlimChartConfiguration();
-        break;
-      case 'gaugeSpaceChart':
-        chartConf = new GaugeSpaceChartConfiguration();
-        break;
-      case 'radialPercentChart':
-        chartConf = new RadialPercentChartConfiguration();
-        break;
-      case 'gaugeSimpleChart':
-        chartConf = new GaugeSimpleChartConfiguration();
-        break;
-      case 'bubbleChart':
-        chartConf = new BubbleChartConfiguration();
-        break;
-      case 'stackedAreaChart':
-        chartConf = new StackedAreaChartConfiguration();
-        break;
-      case 'radarChart':
-        chartConf = new RadarChartConfiguration();
-        break;
-      case 'parallelCoordinatesChart':
-        chartConf = new ParallelCoordinatesChartConfiguration();
-        break;
+      // case 'gaugeDashboardChart':
+      //   chartConf = new GaugeDashboardChartConfiguration();
+      //   break;
+      // case 'gaugeSlimChart':
+      //   chartConf = new GaugeSlimChartConfiguration();
+      //   break;
+      // case 'gaugeSpaceChart':
+      //   chartConf = new GaugeSpaceChartConfiguration();
+      //   break;
+      // case 'radialPercentChart':
+      //   chartConf = new RadialPercentChartConfiguration();
+      //   break;
+      // case 'gaugeSimpleChart':
+      //   chartConf = new GaugeSimpleChartConfiguration();
+      //   break;
+      // case 'bubbleChart':
+      //   chartConf = new BubbleChartConfiguration();
+      //   break;
+      // case 'stackedAreaChart':
+      //   chartConf = new StackedAreaChartConfiguration();
+      //   break;
+      // case 'radarChart':
+      //   chartConf = new RadarChartConfiguration();
+      //   break;
+      // case 'parallelCoordinatesChart':
+      //   chartConf = new ParallelCoordinatesChartConfiguration();
+      //   break;
       default:
         chartConf = new ChartConfiguration();
         break;

@@ -1,4 +1,4 @@
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Constants } from "./constants";
 
 export class Utils {
@@ -19,5 +19,8 @@ export class Utils {
       panelClass: ['o-dialog-class', 'o-table-dialog', 'o-report'],
       data: data
     });
+  }
+  static adaptColorScheme(colorScheme: string[]): { domain: string[] } {
+    return { domain: colorScheme };
   }
 }

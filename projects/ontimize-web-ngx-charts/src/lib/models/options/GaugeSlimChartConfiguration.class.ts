@@ -9,7 +9,9 @@ export class GaugeSlimChartConfiguration extends ChartConfiguration {
   legendPosition: string = 'top';
   title: string = '';
   titleOffset: number = 0;
-  color: Array<string> = ['#1A5276', '#A3E4D7'];
+  public color = {
+    domain: ['#1A5276', '#A3E4D7']
+  };
   duration: number = 500;
   growOnHover: boolean = false;
 }

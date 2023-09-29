@@ -1,0 +1,1 @@
+export * from './o-chart-translate.pipe';

@@ -2,11 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "target": "es2015",
+    "declarationMap": true,
     "module": "esnext",
     "moduleResolution": "node",
     "removeComments": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
     "noImplicitReturns": true,

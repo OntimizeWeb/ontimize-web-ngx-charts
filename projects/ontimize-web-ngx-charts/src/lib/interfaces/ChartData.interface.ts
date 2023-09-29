@@ -3,7 +3,11 @@ export interface ChartPoint {
   y: any;
   color?: string;
 }
-
+export interface AdaptedDataItem {
+  name: string;
+  value: number;
+  color?: string;
+}
 export interface ChartSeries {
   /** key - the name of the series */
   key: string;
