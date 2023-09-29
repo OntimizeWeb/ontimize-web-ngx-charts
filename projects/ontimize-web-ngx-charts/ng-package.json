@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "d3",
+    "dom-to-image",
+    "lottie-web",
+    "ngx-lottie",
+    "zone.js",
+    "@swimlane/ngx-charts"
+  ]
+}
