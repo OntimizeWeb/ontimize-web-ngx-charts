@@ -1,6 +1,6 @@
 <h1 align="center">
   <div style="display:inline-block;vertical-align: middle;">
-    <a name="logo" href="https://ontimizeweb.github.io/docs/v8/charts/">
+    <a name="logo" href="https://ontimizeweb.github.io/docs/v15/charts/">
       Ontimize Web Charts
     </a>
   </div>
@@ -15,15 +15,15 @@
 
 ## 📜 Introduction
 
-The Ontimize Web Charts is an implementation of ngx-charts and d3 charts library for using into OntimizeWeb web applications.
+The Ontimize Web Charts is an implementation of @swimlane/ngx-charts library for using into OntimizeWeb web applications.
 
 ### 📖 Documentation
 
-Check out our [documentation site](https://ontimizeweb.github.io/docs/v8/charts/overview/) to learn how to install and use it into an OntimizeWeb application.
+Check out our [documentation site](https://ontimizeweb.github.io/docs/v15/charts/overview/) to learn how to install and use it into an OntimizeWeb application.
 
 ## :rocket: Demo
 
-Check out our demo application in the following [link](https://try.imatia.com/ontimizeweb/v8/charts/).
+Check out our demo application in the following [link](https://try.imatia.com/ontimizeweb/v15/charts/).
 
 ## 💡 Ideas
 
