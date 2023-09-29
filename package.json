@@ -1,14 +1,13 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "15.0.0-SNAPSHOT-0",
-  "description": "An implementation of nvD3 for Ontimize Web",
+  "version": "15.0.0-SNAPSHOT-2",
+  "description": "An implementation of ngx-charts for Ontimize Web",
   "keywords": [
     "angular",
     "ontimize-web-ngx",
     "ontimize-web-ngx-charts",
     "charts",
-    "d3",
-    "nvD3"
+    "ngx-charts"
   ],
   "author": "IMATIA S.L.",
   "repository": {
