@@ -24,7 +24,6 @@ export class GaugeSlimComponent {
     this.gaugeSlimConf2 = new GaugeSlimChartConfiguration();
     this.gaugeSlimConf2.title = '65.80%';
     this.gaugeSlimConf2.yAxis = ['y'];
-    this.gaugeSlimConf2.color = ['green', 'red'];
     this.gaugeSlimConf2.arcsRadius = 0.15;
     let data = [{ 'x': 'value', 'y': 65.8 }];
 

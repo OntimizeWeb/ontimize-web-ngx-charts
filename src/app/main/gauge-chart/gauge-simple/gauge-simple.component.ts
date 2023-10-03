@@ -16,7 +16,7 @@ export class GaugeSimpleComponent {
     this.gaugeSimpleConf = new GaugeSimpleChartConfiguration();
     this.gaugeSimpleConf.max = 200;
     this.gaugeSimpleConf.showMinMaxLabels = true;
-    this.gaugeSimpleConf.color = ['#31D03D', '#D7DA15', '#DA3315'];
+    this.gaugeSimpleConf.color = { domain: ['#31D03D', '#D7DA15', '#DA3315'] };
   }
 
   ngAfterViewInit() {

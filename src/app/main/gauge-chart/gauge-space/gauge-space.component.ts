@@ -23,7 +23,6 @@ export class GaugeSpaceComponent {
     this.gaugeSpaceConf2.title = '27.54%';
     this.gaugeSpaceConf2.arcsRadius = 0.25;
     this.gaugeSpaceConf2.yAxis = ['y'];
-    this.gaugeSpaceConf2.color = 'cyan';
 
 
     let data = [{ 'x': 'value', 'y': 27.54 }];

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ComponentFactoryResolver, ElementRef, forwardRef, Inject, Injector, NgModule, OnInit, Optional, ViewContainerRef } from '@angular/core';
-import { dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
+import { AppearanceService, dataServiceFactory, OFormComponent, OntimizeService, OTranslateService } from 'ontimize-web-ngx';
 import { ChartFactory, OChartComponent } from 'ontimize-web-ngx-charts';
 
 
@@ -104,9 +104,9 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector, ref:ViewContainerRef, com:ComponentFactoryResolver) {
+    protected injector: Injector, appearanceService: AppearanceService) {
 
-    super(form, elRef, injector);
+    super(form, elRef, injector, appearanceService);
   }
 
   public ngOnInit() {

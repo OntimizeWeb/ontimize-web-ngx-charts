@@ -18,7 +18,6 @@ export class ScatterComponent {
     this.chartParameters2 = new ScatterChartConfiguration();
     this.chartParameters2.size = [ 2, 1, 2];
     this.chartParameters2.shape = [ 'circle', 'cross', 'diamond'];
-    this.chartParameters2.color = ['red', 'black', '#7c0000'];
     this.chartParameters2.showDistX = false;
     this.chartParameters2.showDistY = false;
     this.chartParameters2.legend.margin.top = 1;

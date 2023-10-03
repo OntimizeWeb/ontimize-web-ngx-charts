@@ -131,7 +131,6 @@ export class RadarComponent implements OnInit {
   constructor() {
     this.chartConf = new RadarChartConfiguration();
     this.chartConf.key = 'Name';
-    this.chartConf.color = ['green', 'blue', 'red'];
     this.chartConf.dimensions = [
       'Email',
       'Social Networks',
