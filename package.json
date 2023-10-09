@@ -7,12 +7,13 @@
     "ng": "ng",
     "start": "ng serve --port 4807",
     "clean": "rimraf dist",
-    "build": "ng build && npm run build:themes",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "production": "ng build --configuration production=true --baseHref=/ontimize-web-ngx-quickstart-charts",
-    "production-aot-server": "ng build --configuration production=true --baseHref=/ontimizeweb/v8/charts/"
+    "watch": "ng build --watch --configuration development",
+    "production": "ng build --base-href=/ontimize-web-ngx-quickstart-charts",
+    "production-aot-server": "ng build  --base-href=/ontimizeweb/v8/charts/"
   },
   "private": true,
   "engines": {
