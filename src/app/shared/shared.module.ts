@@ -7,6 +7,7 @@ import { ExampleComponent } from './example/example.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { NavigationBarService } from './services/navigation-bar.service';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { SwitchModeThemeComponent } from './switch-mode-theme/switch-mode-theme.component';
 
 @NgModule({
   imports: [
@@ -17,14 +18,16 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
   ],
   declarations: [
     ExampleComponent,
-    HighlightComponent
+    HighlightComponent,
+    SwitchModeThemeComponent
   ],
   exports: [
     OntimizeWebModule,
     ExampleComponent,
     HighlightComponent,
     OChartModule,
-    CustomChartComponentModule
+    CustomChartComponentModule,
+    SwitchModeThemeComponent
   ],
   providers: [
     NavigationBarService
