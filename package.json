@@ -36,7 +36,7 @@
     "highlight.js": "^11.7.0",
     "ngx-highlightjs": "^4.1.0-beta",
     "nvd3": "^1.8.6",
-    "ontimize-web-ngx": "15.0.0-beta.0",
+    "ontimize-web-ngx": "15.0.0-beta.1",
     "ontimize-web-ngx-charts": "15.0.0-beta.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
