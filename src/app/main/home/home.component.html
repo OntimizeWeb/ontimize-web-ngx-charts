@@ -1,67 +1,70 @@
+<o-column title="INTRODUCTION" class="bg-level-1" fxFlexFill>
 
-
-<div layout-padding fxFlex="80">
-  <div layout-padding>
-    <h2>What is Ontimize Web Charts?</h2>
-    <p class="body-text">
-      Ontimize Web Charts is a module that allows to you to integrate charts into an Ontimize Web application.
-    </p>
-    <p class="body-text">
-      Ontimize Web Charts is based on nvD3 and d3 libraries.
-    </p>
-  </div>
-
-  <div layout-padding>
-    <h2>Keep up to date</h2>
-    <p class="body-text" style="margin-bottom:0px;">
-      Please refer to our changelog for up-to-date listings of all improvements and breaking changes.
-    </p>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <a class="changelog" href="https://github.com/OntimizeWeb/ontimize-web-ngx-charts/blob/master/CHANGELOG.md" target="_blank">
-        <div layout-padding fxLayout="row" fxLayoutAlign="center">
-          <mat-icon class="mat-48">access_time</mat-icon>
-          <span>CHANGELOG</span>
-        </div>
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex="55" layout-padding>
+      <h2>What is Ontimize Web Charts?</h2>
+      <p class="body-text">
+        Ontimize Web Charts is a module that allows to you to integrate charts into an Ontimize Web application.
+      </p>
+      <p class="body-text">
+        Ontimize Web Charts is based on d3 libraries.
+      </p>
+      <h2>Keep up to date</h2>
+      <p class="body-text">
+        Please refer to our changelog for up-to-date listings of all improvements and breaking changes.
+      </p>
+      <a href="https://github.com/OntimizeWeb/ontimize-web-ngx-charts/blob/master/CHANGELOG.md" target="_blank">
+        <o-button type="STROKED" label="CHANGELOG" layout-padding color="primary" icon="access_time"></o-button>
       </a>
+      <h2>Related topics</h2>
+      <p class="body-text">
+        Here are some interesting reading topics that can help you better understand how to develop with Ontimize Web.
+      </p>
+    </div>
+    <div layout-padding fxFlex="45" fxLayoutAlign="center center">
+      <img src="./assets/images/home_light.svg">
     </div>
   </div>
-
-  <mat-divider></mat-divider>
-
-  <div layout-padding>
-    <h2>Related topics</h2>
-    <p class="body-text">
-      Here are some interesting reading topics that can help you better understand how to develop with Ontimize Web.
-    </p>
-
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h5>nvD3 <a href="http://nvd3.org/index.html" target="_blank"> <mat-icon>launch</mat-icon></a></h5>
-    </div>
-    <p class="body-text">
-      NVD3 project is an attempt to build re-usable charts and chart components for d3.js without taking away the power
-      that d3.js gives you.
-      This is collection of components, with the goal of keeping these components very customizable, staying away from
-      your standard cookie cutter solutions.
-    </p>
-
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h5>nvD3 documentation  <a href="http://nvd3-community.github.io/nvd3/examples/documentation.html#" target="_blank"> <mat-icon>launch</mat-icon></a></h5>
-    </div>
-    <p class="body-text">
-      Check out all options available to configure the charts.
-    </p>
-
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h5>D3-3.x api reference  <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/API-Reference.md" target="_blank"> <mat-icon>launch</mat-icon></a></h5>
-    </div>
-    <p class="body-text">
-      D3 (Data-Driven Documents or D3.js) is a JavaScript library for visualizing data using web standards. D3 helps
-      you bring data to life using SVG, Canvas and HTML.
-      D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation,
-      giving you the full capabilities of modern browsers
-      and the freedom to design the right visual interface for your data.
-    </p>
-
+  <div fxLayout="row" fxLayoutGap="45px" layout-padding>
+    <mat-card fxFlex="33">
+      <mat-card-header>Angular documentation</mat-card-header>
+      <mat-card-content>Angular is the new improved version of the ever popular JavaScript framework AngularJS. Angular is a re-imagining of Angular
+        applying all lessons
+        learned from v1.x and promotes a component based architecture while leveraging new features of ES2015 (or TypeScript) like classes and
+        modules.</mat-card-content>
+      <mat-card-footer fxLayoutAlign="center flex-end">
+        <a href="https://angular.io/docs" target="_blank">
+          <o-button type="BASIC" label="Angular documentation link" layout-padding color="primary"></o-button>
+        </a>
+      </mat-card-footer>
+    </mat-card>
+    <mat-card fxFlex="33">
+      <mat-card-header>Ngx-charts</mat-card-header>
+      <mat-card-content>
+        Ngx-charts is a charting library for Angular, developed by Swimlane. This library specifically integrates
+        with Angular to provide an easy way to create and visualize charts in Angular applications.
+        The ngx-charts library offers a variety of chart types, such as bar charts, line charts, area charts, donut charts, among others. It is designed to be
+        highly customizable and easy to use, allowing developers to create engaging and effective data visualizations with minimal effort.
+      </mat-card-content>
+      <mat-card-footer fxLayoutAlign="center flex-end">
+        <a href="https://swimlane.gitbook.io/ngx-charts/" target="_blank">
+          <o-button type="BASIC" label="Ngx-charts documentation link" layout-padding color="primary"></o-button>
+        </a>
+      </mat-card-footer>
+    </mat-card>
+    <mat-card fxFlex="33">
+      <mat-card-header>D3-3.x api reference</mat-card-header>
+      <mat-card-content>D3 (Data-Driven Documents or D3.js) is a JavaScript library for visualizing data using web standards. D3 helps you bring data
+        to life using SVG,
+        Canvas and HTML. D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation, giving you the
+        full
+        capabilities of modern browsers and the freedom to design the right visual interface for your data.</mat-card-content>
+      <mat-card-footer fxLayoutAlign="center flex-end">
+        <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/API-Reference.md" target="_blank">
+          <o-button type="BASIC" label="D3-3.x api reference" layout-padding color="primary"></o-button>
+        </a>
+      </mat-card-footer>
+    </mat-card>
   </div>
-</div>
-<!-- <o-card-menu-layout ></o-card-menu-layout>  -->
+
+</o-column>

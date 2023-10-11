@@ -8,7 +8,7 @@ import { DataAdapterUtils, GaugeSlimChartConfiguration, OChartComponent } from '
 })
 export class GaugeSlimComponent {
 
-  @ViewChild('gaugeSlim', {static: false})
+  @ViewChild('gaugeSlim')
   protected gaugeSlim: OChartComponent;
 
   gaugeSlimConf: GaugeSlimChartConfiguration;
@@ -24,13 +24,11 @@ export class GaugeSlimComponent {
     this.gaugeSlimConf2 = new GaugeSlimChartConfiguration();
     this.gaugeSlimConf2.title = '65.80%';
     this.gaugeSlimConf2.yAxis = ['y'];
-    this.gaugeSlimConf2.color = ['green', 'red'];
     this.gaugeSlimConf2.arcsRadius = 0.15;
     let data = [{ 'x': 'value', 'y': 65.8 }];
 
     DataAdapterUtils.createDataAdapter(this.gaugeSlimConf2);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
-    this.gaugeSlim.setDataArray(dataAdapt);
+
     this.gaugeSlim.setChartConfiguration(this.gaugeSlimConf2);
   }
 
@@ -65,7 +63,7 @@ export class GaugeSlimComponent {
 }
 
 const BASIC_DATA_HTML = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge" 
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" entity="EDataGauge"
 [chart-parameters]="gaugeSlimConf"></o-chart>
 `;
 
@@ -91,7 +89,7 @@ export class GaugeSlimComponent  {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350" 
+<o-chart #gaugeSlim type="gaugeSlimChart" chart-height="350"
 [chart-parameters]="gaugeSlimConf2"></o-chart>
 `;
 

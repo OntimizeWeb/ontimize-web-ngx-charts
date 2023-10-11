@@ -7,7 +7,7 @@ import { BulletChartConfiguration, DataAdapterUtils, OChartComponent } from 'ont
 })
 export class BulletComponent implements OnInit {
 
-  @ViewChild('bulletChart', {static: false})
+  @ViewChild('bulletChart')
   protected bulletChart: OChartComponent;
 
   chartParameters: BulletChartConfiguration;
@@ -35,8 +35,7 @@ export class BulletComponent implements OnInit {
     data.push({ 'measure': 99 });
     data.push({ 'marker': 50 });
     DataAdapterUtils.createDataAdapter(this.chartParameters);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
-    this.bulletChart.setDataArray(dataAdapt);
+
   }
 
   getBasicId() {

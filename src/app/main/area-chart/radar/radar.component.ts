@@ -122,7 +122,7 @@ export class RadarComponent  {
 })
 export class RadarComponent implements OnInit {
 
-  @ViewChild('radar', {static: false})
+  @ViewChild('radar')
   protected radar: OChartComponent;
 
   chartConf: RadarChartConfiguration;
@@ -131,7 +131,6 @@ export class RadarComponent implements OnInit {
   constructor() {
     this.chartConf = new RadarChartConfiguration();
     this.chartConf.key = 'Name';
-    this.chartConf.color = ['green', 'blue', 'red'];
     this.chartConf.dimensions = [
       'Email',
       'Social Networks',
@@ -198,8 +197,7 @@ export class RadarComponent implements OnInit {
         'Stream Music': 0.05
       }
     ];
-    DataAdapterUtils.createDataAdapter(this.chartConf);
-    this.radar.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+
   }
 
   getBasicId() {

@@ -1,0 +1,26 @@
+@use '@angular/material'as mat;
+
+@mixin main-theme($theme) {
+  $primary: map-get($theme, color, primary);
+  $accent: map-get($theme, color, accent);
+  $warn: map-get($theme, color, warn);
+  $background: map-get($theme, color, background);
+  $foreground: map-get($theme, color, foreground);
+
+  .active {
+    border-color: mat.get-color-from-palette($primary, 500);
+    background-color: mat.get-color-from-palette($primary, 100);
+  }
+
+  layout-manager {
+    .left-border {
+      background-color: mat.get-color-from-palette($background, level-0);
+    }
+  }
+
+  o-column-collapsible.o-column-collapsible>.o-container.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header {
+    border-bottom-color: mat.get-color-from-palette($foreground, divider);
+  }
+
+
+}

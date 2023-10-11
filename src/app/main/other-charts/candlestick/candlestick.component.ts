@@ -8,10 +8,10 @@ declare var d3: any;
 })
 export class CandlestickComponent {
 
-  @ViewChild('candlestickbasic', {static: false})
+  @ViewChild('candlestickbasic')
   protected candlestickbasic: OChartComponent;
 
-  @ViewChild('candlestickcustom', {static: false})
+  @ViewChild('candlestickcustom')
   protected candlestick: OChartComponent;
 
   chartParameters: CandlestickChartConfiguration;
@@ -55,7 +55,6 @@ export class CandlestickComponent {
 
     DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.candlestick.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
 
 
     let chartService: ChartService = this.candlestick.getChartService();

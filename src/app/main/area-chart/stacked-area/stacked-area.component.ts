@@ -26,6 +26,9 @@ export class StackedAreaComponent{
 export class StackedAreaComponent {
 
   constructor() { }
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
 
   getFiles() {
     return {

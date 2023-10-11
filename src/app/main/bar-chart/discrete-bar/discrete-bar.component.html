@@ -3,7 +3,7 @@
   <example-comp comp-name="BAR_CHART.DISCRETE_BASIC" comp-desc="BAR_CHART.DISCRETE_BASIC.DESC" [files]="getBasicUsageFiles()"
     layout-fill>
     <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-      y-axis="MOVEMENT"></o-chart>
+      y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
   </example-comp>
 
   <example-comp comp-name="BAR_CHART.DISCRETE_INSIDE_FORM" comp-desc="BAR_CHART.DISCRETE_INSIDE_FORM.DESC" [files]="getInsideFormFiles()"
@@ -20,13 +20,13 @@
         </o-row>
       </o-row>
       <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-        y-axis="MOVEMENT" query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID"></o-chart>
+        y-axis="MOVEMENT" query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID" [color]="colorScheme"></o-chart>
     </o-form>
   </example-comp>
 
   <example-comp comp-name="BAR_CHART.DISCRETE_CUSTOM" comp-desc="BAR_CHART.DISCRETE_CUSTOM.DESC" comp-note="BAR_CHART.DISCRETE_CUSTOM.NOTE" [files]="getCustomDataFiles()"
     layout-fill>
-    <o-chart #discreteBar type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data"></o-chart>
+    <o-chart #discreteBar type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" [color]="colorScheme"></o-chart>
   </example-comp>
 
 </div>

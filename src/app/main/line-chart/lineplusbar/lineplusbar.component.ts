@@ -21,7 +21,6 @@ export class LineplusbarComponent {
     this.chartParameters2.bars = [ true, false];
     this.chartParameters2.to_zero = [true, false];
     this.chartParameters2.to_previusValue = [false, true];
-    this.chartParameters2.color = ['blue', 'red'];
     this.chartParameters2.legend.margin.top = 5;
     this.chartParameters2.legend.margin.bottom = 5;
   }

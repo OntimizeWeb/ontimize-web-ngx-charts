@@ -139,25 +139,208 @@ export class MultiBarComponent {
 `;
 
 
-declare var d3: any;
+
 @Component({
   selector: 'multi-bar',
   templateUrl: './multi-bar.component.html'
 })
 export class MultiBarComponent {
 
-  @ViewChild('multiBar', {static: false})
+  @ViewChild('multiBar')
   protected multiBar: OChartComponent;
 
   protected yAxis = 'MOVEMENT';
   protected xAxis = 'DATE_';
 
   data: Array<Object>;
+
+
+
+
+
+  data2 =
+    [
+      {
+        "name": 1235490657851,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 951
+          },
+          {
+            "name": "Average Balance",
+            "value": 951
+          },
+          {
+            "name": "Total Balance",
+            "value": 951
+          }
+        ]
+      },
+      {
+        "name": 1236110357961,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -80
+          },
+          {
+            "name": "Average Balance",
+            "value": 911
+          },
+          {
+            "name": "Total Balance",
+            "value": 871
+          }
+        ]
+      },
+      {
+        "name": 1236402213822,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 653
+          },
+          {
+            "name": "Average Balance",
+            "value": 1115.3333333333333
+          },
+          {
+            "name": "Total Balance",
+            "value": 1524
+          }
+        ]
+      },
+      {
+        "name": 1236611284898,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -548
+          },
+          {
+            "name": "Average Balance",
+            "value": 1080.5
+          },
+          {
+            "name": "Total Balance",
+            "value": 976
+          }
+        ]
+      },
+      {
+        "name": 1242673437363,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -949
+          },
+          {
+            "name": "Average Balance",
+            "value": 869.8
+          },
+          {
+            "name": "Total Balance",
+            "value": 27
+          }
+        ]
+      },
+      {
+        "name": 1245260962425,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 552
+          },
+          {
+            "name": "Average Balance",
+            "value": 821.3333333333334
+          },
+          {
+            "name": "Total Balance",
+            "value": 579
+          }
+        ]
+      },
+      {
+        "name": 1246875825338,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 432
+          },
+          {
+            "name": "Average Balance",
+            "value": 848.4285714285714
+          },
+          {
+            "name": "Total Balance",
+            "value": 1011
+          }
+        ]
+      },
+      {
+        "name": 1254322811810,
+        "series": [
+          {
+            "name": "Movement",
+            "value": 1756
+          },
+          {
+            "name": "Average Balance",
+            "value": 1088.25
+          },
+          {
+            "name": "Total Balance",
+            "value": 2767
+          }
+        ]
+      },
+      {
+        "name": 1254388791367,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -169
+          },
+          {
+            "name": "Average Balance",
+            "value": 1256
+          },
+          {
+            "name": "Total Balance",
+            "value": 2598
+          }
+        ]
+      },
+      {
+        "name": 1255948329905,
+        "series": [
+          {
+            "name": "Movement",
+            "value": -23
+          },
+          {
+            "name": "Average Balance",
+            "value": 1387.9
+          },
+          {
+            "name": "Total Balance",
+            "value": 2575
+          }
+        ]
+      }
+    ]
+
+
+
   protected serviceResponse: string;
 
   chartParameters1: MultiBarChartConfiguration;
   chartParameters2: MultiBarChartConfiguration;
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   constructor(protected injector: Injector) {
     this.chartParameters1 = new MultiBarChartConfiguration();
     this.chartParameters1.legend.margin.top = 5;
@@ -173,16 +356,10 @@ export class MultiBarComponent {
     if (this.multiBar) {
       let chartService: ChartService = this.multiBar.getChartService();
       if (chartService) {
-        let chartOps = chartService.getChartOptions();
+
 
         // Configuring x axis...
-        chartOps['xAxis']['tickFormat'] =
-          function (d) {
-            return d3.time.format('%d/%m/%y')(new Date(d));
-          };
-        chartOps['yAxis']['tickFormat'] = function (d) {
-          return d3.format(',f')(d) + '€';
-        };
+
 
 
         // var xScale = d3.time.scale();
@@ -191,9 +368,8 @@ export class MultiBarComponent {
         //   maxdate = new Date(2009, 10, 1);
         // chartOps['xDomain'] = [mindate, maxdate];
         // Configuring y axis...
-        var yScale = d3.scale.linear();
-        chartOps['yScale'] = yScale;
-        chartOps['yDomain'] = [-1000, 6000];
+
+
       }
     }
 

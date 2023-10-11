@@ -136,7 +136,7 @@ export class DiscreteBarComponent {
 `;
 
 
-declare var d3: any;
+
 @Component({
   selector: 'discrete-bar',
   templateUrl: './discrete-bar.component.html',
@@ -145,10 +145,10 @@ declare var d3: any;
 })
 export class DiscreteBarComponent {
 
-  @ViewChild('oForm', {static: false})
+  @ViewChild('oForm')
   protected oForm: OFormComponent;
 
-  @ViewChild('discreteBar', {static: false})
+  @ViewChild('discreteBar')
   protected discreteBar: OChartComponent;
 
   data: Array<Object>;
@@ -158,9 +158,11 @@ export class DiscreteBarComponent {
   protected yAxis: string = 'MOVEMENT';
   protected xAxis: string = 'MOVEMENTTYPES';
 
-  constructor(protected injector: Injector) {}
+  constructor(protected injector: Injector) { }
 
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   ngAfterViewInit() {
 
     if (this.oForm) {
@@ -196,11 +198,7 @@ export class DiscreteBarComponent {
     });
 
     let chartService: ChartService = this.discreteBar.getChartService();
-    let chartOps = chartService.getChartOptions();
-    // Configuring x axis...
-    chartOps['yAxis']['tickFormat'] = function (d) {
-      return d3.format(',f')(d) + '€';
-    };
+
 
   }
 
@@ -208,17 +206,13 @@ export class DiscreteBarComponent {
    * Creates chart data grouping movements by category 'Movement type'
    *  */
   adaptResult(data: Array<any>) {
+
     if (data && data.length) {
       let values = this.processValues(data);
       // chart data
-      this.data = [
-        {
-          'key': 'Discrete serie',
-          'values': values
-        }
-      ]
-    }
+      this.data = values;
 
+    }
   }
 
   processValues(data: Array<Object>): Array<Object> {
@@ -228,12 +222,12 @@ export class DiscreteBarComponent {
       let filtered = self.filterCategory(item[self.xAxis], values);
       if (filtered && filtered.length === 0) {
         let val = {
-          'x': item[self.xAxis],
-          'y': item[self.yAxis]
+          'name': item[self.xAxis],
+          'value': item[self.yAxis]
         };
         values.push(val);
       } else {
-        filtered[0]['y'] += item[self.yAxis];
+        filtered[0]['value'] += item[self.yAxis];
       }
     });
     return values;

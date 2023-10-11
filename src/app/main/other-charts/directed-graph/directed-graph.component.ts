@@ -7,7 +7,7 @@ import { DataAdapterUtils, ForceDirectedGraphConfiguration, OChartComponent } fr
 })
 export class DirectedGraphComponent {
 
-  @ViewChild('directedGraph', {static: false})
+  @ViewChild('directedGraph')
   protected directedGraph: OChartComponent;
 
   chartParameters: ForceDirectedGraphConfiguration;
@@ -53,7 +53,6 @@ export class DirectedGraphComponent {
 
   ngAfterViewInit() {
     DataAdapterUtils.createDataAdapter(this.chartParameters);
-    this.directedGraph.setDataArray(DataAdapterUtils.adapter.adaptResult([]));
   }
 
 

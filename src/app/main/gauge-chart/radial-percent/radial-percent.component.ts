@@ -7,7 +7,7 @@ import { DataAdapterUtils, OChartComponent, RadialPercentChartConfiguration } fr
 })
 export class RadialPercentComponent implements OnInit {
 
-  @ViewChild('radialPercent', {static: false})
+  @ViewChild('radialPercent')
   protected radialPercent: OChartComponent;
 
   radialPercentConf: RadialPercentChartConfiguration;
@@ -21,13 +21,10 @@ export class RadialPercentComponent implements OnInit {
     this.radialPercentConf = new RadialPercentChartConfiguration();
     this.radialPercentConf.title = "13.91%";
     this.radialPercentConf.yAxis = ['y'];
-    this.radialPercentConf.color = ['#EB984E', '#1A5276'];
 
     let data = [{ 'x': 'value', 'y': 13.91 }];
     DataAdapterUtils.createDataAdapter(this.radialPercentConf);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
 
-    this.radialPercent.setDataArray(dataAdapt);
     this.radialPercent.setChartConfiguration(this.radialPercentConf);
   }
 

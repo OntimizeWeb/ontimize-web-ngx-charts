@@ -7,7 +7,7 @@ import { DataAdapterUtils, OChartComponent, OHLCChartConfiguration } from 'ontim
 })
 export class OhlcComponent {
 
-  @ViewChild('ohlc2', {static: false})
+  @ViewChild('ohlc2')
   protected ohlc2: OChartComponent;
 
   chartParameters: OHLCChartConfiguration;
@@ -54,7 +54,7 @@ export class OhlcComponent {
 
     DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+
   }
 
   getBasicUsageFiles() {

@@ -11,5 +11,4 @@ export class AboutComponent {
 
   public vCore: string = environment.versions.core;
   public vCharts: string = environment.versions.charts;
-  public vTheming: string = environment.versions.theming;
 }

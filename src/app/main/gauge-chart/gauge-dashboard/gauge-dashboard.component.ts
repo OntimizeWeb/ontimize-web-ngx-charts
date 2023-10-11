@@ -7,7 +7,7 @@ import { DataAdapterUtils, GaugeDashboardChartConfiguration, OChartComponent } f
 })
 export class GaugeDashboardComponent {
 
-  @ViewChild('gaugeDashboard', {static: false})
+  @ViewChild('gaugeDashboard')
   protected gaugeDashboard: OChartComponent;
 
   gaugeDashboardConf: GaugeDashboardChartConfiguration;
@@ -23,13 +23,11 @@ export class GaugeDashboardComponent {
     this.gaugeDashboardConf = new GaugeDashboardChartConfiguration();
     this.gaugeDashboardConf.title = '77.34%';
     this.gaugeDashboardConf.yAxis = ['y'];
-    this.gaugeDashboardConf.color = ['#17A589', 'white'];
 
     let data = [{ 'x': 'value', 'y': 77.34 }];
 
     DataAdapterUtils.createDataAdapter(this.gaugeDashboardConf);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
-    this.gaugeDashboard.setDataArray(dataAdapt);
+
     this.gaugeDashboard.setChartConfiguration(this.gaugeDashboardConf);
   }
 
@@ -91,7 +89,7 @@ export class GaugeDashboardComponent {
 `;
 
 const CUSTOM_HTML_DATA = `
-<o-chart #gaugeDashboard type="gaugeDashboardChart" chart-height="350" 
+<o-chart #gaugeDashboard type="gaugeDashboardChart" chart-height="350"
 [chart-parameters]="gaugeDashboardConf"></o-chart>
 `;
 
