@@ -2,7 +2,7 @@
 @use 'ontimize-web-ngx/theming/themes/ontimize.scss'as theme;
 @use 'ontimize-web-ngx/theming/ontimize-style.scss';
 @use '../../app/shared/example/example.theme.scss';
-@use '../../app/main/main-theme.scss' as main;
+@use '../../app/main/main-theme.scss'as main;
 
 
 //Include ontimize theme styles
@@ -15,4 +15,5 @@
 //Include dark styles option
 .o-dark {
   @include ontimize-style.ontimize-theme-all-component-color(theme.$dark-theme);
+  @include example.example-component-theme(theme.$dark-theme);
 }
