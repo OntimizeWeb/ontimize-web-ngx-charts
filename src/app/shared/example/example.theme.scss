@@ -9,12 +9,12 @@
 
   .example-comp {
     &>section {
-      background: #fafafa;
+      background: mat.get-color-from-palette($background);
 
       .playground-toolbar.mat-toolbar {
-        background: #eeeeee;
+        background: transparent;
         color: #212121;
-        border-bottom: 1px solid #e0e0e0;
+        color: mat.get-color-from-palette($foreground, text);
 
         .comp-description {
           color: #616161;
