@@ -7,8 +7,6 @@
   "allowedNonPeerDependencies": [
     "d3",
     "dom-to-image",
-    "lottie-web",
-    "ngx-lottie",
     "zone.js",
     "@swimlane/ngx-charts"
   ]
