@@ -95,6 +95,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="sidenav-container-content">
+        <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
+          [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oChartTranslate">
+        </o-button>
         <div fxLayout="column" id="sidenav-container-content" fxFlex [ngClass]="chartClass">
           <!-- <ng-lottie height="95%" class="lottie" [options]="options" *ngIf="showPlaceholder" fxFlex></ng-lottie> -->
           <div fxLayout="column" fxLayoutAlign="start start" *ngIf="!showPlaceholder">
