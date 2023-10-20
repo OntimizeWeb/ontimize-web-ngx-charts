@@ -21,7 +21,7 @@
     "start": "ng serve",
     "build": "ng build && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
     "build-prod": "ng build -c production && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
-    "copy-files": "copyfiles -u 3 ./projects/ontimize-web-ngx-charts/assets/* ./dist/assets && echo '----¡Assets copied!----'  ",
+    "copy-files": "copyfiles -u 3 './projects/ontimize-web-ngx-charts/assets/*' ./dist/assets && echo '----¡Assets copied!----'  ",
     "test": "ng test --code-coverage",
     "test-ci": "ng test --no-watch --code-coverage --browsers ChromeHeadless",
     "lint": "ng lint",
