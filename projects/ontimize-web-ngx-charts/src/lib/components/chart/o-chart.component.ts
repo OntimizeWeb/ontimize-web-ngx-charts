@@ -27,11 +27,7 @@ import { ChartFactory } from '../../interfaces/ChartFactory.interface';
 import { BulletChartConfiguration } from '../../models/options/BulletChartConfiguration.class';
 import { CandlestickChartConfiguration } from '../../models/options/CandlestickChartConfiguration.class';
 import { ChartConfiguration } from '../../models/options/ChartConfiguration.class';
-import { GaugeDashboardChartConfiguration } from '../../models/options/GaugeDashboardChartConfiguration.class';
-import { GaugeSlimChartConfiguration } from '../../models/options/GaugeSlimChartConfiguration.class';
-import { GaugeSpaceChartConfiguration } from '../../models/options/GaugeSpaceChartConfiguration.class';
 import { OHLCChartConfiguration } from '../../models/options/OHLCChartConfiguration.class';
-import { RadialPercentChartConfiguration } from '../../models/options/RadialPercentChartConfiguration.class';
 import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
@@ -222,9 +218,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
     protected injector: Injector,
-    private appearanceService: AppearanceService
+    private appearanceService: AppearanceService,
+    private _translateService: OTranslateService,
   ) {
     super(injector);
+
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
     this.cd = this.injector.get(ChangeDetectorRef);
@@ -271,7 +269,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'float':
         return d => d.toFixed(2);
       case 'currency':
-        return d => d.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        let language = this._translateService.getCurrentLang() == 'es' ? 'es-ES' : 'en-US';
+        let currencyCode = this._translateService.getCurrentLang() == 'es' ? 'EUR' : 'USD';
+        return d => d.toLocaleString(language, { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
       case 'TIME':
       case 'TIMESTAMP':
