@@ -32,6 +32,7 @@ import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
+import { CurrencyUtil } from '../../util/currencyUtil';
 
 
 export const CHART_TYPES = [
@@ -269,8 +270,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'float':
         return d => (d !== undefined) ? d.toFixed(2) : '';
       case 'currency':
-        let language = this._translateService.getCurrentLang() == 'es' ? 'es-ES' : 'en-US';
-        let currencyCode = this._translateService.getCurrentLang() == 'es' ? 'EUR' : 'USD';
+        let language = this._translateService.getCurrentLang();
+        let currencyCode = CurrencyUtil.getCurrencyCode(language);
         return d => d.toLocaleString(language, { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
       case 'TIME':
