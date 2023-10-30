@@ -1,6 +1,7 @@
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
 import { StackedAreaChartConfiguration } from '../models/options/StackedAreaChartConfiguration.class';
+
 interface ChartDataPoint {
   name: string;
   value: number;
@@ -34,7 +35,7 @@ export class StackedAreaDataAdapter implements ChartDataAdapter {
       this.yAxis.forEach((axis: string, _index: number) => {
         let serie: ChartSeries = {
           name: axis,
-          series: []
+          series: seriesValues[axis] || [], // Use the processed data for the series
         };
         if (config.color && config.color[_index]) {
           serie.color = config.color[_index];
@@ -44,28 +45,27 @@ export class StackedAreaDataAdapter implements ChartDataAdapter {
           key = config.translateService.get(key);
         }
         serie.name = key;
-        seriesValues[axis].sort((a, b) => (a.x > b.x) ? 1 : (b.x > a.x) ? -1 : 0);
-        serie.series = seriesValues[axis];
         result.push(serie);
       });
     }
     return result;
   }
 
-  processSeriesValues(data: Array<any>): Object {
+  processSeriesValues(data: Array<any>): { [key: string]: ChartDataPoint[] } {
     let seriesValues: { [key: string]: ChartDataPoint[] } = {};
-    var self = this;
+
     data.forEach((item: any, _index: number) => {
-      self.yAxis.forEach((axis: string, _indexAxis: number) => {
+      this.yAxis.forEach((axis: string, _indexAxis: number) => {
         if (seriesValues[axis] === undefined) {
           seriesValues[axis] = [];
         }
-        if (item[axis] === undefined) return;
-        const dataPoint: ChartDataPoint = {
-          name: item[self.xAxis], // Corrected property name
-          value: item[axis]
-        };
-        seriesValues[axis].push(dataPoint);
+        if (item[axis] !== undefined) {
+          const dataPoint: ChartDataPoint = {
+            name: item[this.xAxis] || '', // Use the correct property name and handle undefined
+            value: item[axis] || 0, // Use 0 as the default value for undefined
+          };
+          seriesValues[axis].push(dataPoint);
+        }
       });
     });
     return seriesValues;
