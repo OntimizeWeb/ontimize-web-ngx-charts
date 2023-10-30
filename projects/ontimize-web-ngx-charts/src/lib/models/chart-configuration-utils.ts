@@ -62,6 +62,9 @@ export class ChartConfigurationUtils {
       case 'bulletChart':
         chartConf = new BulletChartConfiguration();
         break;
+      case 'stackedAreaChart':
+        chartConf = new StackedAreaChartConfiguration();
+        break;
       // case 'gaugeDashboardChart':
       //   chartConf = new GaugeDashboardChartConfiguration();
       //   break;

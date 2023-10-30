@@ -261,13 +261,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   getTickFormatter(type: string): any {
     switch (type) {
       case 'intGrouped':
-        return d => d.toLocaleString();
+        return d => (d !== undefined) ? d.toLocaleString() : '';
       case 'floatGrouped':
-        return d => d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return d => (d !== undefined) ? d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
       case 'int':
-        return d => Math.round(d).toLocaleString();
+        return d => (d !== undefined) ? Math.round(d).toLocaleString() : '';
       case 'float':
-        return d => d.toFixed(2);
+        return d => (d !== undefined) ? d.toFixed(2) : '';
       case 'currency':
         let language = this._translateService.getCurrentLang() == 'es' ? 'es-ES' : 'en-US';
         let currencyCode = this._translateService.getCurrentLang() == 'es' ? 'EUR' : 'USD';
@@ -276,13 +276,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'TIME':
       case 'TIMESTAMP':
       case 'DATE':
-        return d => new Date(d).toLocaleDateString();
+        return d => (d !== undefined) ? new Date(d).toLocaleDateString() : '';
       case 'timeDay':
-        return d => new Date(d).toLocaleTimeString();
+        return d => (d !== undefined) ? new Date(d).toLocaleTimeString() : '';
       case 'timeDetail':
-        return d => new Date(d).toLocaleString();
+        return d => (d !== undefined) ? new Date(d).toLocaleString() : '';
       case 'percentage':
-        return d => (d * 100).toFixed(0) + '%';
+        return d => (d !== undefined) ? (d * 100).toFixed(0) + '%' : '';
       default:
         if (typeof type === 'function') {
           return type;
@@ -290,6 +290,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         return void 0;
     }
   }
+
   formatTimestamp(timestamp: number): string {
     const date = new Date(timestamp);
     const day = date.getUTCDate().toString().padStart(2, '0');
@@ -400,15 +401,35 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   getAdaptData(): any {
     if (this.type === 'forceDirectedGraph' || this.type === 'bulletChart') {
       if (this.dataArray && this.dataArray[0]) {
-        return this.dataArray[0];
+        return this.cleanArray(this.dataArray[0]);
       } else {
         return [];
       }
     } else {
-      return this.dataArray;
+
+      return this.cleanArray(this.dataArray);
     }
 
   }
+
+  cleanArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].name === undefined) {
+        arr[i].name = '';
+      }
+      if (arr[i].series) {
+        for (let j = 0; j < arr[i].series.length; j++) {
+          if (arr[i].series[j].value === undefined) {
+            arr[i].series[j].value = '';
+          }
+        }
+      } else if (arr[i].value === undefined) {
+        arr[i].value = '';
+      }
+    }
+    return arr;
+  }
+
 
   getChartFactory(): ChartFactory {
     return new OChartFactory(this.translateService);
@@ -463,152 +484,166 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let config = this.getChartConfiguration();
     switch (this.type) {
       case 'pie':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.pieChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.pieChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.pieChart['labels'] = config['showLabels'];;
-        this.pieChart['legend'] = config['showLeyend'];
-        this.pieChart['legendPosition'] = config['legendPosition'];
-        this.pieChart['tooltipDisabled'] = !config['showTooltip'];
-        if (Util.isDefined(config['color'])) {
-          this.pieChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+        if (Util.isDefined(this.pieChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.pieChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.pieChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.pieChart['labels'] = config['showLabels'];;
+          this.pieChart['legend'] = config['showLeyend'];
+          this.pieChart['legendPosition'] = config['legendPosition'];
+          this.pieChart['tooltipDisabled'] = !config['showTooltip'];
+          if (Util.isDefined(config['color'])) {
+            this.pieChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
         }
         break;
       case 'donutChart':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.donutChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.donutChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.donutChart['labels'] = config['showLabels'];
-        this.donutChart['legend'] = config['showLeyend'];
-        this.donutChart['legendPosition'] = config['legendPosition'];
-        this.donutChart['tooltipDisabled'] = !config['showTooltip'];
-        if (Util.isDefined(config['color'])) {
-          this.donutChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+        if (Util.isDefined(this.donutChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.donutChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.donutChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.donutChart['labels'] = config['showLabels'];
+          this.donutChart['legend'] = config['showLeyend'];
+          this.donutChart['legendPosition'] = config['legendPosition'];
+          this.donutChart['tooltipDisabled'] = !config['showTooltip'];
+          if (Util.isDefined(config['color'])) {
+            this.donutChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
         }
         break;
       case 'stackedAreaChart':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.stackedAreaChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.stackedAreaChart['labels'] = config['showLabels'];
-        this.stackedAreaChart['legend'] = config['showLeyend'];
-        this.stackedAreaChart['legendPosition'] = config['legendPosition'];
-        this.stackedAreaChart['tooltipDisabled'] = !config['showTooltip'];
-        if (Util.isDefined(config['color'])) {
-          this.stackedAreaChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        }
-        if (Util.isDefined(config['yDataType'])) {
-          this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(this.stackedAreaChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.stackedAreaChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.stackedAreaChart['labels'] = config['showLabels'];
+          this.stackedAreaChart['legend'] = config['showLeyend'];
+          this.stackedAreaChart['legendPosition'] = config['legendPosition'];
+          this.stackedAreaChart['tooltipDisabled'] = !config['showTooltip'];
+          if (Util.isDefined(config['color'])) {
+            this.stackedAreaChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
+          if (Util.isDefined(config['yDataType'])) {
+            this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+          }
         }
         break;
       case 'multiBarHorizontalChart':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.horizontalBarChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.horizontalBarChart['labels'] = config['showLabels'];
-        this.horizontalBarChart['legend'] = config['showLeyend'];
-        this.horizontalBarChart['legendPosition'] = config['legendPosition'];
-        this.horizontalBarChart['xAxis'] = config['showXAxis'];
-        this.horizontalBarChart['yAxis'] = config['showYAxis'];
-        this.horizontalBarChart['showGridLines'] = this.showGridLines;
-        if (Util.isDefined(config['color'])) {
-          this.horizontalBarChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        }
-        if (Util.isDefined(config['yDataType'])) {
-          this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(this.horizontalBarChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.horizontalBarChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.horizontalBarChart['labels'] = config['showLabels'];
+          this.horizontalBarChart['legend'] = config['showLeyend'];
+          this.horizontalBarChart['legendPosition'] = config['legendPosition'];
+          this.horizontalBarChart['xAxis'] = config['showXAxis'];
+          this.horizontalBarChart['yAxis'] = config['showYAxis'];
+          this.horizontalBarChart['showGridLines'] = this.showGridLines;
+          if (Util.isDefined(config['color'])) {
+            this.horizontalBarChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
+          if (Util.isDefined(config['yDataType'])) {
+            this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+          }
         }
         break;
       case 'line':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.lineChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.lineChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.lineChart['labels'] = config['showLabels'];
-        this.lineChart['legend'] = config['showLeyend'];
-        this.lineChart['legendPosition'] = config['legendPosition'];
-        this.lineChart['tooltipDisabled'] = !config['showTooltip'];
-        this.lineChart['xAxis'] = config['showXAxis'];
-        this.lineChart['yAxis'] = config['showYAxis'];
-        if (Util.isDefined(config['color'])) {
-          this.lineChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        }
-        if (Util.isDefined(config['yDataType'])) {
-          this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(this.lineChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.lineChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.lineChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.lineChart['labels'] = config['showLabels'];
+          this.lineChart['legend'] = config['showLeyend'];
+          this.lineChart['legendPosition'] = config['legendPosition'];
+          this.lineChart['tooltipDisabled'] = !config['showTooltip'];
+          this.lineChart['xAxis'] = config['showXAxis'];
+          this.lineChart['yAxis'] = config['showYAxis'];
+          if (Util.isDefined(config['color'])) {
+            this.lineChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
+          if (Util.isDefined(config['yDataType'])) {
+            this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+          }
         }
         break;
       case 'discreteBar':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.discreteBarChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.discreteBarChart['labels'] = config['showLabels'];
-        this.discreteBarChart['legend'] = config['showLeyend'];
-        this.discreteBarChart['legendPosition'] = config['legendPosition'];
-        this.discreteBarChart['tooltipDisabled'] = !config['showTooltip'];
-        this.discreteBarChart['xAxis'] = config['showXAxis'];
-        this.discreteBarChart['yAxis'] = config['showYAxis'];
-        if (Util.isDefined(config['color'])) {
-          this.discreteBarChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        }
-        if (Util.isDefined(config['yDataType'])) {
-          this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(this.discreteBarChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.discreteBarChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.discreteBarChart['labels'] = config['showLabels'];
+          this.discreteBarChart['legend'] = config['showLeyend'];
+          this.discreteBarChart['legendPosition'] = config['legendPosition'];
+          this.discreteBarChart['tooltipDisabled'] = !config['showTooltip'];
+          this.discreteBarChart['xAxis'] = config['showXAxis'];
+          this.discreteBarChart['yAxis'] = config['showYAxis'];
+          if (Util.isDefined(config['color'])) {
+            this.discreteBarChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
+          if (Util.isDefined(config['yDataType'])) {
+            this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+          }
         }
         break;
       case 'multiBar':
-        if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
-          this.multiBarChart['view'] = [config.width, config.height];
-        }
-        else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
-          this.multiBarChart['view'] = [this.cWidth, this.cHeight];
-        }
-        this.multiBarChart['labels'] = config['showLabels'];
-        this.multiBarChart['legend'] = config['showLeyend'];
-        this.multiBarChart['legendPosition'] = config['legendPosition'];
-        this.multiBarChart['tooltipDisabled'] = !config['showTooltip'];
-        this.multiBarChart['xAxis'] = config['showXAxis'];
-        this.multiBarChart['yAxis'] = config['showYAxis'];
-        if (Util.isDefined(config['color'])) {
-          this.multiBarChart['scheme'] = config['color'];
-        }
-        if (Util.isDefined(config['xDataType'])) {
-          this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
-        }
-        if (Util.isDefined(config['yDataType'])) {
-          this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+        if (Util.isDefined(this.multiBarChart)) {
+          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+            this.multiBarChart['view'] = [config.width, config.height];
+          }
+          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+            this.multiBarChart['view'] = [this.cWidth, this.cHeight];
+          }
+          this.multiBarChart['labels'] = config['showLabels'];
+          this.multiBarChart['legend'] = config['showLeyend'];
+          this.multiBarChart['legendPosition'] = config['legendPosition'];
+          this.multiBarChart['tooltipDisabled'] = !config['showTooltip'];
+          this.multiBarChart['xAxis'] = config['showXAxis'];
+          this.multiBarChart['yAxis'] = config['showYAxis'];
+          if (Util.isDefined(config['color'])) {
+            this.multiBarChart['scheme'] = config['color'];
+          }
+          if (Util.isDefined(config['xDataType'])) {
+            this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+          }
+          if (Util.isDefined(config['yDataType'])) {
+            this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+          }
         }
         break;
     }
@@ -698,8 +733,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.onPinch.emit(event);
   }
   updateOptions(options: any, type: string) {
-    this.type = type;
+
     this.setChartConfiguration(options);
+    this.type = type;
     this.configureParams();
   }
 
