@@ -483,6 +483,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
   configureParams() {
     let config = this.getChartConfiguration();
+    if (Util.isDefined(config['color'])) {
+      this.color = config['color'];
+    }
     switch (this.type) {
       case 'pie':
         if (Util.isDefined(this.pieChart)) {
@@ -734,10 +737,25 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.onPinch.emit(event);
   }
   updateOptions(options: any, type: string) {
-
-    this.setChartConfiguration(options);
-    this.type = type;
-    this.configureParams();
+    if (type === this.type) {
+      this.forceRerender(type);
+    } else {
+      this.setChartConfiguration(options);
+      this.type = type;
+      this.configureParams();
+    }
+    setTimeout(() => {
+      this.setChartConfiguration(options);
+      this.type = type;
+      this.configureParams();
+    }, 10);
   }
+  forceRerender(type: string) {
+    this.type = '';
+    setTimeout(() => {
+      this.type = type;
+    }, 0);
+  }
+
 
 }
