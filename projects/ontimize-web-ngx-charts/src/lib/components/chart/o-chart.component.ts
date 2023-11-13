@@ -263,40 +263,94 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
   }
   getTickFormatter(type: string, currency?: CurrencyType): any {
-    let language = this._translateService.getCurrentLang();
-    let currencyCode = CurrencyUtil.getCurrencyCode(language);
+    const language = this.getLanguage(currency);
+    const currencyCode = this.getCurrencyCode(language, currency);
+
     switch (type) {
       case 'intGrouped':
-        return d => (d !== undefined) ? d.toLocaleString() : '';
+        return this.formatIntGrouped;
       case 'floatGrouped':
-        return d => (d !== undefined) ? d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
+        return this.formatFloatGrouped;
       case 'int':
-        return d => (d !== undefined) ? Math.round(d).toLocaleString() : '';
+        return this.formatInt;
       case 'float':
-        return d => (d !== undefined) ? d.toFixed(2) : '';
+        return this.formatFloat;
       case 'currency':
-        if (currency) {
-          currencyCode = CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
-          language = currency.symbolPosition == 'left' ? 'en' : 'es';
-        }
-        return d => d.toLocaleString(language, { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return this.formatCurrency(language, currencyCode);
       case 'time':
       case 'TIME':
       case 'TIMESTAMP':
       case 'DATE':
-        return d => (d !== undefined) ? new Date(d).toLocaleDateString() : '';
+        return this.auxFormatDate;
       case 'timeDay':
-        return d => (d !== undefined) ? new Date(d).toLocaleTimeString() : '';
+        return this.formatTime;
       case 'timeDetail':
-        return d => (d !== undefined) ? new Date(d).toLocaleString() : '';
+        return this.formatDateTime;
       case 'percentage':
-        return d => (d !== undefined) ? (d * 100).toFixed(0) + '%' : '';
+        return this.formatPercentage;
       default:
-        if (typeof type === 'function') {
-          return type;
-        }
-        return void 0;
+        return typeof type === 'function' ? type : undefined;
     }
+  }
+
+  private getLanguage(currency?: CurrencyType): string {
+    if (currency) {
+      return currency?.symbolPosition === 'left' ? 'en' : 'es';
+    }
+    else {
+      return this._translateService.getCurrentLang();
+    }
+
+  }
+
+  private getCurrencyCode(language: string, currency?: CurrencyType): string {
+    if (currency) {
+      return CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
+    }
+    else {
+      return CurrencyUtil.getCurrencyCode(language);
+    }
+  }
+
+  private formatIntGrouped(d: number): string {
+    return (d !== undefined) ? d.toLocaleString() : '';
+  }
+
+  private formatFloatGrouped(d: number): string {
+    return (d !== undefined) ? d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
+  }
+
+  private formatInt(d: number): string {
+    return (d !== undefined) ? Math.round(d).toLocaleString() : '';
+  }
+
+  private formatFloat(d: number): string {
+    return (d !== undefined) ? d.toFixed(2) : '';
+  }
+
+  private formatCurrency(language: string, currencyCode: string): (d: number) => string {
+    return (d: number) => d.toLocaleString(language, {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  private auxFormatDate(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleDateString() : '';
+  }
+
+  private formatTime(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleTimeString() : '';
+  }
+
+  private formatDateTime(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleString() : '';
+  }
+
+  private formatPercentage(d: number): string {
+    return (d !== undefined) ? (d * 100).toFixed(0) + '%' : '';
   }
 
   formatTimestamp(timestamp: number): string {
