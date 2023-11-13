@@ -277,7 +277,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'currency':
         if (currency) {
           currencyCode = CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
-          currency.symbolPosition == 'left' ? language = 'en' : language = 'es';
+          language = currency.symbolPosition == 'left' ? 'en' : 'es';
         }
         return d => d.toLocaleString(language, { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
