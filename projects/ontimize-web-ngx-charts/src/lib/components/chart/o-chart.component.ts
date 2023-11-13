@@ -273,8 +273,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       case 'float':
         return d => (d !== undefined) ? d.toFixed(2) : '';
       case 'currency':
-        let language;
-        let currencyCode;
+        var language;
+        var currencyCode;
         if (currency) {
           currencyCode = CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
           currency.symbolPosition == 'left' ? language = 'en' : language = 'es';
