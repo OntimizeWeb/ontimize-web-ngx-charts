@@ -1,4 +1,5 @@
 export class CurrencyUtil {
+
   static languageToCurrencyCode = {
     'es': 'EUR', // Spanish
     'en': 'USD', // English
@@ -12,7 +13,15 @@ export class CurrencyUtil {
     'ar': 'AED', // Arabic
   };
 
-
+  static currencyCodeToSymbol = {
+    'EUR': '€',
+    'USD': '$',
+    'BRL': 'R$',
+    'JPY': '¥',
+    'CNY': '¥',
+    'RUB': '₽',
+    'AED': 'د.إ',
+  };
   static getCurrencyCode(language: string): string {
     const code = this.languageToCurrencyCode[language];
     if (code) {
@@ -20,5 +29,12 @@ export class CurrencyUtil {
     } else {
       return 'USD';
     }
+  }
+  static getCurrencyCodeFromSymbol(symbol: string): string | undefined {
+    const currencyCode = Object.keys(this.currencyCodeToSymbol).find(
+      code => this.currencyCodeToSymbol[code] === symbol
+    );
+
+    return currencyCode;
   }
 }

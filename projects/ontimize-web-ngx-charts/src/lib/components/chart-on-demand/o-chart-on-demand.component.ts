@@ -226,8 +226,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
     const adapter = DataAdapterUtils.createDataAdapter(chartParameters);
     this.captureDataTypeChart(adapter);
-    console.log(this.tableComp);
-    this.chart.updateOptions(chartParameters, this.currentPreference.selectedTypeChart);
+    this.chart.updateOptions(chartParameters, this.currentPreference.selectedTypeChart, this.tableComp.getOColumn(this.currentPreference.selectedXAxis), this.tableComp.getOColumn(this.currentPreference.selectedYAxis[0]));
   }
 
 
