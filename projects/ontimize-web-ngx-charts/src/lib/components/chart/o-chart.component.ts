@@ -488,10 +488,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     switch (this.type) {
       case 'pie':
         if (Util.isDefined(this.pieChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.pieChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.pieChart['view'] = [this.cWidth, this.cHeight];
           }
           this.pieChart['labels'] = config['showLabels'];;
@@ -508,10 +508,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'donutChart':
         if (Util.isDefined(this.donutChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.donutChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.donutChart['view'] = [this.cWidth, this.cHeight];
           }
           this.donutChart['labels'] = config['showLabels'];
@@ -528,10 +528,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'stackedAreaChart':
         if (Util.isDefined(this.stackedAreaChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.stackedAreaChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.stackedAreaChart['view'] = [this.cWidth, this.cHeight];
           }
           this.stackedAreaChart['labels'] = config['showLabels'];
@@ -551,10 +551,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'multiBarHorizontalChart':
         if (Util.isDefined(this.horizontalBarChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.horizontalBarChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.horizontalBarChart['view'] = [this.cWidth, this.cHeight];
           }
           this.horizontalBarChart['labels'] = config['showLabels'];
@@ -576,10 +576,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'line':
         if (Util.isDefined(this.lineChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.lineChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.lineChart['view'] = [this.cWidth, this.cHeight];
           }
           this.lineChart['labels'] = config['showLabels'];
@@ -601,10 +601,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'discreteBar':
         if (Util.isDefined(this.discreteBarChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.discreteBarChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.discreteBarChart['view'] = [this.cWidth, this.cHeight];
           }
           this.discreteBarChart['labels'] = config['showLabels'];
@@ -626,10 +626,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         break;
       case 'multiBar':
         if (Util.isDefined(this.multiBarChart)) {
-          if (Util.isDefined(config.width) && Util.isDefined(config.height)) {
+          if (this.isDefinedAndGreaterThanZero(config.width, config.height)) {
             this.multiBarChart['view'] = [config.width, config.height];
           }
-          else if (Util.isDefined(this.cWidth) && Util.isDefined(this.cHeight)) {
+          else if (this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
             this.multiBarChart['view'] = [this.cWidth, this.cHeight];
           }
           this.multiBarChart['labels'] = config['showLabels'];
@@ -650,6 +650,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         }
         break;
     }
+  }
+  isDefinedAndGreaterThanZero(width: number, height: number): boolean {
+    return Util.isDefined(width) && Util.isDefined(height) && width != 0 && height != 0;
   }
   getAttributesValuesToQuery(): Array<string> {
     let columns = super.getAttributesValuesToQuery();

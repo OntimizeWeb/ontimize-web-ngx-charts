@@ -142,6 +142,7 @@
         height: 100%;
         border-radius: 4px;
         border: 1px solid #dddddd;
+        overflow: auto;
 
         .title {
           margin-left: 60px;
@@ -168,4 +169,13 @@
 
 .palette_icon {
   width: 100%;
+}
+
+.chartDiv {
+  height: 100%;
+  width: 100%;
+}
+
+#sidenav-container-content {
+  height: 100%;
 }
