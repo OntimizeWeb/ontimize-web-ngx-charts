@@ -263,8 +263,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
   }
   getTickFormatter(type: string, currency?: CurrencyType): any {
-    let language;
-    let currencyCode;
+    let language = this._translateService.getCurrentLang();
+    let currencyCode = CurrencyUtil.getCurrencyCode(language);
     switch (type) {
       case 'intGrouped':
         return d => (d !== undefined) ? d.toLocaleString() : '';
@@ -278,10 +278,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         if (currency) {
           currencyCode = CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
           currency.symbolPosition == 'left' ? language = 'en' : language = 'es';
-        }
-        else {
-          currencyCode = CurrencyUtil.getCurrencyCode(language);
-          language = this._translateService.getCurrentLang();
         }
         return d => d.toLocaleString(language, { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
       case 'time':
