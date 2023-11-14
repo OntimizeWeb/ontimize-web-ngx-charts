@@ -11,6 +11,7 @@ import {
   AppearanceService,
   BooleanInputConverter,
   ComponentStateServiceProvider,
+  CurrencyUtil,
   DefaultComponentStateService,
   NumberInputConverter,
   O_COMPONENT_STATE_SERVICE,
@@ -33,7 +34,6 @@ import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
-import { CurrencyUtil } from '../../util/currencyUtil';
 import { CurrencyType } from '../../types/currency.type';
 
 
