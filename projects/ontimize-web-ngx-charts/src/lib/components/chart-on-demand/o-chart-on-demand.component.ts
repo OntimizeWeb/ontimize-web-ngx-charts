@@ -1,12 +1,11 @@
-import { Subscription } from 'rxjs';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, Type, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatRadioGroup } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
-import { OColumn, OFormComponent, OntimizeService, OTableComponent, OValueChangeEvent, SnackBarService, SQLTypes, Util, OTranslateService, DialogService, OntimizeMatIconRegistry, AppearanceService } from 'ontimize-web-ngx';
+import { AppearanceService, DialogService, OColumn, OFormComponent, OTableComponent, OTranslateService, OValueChangeEvent, OntimizeMatIconRegistry, OntimizeService, SQLTypes, SnackBarService, Util } from 'ontimize-web-ngx';
+import { Subscription } from 'rxjs';
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
-import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
 import { PreferencesConfiguration } from '../../types/preferences-configuration.type';
@@ -17,7 +16,7 @@ import { OChartOnDemandUtils } from './o-chart-on-demand-utils';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
 
-declare var d3: any;
+
 const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
 
@@ -68,13 +67,10 @@ export class OChartOnDemandComponent implements AfterViewInit {
   private _arrayColumns = [];
   arrayYAxis = [];
   sqlTypes = {};
-  public d3Locale;
   isDarkMode: boolean;
 
   @Input() description: string = '';
   @Input() buttonText: string = '';
-
-  fixedInViewport = true;
 
   protected langSubscription: Subscription;
   protected translateService: OTranslateService;
@@ -82,7 +78,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
-    private d3LocaleService: D3LocaleService,
     private dialogRef: MatDialogRef<any>,
     public dialog: MatDialog,
     protected injector: Injector,
@@ -129,10 +124,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentConfiguration = { ENTITY: this.currentPreference.entity };
     this.cd.detectChanges();
   }
-  // options: AnimationOptions = {
-  //   path: './assets/chart_animation.json',
-  //   autoplay: false
-  // };
+
 
   protected parseColumnsVisible() {
     const columnsArray = Util.parseArray(this.tableComp.columns);
@@ -230,7 +222,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
     const adapter = DataAdapterUtils.createDataAdapter(chartParameters);
     this.captureDataTypeChart(adapter);
-    this.chart.updateOptions(chartParameters, this.currentPreference.selectedTypeChart);
+    this.chart.updateOptions(chartParameters, this.currentPreference.selectedTypeChart, this.tableComp.getOColumn(this.currentPreference.selectedXAxis), this.tableComp.getOColumn(this.currentPreference.selectedYAxis[0]));
   }
 
 
