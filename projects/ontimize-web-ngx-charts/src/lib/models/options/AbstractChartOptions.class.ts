@@ -1,17 +1,14 @@
 import { OTranslateService } from 'ontimize-web-ngx';
 import { ChartConfiguration } from './ChartConfiguration.class';
-import { D3LocaleOptions } from './D3LocaleOptions';
 
 
 export class AbstractChartOptions {
 
   protected chartConf: ChartConfiguration;
   protected type: string;
-  protected d3Locale: D3LocaleOptions;
 
   constructor(chartConf: ChartConfiguration, protected translate: OTranslateService) {
     this.chartConf = chartConf;
-    this.d3Locale = new D3LocaleOptions(this.translate);
     this.init(chartConf);
   }
 
