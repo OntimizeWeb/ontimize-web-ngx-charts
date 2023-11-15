@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "15.0.0-SNAPSHOT-2",
+  "version": "15.0.0-SNAPSHOT-3",
   "description": "An implementation of ngx-charts for Ontimize Web",
   "keywords": [
     "angular",
