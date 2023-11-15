@@ -35,6 +35,7 @@ import { ChartConfigurationUtils } from './../../models/chart-configuration-util
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
 import { CurrencyType } from '../../types/currency.type';
+import moment from 'moment';
 
 
 export const CHART_TYPES = [
@@ -261,6 +262,19 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (this.queryOnInit && this.dataService !== undefined) {
       this.queryData();
     }
+  }
+  getDateTickFormatter(dateFormat: string) {
+    return d => (d !== undefined) ? moment(d).locale(this._translateService.getCurrentLang()).format(dateFormat) : '';
+  }
+  isDateType(type: string): boolean {
+    return (
+      type === 'time' ||
+      type === 'TIME' ||
+      type === 'TIMESTAMP' ||
+      type === 'DATE' ||
+      type === 'timeDay' ||
+      type === 'timeDetail'
+    );
   }
   getTickFormatter(type: string, currency?: CurrencyType): any {
     const language = this.getLanguage(currency);
@@ -583,6 +597,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.pieChart['labelFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
             } else {
               this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
             }
@@ -607,7 +623,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
-            } else {
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.donutChart['labelFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
+            }
+            else {
               this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
             }
           }
@@ -631,13 +650,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
-            } else {
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.stackedAreaChart['xAxisTickFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
+            }
+            else {
               this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
             }
           }
           if (Util.isDefined(config['yDataType'])) {
             if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
               this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else if (this.isDateType(config['yDataType']) && this.yColumn != null && this.yColumn.renderer['format']) {
+              this.stackedAreaChart['yAxisTickFormatting'] = this.getDateTickFormatter(this.yColumn.renderer['format'])
             } else {
               this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
             }
@@ -664,6 +688,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.horizontalBarChart['xAxisTickFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
             } else {
               this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
             }
@@ -671,6 +697,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['yDataType'])) {
             if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
               this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else if (this.isDateType(config['yDataType']) && this.yColumn != null && this.yColumn.renderer['format']) {
+              this.horizontalBarChart['yAxisTickFormatting'] = this.getDateTickFormatter(this.yColumn.renderer['format'])
             } else {
               this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
             }
@@ -697,6 +725,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.lineChart['xAxisTickFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
             } else {
               this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
             }
@@ -704,6 +734,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['yDataType'])) {
             if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
               this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else if (this.isDateType(config['yDataType']) && this.yColumn != null && this.yColumn.renderer['format']) {
+              this.lineChart['yAxisTickFormatting'] = this.getDateTickFormatter(this.yColumn.renderer['format'])
             } else {
               this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
             }
@@ -730,6 +762,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.discreteBarChart['xAxisTickFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
             } else {
               this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
             }
@@ -737,6 +771,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['yDataType'])) {
             if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
               this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else if (this.isDateType(config['yDataType']) && this.yColumn != null && this.yColumn.renderer['format']) {
+              this.discreteBarChart['yAxisTickFormatting'] = this.getDateTickFormatter(this.yColumn.renderer['format'])
             } else {
               this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
             }
@@ -763,6 +799,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['xDataType'])) {
             if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
               this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else if (this.isDateType(config['xDataType']) && this.xColumn != null && this.xColumn.renderer['format']) {
+              this.multiBarChart['xAxisTickFormatting'] = this.getDateTickFormatter(this.xColumn.renderer['format'])
             } else {
               this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
             }
@@ -770,6 +808,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
           if (Util.isDefined(config['yDataType'])) {
             if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
               this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else if (this.isDateType(config['yDataType']) && this.yColumn != null && this.yColumn.renderer['format']) {
+              this.multiBarChart['yAxisTickFormatting'] = this.getDateTickFormatter(this.yColumn.renderer['format'])
             } else {
               this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
             }
