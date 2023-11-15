@@ -481,6 +481,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       }
       if (arr[i].series) {
         for (let j = 0; j < arr[i].series.length; j++) {
+          if (arr[i].series[j].name === undefined) {
+            arr[i].series[j].name = '';
+          }
           if (arr[i].series[j].value === undefined) {
             arr[i].series[j].value = '';
           }
@@ -489,9 +492,16 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         arr[i].value = '';
       }
     }
+    if (this.type == 'stackedAreaChart' && Util.isDefined(this.xColumn) && (this.xColumn.type == 'date' || this.yColumn.type == 'date')) {
+      arr = this.filterArray(arr);
+    }
     return arr;
   }
+  filterArray(data) {
+    data[0].series = data[0].series.filter(serie => serie.name !== "" && serie.value !== "");
 
+    return data;
+  }
 
   getChartFactory(): ChartFactory {
     return new OChartFactory(this.translateService);
