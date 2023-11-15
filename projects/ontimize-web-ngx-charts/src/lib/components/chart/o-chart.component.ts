@@ -11,9 +11,11 @@ import {
   AppearanceService,
   BooleanInputConverter,
   ComponentStateServiceProvider,
+  CurrencyUtil,
   DefaultComponentStateService,
   NumberInputConverter,
   O_COMPONENT_STATE_SERVICE,
+  OColumn,
   OFormComponent,
   OntimizeServiceProvider,
   OServiceBaseComponent,
@@ -27,15 +29,12 @@ import { ChartFactory } from '../../interfaces/ChartFactory.interface';
 import { BulletChartConfiguration } from '../../models/options/BulletChartConfiguration.class';
 import { CandlestickChartConfiguration } from '../../models/options/CandlestickChartConfiguration.class';
 import { ChartConfiguration } from '../../models/options/ChartConfiguration.class';
-import { GaugeDashboardChartConfiguration } from '../../models/options/GaugeDashboardChartConfiguration.class';
-import { GaugeSlimChartConfiguration } from '../../models/options/GaugeSlimChartConfiguration.class';
-import { GaugeSpaceChartConfiguration } from '../../models/options/GaugeSpaceChartConfiguration.class';
 import { OHLCChartConfiguration } from '../../models/options/OHLCChartConfiguration.class';
-import { RadialPercentChartConfiguration } from '../../models/options/RadialPercentChartConfiguration.class';
 import { ChartService } from '../../services/chart.service';
 import { ChartConfigurationUtils } from './../../models/chart-configuration-utils';
 import { OChartDataAdapterFactory } from './o-chart-data-adapter.factory';
 import { OChartFactory } from './o-chart.factory';
+import { CurrencyType } from '../../types/currency.type';
 
 
 export const CHART_TYPES = [
@@ -185,7 +184,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @BooleanInputConverter()
   showDataLabel: boolean = true;
   protected chartParameters: ChartConfiguration;
-
+  xColumn: OColumn;
+  yColumn: OColumn;
   @NumberInputConverter()
   cHeight: number = undefined;
 
@@ -222,9 +222,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
     protected injector: Injector,
-    private appearanceService: AppearanceService
+    private appearanceService: AppearanceService,
+    private _translateService: OTranslateService,
   ) {
     super(injector);
+
     this.translateService = this.injector.get(OTranslateService);
     this.chartService = this.injector.get(ChartService);
     this.cd = this.injector.get(ChangeDetectorRef);
@@ -260,35 +262,95 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       this.queryData();
     }
   }
-  getTickFormatter(type: string): any {
+  getTickFormatter(type: string, currency?: CurrencyType): any {
+    const language = this.getLanguage(currency);
+    const currencyCode = this.getCurrencyCode(language, currency);
+
     switch (type) {
       case 'intGrouped':
-        return d => (d !== undefined) ? d.toLocaleString() : '';
+        return this.formatIntGrouped;
       case 'floatGrouped':
-        return d => (d !== undefined) ? d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
+        return this.formatFloatGrouped;
       case 'int':
-        return d => (d !== undefined) ? Math.round(d).toLocaleString() : '';
+        return this.formatInt;
       case 'float':
-        return d => (d !== undefined) ? d.toFixed(2) : '';
+        return this.formatFloat;
       case 'currency':
-        return d => (d !== undefined) ? d.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
+        return this.formatCurrency(language, currencyCode);
       case 'time':
       case 'TIME':
       case 'TIMESTAMP':
       case 'DATE':
-        return d => (d !== undefined) ? new Date(d).toLocaleDateString() : '';
+        return this.auxFormatDate;
       case 'timeDay':
-        return d => (d !== undefined) ? new Date(d).toLocaleTimeString() : '';
+        return this.formatTime;
       case 'timeDetail':
-        return d => (d !== undefined) ? new Date(d).toLocaleString() : '';
+        return this.formatDateTime;
       case 'percentage':
-        return d => (d !== undefined) ? (d * 100).toFixed(0) + '%' : '';
+        return this.formatPercentage;
       default:
-        if (typeof type === 'function') {
-          return type;
-        }
-        return void 0;
+        return typeof type === 'function' ? type : undefined;
     }
+  }
+
+  private getLanguage(currency?: CurrencyType): string {
+    if (currency) {
+      return currency?.symbolPosition === 'left' ? 'en' : 'es';
+    }
+    else {
+      return this._translateService.getCurrentLang();
+    }
+
+  }
+
+  private getCurrencyCode(language: string, currency?: CurrencyType): string {
+    if (currency) {
+      return CurrencyUtil.getCurrencyCodeFromSymbol(currency.symbol);
+    }
+    else {
+      return CurrencyUtil.getCurrencyCode(language);
+    }
+  }
+
+  private formatIntGrouped(d: number): string {
+    return (d !== undefined) ? d.toLocaleString() : '';
+  }
+
+  private formatFloatGrouped(d: number): string {
+    return (d !== undefined) ? d.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '';
+  }
+
+  private formatInt(d: number): string {
+    return (d !== undefined) ? Math.round(d).toLocaleString() : '';
+  }
+
+  private formatFloat(d: number): string {
+    return (d !== undefined) ? d.toFixed(2) : '';
+  }
+
+  private formatCurrency(language: string, currencyCode: string): (d: number) => string {
+    return (d: number) => d.toLocaleString(language, {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  private auxFormatDate(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleDateString() : '';
+  }
+
+  private formatTime(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleTimeString() : '';
+  }
+
+  private formatDateTime(d: number): string {
+    return (d !== undefined) ? new Date(d).toLocaleString() : '';
+  }
+
+  private formatPercentage(d: number): string {
+    return (d !== undefined) ? (d * 100).toFixed(0) + '%' : '';
   }
 
   formatTimestamp(timestamp: number): string {
@@ -480,6 +542,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
     this.cd.detectChanges();
   }
+  getCurrency(column: OColumn): CurrencyType {
+    let currency: CurrencyType;
+    const symbol: string = column.renderer['currencySymbol'];
+    const symbolPosition: string = column.renderer['currencySymbolPosition'];
+    currency = { symbol, symbolPosition };
+    return currency;
+  }
   configureParams() {
     let config = this.getChartConfiguration();
     if (Util.isDefined(config['color'])) {
@@ -502,7 +571,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.pieChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.pieChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
         }
         break;
@@ -522,7 +595,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.donutChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.donutChart['labelFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
         }
         break;
@@ -542,10 +619,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.stackedAreaChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.stackedAreaChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
           if (Util.isDefined(config['yDataType'])) {
-            this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
+              this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else {
+              this.stackedAreaChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            }
           }
         }
         break;
@@ -567,10 +652,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.horizontalBarChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.horizontalBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
           if (Util.isDefined(config['yDataType'])) {
-            this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
+              this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else {
+              this.horizontalBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            }
           }
         }
         break;
@@ -592,10 +685,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.lineChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.lineChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
           if (Util.isDefined(config['yDataType'])) {
-            this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
+              this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else {
+              this.lineChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            }
           }
         }
         break;
@@ -617,10 +718,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.discreteBarChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.discreteBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
           if (Util.isDefined(config['yDataType'])) {
-            this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
+              this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else {
+              this.discreteBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            }
           }
         }
         break;
@@ -642,10 +751,18 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
             this.multiBarChart['scheme'] = config['color'];
           }
           if (Util.isDefined(config['xDataType'])) {
-            this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            if (config['xDataType'] == 'currency' && this.xColumn != null && this.xColumn.renderer['currencySymbol']) {
+              this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType'], this.getCurrency(this.xColumn));
+            } else {
+              this.multiBarChart['xAxisTickFormatting'] = this.getTickFormatter(config['xDataType']);
+            }
           }
           if (Util.isDefined(config['yDataType'])) {
-            this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            if (config['yDataType'] == 'currency' && this.yColumn != null && this.yColumn.renderer['currencySymbol']) {
+              this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType'], this.getCurrency(this.yColumn));
+            } else {
+              this.multiBarChart['yAxisTickFormatting'] = this.getTickFormatter(config['yDataType']);
+            }
           }
         }
         break;
@@ -738,7 +855,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   pinchChart(event: any) {
     this.onPinch.emit(event);
   }
-  updateOptions(options: any, type: string) {
+  updateOptions(options: any, type: string, xColumn: OColumn, yColumn: OColumn) {
+    this.xColumn = xColumn;
+    this.yColumn = yColumn;
     if (type === this.type) {
       this.forceRerender(type);
     } else {
@@ -752,6 +871,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       this.configureParams();
     }, 10);
   }
+
   forceRerender(type: string) {
     this.type = '';
     setTimeout(() => {
