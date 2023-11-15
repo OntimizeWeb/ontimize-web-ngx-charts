@@ -1,7 +1,6 @@
 import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { ForceDirectedGraphConfiguration } from './ForceDirectedGraphConfiguration.class';
 
-declare var d3: any;
 
 export class ForceDirectedGraphOptions extends AbstractChartOptions {
 
@@ -16,7 +15,6 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
       type: this.getChartType(),
       height: conf.height,
       width: conf.width,
-      color: this.getColor(),
       margin: conf.margin.getMarginOptions(),
       linkStrenght: conf.linkStrength,
       friction: conf.friction,
@@ -31,8 +29,5 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
     return chart;
   }
 
-  public getColor() {
-    var color = d3.scale.category20();
-    return function (d) { return color(d.group); };
-  }
+
 }

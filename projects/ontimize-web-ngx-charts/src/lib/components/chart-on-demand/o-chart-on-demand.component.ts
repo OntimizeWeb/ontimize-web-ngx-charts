@@ -6,7 +6,6 @@ import domtoimage from 'dom-to-image';
 import { AppearanceService, DialogService, OColumn, OFormComponent, OTableComponent, OTranslateService, OValueChangeEvent, OntimizeMatIconRegistry, OntimizeService, SQLTypes, SnackBarService, Util } from 'ontimize-web-ngx';
 import { Subscription } from 'rxjs';
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
-import { D3LocaleService } from '../../services/d3Locale.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
 import { PreferencesConfiguration } from '../../types/preferences-configuration.type';
@@ -18,7 +17,6 @@ import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-p
 
 
 
-declare var d3: any;
 const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
 
@@ -69,7 +67,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   private _arrayColumns = [];
   arrayYAxis = [];
   sqlTypes = {};
-  public d3Locale;
   isDarkMode: boolean;
 
   @Input() description: string = '';
@@ -81,7 +78,6 @@ export class OChartOnDemandComponent implements AfterViewInit {
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
-    private d3LocaleService: D3LocaleService,
     private dialogRef: MatDialogRef<any>,
     public dialog: MatDialog,
     protected injector: Injector,

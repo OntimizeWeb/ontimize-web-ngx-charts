@@ -9,7 +9,6 @@ import { DiscreteBarChartConfiguration } from './../../models/options/DiscreteBa
 import { PieChartConfiguration } from './../../models/options/PieChartConfiguration.class';
 import { OChartPreferences } from './../../types/chart-preferences.type';
 
-declare var d3: any;
 
 export class OChartOnDemandUtils {
 
