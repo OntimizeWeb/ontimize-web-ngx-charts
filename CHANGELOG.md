@@ -1,3 +1,17 @@
+## 15.0.0-beta.1 (2023-11-15)
+### Features
+* **Charts on demand:** Added table column date format to charts ([847366e](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/847366e)) Closes [#156](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/156)
+
+### Bug Fixes
+* **Charts on demand:**
+  Fixed bug that makes the menu button disappear ([2c06e9d](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/2c06e9d)) Closes [#139](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/139)
+  Fixed bug that causes the image to not be seen before loading the graph ([b50ec36](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/b50ec36)) Closes [#141](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/141)
+  Fixed bug with type currency ([8e14f6c](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/8e14f6c)) Closes [#147](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/147)
+  Fixed bug that caused the area graph to not be created ([a9bb376](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a9bb376)) Closes [#146](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/146)
+  Fixed error that prevented building the graph the first time ([a2b9ef2](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a2b9ef2)) Closes [#145](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/145)
+  Fixed bug that causes the graph not to adapt to the available size ([a35b8af](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a35b8af)) Closes [#153](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/153)
+  Fixed error in adapting the data for the area graph ([c26fe8f](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/c26fe8f)) Closes [#158](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/158)
+
 ## 15.0.0-beta.0 (2023-09-29)
 ### Features
 * Migration to Angular 15.
