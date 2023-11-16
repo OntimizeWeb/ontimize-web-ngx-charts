@@ -1,19 +1,32 @@
-// Define your custom theme or choose predefined theme
-@use 'ontimize-web-ngx/theming/themes/ontimize.scss'as theme;
+@use 'ontimize-web-ngx/theming/themes/ontimize.scss' as theme;
 @use 'ontimize-web-ngx/theming/ontimize-style.scss';
-@use '../../app/shared/example/example.theme.scss';
-@use '../../app/main/main-theme.scss'as main;
 
-
-//Include ontimize theme styles
+// Include ontimize styles
 @include ontimize-style.ontimize-theme-styles(theme.$theme);
 
-@include example.example-component-theme(theme.$theme);
+/*
+* Import application themes.
+*/
 
-@include main.main-theme(theme.$theme);
 
-//Include dark styles option
+@import '../../app/shared/example/example.theme.scss';
+@include example-component-theme(theme.$theme);
+
+@import '../../app/main/main-theme.scss';
+@include main-theme(theme.$theme);
+
+/*Define dark styles*/
 .o-dark {
   @include ontimize-style.ontimize-theme-all-component-color(theme.$dark-theme);
-  @include example.example-component-theme(theme.$dark-theme);
+  @include example-component-theme(theme.$dark-theme);
+  @include main-theme(theme.$dark-theme);
 }
+
+
+
+
+
+
+/*
+* Other app styles
+*/

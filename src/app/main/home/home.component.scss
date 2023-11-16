@@ -1,21 +1,22 @@
-mat-card {
+.mat-mdc-card {
   display: flex;
   flex-direction: column;
-}
 
-mat-card-header {
-  display: flex;
-  margin-bottom: 10px;
-  font-weight: 500;
-  flex-shrink: 0;
-}
 
-mat-card-content {
-  display: flex;
-  flex-grow: 1;
-  overflow: auto;
-}
+  .mat-mdc-card-header {
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
 
-mat-card-footer {
-  padding-bottom: 10px;
+  .mat-mdc-card-content {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  .mat-mdc-card-footer {
+    padding-bottom: 10px;
+  }
 }
