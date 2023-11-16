@@ -1,4 +1,4 @@
-@use '@angular/material'as mat;
+@use '@angular/material' as mat;
 
 @mixin example-component-theme($theme) {
   $primary: map-get($theme, color, primary);
@@ -10,15 +10,17 @@
   .example-comp {
     &>section {
       background: mat.get-color-from-palette($background);
+      box-shadow: none;
+
+      .mat-toolbar {
+        background-color: transparent;
+        color: mat.get-color-from-palette($foreground, text);
+      }
 
       .playground-toolbar.mat-toolbar {
-        background: transparent;
-        color: #212121;
-        color: mat.get-color-from-palette($foreground, text);
+        background-color: transparent;
+        border-bottom: 2px solid mat.get-color-from-palette($primary);
 
-        .comp-description {
-          color: #616161;
-        }
       }
 
       .comp-note {

@@ -104,9 +104,9 @@ export class CustomChartComponent extends OChartComponent implements OnInit {
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
-    protected injector: Injector, appearanceService: AppearanceService) {
+    protected injector: Injector, appearanceService: AppearanceService, translateService: OTranslateService) {
 
-    super(form, elRef, injector, appearanceService);
+    super(form, elRef, injector, appearanceService, translateService);
   }
 
   public ngOnInit() {

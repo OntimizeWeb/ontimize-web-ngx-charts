@@ -8,11 +8,13 @@ import { HighlightComponent } from './highlight/highlight.component';
 import { NavigationBarService } from './services/navigation-bar.service';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { SwitchModeThemeComponent } from './switch-mode-theme/switch-mode-theme.component';
+import { HighlightModule } from 'ngx-highlightjs';
 
 @NgModule({
   imports: [
     OntimizeWebModule,
     OChartModule,
+    HighlightModule,
     CustomChartComponentModule,
     ClipboardModule
   ],

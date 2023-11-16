@@ -111,13 +111,13 @@ export class PieComponent {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="pie" layout-fill entity="EMovementTypesTotal"
-  x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
+<o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart type="pie" layout-fill entity="EMovementTypesTotal"
-x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
+  <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+  [color]="colorScheme" [chart-parameters]="chartParameters2"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_TYPESCRIPT_DATA = `
@@ -130,13 +130,24 @@ import { PieChartConfiguration } from 'ontimize-web-ngx-charts'
 })
 
 export class PieComponent{
-  chartParameters: PieChartConfiguration;
 
-  constructor() {
-    this.chartParameters = new PieChartConfiguration();
-    this.chartParameters.cornerRadius = 20;
-    this.chartParameters.legendPosition = "bottom";
-    this.chartParameters.labelType = "value";
+  data: Array<Object>;
+  protected serviceResponse: string;
+
+  chartParameters2: PieChartConfiguration;
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
+  constructor(protected http: HttpClient) {
+
+    this.chartParameters2 = new PieChartConfiguration();
+    this.chartParameters2.cornerRadius = 20;
+    this.chartParameters2.showLeyend = false;
+    this.chartParameters2.legendPosition = 'bottom';
+    this.chartParameters2.labelType = 'value';
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
+
   }
 }
 `;

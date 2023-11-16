@@ -33,11 +33,18 @@
                 "glob": "**/*",
                 "input": "node_modules/ontimize-web-ngx/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/github*.css",
+                "input": "node_modules/highlight.js/styles/",
+                "output": "/assets/hightlight"
               }
             ],
             "styles": [
               "node_modules/ontimize-web-ngx/ontimize.scss",
+              "node_modules/ontimize-web-ngx/theme.scss",
               "node_modules/ontimize-web-ngx-charts/styles.scss",
+              "node_modules/highlight.js/styles/stackoverflow-light.css",
               "src/assets/css/app.scss",
               "src/styles.scss"
             ],

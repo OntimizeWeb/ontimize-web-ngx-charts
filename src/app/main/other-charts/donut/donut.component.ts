@@ -55,13 +55,13 @@ export class DonutComponent {
 }
 
 const BASIC_USAGE_HMTL_DATA = `
-<o-chart type="donutChart" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-y-axis="MOVEMENT" chart-height="400"></o-chart>
+ <o-chart type="donutChart" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" chart-height="400"
+ [chart-parameters]="chartParameters1" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart type="donutChart" chart-height="400"  entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
-        y-axis="MOVEMENT" [chart-parameters]="chartParameters"></o-chart>
+<o-chart #donutConfig type="donutChart" chart-height="400" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+      y-axis="MOVEMENT" [chart-parameters]="chartParameters2" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_TYPESCRIPT_DATA = `
@@ -74,16 +74,23 @@ import { OChartComponent, DonutChartConfiguration } from 'ontimize-web-ngx-chart
 })
 export class DonutComponent {
 
-  chartParameters: DonutChartConfiguration;
+  chartParameters1: DonutChartConfiguration;
+  chartParameters2: DonutChartConfiguration;
 
-  constructor(protected injector: Injector,
-    protected navigationService: NavigationBarService,
-    protected translateService: OTranslateService) {
+  constructor() {
+    this.chartParameters1 = new DonutChartConfiguration();
+    this.chartParameters1.legend.margin.top = 5;
+    this.chartParameters1.legend.margin.bottom = 5;
 
-    this.chartParameters = new DonutChartConfiguration();
-    this.chartParameters.showLabels = false;
-    this.chartParameters.cornerRadius = 15;
-    this.chartParameters.donutRatio = 0.5;
+    this.chartParameters2 = new DonutChartConfiguration();
+    this.chartParameters2.showLabels = false;
+    this.chartParameters2.cornerRadius = 15;
+    this.chartParameters2.donutRatio = 0.5;
+    this.chartParameters2.legend.margin.top = 5;
+    this.chartParameters2.legend.margin.bottom = 5;
   }
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
 }
 `;

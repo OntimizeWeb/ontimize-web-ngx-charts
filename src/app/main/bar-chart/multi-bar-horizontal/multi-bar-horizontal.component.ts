@@ -2,8 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MultiBarHorizontalChartConfiguration, OChartComponent } from 'ontimize-web-ngx-charts';
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart #multiBarHor type="multiBarHorizontalChart" chart-height="600" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped"
-        x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParameters"></o-chart>
+<o-chart type="multiBarHorizontalChart" [data]="data" x-label="Time" y-label="Amount (€)" x-data-type="time" [color]="colorScheme">
 `;
 
 @Component({

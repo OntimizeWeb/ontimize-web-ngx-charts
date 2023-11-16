@@ -4,35 +4,34 @@ import { ChartService, OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y"
-entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"></o-chart>
+<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+      y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
 `;
 
 const INSIDE_FORM_HTML_DATA = `
-<o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail" header-actions="R"
-  fxLayout="column">
-  <o-row elevation="0" layout-align="space-between center">
-    <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
-    <o-row elevation="2">
-      <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
-      <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
-      <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
-      <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
-    </o-row>
-  </o-row>
-  <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
-    query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID"></o-chart>
-</o-form>
+ <o-form #oForm entity="EAccounts" keys="ACCOUNTID" show-header="yes" header-mode="none" label-header="Account detail"
+      header-actions="R" fxLayout="column" class="mat-elevation-z4" query-on-init="no">
+      <o-row elevation="0" layout-align="space-between center">
+        <o-integer-input attr="ACCOUNTID" enabled="no" layout-padding></o-integer-input>
+        <o-row elevation="2">
+          <o-text-input attr="ENTITYID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="OFFICEID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="CDID" layout-padding class="account align-right"></o-text-input>
+          <o-text-input attr="ANID" layout-padding class="align-right"></o-text-input>
+        </o-row>
+      </o-row>
+      <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+        y-axis="MOVEMENT" query-on-init="no" query-on-bind="yes" parent-keys="ACCOUNTID" [color]="colorScheme"></o-chart>
+    </o-form>
 `;
 
 const CUSTOM_DATA_HTML_DATA = `
-<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" layout-fill></o-chart>
+ <o-chart #discreteBar type="discreteBar" x-label="Axis x" y-label="Axis Y" [data]="data" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
 import { Component, ViewChild, Injector } from '@angular/core';
 import { OntimizeService, ChartService } from 'ontimize-web-ngx';
-declare var d3: any;
 
 @Component({
   selector: 'discrete-bar',
@@ -49,7 +48,9 @@ export class DiscreteBarComponent {
 
   @ViewChild('discreteBar', {static: false})
   protected discreteBar: OChartComponent;
-
+  colorScheme = {
+    domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
+  };
   constructor() {}
 
   ngAfterViewInit() {
@@ -76,13 +77,6 @@ export class DiscreteBarComponent {
         alert('Impossible to query data!');
       }
     });
-
-    let chartService: ChartService = this.discreteBar.getChartService();
-    let chartOps = chartService.getChartOptions();
-    // Configuring x axis...
-    chartOps['yAxis']['tickFormat'] = function (d) {
-      return d3.format(',f')(d) + '€';
-    };
 
   }
 
@@ -196,10 +190,6 @@ export class DiscreteBarComponent {
         alert('Impossible to query data!');
       }
     });
-
-    let chartService: ChartService = this.discreteBar.getChartService();
-
-
   }
 
   /**

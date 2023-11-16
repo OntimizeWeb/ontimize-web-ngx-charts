@@ -7,13 +7,14 @@ const ADAPTED_DATA = `
 `;
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="multiBar" x-label="Time" y-label="Amount (€)" layout-fill entity="EMovementsGrouped"
- x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"></o-chart>
+<o-chart type="multiBar" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
+            x-data-type="time" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_DATA_HTML_DATA = `
-<o-chart #multiBar type="multiBar" x-label="Time" y-label="Amount (€)"
-    [data]="data" x-data-type="time" layout-fill></o-chart>
+ <o-chart #multiBar type="multiBar" x-label="Time" y-label="Amount (€)" [data]="data2" [color]="colorScheme"
+ x-data-type="time"></o-chart>
+
 `;
 
 const CUSTOM_DATA_TYPESCRIPT_DATA = `
@@ -153,10 +154,6 @@ export class MultiBarComponent {
   protected xAxis = 'DATE_';
 
   data: Array<Object>;
-
-
-
-
 
   data2 =
     [
@@ -336,42 +333,14 @@ export class MultiBarComponent {
 
   protected serviceResponse: string;
 
-  chartParameters1: MultiBarChartConfiguration;
-  chartParameters2: MultiBarChartConfiguration;
   colorScheme = {
     domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
   };
   constructor(protected injector: Injector) {
-    this.chartParameters1 = new MultiBarChartConfiguration();
-    this.chartParameters1.legend.margin.top = 5;
-    this.chartParameters1.legend.margin.bottom = 5;
 
-    this.chartParameters2 = new MultiBarChartConfiguration();
-    this.chartParameters2.legend.margin.top = 5;
-    this.chartParameters2.legend.margin.bottom = 5;
   }
 
   ngAfterViewInit() {
-
-    if (this.multiBar) {
-      let chartService: ChartService = this.multiBar.getChartService();
-      if (chartService) {
-
-
-        // Configuring x axis...
-
-
-
-        // var xScale = d3.time.scale();
-        // chartOps['xScale'] = xScale;
-        // var mindate = new Date(2009, 1, 1),
-        //   maxdate = new Date(2009, 10, 1);
-        // chartOps['xDomain'] = [mindate, maxdate];
-        // Configuring y axis...
-
-
-      }
-    }
 
     let service: OntimizeService = this.injector.get(OntimizeService);
     let conf = service.getDefaultServiceConfiguration();
@@ -476,7 +445,7 @@ export class MultiBarComponent {
         'data': ''
       },
       'typescript': {
-        'data': CUSTOM_DATA_TYPESCRIPT_DATA
+        'data': ''
       },
       'files': [
         // {
@@ -485,7 +454,7 @@ export class MultiBarComponent {
         // },
         {
           'label': 'CHART DATA',
-          'data': JSON.stringify(JSON.parse(ADAPTED_DATA), undefined, 2)
+          'data': JSON.stringify(this.data2, undefined, 2)
         }]
     }
 
