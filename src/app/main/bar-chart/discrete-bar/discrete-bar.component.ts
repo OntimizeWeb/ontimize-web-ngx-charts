@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OFormComponent, OntimizeService } from 'ontimize-web-ngx';
-import { ChartService, OChartComponent } from 'ontimize-web-ngx-charts';
+import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 const BASIC_USAGE_HTML_DATA = `
@@ -54,6 +54,14 @@ export class DiscreteBarComponent {
   constructor() {}
 
   ngAfterViewInit() {
+
+    if (this.oForm) {
+      // Force oForm query.
+      this.oForm.queryData({
+        ACCOUNTID: 19939
+      });
+    }
+
     // Configuring Ontimize service instance...
     let service: OntimizeService = this.injector.get(OntimizeService);
     /*
@@ -72,43 +80,40 @@ export class DiscreteBarComponent {
     service.query(filter, columns).subscribe((resp) => {
       // response ok
       if (resp.code === 0) {
+        this.serviceResponse = JSON.stringify(resp, undefined, 2);
         this.adaptResult(resp.data);
       } else {
         alert('Impossible to query data!');
       }
     });
-
   }
 
   /**
    * Creates chart data grouping movements by category 'Movement type'
    *  */
   adaptResult(data: Array<any>) {
+
     if (data && data.length) {
       let values = this.processValues(data);
       // chart data
-      this.data = [
-        {
-          'key': 'Discrete serie',
-          'values': values
-        }
-      ]
+      this.data = values;
+
     }
   }
 
-  processValues(data: Array<Object> ) : Array<Object> {
+  processValues(data: Array<Object>): Array<Object> {
     let values = [];
     var self = this;
     data.forEach((item: any, index: number) => {
       let filtered = self.filterCategory(item[self.xAxis], values);
       if (filtered && filtered.length === 0) {
         let val = {
-          'x': item[self.xAxis],
-          'y': item[self.yAxis]
+          'name': item[self.xAxis],
+          'value': item[self.yAxis]
         };
         values.push(val);
       } else {
-        filtered[0]['y'] += item[self.yAxis];
+        filtered[0]['value'] += item[self.yAxis];
       }
     });
     return values;
