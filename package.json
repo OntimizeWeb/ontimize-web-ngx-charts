@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "15.0.0-beta.1",
+  "version": "15.0.0",
   "description": "An implementation of ngx-charts for Ontimize Web",
   "keywords": [
     "angular",
@@ -42,7 +42,7 @@
     "@angular/router": "^15.2.9",
     "@swimlane/ngx-charts": "^20.4.0",
     "dom-to-image": "^2.6.0",
-    "ontimize-web-ngx": "15.0.0-beta.4",
+    "ontimize-web-ngx": "15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
