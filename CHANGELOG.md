@@ -1,3 +1,7 @@
+## 15.0.0 (2024-02-21)
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@15.0.0
+
 ## 15.0.0-beta.1 (2023-11-15)
 ### Features
 * **Charts on demand:** Added table column date format to charts ([847366e](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/847366e)) Closes [#156](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/156)
