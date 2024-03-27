@@ -63,7 +63,7 @@ configmap:
 service:
   name: ontimize-web-ngx-charts-15x
   type: ClusterIP
-  externalPort: 41501
+  externalPort: 41507
   internalPort: 80
 ingress:
   enabled: true
