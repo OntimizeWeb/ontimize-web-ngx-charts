@@ -52,9 +52,9 @@ export class OhlcComponent {
     this.chartParameters2.lowAxis = 'low';
     this.chartParameters2.closeAxis = 'close';
 
-    DataAdapterUtils.createDataAdapter(this.chartParameters2);
+    const adapter = DataAdapterUtils.createDataAdapter(this.chartParameters2);
 
-    this.ohlc2.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+    this.ohlc2.setDataArray(adapter.adaptResult(data));
   }
 
   getBasicUsageFiles() {

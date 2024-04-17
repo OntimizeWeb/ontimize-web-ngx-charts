@@ -27,8 +27,8 @@ export class GaugeSpaceComponent {
 
 
     let data = [{ 'x': 'value', 'y': 27.54 }];
-    DataAdapterUtils.createDataAdapter(this.gaugeSpaceConf2);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
+    const adapter = DataAdapterUtils.createDataAdapter(this.gaugeSpaceConf2);
+    let dataAdapt = adapter.adaptResult(data);
 
     this.gaugeSpace.setDataArray(dataAdapt);
     this.gaugeSpace.setChartConfiguration(this.gaugeSpaceConf2);

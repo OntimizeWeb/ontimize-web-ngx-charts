@@ -1,6 +1,8 @@
+/*Import the file who have the theme functions and the ontimize-theme-styles mixin.*/
+@import 'node_modules/ontimize-web-ngx-theming/ontimize-theme.scss';
+
 @import 'node_modules/ontimize-web-ngx-theming/src/themes/ontimize.scss';
 
-@import 'node_modules/ontimize-web-ngx-theming/ontimize-theme.scss';
 @include ontimize-theme-styles($theme);
 
 // @import 'node_modules/ontimize-web-ngx-theming/ontimize-theme-lite.scss';
@@ -14,7 +16,6 @@
 
 .nvd3 text,
 .nvd3 .title,
-.nvtooltip
- {
+.nvtooltip {
   font-family: Roboto !important;
 }

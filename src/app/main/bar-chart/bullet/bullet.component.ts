@@ -34,8 +34,8 @@ export class BulletComponent implements OnInit {
     data.push({ 'range': 50 }, { 'range': 100 }, { 'range': 200 });
     data.push({ 'measure': 99 });
     data.push({ 'marker': 50 });
-    DataAdapterUtils.createDataAdapter(this.chartParameters);
-    let dataAdapt = DataAdapterUtils.adapter.adaptResult(data);
+    const adapter = DataAdapterUtils.createDataAdapter(this.chartParameters);
+    let dataAdapt = adapter.adaptResult(data);
     this.bulletChart.setDataArray(dataAdapt);
   }
 
