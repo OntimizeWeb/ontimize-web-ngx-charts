@@ -79,8 +79,8 @@ export class ParallelCoordinatesComponent {
         'Stream Music': 0.05
       }
     ];
-    DataAdapterUtils.createDataAdapter(this.chartConf);
-    this.chart.setDataArray(DataAdapterUtils.adapter.adaptResult(data));
+    const adapter = DataAdapterUtils.createDataAdapter(this.chartConf);
+    this.chart.setDataArray(adapter.adaptResult(data));
   }
 
 

@@ -33,9 +33,9 @@
     "angular2-highlight-js": "^8.0.1",
     "hammerjs": "^2.0.8",
     "highlight.js": "^9.5.0",
-    "ontimize-web-ngx": "8.5.0",
-    "ontimize-web-ngx-theming": "8.1.0",
-    "ontimize-web-ngx-charts": "8.0.0",
+    "ontimize-web-ngx": "8.14.12",
+    "ontimize-web-ngx-theming": "8.5.2",
+    "ontimize-web-ngx-charts": "8.2.0",
     "rxjs": "~6.4.0",
     "tslib": "~1.10.0",
     "zone.js": "~0.9.1"
