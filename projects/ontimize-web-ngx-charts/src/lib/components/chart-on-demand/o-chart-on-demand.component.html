@@ -95,16 +95,19 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="sidenav-container-content">
-        <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
-          [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oChartTranslate">
-        </o-button>
-        <div fxLayout="column" id="sidenav-container-content" fxFlex [ngClass]="chartClass">
+        <div>
+          <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
+            [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oChartTranslate"
+            matTooltipPosition="below">
+          </o-button>
+        </div>
+        <div fxLayout="column" id="sidenav-container-content" fxFlex="1 1 auto" [ngClass]="chartClass">
           <img *ngIf="showPlaceholder" class="animation" alt="graph image" src="./assets/chart_animation.svg" />
           <div fxLayout="column" fxLayoutAlign="start start" *ngIf="!showPlaceholder">
             <h2 class="title">{{currentPreference.title}}</h2>
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </div>
-          <div  [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'">
+          <div [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'" fxFlex="1 1 auto">
             <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
             </o-chart>
           </div>
