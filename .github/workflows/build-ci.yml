@@ -7,10 +7,10 @@ concurrency:
 on:
   push:
     branches: [15.x.x, hotfix/15.*]
-    paths: ['projects/ontimize-web-ngx-gallery/**']
+    paths: ['projects/ontimize-web-ngx-charts/**']
   pull_request:
     types: [opened, synchronize]
-    paths: ['projects/ontimize-web-ngx-gallery/**']
+    paths: ['projects/ontimize-web-ngx-charts/**']
   workflow_dispatch:
 
 jobs:
