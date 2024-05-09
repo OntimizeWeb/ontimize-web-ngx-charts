@@ -2,7 +2,7 @@
  * Public API Surface of ontimize-web-ngx-charts
  */
 
-// export * from './lib/o-components';
+
 // export * from './lib/o-models';
 // export * from './lib/o-adapters';
 // export * from './lib/o-interfaces';
