@@ -10,11 +10,11 @@
 
     <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
-      [ngClass]="chartClass"></ngx-charts-bar-horizontal>
+      [ngClass]="chartClass" [showGridLines]="showGridLines"></ngx-charts-bar-horizontal>
 
     <ngx-charts-bar-vertical #discreteBarChart *ngSwitchCase="'discreteBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass"></ngx-charts-bar-vertical>
+      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" [showGridLines]="showGridLines"></ngx-charts-bar-vertical>
 
     <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true"
       [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
@@ -22,11 +22,11 @@
 
     <ngx-charts-area-chart-stacked #stackedAreaChart *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
       [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass"></ngx-charts-area-chart-stacked>
+      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" [showGridLines]="showGridLines"></ngx-charts-area-chart-stacked>
 
     <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass">
+      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" [showGridLines]="showGridLines">
     </ngx-charts-bar-vertical-stacked>
 
   </ng-container>
