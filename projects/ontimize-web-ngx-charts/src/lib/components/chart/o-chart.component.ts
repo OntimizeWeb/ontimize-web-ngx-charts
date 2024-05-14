@@ -616,7 +616,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   setChartView(chart, config) {
     if (this.isDefinedAndGreaterThanZero(config.width, config.height) || this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
-      chart['view'] = [config.width || this.cWidth, config.height || this.cHeight];
+      chart.view = [config.width || this.cWidth, config.height || this.cHeight];
     }
   }
 
