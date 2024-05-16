@@ -584,6 +584,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.setChartLabelsAndLegend(chart, config);
     this.setChartTooltip(chart, config);
     this.setChartColorScheme(chart, config);
+    this.setChartGridLines(chart);
 
     if (Util.isDefined(config['xDataType'])) {
       if (this.type != 'pie' && this.type != 'donutChart') {
@@ -615,7 +616,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   setChartView(chart, config) {
     if (this.isDefinedAndGreaterThanZero(config.width, config.height) || this.isDefinedAndGreaterThanZero(this.cWidth, this.cHeight)) {
-      chart['view'] = [config.width || this.cWidth, config.height || this.cHeight];
+      chart.view = [config.width || this.cWidth, config.height || this.cHeight];
     }
   }
 
@@ -632,6 +633,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   setChartColorScheme(chart, config) {
     if (Util.isDefined(config['color'])) {
       chart['scheme'] = config['color'];
+    }
+  }
+  setChartGridLines(chart) {
+    if (chart.type != "pie" && chart.type != "donutChart") {
+      chart.showGridLines = this.showGridLines;
     }
   }
 
