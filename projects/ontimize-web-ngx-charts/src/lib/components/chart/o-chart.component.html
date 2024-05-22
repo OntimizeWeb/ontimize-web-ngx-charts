@@ -18,7 +18,7 @@
 
     <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true"
       [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
-      [showGridLines]="showGridLines" [ngClass]="chartClass"></ngx-charts-line-chart>
+      [ngClass]="chartClass"></ngx-charts-line-chart>
 
     <ngx-charts-area-chart-stacked #stackedAreaChart *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
       [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"

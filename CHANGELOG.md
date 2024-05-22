@@ -1,3 +1,8 @@
+## 15.0.1 (2024-05-16)
+### Bug Fixes
+ * Fixed bug that prevented the grid from being hidden ([e2d5ba4](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/e2d5ba4)) Closes [#214](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/214)
+ * Fixed bug that prevented modifying the height and width of the charts ([e7f25e0](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/e7f25e0)) Closes [#199](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/199)
+
 ## 15.0.0 (2024-02-21)
 ### DEPENDENCY UPDATES
 * **Updated**: ontimize-web-ngx@15.0.0
