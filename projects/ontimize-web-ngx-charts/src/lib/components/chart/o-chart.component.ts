@@ -59,9 +59,7 @@ export const CHART_TYPES = [
   'radarChart',
   'radialPercentChart',
   'scatterChart',
-  'stackedAreaChart',
-  'xFormatting:x-formatting',
-  'yFormatting:y-formatting'
+  'stackedAreaChart'
 ];
 
 export const DEFAULT_INPUTS_O_CHART: any = [
@@ -146,7 +144,9 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'chartParameters: chart-parameters',
   'color',
   'showGridLines: show-grid-lines',
-  'showDataLabel:show-data-label'
+  'showDataLabel:show-data-label',
+  'xFormatting:x-formatting',
+  'yFormatting:y-formatting'
 ];
 
 @Component({
