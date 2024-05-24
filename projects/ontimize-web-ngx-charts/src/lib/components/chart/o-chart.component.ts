@@ -59,7 +59,9 @@ export const CHART_TYPES = [
   'radarChart',
   'radialPercentChart',
   'scatterChart',
-  'stackedAreaChart'
+  'stackedAreaChart',
+  'xFormatting:x-formatting',
+  'yFormatting:y-formatting'
 ];
 
 export const DEFAULT_INPUTS_O_CHART: any = [
@@ -235,8 +237,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.xFormatting = this.getTickFormatter(this.xAxisDataType);
-    this.yFormatting = this.getTickFormatter(this.yAxisDataType);
+    this.xFormatting = this.xFormatting !== undefined ? this.xFormatting : this.getTickFormatter(this.xAxisDataType);
+    this.yFormatting = this.yFormatting !== undefined ? this.yFormatting : this.getTickFormatter(this.yAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
 
