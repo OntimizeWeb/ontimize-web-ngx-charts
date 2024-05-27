@@ -2,7 +2,7 @@
 ### Features
 * **o-chart**:
   * Added new inputs `x-formatting` and `y-formatting` to allows the user to format the charts ([ba85613](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/ba85613)) Closes [#219](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/219)
-  * Added new inputs `show-legend`, `legend-position` and `lengend-title` to customize the chart legend ([e44bc74](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/e44bc74)) Closes [#221](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/221)
+  * Added new inputs `show-legend`, `legend-position` and `legend-title` to customize the chart legend ([e44bc74](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/e44bc74)) Closes [#221](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/221)
   * Added new outputs `onSelect`, `onActivate` and `onDeactivate` ([5703f30](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/5703f30)) Closes [#224](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/224)
 
 ## 15.0.1 (2024-05-16)
