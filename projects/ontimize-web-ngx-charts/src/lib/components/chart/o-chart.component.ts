@@ -145,6 +145,9 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'color',
   'showGridLines: show-grid-lines',
   'showDataLabel:show-data-label',
+  'showLegend:show-legend',
+  'legendPosition:legend-position',
+  'legendTitle:legend-title',
   'xFormatting:x-formatting',
   'yFormatting:y-formatting'
 ];
@@ -194,6 +197,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   @NumberInputConverter()
   cWidth: number = undefined;
+  @BooleanInputConverter()
+  showLegend: boolean = false;
+  legendPosition: string;
+  legendTitle: string;
+
 
   protected _options: any;
   dataArray: Object[] = [];
@@ -623,9 +631,14 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   setChartLabelsAndLegend(chart, config) {
-    chart['labels'] = config['showLabels'];
-    chart['legend'] = config['showLeyend'];
-    chart['legendPosition'] = config['legendPosition'];
+    chart.labels = config['showLabels'];
+    chart.legend = this.showLegend || config['showLeyend'];
+    chart.legendPosition = this.legendPosition || config['legendPosition'];
+    chart.legendTitle = this.legendTitle;
+    chart.showXAxisLabel = true;
+    chart.showYAxisLabel = true;
+    chart.xAxisLabel = this.xAxisLabel;
+    chart.yAxisLabel = this.yAxisLabel;
   }
 
   setChartTooltip(chart, config) {
