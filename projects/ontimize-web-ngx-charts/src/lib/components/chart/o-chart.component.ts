@@ -209,9 +209,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @Output('onRotate') onRotate = new EventEmitter();
   @Output('onPinch') onPinch = new EventEmitter();
 
-  @Output('select') select = new EventEmitter();
-  @Output('activate') activate = new EventEmitter();
-  @Output('deactivate') deactivate = new EventEmitter();
+  @Output('onSelect') onSelect = new EventEmitter();
+  @Output('onActivate') onActivate = new EventEmitter();
+  @Output('onDeactivate') onDeactivate = new EventEmitter();
 
 
   protected langSubscription: Subscription;
@@ -282,13 +282,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   selectChart(event: any) {
-    this.select.emit(event);
+    this.onSelect.emit(event);
   }
   activateChart(event: any) {
-    this.activate.emit(event);
+    this.onActivate.emit(event);
   }
   deactivateChart(event: any) {
-    this.deactivate.emit(event);
+    this.onDeactivate.emit(event);
   }
   getTickFormatter(type: string, currency?: CurrencyType): any {
     const language = this.getLanguage(currency);
