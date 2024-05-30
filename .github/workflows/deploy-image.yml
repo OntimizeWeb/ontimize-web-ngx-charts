@@ -3,7 +3,7 @@ name: Create and publish Docker image
 
 on:
   push:
-    branches: ['quickstart-15.x.x-develop', 'feature/conf-redirection']
+    branches: ['quickstart-15.x.x-develop']
     tags:
       - q15.*
 
