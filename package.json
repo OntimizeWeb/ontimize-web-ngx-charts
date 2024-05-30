@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-quickstart-charts",
-  "version": "15.2.1",
+  "version": "15.3.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng build --watch --configuration development",
-    "production": "ng build --base-href=/ontimize-web-ngx-quickstart-charts",
+    "production": "ng build --configuration production --base-href /v15/charts/",
     "production-aot-server": "ng build  --base-href=/ontimizeweb/v15/charts/"
   },
   "private": true,
