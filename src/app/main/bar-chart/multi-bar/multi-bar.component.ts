@@ -7,7 +7,7 @@ const ADAPTED_DATA = `
 `;
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="multiBar" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
+<o-chart type="multiBar" x-label="Time" y-label="Amount (€)" service="movements" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
             x-data-type="time" [color]="colorScheme"></o-chart>
 `;
 
