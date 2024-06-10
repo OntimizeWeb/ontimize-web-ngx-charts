@@ -75,11 +75,11 @@ export class LineComponent {
 
 }
 
-const BASIC_USAGE_HTML_DATA = ` <o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"
+const BASIC_USAGE_HTML_DATA = ` <o-chart type="line" x-label="Time" y-label="Amount (€)" service="movements" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"
 [color]="colorScheme"></o-chart>
 `;
 const BASIC_USAGE_CONF_HTML_DATA = `
-<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
+<o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" service="movements" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
       x-data-type="time" [color]="colorScheme"></o-chart>
 `;
 
@@ -101,7 +101,7 @@ export class LineComponent {
 `;
 
 const SERIES_HTML_DATA = `
-<o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_"
+<o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" service="movements" entity="EMovementsGrouped" x-axis="DATE_"
 y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [chart-parameters]="chartParametersSerie"></o-chart>`;
 
 const SERIES_TYPESCRIPT_DATA = `
