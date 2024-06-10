@@ -111,12 +111,12 @@ export class PieComponent {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+<o-chart type="pie" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
 y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-  <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+  <o-chart type="pie" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
   [color]="colorScheme" [chart-parameters]="chartParameters2"></o-chart>
 `;
 
