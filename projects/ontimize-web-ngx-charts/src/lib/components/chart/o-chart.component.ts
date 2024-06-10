@@ -175,6 +175,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @ViewChild('multiBarChart') multiBarChart: ElementRef<BarVerticalStackedComponent>;
   @ViewChild('discreteBarChart') discreteBarChart: ElementRef<BarVerticalComponent>;
 
+
   /* Inputs */
   type: string;
   xAxis: string;
@@ -222,6 +223,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @Output('onSelect') onSelect = new EventEmitter();
   @Output('onActivate') onActivate = new EventEmitter();
   @Output('onDeactivate') onDeactivate = new EventEmitter();
+  @Output('onDataLoaded') onDataLoaded: EventEmitter<object> = new EventEmitter<object>();
 
 
   protected langSubscription: Subscription;
@@ -499,17 +501,20 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   getAdaptData(): any {
+    let data;
     if (this.type === 'forceDirectedGraph' || this.type === 'bulletChart') {
       if (this.dataArray && this.dataArray[0]) {
-        return this.cleanArray(this.dataArray[0]);
+        data = this.cleanArray(this.dataArray[0]);
+
       } else {
-        return [];
+        data = [];
       }
     } else {
+      data = this.cleanArray(this.dataArray);
 
-      return this.cleanArray(this.dataArray);
     }
-
+    this.onDataLoaded.emit(data);
+    return data
   }
 
   cleanArray(arr) {
