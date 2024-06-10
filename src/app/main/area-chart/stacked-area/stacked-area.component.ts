@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 const HTML_DATA = `
- <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" entity="EMovementPercent" x-axis="DATE_"
+ <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" service="movements" entity="EMovementPercent" x-axis="DATE_"
       y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [color]="colorScheme"></o-chart>
 `;
 
