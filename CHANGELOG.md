@@ -1,3 +1,8 @@
+## 15.1.1 (2024-06-10)
+### Features
+* **o-chart**:
+  * Added new output `onDataLoaded` ([ccfe9f6](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/ccfe9f6)) Closes [#238](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/238)
+
 ## 15.1.0 (2024-05-27)
 ### Features
 * **o-chart**:
