@@ -149,7 +149,9 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'legendPosition:legend-position',
   'legendTitle:legend-title',
   'xFormatting:x-formatting',
-  'yFormatting:y-formatting'
+  'yFormatting:y-formatting',
+  'showXAxisLabel:show-x-axis-label',
+  'showYAxisLabel:show-y-axis-label'
 ];
 
 @Component({
@@ -190,6 +192,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   showGridLines: boolean = false;
   @BooleanInputConverter()
   showDataLabel: boolean = true;
+  @BooleanInputConverter()
+  showXAxisLabel: boolean = true;
+  @BooleanInputConverter()
+  showYAxisLabel: boolean = true;
   protected chartParameters: ChartConfiguration;
   xColumn: OColumn;
   yColumn: OColumn;
@@ -654,8 +660,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     chart.legend = this.showLegend || config['showLeyend'];
     chart.legendPosition = this.legendPosition || config['legendPosition'];
     chart.legendTitle = this.legendTitle;
-    chart.showXAxisLabel = true;
-    chart.showYAxisLabel = true;
+    chart.showXAxisLabel = this.showXAxisLabel;
+    chart.showYAxisLabel = this.showYAxisLabel;
     chart.xAxisLabel = this.xAxisLabel;
     chart.yAxisLabel = this.yAxisLabel;
   }
