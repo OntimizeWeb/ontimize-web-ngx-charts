@@ -514,6 +514,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
     }
     this.onDataLoaded.emit(data);
+    this.configureParams();
     return data
   }
 
