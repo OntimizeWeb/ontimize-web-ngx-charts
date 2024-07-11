@@ -1,7 +1,7 @@
 ## 15.1.2 (2024-07-11)
 ### Features
 * **o-chart**:
-  * Added new inputs `show-x-axis-label` and `show-y-axis-label` to allows the user to hide axis charts ([1b3d30cv](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/1b3d30c)) Closes [#247](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/247)
+  * Added new inputs `show-x-axis-label` and `show-y-axis-label` to allows the user to hide chart axis labels ([1b3d30cv](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/1b3d30c)) Closes [#247](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/247)
 
 ### Bug Fixes
 * **o-chart**:
