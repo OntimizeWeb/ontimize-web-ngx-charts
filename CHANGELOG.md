@@ -1,3 +1,15 @@
+## 15.1.2 (2024-07-11)
+### Features
+* **o-chart**:
+  * Added new inputs `show-x-axis-label` and `show-y-axis-label` to allows the user to hide axis charts ([1b3d30cv](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/1b3d30c)) Closes [#247](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/247)
+
+### Bug Fixes
+* **o-chart**:
+  * Fixed bug that not allow customization when using static data ([3198a57](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/3198a57)) Closes [#246](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/246)
+
+* **Charts on demand**:
+  * Fixed bug with translations in load configuration dialog ([e1b82f3](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/e1b82f3)) Closes [#251](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/251)
+
 ## 15.1.1 (2024-06-10)
 ### Features
 * **o-chart**:
