@@ -40,7 +40,9 @@ export const MAP = {
     'CHART_ON_DEMAND.ALL_DATA': 'All data',
     'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Data',
     'CHART_ON_DEMAND.PALETTE': 'Color palette',
-    'CHART_ON_DEMAND.SELECT_PALETTE': 'Select the color palette'
+    'CHART_ON_DEMAND.SELECT_PALETTE': 'Select the color palette',
+    'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION': 'Load configuration',
+    'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION': 'Select a configuration to apply to the chart',
   },
 
   // Spanish
@@ -84,6 +86,8 @@ export const MAP = {
     'CHART_ON_DEMAND.ALL_DATA': 'Todos los datos',
     'CHART_ON_DEMAND.CHART_DATA_TYPE': 'Datos',
     'CHART_ON_DEMAND.PALETTE': 'Paleta de colores',
-    'CHART_ON_DEMAND.SELECT_PALETTE': 'Selecciona la paleta de colores'
+    'CHART_ON_DEMAND.SELECT_PALETTE': 'Selecciona la paleta de colores',
+    'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION': 'Aplicar configuración',
+    'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION': 'Seleccione una configuración para aplicar a la gráfica',
   }
 };
