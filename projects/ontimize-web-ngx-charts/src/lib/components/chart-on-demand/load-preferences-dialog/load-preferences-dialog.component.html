@@ -1,7 +1,7 @@
-<span mat-dialog-title>{{ 'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION' | oTranslate }}</span>
+<span mat-dialog-title>{{ 'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION' | oChartTranslate }}</span>
 <mat-dialog-content fxLayout="column">
-  <div mat-subheader>{{ 'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION' | oTranslate }}</div>
-  <mat-selection-list #configurationList dense class="apply-configuration-dialog-list">
+  <div mat-subheader>{{ 'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION' | oChartTranslate }}</div>
+  <mat-selection-list #configurationList class="apply-configuration-dialog-list">
     <mat-list-option (click)="onClickConfigurationList(configuration)" checkboxPosition="before" *ngFor="let configuration of configurationListData"
       [value]="configuration">
       <span matLine>{{ configuration.NAME }}</span>
