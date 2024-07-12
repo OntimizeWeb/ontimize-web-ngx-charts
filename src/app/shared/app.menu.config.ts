@@ -14,7 +14,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: 'barchart', name: 'BARCHART', icon: 'bar_chart', opened: false, items: [
       { id: 'discrete_bar', name: 'DISCRETE_BAR', icon: 'bar_chart', route: '/main/bar-chart/discrete-bar' },
       { id: 'multi_bar', name: 'MULTI_BAR', icon: 'insert_chart', route: '/main/bar-chart/multi-bar' },
-      { id: 'multi_bar_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-horizontal' },
+      { id: 'multi_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-horizontal' },
       // { id: 'bullet', name: 'BULLET', icon: 'insert_chart', route: '/main/bar-chart/bullet' },
     ]
   },
@@ -47,6 +47,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
       // { id: 'directedGraph', name: 'DIRECTEDGRAPH', icon: 'share', route: '/main/other-charts/directedGraph' }
     ]
   },
+  { id: 'customchart', name: 'CREATECHART', icon: 'draw', route: '/main/custom-chart' },
   { id: 'about', name: 'ABOUT', route: '/main/about', icon: 'help_outline' }
 
 ];
