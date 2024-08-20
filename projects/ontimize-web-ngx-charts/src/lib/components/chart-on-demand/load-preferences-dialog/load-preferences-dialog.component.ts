@@ -1,10 +1,8 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSelectionList, MatListOption } from '@angular/material/list';
-import { DialogService, Util } from 'ontimize-web-ngx';
-import { PreferencesService } from '../../../services/preferences.service';
-import { PreferencesConfiguration } from '../../../types/preferences-configuration.type';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
+import { DialogService, OntimizePreferencesService, OPreference, Util } from 'ontimize-web-ngx';
 
 
 @Component({
@@ -16,14 +14,14 @@ export class LoadPreferencesDialogComponent implements OnInit {
   @ViewChild(MatSelectionList, { static: true })
   protected configurationList: MatSelectionList;
 
-  public configurationListData: PreferencesConfiguration[] = [];
-  public selectedConfiguration: PreferencesConfiguration;
-
+  public configurationListData: OPreference[] = [];
+  public selectedConfiguration: OPreference;
   constructor(
     private dialogService: DialogService,
-    private preferencesService: PreferencesService,
+    private preferencesService: OntimizePreferencesService,
     public dialogo: MatDialogRef<LoadPreferencesDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.preferencesService.configureService(this.preferencesService.getDefaultServiceConfiguration('preferences'));
     this.getConfigurations();
   }
   ngOnInit(): void {
@@ -37,7 +35,7 @@ export class LoadPreferencesDialogComponent implements OnInit {
   remove(): void {
     this.dialogService.confirm('CONFIRM', 'TABLE.DIALOG.CONFIRM_REMOVE_CONFIGURATION').then(result => {
       if (result) {
-        this.preferencesService.deletePreferences(this.selectedConfiguration.ID).subscribe(res => {
+        this.preferencesService.deletePreferences(this.selectedConfiguration.PREFERENCEID).subscribe(res => {
           if (res && res.code === 0) {
             this.getConfigurations();
           }
