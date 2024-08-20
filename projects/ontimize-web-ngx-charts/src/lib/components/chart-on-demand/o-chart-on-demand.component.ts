@@ -220,7 +220,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
-          const queryArgs = this.getQueryArguments();
+          const queryArgs = this.getQueryArgumentsByAllData();
           const adaptedQueryArguments = this.tableComp.queryArgumentAdapter.parseQueryParameters(queryArgs);
           this.querySubscription = this.queryArgumentAdapter.request.apply(this.queryArgumentAdapter, ['query', this.ontimizeService, adaptedQueryArguments])
             .subscribe(response => {
@@ -238,7 +238,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  getQueryArguments(): OQueryParams {
+  getQueryArgumentsByAllData(): OQueryParams {
     return {
       filter: this.tableComp.getParentKeysValues(),
       columns: this.tableComp.searcheableColumns,
