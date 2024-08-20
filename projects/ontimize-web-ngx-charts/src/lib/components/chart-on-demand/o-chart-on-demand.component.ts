@@ -391,13 +391,14 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
       panelClass: ['o-dialog-class', 'o-table-dialog'],
       data: { entity: this.currentPreference.entity, service: this.currentPreference.service },
     }).afterClosed()
-      .subscribe((data: OPreference) => {
-        if (Util.isDefined(data) && data) {
-          this.applyConfiguration(data);
-          this.appliedConfiguration = true;
-        }
-      }, _error => {
-        this.appliedConfiguration = false;
+      .subscribe({
+        next: (data: OPreference) => {
+          if (Util.isDefined(data) && data) {
+            this.applyConfiguration(data);
+            this.appliedConfiguration = true;
+          }
+        },
+        error: () => this.appliedConfiguration = false
       });
   }
 
