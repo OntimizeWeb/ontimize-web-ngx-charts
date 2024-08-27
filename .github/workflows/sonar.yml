@@ -1,12 +1,20 @@
 name: Sonar
+
+concurrency:
+  group: sonar-ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  NEXUS_REGISTRY: https://nexus.imatia.com/repository/npm-group/
+
 on:
   push:
     branches:
       - main.15.x
       - 15.x.x
-      - hotfix/8.*
+      - hotfix/15.*
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, labeled]
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -28,6 +36,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.10.0
+
+      - name: Setup Node registry
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'snapshot')
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_NEXUS_AUTH_TOKEN }}
+        run: |
+          npm set registry=${{ env.NEXUS_REGISTRY }}
+          npm set _auth=$NPM_AUTH_TOKEN
 
       - name: npm install and npm run test-ci
         run: |
