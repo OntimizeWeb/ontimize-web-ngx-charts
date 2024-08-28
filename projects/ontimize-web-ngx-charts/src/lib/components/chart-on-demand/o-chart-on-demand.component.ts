@@ -208,7 +208,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
           let filter: object = {};
           const queryArgs = this.tableComp.getQueryArguments(filter);
           const adaptedQueryArguments = this.tableComp.queryArgumentAdapter.parseQueryParameters(queryArgs);
-          this.querySubscription = this.queryArgumentAdapter.request.apply(this.queryArgumentAdapter, ['query', this.ontimizeService, adaptedQueryArguments])
+          this.querySubscription = this.queryArgumentAdapter.request('query', this.ontimizeService, adaptedQueryArguments)
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -222,7 +222,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
           this.showPlaceholder = true;
           const queryArgs = this.getQueryArgumentsByAllData();
           const adaptedQueryArguments = this.tableComp.queryArgumentAdapter.parseQueryParameters(queryArgs);
-          this.querySubscription = this.queryArgumentAdapter.request.apply(this.queryArgumentAdapter, ['query', this.ontimizeService, adaptedQueryArguments])
+          this.querySubscription = this.queryArgumentAdapter.request('query', this.ontimizeService, adaptedQueryArguments)
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
