@@ -48,7 +48,7 @@ export class LoadPreferencesDialogComponent implements OnInit {
   }
 
   getConfigurations() {
-    this.preferencesService.getPreferences(this.data.entity, this.data.service).subscribe(resp => {
+    this.preferencesService.getPreferences(this.data.entity, this.data.service, 'CHART').subscribe(resp => {
       if (resp.isSuccessful()) {
         this.setDataArray(resp.data);
       }
