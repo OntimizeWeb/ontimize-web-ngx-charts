@@ -337,7 +337,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   updatePreferences(): void {
     if (Util.isDefined(this.currentConfiguration.PREFERENCEID)) {
-      this.savePreferences({ preferencename: this.currentConfiguration.PREFERENCENAME, description: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
+      this.savePreferences({ preferencename: this.currentConfiguration.PREFERENCENAME, preferencedescription: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
     }
   }
   openSaveAsPreferencesDialog(): void {
@@ -356,7 +356,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
   savePreferences(data: any, update?: boolean) {
     let preference = {
       "preferencename": data.name, "preferencedescription": data.description,
-      "preferenceentity": this.currentPreference.entity, "preferenceservice": this.currentPreference.service, "preferencetype": "CHART", "preferencepreferences": {
+      "preferenceentity": this.currentPreference.entity, "preferenceservice": this.currentPreference.service, "preferencetype": "CHART", "preferenceparameters": {
         "title": this.currentPreference.title,
         "subtitle": this.currentPreference.subtitle, "entity": this.currentPreference.entity, "service": this.currentPreference.service, "selectedXAxis": this.currentPreference.selectedXAxis,
         "selectedYAxis": this.currentPreference.selectedYAxis, "selectedXAxisType": this.currentPreference.selectedXAxisType, "selectedYAxisType": this.currentPreference.selectedYAxisType,
