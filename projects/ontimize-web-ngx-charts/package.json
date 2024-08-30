@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-charts",
-  "version": "15.2.0-SNAPSHOT-0",
+  "version": "15.2.0-JSONAPI-SNAPSHOT-0",
   "description": "An implementation of ngx-charts for Ontimize Web",
   "keywords": [
     "angular",
@@ -31,6 +31,6 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "^15.0.0"
+    "ontimize-web-ngx": "15.1.0-JSONAPI-SNAPSHOT-7"
   }
 }

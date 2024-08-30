@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OntimizeWebModule, O_CHART_ON_DEMAND_SERVICE } from 'ontimize-web-ngx';
+import { O_CHART_ON_DEMAND_SERVICE, OntimizePreferencesService, OntimizeWebModule, preferencesServiceFactory } from 'ontimize-web-ngx';
+
 import { OChartOnDemandService } from '../../services/chart-on-demand.service';
 import { OChartTranslatePipe } from '../../util/o-chart-translate.pipe';
 import { OChartComponentModule } from '../chart/o-chart.module';
@@ -19,6 +20,9 @@ import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-p
     OChartComponentModule,
   ],
   exports: [OChartOnDemandComponent],
-  providers: [{ provide: O_CHART_ON_DEMAND_SERVICE, useClass: OChartOnDemandService }]
+  providers: [
+    { provide: O_CHART_ON_DEMAND_SERVICE, useClass: OChartOnDemandService },
+   { provide: OntimizePreferencesService, useFactory: preferencesServiceFactory, deps: [Injector] }
+  ]
 })
 export class OChartOnDemandComponentModule { }
