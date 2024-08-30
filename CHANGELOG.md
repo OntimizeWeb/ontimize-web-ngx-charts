@@ -1,3 +1,7 @@
+## 15.2.0-JSONAPI-SNAPSHOT-0(2024-08-30)
+### Features
+Adapt to JSON API
+
 ## 15.1.2 (2024-07-11)
 ### Features
 * **o-chart**:

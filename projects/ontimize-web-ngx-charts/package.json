@@ -31,6 +31,6 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "15.1.0-JSONAPI-SNAPSHOT-6"
+    "ontimize-web-ngx": "15.1.0-JSONAPI-SNAPSHOT-7"
   }
 }
