@@ -13,7 +13,8 @@ on:
           - false
 
 env:
-  NEXUS_REGISTRY: https://nexus.imatia.com/repository/npm/
+  NEXUS_REGISTRY: https://nexus.imatia.com/repository/npm-group/
+  NEXUS_REGISTRY_PUBLISH: https://nexus.imatia.com/repository/npm/
 
 jobs:
   build:
@@ -62,7 +63,7 @@ jobs:
       - name: Publish
         run: |
           cd dist
-          npm set registry=${{ env.NEXUS_REGISTRY }}
+          npm set registry=${{ env.NEXUS_REGISTRY_PUBLISH }}
           npm set _auth=$NPM_AUTH_TOKEN
           npm publish
         env:
