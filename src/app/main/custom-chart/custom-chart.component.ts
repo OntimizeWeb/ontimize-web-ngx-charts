@@ -95,7 +95,7 @@ export class CustomChartComponent {
   JsonData = this.getJsonData();
   constructor(protected cdr: ChangeDetectorRef) { }
   getJsonData() {
-    return JSON.stringify(this.currentPreference.data);
+    return JSON.stringify(this.currentPreference.data, null, 4);
   }
   selectData(event) {
     this.currentPreference.data = JSON.parse(event);
