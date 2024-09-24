@@ -1,6 +1,7 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { DialogService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 @Component({
@@ -93,15 +94,31 @@ export class CustomChartComponent {
   ];
   showChart = true;
   JsonData = this.getJsonData();
-  constructor(protected cdr: ChangeDetectorRef) { }
+  constructor(
+    protected cdr: ChangeDetectorRef,
+    protected dialogService: DialogService
+  ) { }
   getJsonData() {
     return JSON.stringify(this.currentPreference.data, null, 4);
   }
   selectData(event) {
+    try {
+      JSON.parse(event);
+    } catch {
+      return;
+    }
     this.currentPreference.data = JSON.parse(event);
+  }
+  checkData(data: string) {
+    try {
+      JSON.parse(data);
+    } catch {
+      this.dialogService.error("Bad JSON syntax","Please check your JSON syntax to load the chart correctly.");
+    }
   }
   changeData(event) {
     this.currentPreference.data = this.getData();
+    this.JsonData = this.getJsonData();
   }
 
   toggleDimensions(checked: boolean) {
@@ -117,7 +134,24 @@ export class CustomChartComponent {
     this.cdr.detectChanges();
     this.showChart = true;
   }
-
+  selectedXAxis(value) {
+    try {
+      this.currentPreference.selectedXAxisType = value;
+      this.updateChart();
+    }
+    catch {
+      this.dialogService.error("Bad axis selected", "Please check if your X axis selection is concording with your data.");
+    }
+  }
+  selectedYAxis(value) {
+    try {
+      this.currentPreference.selectedYAxisType = value;
+      this.updateChart();
+    }
+    catch {
+      this.dialogService.error("Bad axis selected", "Please check if your Y axis selection is concording with your data.");
+    }
+  }
   enabledPreview() {
     return this.currentPreference.selectedXAxis && this.currentPreference.selectedYAxis;
   }

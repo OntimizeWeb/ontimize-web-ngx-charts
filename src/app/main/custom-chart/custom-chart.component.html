@@ -28,8 +28,8 @@
               <span class="section-title">{{ 'CHART.DATA' | oTranslate}}</span>
               <div fxLayout="column" class="container-title" fxLayoutGap="10px">
                 <mat-form-field appearance="fill">
-                  <textarea matInput [(ngModel)]="JsonData" placeholder="{{ 'CHART.DATA' | oTranslate}}" rows="10"
-                    (ngModelChange)="selectData($event)"></textarea>
+                  <textarea #data matInput [(ngModel)]="JsonData" placeholder="{{ 'CHART.DATA' | oTranslate}}" rows="10"
+                    (ngModelChange)="selectData(data.value)" (blur)="checkData(data.value)"></textarea>
                 </mat-form-field>
               </div>
               <span class="section-title">{{ 'CHART.X_AXIS' | oTranslate}}</span>
@@ -40,7 +40,7 @@
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>{{'CHART.SELECT_X_AXIS_TYPE' | oTranslate}}</mat-label>
-                  <mat-select [(ngModel)]="currentPreference.selectedXAxisType" (selectionChange)="updateChart()">
+                  <mat-select #selectX [(ngModel)]="currentPreference.selectedXAxisType" (selectionChange)="selectedXAxis(selectX.value)">
                     <mat-option *ngFor="let option of axisTypes" [value]="option.key">
                       {{option.value | oTranslate}}
                     </mat-option>
@@ -55,7 +55,7 @@
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>{{'CHART.SELECT_Y_AXIS_TYPE' | oTranslate}}</mat-label>
-                  <mat-select [(ngModel)]="currentPreference.selectedYAxisType" (selectionChange)="updateChart()">
+                  <mat-select #selectY [(ngModel)]="currentPreference.selectedYAxisType" (selectionChange)="selectedYAxis(selectY.value)">
                     <mat-option *ngFor="let option of axisTypes" [value]="option.key">
                       {{option.value | oTranslate}}
                     </mat-option>
