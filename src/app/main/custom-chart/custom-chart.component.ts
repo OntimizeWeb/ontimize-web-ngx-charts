@@ -3,6 +3,8 @@ import { ChangeDetectorRef, Component, ViewChild, ViewEncapsulation } from '@ang
 import { MatMenuTrigger } from '@angular/material/menu';
 import { DialogService } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
+import { DataInputDialogComponent } from '../data-input-dialog/data-input-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'custom-chart',
@@ -94,10 +96,7 @@ export class CustomChartComponent {
   ];
   showChart = true;
   JsonData = this.getJsonData();
-  constructor(
-    protected cdr: ChangeDetectorRef,
-    protected dialogService: DialogService
-  ) { }
+  constructor(protected cdr: ChangeDetectorRef, public dialog: MatDialog, protected dialogService: DialogService) { }
   getJsonData() {
     return JSON.stringify(this.currentPreference.data, null, 4);
   }
@@ -154,6 +153,19 @@ export class CustomChartComponent {
   }
   enabledPreview() {
     return this.currentPreference.selectedXAxis && this.currentPreference.selectedYAxis;
+  }
+  openDataInputDialog(): void {
+    const dialogRef = this.dialog.open(DataInputDialogComponent, {
+      panelClass: ['o-dialog-class', 'o-table-dialog'],
+      data: { data: this.JsonData }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        this.JsonData = result;
+        this.selectData(result);
+      }
+    });
   }
   getData() {
     if (this.currentPreference?.selectedTypeChart == "pie" || this.currentPreference?.selectedTypeChart == "donutChart" || this.currentPreference?.selectedTypeChart == "discreteBar") {

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ 'CHART.DATA_INPUT' | oTranslate }}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <textarea matInput [(ngModel)]="data" placeholder="{{ 'CHART.DATA' | oTranslate }}" rows="10"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{ 'CANCEL' | oTranslate }}</button>
+  <button mat-button (click)="onSave()">{{ 'SAVE' | oTranslate }}</button>
+</div>

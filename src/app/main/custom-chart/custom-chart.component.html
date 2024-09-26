@@ -25,13 +25,16 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <span class="section-title">{{ 'CHART.DATA' | oTranslate}}</span>
+              <button mat-raised-button (click)="openDataInputDialog()">
+                {{ 'CHART.OPEN_DATA_INPUT' | oTranslate }}
+              </button>
+              <!-- <span class="section-title">{{ 'CHART.DATA' | oTranslate}}</span>
               <div fxLayout="column" class="container-title" fxLayoutGap="10px">
                 <mat-form-field appearance="fill">
                   <textarea #data matInput [(ngModel)]="JsonData" placeholder="{{ 'CHART.DATA' | oTranslate}}" rows="10"
                     (ngModelChange)="selectData(data.value)" (blur)="checkData(data.value)"></textarea>
                 </mat-form-field>
-              </div>
+              </div> -->
               <span class="section-title">{{ 'CHART.X_AXIS' | oTranslate}}</span>
               <div fxLayout="row" class="container_x_axis" fxLayoutGap="10px">
                 <mat-form-field>
