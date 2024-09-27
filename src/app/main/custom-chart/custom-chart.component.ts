@@ -111,8 +111,10 @@ export class CustomChartComponent {
   checkData(data: string) {
     try {
       JSON.parse(data);
+      return true;
     } catch {
-      this.dialogService.error("Bad JSON syntax","Please check your JSON syntax to load the chart correctly.");
+      this.dialogService.error("Bad JSON syntax", "Please check your JSON syntax to load the chart correctly.");
+      return false;
     }
   }
   changeData(event) {
@@ -157,11 +159,13 @@ export class CustomChartComponent {
   openDataInputDialog(): void {
     const dialogRef = this.dialog.open(DataInputDialogComponent, {
       panelClass: ['o-dialog-class', 'o-table-dialog'],
-      data: { data: this.JsonData }
+      data: { data: this.JsonData },
+      width: '60%',
+      height: '60%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
+      if (result !== undefined && this.checkData(result)) {
         this.JsonData = result;
         this.selectData(result);
       }

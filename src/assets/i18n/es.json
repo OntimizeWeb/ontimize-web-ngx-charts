@@ -50,6 +50,8 @@
   "CHART.SELECT_X_AXIS_TYPE": "Seleccionar el tipo del eje X",
   "CHART.Y_AXIS": "Eje Y",
   "CHART.SELECT_Y_AXIS_TYPE": "Seleccionar el tipo del eje Y",
+  "CHART.OPEN_DATA_INPUT": "Editar datos",
+  "CHART.DATA_INPUT": "Datos de entrada",
   "vivid": "Vívido",
   "natural": "Natural",
   "cool": "Fresco",

@@ -150,6 +150,8 @@
   "CHART.SELECT_X_AXIS_TYPE": "Select X Axis type",
   "CHART.Y_AXIS": "Y Axis",
   "CHART.SELECT_Y_AXIS_TYPE": "Select Y Axis type",
+  "CHART.OPEN_DATA_INPUT": "Customize data",
+  "CHART.DATA_INPUT": "Input data",
   "vivid": "Vivid",
   "natural": "Natural",
   "cool": "Cool",
