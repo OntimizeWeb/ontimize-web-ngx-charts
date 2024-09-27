@@ -17,7 +17,7 @@
   padding-left: 16px;
 }
 
-.mat-mdc-dialog-content {
+.dialog-container {
   //height - toolbar-height - padding-top
   max-height: calc(100% - 36px - 16px);
   height: 100%;
