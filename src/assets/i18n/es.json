@@ -52,6 +52,8 @@
   "CHART.SELECT_Y_AXIS_TYPE": "Seleccionar el tipo del eje Y",
   "CHART.OPEN_DATA_INPUT": "Editar datos",
   "CHART.DATA_INPUT": "Datos de entrada",
+  "CHART.SHOW_FILTERS": "Mostrar filtros",
+  "CHART.HIDE_FILTERS": "Cerrar filtros",
   "vivid": "Vívido",
   "natural": "Natural",
   "cool": "Fresco",

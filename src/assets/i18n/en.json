@@ -152,6 +152,8 @@
   "CHART.SELECT_Y_AXIS_TYPE": "Select Y Axis type",
   "CHART.OPEN_DATA_INPUT": "Customize data",
   "CHART.DATA_INPUT": "Input data",
+  "CHART.SHOW_FILTERS": "Show filters",
+  "CHART.HIDE_FILTERS": "Hide filters",
   "vivid": "Vivid",
   "natural": "Natural",
   "cool": "Cool",
