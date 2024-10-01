@@ -1,5 +1,5 @@
 <div fxLayout="column" class="bg-level-1 main-container">
-  <example-comp comp-name="CUSTOM_CHART_TITLE">
+  <example-comp comp-name="CUSTOM_CHART_TITLE" [files]="getFiles()" layout-fill>
     <div #dialog class="dialog-container">
       <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" fxFill>
         <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
@@ -131,7 +131,7 @@
                 <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
               </div>
               <div fxLayoutAlign="center center" fxFlex="1 1 auto">
-                <o-chart #chart *ngIf="showChart" [type]="currentPreference.selectedTypeChart" [data]="currentPreference.data"
+                <o-chart *ngIf="showChart" [type]="currentPreference.selectedTypeChart" [data]="currentPreference.data"
                   [color]="currentPreference.selectedPalette" [x-label]="currentPreference.x_axis" [y-label]="currentPreference.y_axis"
                   [x-data-type]="currentPreference.selectedXAxisType" [y-data-type]="currentPreference.selectedYAxisType"
                   [chart-width]="currentPreference.width" [chart-height]="currentPreference.height" [show-legend]="showLegend"

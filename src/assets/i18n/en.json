@@ -1,4 +1,5 @@
 {
+  "ABOUT": "About",
   "APP_TITLE": "Charts",
   "VERSION": "Version",
   "INTRODUCTION": "Introduction",
@@ -154,6 +155,9 @@
   "CHART.DATA_INPUT": "Input data",
   "CHART.SHOW_FILTERS": "Show filters",
   "CHART.HIDE_FILTERS": "Hide filters",
+  "CHART.CHART_X_AXIS": "X Axis",
+  "CHART.CHART_Y_AXIS": "Y Axis",
+  "CHART.LEGEND_TITLE": "Legend title",
   "vivid": "Vivid",
   "natural": "Natural",
   "cool": "Cool",

@@ -1,4 +1,5 @@
 {
+  "ABOUT": "Sobre",
   "APP_TITLE": "Gráficas",
   "VERSION": "Versión",
   "INTRODUCTION": "Introducción",
@@ -54,6 +55,9 @@
   "CHART.DATA_INPUT": "Datos de entrada",
   "CHART.SHOW_FILTERS": "Mostrar filtros",
   "CHART.HIDE_FILTERS": "Cerrar filtros",
+  "CHART.CHART_X_AXIS": "Eje X",
+  "CHART.CHART_Y_AXIS": "Eje Y",
+  "CHART.LEGEND_TITLE": "Título de la leyenda",
   "vivid": "Vívido",
   "natural": "Natural",
   "cool": "Fresco",

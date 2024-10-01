@@ -9,6 +9,10 @@
 
   >section {
     height: 98%;
+
+    .mat-mdc-tab-body-wrapper {
+      height: 200px;
+    }
   }
 }
 
@@ -23,7 +27,6 @@
   height: 100%;
   padding-top: 16px;
   padding-bottom: 0;
-
 
   .mat-sidenav {
     left: 16px;
@@ -167,7 +170,6 @@
   }
 
 }
-
 
 .mat-mdc-select-panel {
   width: 150px;
