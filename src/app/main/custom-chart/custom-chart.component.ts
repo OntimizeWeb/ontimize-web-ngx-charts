@@ -512,7 +512,7 @@ export class CustomChartComponent {
       ` + (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? `[legend-title]="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `[show-grid-lines]="` + this.showGridLines + `"></o-chart>
   `;
     this.typescriptData = `
-    import { Component } from '@angular/core';
+    import { Component, ViewEncapsulation } from '@angular/core';
 
     @Component({
       selector: 'custom-chart',
@@ -531,7 +531,8 @@ export class CustomChartComponent {
 
       getData() {
       ` + JSON.stringify(this.currentPreference.data) + `
-      }`
+      }
+    }`
     ;
   }
   selectedXAxis(value) {
