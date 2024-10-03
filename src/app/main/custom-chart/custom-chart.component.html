@@ -1,5 +1,5 @@
 <div fxLayout="column" class="bg-level-1 main-container">
-  <example-comp comp-name="CUSTOM_CHART_TITLE" [files]="getFiles()" layout-fill>
+  <example-comp comp-name="CUSTOM_CHART_TITLE" [files]="getFiles()" tab-height="300px" layout-fill>
     <div #dialog class="dialog-container">
       <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" fxFill>
         <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
@@ -39,7 +39,7 @@
               <div fxLayout="row" class="container_x_axis" fxLayoutGap="10px">
                 <mat-form-field>
                   <mat-label>{{'CHART.X_AXIS' | oTranslate}}</mat-label>
-                  <input [(ngModel)]="currentPreference.x_axis" matInput placeholder="{{ 'CHART.CHART_X_AXIS' | oTranslate}}">
+                  <input [(ngModel)]="currentPreference.x_axis" matInput placeholder="{{ 'CHART.CHART_X_AXIS' | oTranslate}}" (input)="updateChart()">
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>{{'CHART.SELECT_X_AXIS_TYPE' | oTranslate}}</mat-label>
@@ -54,7 +54,7 @@
               <div fxLayout="row" class="container_y_axis" fxLayoutGap="10px">
                 <mat-form-field>
                   <mat-label>{{'CHART.Y_AXIS' | oTranslate}}</mat-label>
-                  <input [(ngModel)]="currentPreference.y_axis" matInput placeholder="{{ 'CHART.CHART_Y_AXIS' | oTranslate}}">
+                  <input [(ngModel)]="currentPreference.y_axis" matInput placeholder="{{ 'CHART.CHART_Y_AXIS' | oTranslate}}" (input)="updateChart()">
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>{{'CHART.SELECT_Y_AXIS_TYPE' | oTranslate}}</mat-label>
