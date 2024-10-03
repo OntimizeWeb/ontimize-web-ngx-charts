@@ -530,28 +530,18 @@ export class CustomChartComponent {
       constructor() { }
 
       getData() {
-        return` + JSON.stringify(JSON.parse(this.currentPreference.data)) + `;
+        return` + JSON.stringify(this.currentPreference.data) + `;
       }
     }`
     ;
   }
   selectedXAxis(value) {
-    try {
-      this.currentPreference.selectedXAxisType = value;
-      this.updateChart();
-    }
-    catch {
-      this.dialogService.error("Bad axis selected", "Please check if your X axis selection is concording with your data.");
-    }
+    this.currentPreference.selectedXAxisType = value;
+    this.updateChart();
   }
   selectedYAxis(value) {
-    try {
-      this.currentPreference.selectedYAxisType = value;
-      this.updateChart();
-    }
-    catch {
-      this.dialogService.error("Bad axis selected", "Please check if your Y axis selection is concording with your data.");
-    }
+    this.currentPreference.selectedYAxisType = value;
+    this.updateChart();
   }
   enabledPreview() {
     return this.currentPreference.selectedXAxis && this.currentPreference.selectedYAxis;
