@@ -530,7 +530,7 @@ export class CustomChartComponent {
       constructor() { }
 
       getData() {
-      ` + JSON.stringify(this.currentPreference.data) + `
+        return` + JSON.stringify(this.currentPreference.data) + `;
       }
     }`
     ;
