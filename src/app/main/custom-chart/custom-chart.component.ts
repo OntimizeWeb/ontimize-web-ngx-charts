@@ -48,11 +48,11 @@ export class CustomChartComponent {
 
   htmlData = `
   <o-chart [type]="` + this.currentPreference.selectedTypeChart + `" [data]="defaultData"
-    [color]="` + this.currentPreference.selectedPalette + `" [x-label]="` + this.currentPreference.x_axis + `" [y-label]="` + this.currentPreference.y_axis + `"
-    [x-data-type]="` + this.currentPreference.selectedXAxisType + `" [y-data-type]="` + this.currentPreference.selectedYAxisType + `"
-    [chart-width]="` + this.currentPreference.width + `" [chart-height]="` + this.currentPreference.height + `" [show-legend]="` + this.showLegend + `"
-    [show-x-axis-label]="` + this.showXAxis + `" [show-y-axis-label]="` + this.showYAxis + `" [legend-position]="` + this.currentPreference.legendPosition + `"
-    [legend-title]="` + this.currentPreference.legendTitle + `" [show-grid-lines]="` + this.showGridLines + `"></o-chart>
+      [color]="` + this.currentPreference.selectedPalette + `" [x-label]="` + this.currentPreference.x_axis + `" [y-label]="` + this.currentPreference.y_axis + `"
+      [x-data-type]="` + this.currentPreference.selectedXAxisType + `" [y-data-type]="` + this.currentPreference.selectedYAxisType + `"
+      ` + (this.currentPreference.width != undefined ? `[chart-width]="` + this.currentPreference.width + `" ` : ``) + (this.currentPreference.height != undefined ? `[chart-height]="` + this.currentPreference.height + `" ` : ``) + `[show-legend]="` + this.showLegend + `"
+      [show-x-axis-label]="` + this.showXAxis + `" [show-y-axis-label]="` + this.showYAxis + `" [legend-position]="` + this.currentPreference.legendPosition + `"
+      ` + (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? `[legend-title]="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `[show-grid-lines]="` + this.showGridLines + `"></o-chart>
   `;
 
   typescriptData = `
@@ -504,13 +504,13 @@ export class CustomChartComponent {
     this.cdr.detectChanges();
     this.showChart = true;
     this.htmlData = `
-    <o-chart [type]="` + this.currentPreference.selectedTypeChart + `" [data]="defaultData"
-    [color]="` + this.currentPreference.selectedPalette + `" [x-label]="` + this.currentPreference.x_axis + `" [y-label]="` + this.currentPreference.y_axis + `"
-    [x-data-type]="` + this.currentPreference.selectedXAxisType + `" [y-data-type]="` + this.currentPreference.selectedYAxisType + `"
-    [chart-width]="` + this.currentPreference.width + `" [chart-height]="` + this.currentPreference.height + `" [show-legend]="` + this.showLegend + `"
-    [show-x-axis-label]="` + this.showXAxis + `" [show-y-axis-label]="` + this.showYAxis + `" [legend-position]="` + this.currentPreference.legendPosition + `"
-    [legend-title]="` + this.currentPreference.legendTitle + `" [show-grid-lines]="` + this.showGridLines + `"></o-chart>
-    `;
+  <o-chart [type]="` + this.currentPreference.selectedTypeChart + `" [data]="defaultData"
+      [color]="` + this.currentPreference.selectedPalette + `" [x-label]="` + this.currentPreference.x_axis + `" [y-label]="` + this.currentPreference.y_axis + `"
+      [x-data-type]="` + this.currentPreference.selectedXAxisType + `" [y-data-type]="` + this.currentPreference.selectedYAxisType + `"
+      ` + (this.currentPreference.width != undefined ? `[chart-width]="` + this.currentPreference.width + `" ` : ``) + (this.currentPreference.height != undefined ? `[chart-height]="` + this.currentPreference.height + `" ` : ``) + `[show-legend]="` + this.showLegend + `"
+      [show-x-axis-label]="` + this.showXAxis + `" [show-y-axis-label]="` + this.showYAxis + `" [legend-position]="` + this.currentPreference.legendPosition + `"
+      ` + (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? `[legend-title]="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `[show-grid-lines]="` + this.showGridLines + `"></o-chart>
+  `;
     this.typescriptData = `
     import { Component } from '@angular/core';
 
