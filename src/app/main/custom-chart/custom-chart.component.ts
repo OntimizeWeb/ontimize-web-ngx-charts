@@ -56,7 +56,7 @@ export class CustomChartComponent {
   `;
 
   typescriptData = `
-    import { Component } from '@angular/core';
+    import { Component, ViewEncapsulation } from '@angular/core';
 
     @Component({
       selector: 'custom-chart',
