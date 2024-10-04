@@ -4,6 +4,7 @@ import { DialogService } from 'ontimize-web-ngx';
 import { DataInputDialogComponent } from '../data-input-dialog/data-input-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExampleComponent } from '../../shared/example/example.component';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'custom-chart',
@@ -17,11 +18,13 @@ import { ExampleComponent } from '../../shared/example/example.component';
 export class CustomChartComponent {
 
   @ViewChild('configurationMenuButton') configurationMenuButton: MatMenuTrigger;
+  @ViewChild('selectX') xAxisType: MatSelect;
 
   fullscreen = false;
   opened = true;
   showPlaceholder = true;
   fitContainer = true;
+  defaultDataChanged = false;
   public showXAxis: boolean = true;
   public showYAxis: boolean = true;
   public showGridLines: boolean = false;
@@ -156,6 +159,11 @@ export class CustomChartComponent {
   changeData(event) {
     this.currentPreference.data = this.getData();
     this.JsonData = this.getJsonData();
+    if (!this.defaultDataChanged && (this.currentPreference.selectedTypeChart == 'line' || this.currentPreference.selectedTypeChart == 'stackedAreaChart')) {
+      this.xAxisType.value = 'DATE';
+    } else {
+      this.xAxisType.value = 'string';
+    }
     this.updateChart();
   }
 
@@ -202,6 +210,7 @@ export class CustomChartComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && this.checkData(result)) {
+        this.defaultDataChanged = true;
         this.JsonData = result;
         this.selectData(result);
         this.updateChart();
