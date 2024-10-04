@@ -131,11 +131,11 @@ export class CustomChartComponent {
       'typescript': {
         'data': this.typescriptData
       },
-      'files': [{
+      'json': {
         'label': 'JSON',
         'data': this.JsonData,
         'type': 'json'
-      }]
+      }
     }
   }
   getJsonData() {
