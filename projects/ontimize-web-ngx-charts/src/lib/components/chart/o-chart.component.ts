@@ -152,7 +152,7 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'yFormatting:y-formatting',
   'showXAxisLabel:show-x-axis-label',
   'showYAxisLabel:show-y-axis-label',
-  'autoScale'
+  'autoScale: auto-scale'
 ];
 
 @Component({
