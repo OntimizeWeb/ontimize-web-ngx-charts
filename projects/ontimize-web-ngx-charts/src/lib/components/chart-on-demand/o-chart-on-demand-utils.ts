@@ -66,7 +66,6 @@ export class OChartOnDemandUtils {
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
-    chartConf.showLegend = false;
     chartConf.labelType = 'value';
     chartConf.color = preferences.selectedPalette;
     const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType, preferences.selectedYAxis[0], oTableOptions);

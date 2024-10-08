@@ -8,8 +8,6 @@ export class PieChartConfiguration extends ChartConfiguration {
   public readonly type: string = 'pie';
   public readonly donut: boolean = false;
   public readonly donutRatio: number = 0;
-
-  public showLegend: boolean = false;
   public legend: ChartLegendConfiguration;
   /** Position of the legend (top or right) */
   public legendPosition: 'bellow' | 'right' | 'bottom' = 'bellow';
