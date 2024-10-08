@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   AreaChartStackedComponent,
   BarHorizontalComponent,
@@ -163,7 +163,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
     OntimizeServiceProvider,
     ComponentStateServiceProvider,
     { provide: O_COMPONENT_STATE_SERVICE, useClass: DefaultComponentStateService },
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
