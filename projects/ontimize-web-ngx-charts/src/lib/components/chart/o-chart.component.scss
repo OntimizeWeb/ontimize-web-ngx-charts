@@ -4,10 +4,10 @@
 
 ngx-charts-legend-entry {
   >span {
-    padding: 0 3px 2px !important;
+    padding: 0 3px 2px;
 
     >.legend-label-color {
-      vertical-align: middle !important;
+      vertical-align: middle;
     }
   }
 }
