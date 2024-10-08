@@ -3,11 +3,11 @@
 }
 
 ngx-charts-legend-entry {
-  > span {
-    padding: 0 3px 2px;
+  >span {
+    padding: 0 3px 2px !important;
 
-    > .legend-label-color {
-      vertical-align: middle;
+    >.legend-label-color {
+      vertical-align: middle !important;
     }
   }
 }
