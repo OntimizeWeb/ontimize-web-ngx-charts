@@ -26,12 +26,8 @@ export class PieComponent {
     this.chartParameters1.legend.margin.bottom = 5;
 
     this.chartParameters2 = new PieChartConfiguration();
-    this.chartParameters2.cornerRadius = 20;
-    this.chartParameters2.showLeyend = false;
-    this.chartParameters2.legendPosition = 'bottom';
-    this.chartParameters2.labelType = 'value';
-    this.chartParameters2.legend.margin.top = 5;
-    this.chartParameters2.legend.margin.bottom = 5;
+    this.chartParameters2.width = 600;
+    this.chartParameters2.height = 600;
 
     this.chartParameters3 = new PieChartConfiguration();
     this.chartParameters3.legend.margin.top = 5;
@@ -111,12 +107,12 @@ export class PieComponent {
 }
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+<o-chart type="pie" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
 y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-  <o-chart type="pie" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+  <o-chart type="pie" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
   [color]="colorScheme" [chart-parameters]="chartParameters2"></o-chart>
 `;
 
@@ -141,12 +137,9 @@ export class PieComponent{
   constructor(protected http: HttpClient) {
 
     this.chartParameters2 = new PieChartConfiguration();
-    this.chartParameters2.cornerRadius = 20;
-    this.chartParameters2.showLeyend = false;
-    this.chartParameters2.legendPosition = 'bottom';
-    this.chartParameters2.labelType = 'value';
-    this.chartParameters2.legend.margin.top = 5;
-    this.chartParameters2.legend.margin.bottom = 5;
+    this.chartParameters2.width = 600;
+    this.chartParameters2.height = 600;
+
 
   }
 }

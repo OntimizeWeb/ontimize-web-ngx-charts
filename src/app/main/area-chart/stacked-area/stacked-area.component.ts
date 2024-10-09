@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 const HTML_DATA = `
  <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" entity="EMovementPercent" x-axis="DATE_"
-      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [color]="colorScheme"></o-chart>
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [color]="colorScheme" show-legend="true"></o-chart>
 `;
 
 const TYPESCRIPT_DATA = `
@@ -31,6 +31,12 @@ export class StackedAreaComponent {
   colorScheme = {
     domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
   };
+  formatMonthYear(d: number): string {
+    return (d !== undefined) ? new Date(d).toTimeString() : '';
+  }
+  getTickFormat() {
+    return this.formatMonthYear;
+  }
 
   getFiles() {
     return {
