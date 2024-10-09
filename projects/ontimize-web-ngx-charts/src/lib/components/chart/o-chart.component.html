@@ -19,7 +19,7 @@
       [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
       (deactivate)="deactivateChart($event)"></ngx-charts-bar-vertical>
 
-    <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true"
+    <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [autoScale]="autoScale"
       [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass"
       (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)"></ngx-charts-line-chart>
 

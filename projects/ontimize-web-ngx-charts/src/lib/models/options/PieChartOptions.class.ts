@@ -22,7 +22,6 @@ export class PieChartOptions extends AbstractChartOptions {
       labelThreshold: conf.labelThreshold,
       labelSunbeamLayout: conf.labelSunbeamLayout,
       labelsOutside: conf.labelsOutside,
-      showLegend: conf.showLeyend,
       legendPosition: conf.legendPosition,
       legend: conf.legend.getLegendOptions(),
       cornerRadius: conf.cornerRadius,
