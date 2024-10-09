@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   AreaChartStackedComponent,
   BarHorizontalComponent,
@@ -151,7 +151,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'xFormatting:x-formatting',
   'yFormatting:y-formatting',
   'showXAxisLabel:show-x-axis-label',
-  'showYAxisLabel:show-y-axis-label'
+  'showYAxisLabel:show-y-axis-label',
+  'autoScale: auto-scale'
 ];
 
 @Component({
@@ -163,7 +164,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
     OntimizeServiceProvider,
     ComponentStateServiceProvider,
     { provide: O_COMPONENT_STATE_SERVICE, useClass: DefaultComponentStateService },
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
@@ -196,6 +198,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   showXAxisLabel: boolean = true;
   @BooleanInputConverter()
   showYAxisLabel: boolean = true;
+  @BooleanInputConverter()
+  autoScale: boolean = false;
   protected chartParameters: ChartConfiguration;
   xColumn: OColumn;
   yColumn: OColumn;
@@ -261,7 +265,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.yFormatting = this.yFormatting !== undefined ? this.yFormatting : this.getTickFormatter(this.yAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
-
     this.yAxisArray = Util.parseArray(this.yAxis);
     if (Util.isDefined(this.state['type'])) {
       this.type = this.state['type'];
@@ -658,7 +661,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   setChartLabelsAndLegend(chart, config) {
     chart.labels = config['showLabels'];
-    chart.legend = this.showLegend || config['showLeyend'];
+    chart.legend = this.showLegend || config['showLegend'];
     chart.legendPosition = this.legendPosition || config['legendPosition'];
     chart.legendTitle = this.legendTitle;
     chart.showXAxisLabel = this.showXAxisLabel;
