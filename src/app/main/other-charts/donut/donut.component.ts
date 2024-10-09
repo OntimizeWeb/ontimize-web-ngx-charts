@@ -48,12 +48,12 @@ export class DonutComponent {
 }
 
 const BASIC_USAGE_HMTL_DATA = `
- <o-chart type="donutChart" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" chart-height="400"
+ <o-chart type="donutChart" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" chart-height="400"
  [chart-parameters]="chartParameters1" [color]="colorScheme"></o-chart>
 `;
 
 const CUSTOM_CONFIGURATION_HTML_DATA = `
-<o-chart #donutConfig type="donutChart" chart-height="400" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+<o-chart #donutConfig type="donutChart" chart-height="400" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
       y-axis="MOVEMENT" [chart-parameters]="chartParameters2" [color]="colorScheme"></o-chart>
 `;
 

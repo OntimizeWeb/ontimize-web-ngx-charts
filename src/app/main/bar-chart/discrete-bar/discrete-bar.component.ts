@@ -4,7 +4,7 @@ import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 
 const BASIC_USAGE_HTML_DATA = `
-<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
+<o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" service="movements" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES"
       y-axis="MOVEMENT" [color]="colorScheme"></o-chart>
 `;
 
