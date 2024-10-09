@@ -5,7 +5,7 @@
 
 ### Bug Fixes
 * **o-chart**:
-  * Fixed bug that didn't allow to hide the legend of the stading graphs ([b85d50b](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/b85d50b)) Closes [#262](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/262)
+  * Fixed bug that didn't allow to hide the legend of the standing graphs ([b85d50b](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/b85d50b)) Closes [#262](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/262)
   * Fixed bug that didn't show correctly the hover of the charts legend ([c826bef](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/c826bef)) Closes [#261](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/261)
 
 ## 15.1.2 (2024-07-11)
