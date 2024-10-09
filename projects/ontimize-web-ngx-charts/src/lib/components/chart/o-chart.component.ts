@@ -151,7 +151,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'xFormatting:x-formatting',
   'yFormatting:y-formatting',
   'showXAxisLabel:show-x-axis-label',
-  'showYAxisLabel:show-y-axis-label'
+  'showYAxisLabel:show-y-axis-label',
+  'autoScale: auto-scale'
 ];
 
 @Component({
@@ -197,6 +198,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   showXAxisLabel: boolean = true;
   @BooleanInputConverter()
   showYAxisLabel: boolean = true;
+  @BooleanInputConverter()
+  autoScale: boolean = false;
   protected chartParameters: ChartConfiguration;
   xColumn: OColumn;
   yColumn: OColumn;
@@ -262,7 +265,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.yFormatting = this.yFormatting !== undefined ? this.yFormatting : this.getTickFormatter(this.yAxisDataType);
     this.chartData = this.getAdaptData();
     super.initialize();
-
     this.yAxisArray = Util.parseArray(this.yAxis);
     if (Util.isDefined(this.state['type'])) {
       this.type = this.state['type'];
