@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng build --watch --configuration development",
-    "production": "ng build --base-href=/ontimize-web-ngx-quickstart-charts",
+    "production": "ng build --configuration production --base-href /v15/charts/",
     "production-aot-server": "ng build  --base-href=/ontimizeweb/v15/charts/"
   },
   "private": true,
