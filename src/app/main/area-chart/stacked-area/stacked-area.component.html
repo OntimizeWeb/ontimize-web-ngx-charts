@@ -1,6 +1,6 @@
 <div fxLayout="column" class="bg-level-1 main-container">
-  <example-comp comp-name="AREA_CHAR.STACKED" comp-desc="AREA_CHAR.STACKED.DESC" [files]="getFiles()" layout-fill>
+  <example-comp comp-name="AREA_CHAR.STACKED" comp-desc="AREA_CHAR.STACKED.DESC" [files]="getFiles()" fxFlex="100">
     <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" entity="EMovementPercent" x-axis="DATE_"
-      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time" [color]="colorScheme"></o-chart>
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"  [color]="colorScheme" show-legend="true" ></o-chart>
   </example-comp>
 </div>

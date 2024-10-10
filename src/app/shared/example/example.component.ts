@@ -4,6 +4,7 @@ export interface IFiles {
   html?: any;
   scss?: any;
   typescript?: any;
+  json?: any;
   files?: any[];
 }
 
@@ -80,6 +81,7 @@ export class ExampleComponent {
     this._files.scss = val.scss;
     this._files.typescript = val.typescript;
     this._files.files = val.files;
+    this._files.json=val.json
   }
 
   get files(): IFiles {

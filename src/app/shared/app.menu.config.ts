@@ -2,6 +2,7 @@ import { MenuRootItem } from 'ontimize-web-ngx';
 
 export const MENU_CONFIG: MenuRootItem[] = [
   { id: 'introduction', name: 'INTRODUCTION', icon: 'home', route: '/main/home' },
+  { id: 'customchart', name: 'CREATECHART', icon: 'draw', route: '/main/custom-chart' },
   {
     id: 'line', name: 'LINE_CHARTS', icon: 'show_chart', opened: false, items: [
       { id: 'line', name: 'LINE', icon: 'show_chart', route: '/main/line-chart/line' },
@@ -14,7 +15,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: 'barchart', name: 'BARCHART', icon: 'bar_chart', opened: false, items: [
       { id: 'discrete_bar', name: 'DISCRETE_BAR', icon: 'bar_chart', route: '/main/bar-chart/discrete-bar' },
       { id: 'multi_bar', name: 'MULTI_BAR', icon: 'insert_chart', route: '/main/bar-chart/multi-bar' },
-      { id: 'multi_bar_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-horizontal' },
+      { id: 'multi_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-horizontal' },
       // { id: 'bullet', name: 'BULLET', icon: 'insert_chart', route: '/main/bar-chart/bullet' },
     ]
   },

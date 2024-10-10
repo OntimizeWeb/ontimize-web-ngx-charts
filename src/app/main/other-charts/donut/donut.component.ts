@@ -12,16 +12,9 @@ export class DonutComponent {
   chartParameters2: DonutChartConfiguration;
 
   constructor() {
-    this.chartParameters1 = new DonutChartConfiguration();
-    this.chartParameters1.legend.margin.top = 5;
-    this.chartParameters1.legend.margin.bottom = 5;
 
     this.chartParameters2 = new DonutChartConfiguration();
     this.chartParameters2.showLabels = false;
-    this.chartParameters2.cornerRadius = 15;
-    this.chartParameters2.donutRatio = 0.5;
-    this.chartParameters2.legend.margin.top = 5;
-    this.chartParameters2.legend.margin.bottom = 5;
   }
   colorScheme = {
     domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']
@@ -74,20 +67,11 @@ import { OChartComponent, DonutChartConfiguration } from 'ontimize-web-ngx-chart
 })
 export class DonutComponent {
 
-  chartParameters1: DonutChartConfiguration;
   chartParameters2: DonutChartConfiguration;
 
   constructor() {
-    this.chartParameters1 = new DonutChartConfiguration();
-    this.chartParameters1.legend.margin.top = 5;
-    this.chartParameters1.legend.margin.bottom = 5;
-
     this.chartParameters2 = new DonutChartConfiguration();
     this.chartParameters2.showLabels = false;
-    this.chartParameters2.cornerRadius = 15;
-    this.chartParameters2.donutRatio = 0.5;
-    this.chartParameters2.legend.margin.top = 5;
-    this.chartParameters2.legend.margin.bottom = 5;
   }
   colorScheme = {
     domain: ['#eeeeee', '#8ab2d2', '#c5c5c5']

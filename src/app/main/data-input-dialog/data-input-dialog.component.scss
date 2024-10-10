@@ -1,0 +1,28 @@
+app-data-input-dialog {
+  height: 100%;
+
+  .mat-mdc-form-field {
+    width: 100%;
+    height: 100%;
+
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    .mat-mdc-form-field-flex {
+      height: 100%;
+
+      .mat-mdc-form-field-infix {
+        height: 100%;
+
+        .mat-mdc-input-element {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .mat-mdc-dialog-actions {
+    height: 48px;
+  }
+}

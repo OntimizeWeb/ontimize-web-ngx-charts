@@ -1,0 +1,147 @@
+<div fxLayout="column" class="bg-level-1 main-container">
+  <example-comp comp-name="CUSTOM_CHART_TITLE" [files]="getFiles()" layout-fill>
+    <div #dialog class="dialog-container">
+      <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" fxFill>
+        <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
+          <div fxLayout="column" fxFill>
+            <o-button o-button *ngIf="opened" (click)="opened=!opened" icon="menu" type="ICON" label=""
+              [matTooltip]="('CHART.HIDE_FILTERS' | oTranslate)">
+            </o-button>
+            <div fxLayout="column" *ngIf="opened" class="container-title" fxLayoutGap="10px">
+              <mat-form-field>
+                <input [(ngModel)]="currentPreference.title" matInput placeholder="{{ 'CHART.CHART_TITLE' | oTranslate}}">
+              </mat-form-field>
+              <mat-form-field>
+                <input [(ngModel)]="currentPreference.subtitle" matInput placeholder="{{ 'CHART.CHART_SUBTITLE' | oTranslate}}">
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" *ngIf="opened" class="data_options" fxLayoutGap="10px">
+              <span class="section-first-title">{{ 'CHART.CHART_TYPE' | oTranslate}}</span>
+              <mat-form-field>
+                <mat-label>{{'CHART.SELECT_TYPE' | oTranslate}}</mat-label>
+                <mat-select [(ngModel)]="currentPreference.selectedTypeChart" (selectionChange)="changeData($event)">
+                  <mat-option *ngFor="let type of types" [value]="type.key">
+                    {{type.value | oTranslate}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button (click)="openDataInputDialog()">
+                {{ 'CHART.OPEN_DATA_INPUT' | oTranslate }}
+              </button>
+              <!-- <span class="section-title">{{ 'CHART.DATA' | oTranslate}}</span>
+              <div fxLayout="column" class="container-title" fxLayoutGap="10px">
+                <mat-form-field appearance="fill">
+                  <textarea #data matInput [(ngModel)]="JsonData" placeholder="{{ 'CHART.DATA' | oTranslate}}" rows="10"
+                    (ngModelChange)="selectData(data.value)" (blur)="checkData(data.value)"></textarea>
+                </mat-form-field>
+              </div> -->
+              <span class="section-title">{{ 'CHART.X_AXIS' | oTranslate}}</span>
+              <div fxLayout="row" class="container_x_axis" fxLayoutGap="10px">
+                <mat-form-field>
+                  <mat-label>{{'CHART.X_AXIS' | oTranslate}}</mat-label>
+                  <input [(ngModel)]="currentPreference.x_axis" matInput placeholder="{{ 'CHART.CHART_X_AXIS' | oTranslate}}" (input)="updateChart()">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>{{'CHART.SELECT_X_AXIS_TYPE' | oTranslate}}</mat-label>
+                  <mat-select #selectX [(ngModel)]="currentPreference.selectedXAxisType" (selectionChange)="selectedXAxis(selectX.value)">
+                    <mat-option *ngFor="let option of axisTypes" [value]="option.key">
+                      {{option.value | oTranslate}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <span class="section-title">{{ 'CHART.Y_AXIS' | oTranslate}}</span>
+              <div fxLayout="row" class="container_y_axis" fxLayoutGap="10px">
+                <mat-form-field>
+                  <mat-label>{{'CHART.Y_AXIS' | oTranslate}}</mat-label>
+                  <input [(ngModel)]="currentPreference.y_axis" matInput placeholder="{{ 'CHART.CHART_Y_AXIS' | oTranslate}}" (input)="updateChart()">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>{{'CHART.SELECT_Y_AXIS_TYPE' | oTranslate}}</mat-label>
+                  <mat-select #selectY [(ngModel)]="currentPreference.selectedYAxisType" (selectionChange)="selectedYAxis(selectY.value)">
+                    <mat-option *ngFor="let option of axisTypes" [value]="option.key">
+                      {{option.value | oTranslate}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <span class="section-title">{{ 'CHART.PALETTE' | oTranslate}}</span>
+              <mat-form-field>
+                <mat-label>{{'CHART.SELECT_PALETTE' | oTranslate}}</mat-label>
+                <mat-select [(ngModel)]="currentPreference.selectedPalette" (selectionChange)="updateChart()">
+                  <mat-option *ngFor="let option of comboPalette" [value]="option.key">
+                    {{option.value | oTranslate}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <span class="section-title">{{ 'CHART.DIMENSIONS' | oTranslate}}</span>
+              <mat-checkbox [(ngModel)]="fitContainer" (change)="toggleDimensions($event.checked)">
+                {{ 'FIT_CONTAINER' | oTranslate }}
+              </mat-checkbox>
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="container-dimensions">
+                <mat-form-field>
+                  <mat-label>{{'CHART.WIDTH' | oTranslate}}</mat-label>
+                  <input type="number" [(ngModel)]="currentPreference.width" matInput placeholder="{{ 'CHART.WIDTH' | oTranslate}}"
+                    [disabled]="fitContainer" (input)="updateChart()">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>{{'CHART.HEIGHT' | oTranslate}}</mat-label>
+                  <input type="number" [(ngModel)]="currentPreference.height" matInput placeholder="{{ 'CHART.HEIGHT' | oTranslate}}"
+                    [disabled]="fitContainer" (input)="updateChart()">
+                </mat-form-field>
+              </div>
+              <span class="section-title">{{ 'CHART.OPTIONS' | oTranslate}}</span>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="column" fxLayoutGap="10px">
+                  <mat-checkbox [(ngModel)]="showXAxis" (change)="updateChart()">{{ 'SHOW_X_AXIS' | oTranslate}}</mat-checkbox>
+                  <mat-checkbox [(ngModel)]="showYAxis" (change)="updateChart()">{{ 'SHOW_Y_AXIS' | oTranslate}}</mat-checkbox>
+                </div>
+                <div fxLayout="column" fxLayoutGap="10px">
+                  <mat-checkbox [(ngModel)]="showGridLines" (change)="updateChart()">{{ 'SHOW_GRID_LINES' | oTranslate}}</mat-checkbox>
+                  <mat-checkbox [(ngModel)]="showLegend" (change)="updateChart()">{{ 'SHOW_LEGEND' | oTranslate}}</mat-checkbox>
+                </div>
+              </div>
+              <span class="section-title">{{ 'CHART.LEGEND' | oTranslate}}</span>
+              <mat-form-field>
+                <mat-label>{{'CHART.SELECT_LEGEND_TITLE' | oTranslate}}</mat-label>
+                <input [(ngModel)]="currentPreference.legendTitle" matInput placeholder="{{ 'CHART.LEGEND_TITLE' | oTranslate}}"
+                  (input)="updateChart()">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{'CHART.SELECT_LEGEND_POSITION' | oTranslate}}</mat-label>
+                <mat-select [(ngModel)]="currentPreference.legendPosition" (selectionChange)="updateChart()">
+                  <mat-option *ngFor="let position of positions" [value]="position.key">
+                    {{position.value | oTranslate}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <div class="sidenav-container-content">
+            <div>
+              <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
+                [matTooltip]="('CHART.SHOW_FILTERS' | oTranslate)" matTooltipPosition="below">
+              </o-button>
+            </div>
+            <div fxLayout="column" id="sidenav-container-content" fxFlex="1 1 auto">
+              <div fxLayout="column" fxLayoutAlign="start start">
+                <h2 class="title">{{currentPreference.title}}</h2>
+                <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
+              </div>
+              <div fxLayoutAlign="center center" fxFlex="1 1 auto">
+                <o-chart *ngIf="showChart" [type]="currentPreference.selectedTypeChart" [data]="currentPreference.data"
+                  [color]="currentPreference.selectedPalette" [x-label]="currentPreference.x_axis" [y-label]="currentPreference.y_axis"
+                  [x-data-type]="currentPreference.selectedXAxisType" [y-data-type]="currentPreference.selectedYAxisType"
+                  [chart-width]="currentPreference.width" [chart-height]="currentPreference.height" [show-legend]="showLegend"
+                  [show-x-axis-label]="showXAxis" [show-y-axis-label]="showYAxis" [legend-position]="currentPreference.legendPosition"
+                  [legend-title]="currentPreference.legendTitle" [show-grid-lines]="showGridLines"></o-chart>
+              </div>
+            </div>
+          </div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </example-comp>
+</div>

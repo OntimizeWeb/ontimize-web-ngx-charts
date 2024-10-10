@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   versions: {
-    core: '15.0.0',
-    charts: '15.0.0'
+    core: '15.2.1',
+    charts: '15.1.3'
   }
 };

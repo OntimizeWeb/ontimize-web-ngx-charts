@@ -38,6 +38,10 @@ export const routes: Routes = [
       {
         path: 'gauge',
         loadChildren: () => import('./gauge-chart/gauge.module').then(m => m.GaugeModule)
+      },
+      {
+        path: 'custom-chart',
+        loadChildren: () => import('./custom-chart/custom-chart.module').then(m => m.CustomChartModule)
       }
     ]
   },
