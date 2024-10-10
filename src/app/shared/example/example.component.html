@@ -25,6 +25,9 @@
       <mat-tab label="{{ 'typescript' | uppercase }}" *ngIf="files.typescript && files.typescript.data">
         <highlight-comp [template-content]="files.typescript.data" template-type="typescript"></highlight-comp>
       </mat-tab>
+      <mat-tab label="{{ 'json' | uppercase }}" *ngIf="files.json && files.json.data">
+        <highlight-comp [template-content]="files.json.data" template-type="json"></highlight-comp>
+      </mat-tab>
       <mat-tab *ngFor="let file of aditionalTabs" [label]="file.label">
         <highlight-comp [template-content]="file.data" [template-type]="file.type"></highlight-comp>
       </mat-tab>
