@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   AreaChartStackedComponent,
   BarHorizontalComponent,
@@ -152,7 +152,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'yFormatting:y-formatting',
   'showXAxisLabel:show-x-axis-label',
   'showYAxisLabel:show-y-axis-label',
-  'autoScale: auto-scale'
+  'autoScale: auto-scale',
+  'showTooltip:show-tooltip'
 ];
 
 @Component({
@@ -200,6 +201,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   showYAxisLabel: boolean = true;
   @BooleanInputConverter()
   autoScale: boolean = false;
+  @BooleanInputConverter()
+  showTooltip: boolean = false;
   protected chartParameters: ChartConfiguration;
   xColumn: OColumn;
   yColumn: OColumn;
@@ -244,7 +247,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   cd: ChangeDetectorRef;
   chartData: any[] = [];
   isDarkMode: boolean;
-
   constructor(
     @Optional() @Inject(forwardRef(() => OFormComponent)) protected form: OFormComponent,
     protected elRef: ElementRef,
@@ -259,6 +261,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.cd = this.injector.get(ChangeDetectorRef);
     this.getAdaptData();
   }
+  @ContentChild('tooltip', { static: false }) tooltipTemplateRef!: TemplateRef<any>;
+  @ContentChild('seriesTooltip', { static: false }) seriesTooltipTemplateRef!: TemplateRef<any>;
 
   ngOnInit(): void {
     this.xFormatting = this.xFormatting !== undefined ? this.xFormatting : this.getTickFormatter(this.xAxisDataType);
@@ -470,6 +474,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     let chartConf: ChartConfiguration;
     if (this.chartParameters) {
       chartConf = this.chartParameters;
+      chartConf.showTooltip = this.showTooltip;
       chartConf.height = chartConf.height ? chartConf.height : (this.cHeight !== -1) ? this.cHeight : null;
       chartConf.width = chartConf.width ? chartConf.width : (this.cWidth !== -1) ? this.cWidth : null;
       chartConf.xLabel = chartConf.xLabel ? chartConf.xLabel : this.xAxisLabel ? this.xAxisLabel : '';
@@ -483,7 +488,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.data = this.dataArray ? this.dataArray : null;
     } else {
       chartConf = ChartConfigurationUtils.getConfigurationForType(this.type);
-
+      chartConf.showTooltip = this.showTooltip;
       chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
       chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
 
