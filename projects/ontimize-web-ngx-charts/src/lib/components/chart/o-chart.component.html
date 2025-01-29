@@ -3,7 +3,7 @@
 
     <ngx-charts-pie-chart #pieChart *ngSwitchCase="'pie'" fxFlexFill class="chart" [results]="getAdaptData()" [labels]="true" [explodeSlices]="false"
       [doughnut]="false" [scheme]="color" [labelFormatting]="xFormatting" [ngClass]="chartClass" (select)="selectChart($event)"
-      (activate)="activateChart($event)" (deactivate)="deactivateChart($event)" (window:resize)="onResize($event)" [view]="view">
+      (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
