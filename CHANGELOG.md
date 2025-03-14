@@ -1,3 +1,13 @@
+## 15.1.4 (2025-03-14)
+### Features
+* **o-chart**:
+  * Allowed customization of the graph tooltip ([a6d29d7](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/a6d29d7)) Closes [#278](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/278)
+
+### Bug Fixes
+* **o-chart**:
+  * Fixed bug in Spanish translation ([53598f5](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/53598f5)) Closes [#280](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/280)
+  * Removed white space around the chart ([0245598](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/0245598)) Closes [#287](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/287)
+
 ## 15.1.3 (2024-10-09)
 ### Features
 * **o-chart**:

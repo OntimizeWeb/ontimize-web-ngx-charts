@@ -51,7 +51,7 @@ export const MAP = {
     'CHART_ON_DEMAND.CHART_TITLE': 'Título',
     'CHART_ON_DEMAND.CHART_SUBTITLE': 'Subtítulo',
     'CHART_ON_DEMAND.SHOW_FILTERS': 'Mostrar filtros',
-    'CHART_ON_DEMAND.HIDE_FILTERS': 'Ocultrar filtros',
+    'CHART_ON_DEMAND.HIDE_FILTERS': 'Ocultar filtros',
     'CHART_ON_DEMAND.X_AXIS': 'Eje X',
     'CHART_ON_DEMAND.SELECT_X_AXIS': 'Selecciona eje X',
     'CHART_ON_DEMAND.SELECT_DATA_TYPE_X': 'Selecciona el tipo',
