@@ -172,13 +172,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   public static DEFAULT_INPUTS_O_CHART = DEFAULT_INPUTS_O_CHART;
   public static CHART_TYPES = CHART_TYPES;
-  @ViewChild('pieChart') pieChart: ElementRef<PieChartComponent>;
-  @ViewChild('donutChart') donutChart: ElementRef<PieChartComponent>;
-  @ViewChild('horizontalBarChart') horizontalBarChart: ElementRef<BarHorizontalComponent>;
-  @ViewChild('lineChart') lineChart: ElementRef<LineChartComponent>;
-  @ViewChild('stackedAreaChart') stackedAreaChart: ElementRef<AreaChartStackedComponent>;
-  @ViewChild('multiBarChart') multiBarChart: ElementRef<BarVerticalStackedComponent>;
-  @ViewChild('discreteBarChart') discreteBarChart: ElementRef<BarVerticalComponent>;
+  @ViewChild('pieChart') pieChart: PieChartComponent;
+  @ViewChild('donutChart') donutChart: PieChartComponent;
+  @ViewChild('horizontalBarChart') horizontalBarChart: BarHorizontalComponent;
+  @ViewChild('lineChart') lineChart: LineChartComponent;
+  @ViewChild('stackedAreaChart') stackedAreaChart: AreaChartStackedComponent;
+  @ViewChild('multiBarChart') multiBarChart: BarVerticalStackedComponent;
+  @ViewChild('discreteBarChart') discreteBarChart: BarVerticalComponent;
 
 
   /* Inputs */
@@ -283,14 +283,32 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       this.isDarkMode = isDarkMode;
     });
   }
-
   get chartClass(): string {
     return this.isDarkMode ? 'dark-chart' : '';
   }
   ngAfterViewInit(): void {
+    const chartComponents = [
+      "pieChart",
+      "discreteBarChart",
+      "multiBarChart",
+      "stackedAreaChart",
+      "lineChart",
+      "horizontalBarChart",
+      "donutChart"
+    ];
+
     if (this.queryOnInit && this.dataService !== undefined) {
       this.queryData();
     }
+
+    chartComponents.forEach(chart => {
+      if (Util.isDefined(this[chart])) {
+        this[chart].margins = [0, 0, 0, 0];
+        this[chart].update();
+      }
+    });
+
+    this.cd.detectChanges();
   }
   getDateTickFormatter(dateFormat: string) {
     return d => (d !== undefined) ? moment(d).locale(this._translateService.getCurrentLang()).format(dateFormat) : '';
