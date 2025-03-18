@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ICurrencyPipeArgument } from 'ontimize-web-ngx';
+import { ICurrencyPipeArgument, IMomentPipeArgument } from 'ontimize-web-ngx';
 import { OChartComponent } from 'ontimize-web-ngx-charts';
 
 
@@ -29,7 +29,7 @@ export class LineComponent {
     thousandSeparator: '.',
     decimalSeparator: ',',
   };
-  dateArgs = { format: 'DD/MM/YYYY' };
+  dateArgs: IMomentPipeArgument = { format: 'DD/MM/YYYY' };
   constructor() {
   }
 
