@@ -19,6 +19,8 @@ export class ChartConfiguration {
 
   public data: Object;
 
+  public showTooltip: boolean;
+
   public color: {
     domain: string[]
   };
