@@ -5,13 +5,14 @@
   </example-comp>
 
   <example-comp comp-name="LINE_CHART.LINE_CUSTOM" comp-desc="LINE_CHART.LINE_CUSTOM.DESC" [files]="getBasicUsageConfFiles()" layout-fill>
-    <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT"
-      x-data-type="time" [color]="colorScheme"></o-chart>
+    <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" show-tooltip="true" y-axis="MOVEMENT"
+      x-data-type="time" [color]="colorScheme" (onActivate)="activate($event)" (onSelect)="activate($event)">
+      <ng-template #tooltip let-model="model">
+        <strong>Date:</strong> {{model?.name | oMoment : dateArgs}}<br>
+        <strong>Value:</strong> {{model?.value | oCurrency : currencyArgs}}
+      </ng-template>
+    </o-chart>
   </example-comp>
 
-  <!-- <example-comp comp-name="LINE_CHART.LINE_SERIES" comp-desc="LINE_CHART.LINE_SERIES.DESC" [files]="getCustomDataFiles()" layout-fill>
-    <o-chart #lineChart type="line" x-label="Time" y-label="Amount (€)" entity="EMovementsGrouped" x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE"
-      x-data-type="percentage"  [color]="colorScheme"></o-chart>
-  </example-comp> -->
 
 </div>
