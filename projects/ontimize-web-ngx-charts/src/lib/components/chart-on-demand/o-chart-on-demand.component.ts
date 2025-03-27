@@ -206,8 +206,8 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
           let filter: object = {};
-          const queryArgs = this.tableComp.getQueryArguments(filter);
-          this.querySubscription = this.ontimizeService['query'](this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
+          const queryArgs = this.getQueryArgumentsByFilterData(filter);
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -220,7 +220,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
           const queryArgs = this.getQueryArgumentsByAllData();
-          this.querySubscription = this.ontimizeService['query'](this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -236,13 +236,23 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  getQueryArgumentsByFilterData(filter: object) {
+    const queryArgs = this.tableComp.getQueryArguments(filter);
+    queryArgs.columns = this.getColumnsToQuery();
+    return queryArgs;
+  }
+
   getQueryArgumentsByAllData(): OQueryParams {
     return {
       filter: this.tableComp.getParentKeysValues(),
-      columns: this.tableComp.searcheableColumns,
+      columns: this.getColumnsToQuery(),
       entity: this.currentPreference.entity,
-      sqlTypes: this.currentPreference.entity,
+      sqlTypes: this.tableComp.getSqlTypes(),
     };
+  }
+
+  private getColumnsToQuery(): string[] {
+    return [this.currentPreference.selectedXAxis, ...this.currentPreference.selectedYAxis];
   }
 
   showChart() {
@@ -458,6 +468,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     this.currentPreference.selectedPalette = undefined;
     this.hideChart();
   }
+
   enabledPreview() {
     return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis.length != 0 && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
 
