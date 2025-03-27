@@ -167,7 +167,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
           this.showPlaceholder = true;
           let filter: object = {};
           const queryArgs = this.tableComp.getQueryArguments(filter);
-          this.ontimizeService.query(queryArgs[0], queryArgs[1], queryArgs[2], queryArgs[3])
+          this.ontimizeService.query(queryArgs[0], this.getColumnsToQuery(), queryArgs[2], queryArgs[3])
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -179,7 +179,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
-          this.ontimizeService.query(this.tableComp.getParentKeysValues(), this.tableComp.searcheableColumns, this.currentPreference.entity, this.tableComp.getSqlTypes())
+          this.ontimizeService.query(this.tableComp.getParentKeysValues(), this.getColumnsToQuery(), this.currentPreference.entity, this.tableComp.getSqlTypes())
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -195,6 +195,10 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
   }
 
+
+  private getColumnsToQuery(): string[] {
+    return [this.currentPreference.selectedXAxis, ...this.currentPreference.selectedYAxis];
+  }
 
   showChart() {
     if (this.currentPreference.selectedXAxis != undefined) {
