@@ -1,6 +1,7 @@
-## 15.1.5 (2025-03-15)
+## 15.1.5 (2025-03-27)
 ### Bug Fixes
-* **Chart on-demand*: Fixed chart rendering issue when selecting "All Data" ([](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/)) Closes [#301](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/301)
+* **Chart on-demand**:
+  * Fixed chart rendering issue when selecting "All Data" ([c21e2ac](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/c21e2ac)) Closes [#301](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/301)
 
 ## 15.1.4 (2025-03-14)
 ### Features
