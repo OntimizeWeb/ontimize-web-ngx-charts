@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "@swimlane/ngx-charts": "^20.4.1",
+    "@swimlane/ngx-charts": "^20.5.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "ontimize-web-ngx": "^15.0.0"
+    "ontimize-web-ngx": "^15.4.4"
   }
 }
