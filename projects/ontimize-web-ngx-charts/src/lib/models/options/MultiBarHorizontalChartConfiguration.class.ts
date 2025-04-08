@@ -19,7 +19,7 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
   public duration: number = 500;
   public stacked: boolean = false;
   public showXAxis: boolean = true;
-  public showYAxis: boolean = false;
+  public showYAxis: boolean = true;
   public x1Axis: ChartAxisConfiguration;
   public y1Axis: ChartAxisConfiguration;
   public color: {
