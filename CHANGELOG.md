@@ -1,7 +1,7 @@
-## 15.1.6 (2025-04-04)
+## 15.1.6 (2025-04-08)
 ### Bug Fixes
 * **o-chart**:
-  * Fixed issue where axis labels were not being displayed in multi bar horizontal chart([](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/)) Closes [#310](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/310)
+  * Fixed issue where axis labels were not being displayed in multi bar horizontal chart([2b659f5](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/2b659f5)) Closes [#310](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/310)
 
   * Fixed bug where display legend was not being set correctly ([222926f](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/222926f)) Closes [#306](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/306)
 
