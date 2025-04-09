@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { TranslateChartService } from './services/translate-chart.service';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { OCHART_MODULES } from './o-components';
 import { OCHART_PROVIDERS } from './o-services';
@@ -19,4 +20,9 @@ export * from './o-services';
   providers: [OCHART_PROVIDERS, OChartOnDemandService]
 })
 
-export class OChartModule { }
+export class OChartModule {
+
+  constructor(private translationService: TranslateChartService) {
+     this.translationService.loadTranslations();
+  }
+ }

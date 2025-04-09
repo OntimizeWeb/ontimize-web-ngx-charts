@@ -8,7 +8,6 @@ import { OChartComponentModule } from '../chart/o-chart.module';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { OChartOnDemandComponent } from './o-chart-on-demand.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
-import { ChartTranslateService } from '../../services/chart-translate.service';
 
 
 @NgModule({
@@ -22,11 +21,9 @@ import { ChartTranslateService } from '../../services/chart-translate.service';
   exports: [OChartOnDemandComponent],
   providers: [
     { provide: O_CHART_ON_DEMAND_SERVICE, useClass: OChartOnDemandService },
-   { provide: OntimizePreferencesService, useFactory: preferencesServiceFactory, deps: [Injector] }
+    { provide: OntimizePreferencesService, useFactory: preferencesServiceFactory, deps: [Injector] }
   ]
 })
 export class OChartOnDemandComponentModule {
-  constructor(private translationService: ChartTranslateService) {
-    this.translationService.loadTranslations();
-  }
- }
+  constructor() { }
+}
