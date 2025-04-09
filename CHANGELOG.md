@@ -7,7 +7,6 @@ Merged 15.1.4 version
 ### Features
 Adapt to JSON API
 
-
 ## 15.1.6 (2025-04-08)
 ### Bug Fixes
 * **o-chart**:
