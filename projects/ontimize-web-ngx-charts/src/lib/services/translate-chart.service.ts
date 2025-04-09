@@ -17,7 +17,6 @@ export class TranslateChartService {
    }
 
   loadTranslations() {
-    console.log('loadTranslations ');
     Object.keys(MAP).forEach(lang => {
       this.translate.getNgxTranslateService().setTranslation(lang, MAP[this.translate.getCurrentLang()], true); // `true` => merge
     });
