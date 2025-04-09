@@ -98,7 +98,7 @@
         <div>
           <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
             [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oTranslate"
-            matTooltipPosition="below">
+            matTooltipPosition="below" (keyup)="opened=!opened">
           </o-button>
         </div>
         <div fxLayout="column" id="sidenav-container-content" fxFlex="1 1 auto" [ngClass]="chartClass" fxLayoutAlign="center center">
