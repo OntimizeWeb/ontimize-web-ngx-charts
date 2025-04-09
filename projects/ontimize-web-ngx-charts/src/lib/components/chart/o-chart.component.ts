@@ -684,8 +684,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   setChartLabelsAndLegend(chart, config) {
     chart.labels = config['showLabels'];
-    chart.legend = this.showLegend || config['showLegend'];
-    chart.legendPosition = this.legendPosition || config['legendPosition'];
+    chart.legend = this.showLegend ?? config['showLegend'];
+    chart.legendPosition = this.legendPosition ?? config['legendPosition'];
     chart.legendTitle = this.legendTitle;
     chart.showXAxisLabel = this.showXAxisLabel;
     chart.showYAxisLabel = this.showYAxisLabel;

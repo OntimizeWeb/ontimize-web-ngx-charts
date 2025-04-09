@@ -27,9 +27,10 @@
       </ng-template>
     </ngx-charts-pie-chart>
 
-    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
-      [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
+    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel"
+      [results]="getAdaptData()" [xAxis]="true" [yAxis]="true" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
+      (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
