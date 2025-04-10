@@ -416,7 +416,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   applyConfiguration(configuration: any) {
     this.currentConfiguration = configuration;
-    if (this.appConfig.getConfiguration().serviceType === 'JSONAPI') {
+    if (Util.isJsonApiService(this.injector)) {
       this.currentPreference = JSON.parse(atob(this.currentConfiguration.PREFERENCEPREFERENCES));
     } else {
       this.currentPreference = JSON.parse(this.currentConfiguration.PREFERENCEPREFERENCES);
