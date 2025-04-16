@@ -18,7 +18,7 @@ export class LoadPreferencesDialogComponent implements OnInit {
   public selectedConfiguration: OPreference;
   constructor(
     private dialogService: DialogService,
-    private preferencesService: OntimizePreferencesService,
+    private readonly preferencesService: OntimizePreferencesService,
     public dialogo: MatDialogRef<LoadPreferencesDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
     this.preferencesService.configureService(this.preferencesService.getDefaultServiceConfiguration('preferences'));
