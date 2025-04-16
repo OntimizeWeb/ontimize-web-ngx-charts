@@ -10,17 +10,18 @@ export class TranslateChartService {
   constructor(
     public translate: OTranslateService
   ) {
-    if (!TranslateChartService.initialized) {
+    this.translate.onLanguageChanged.subscribe((event: Event) => {
+      TranslateChartService.initialized = false;
       this.loadTranslations();
-      TranslateChartService.initialized = true;
-    }
-   }
+    });
+  }
 
   loadTranslations() {
-    Object.keys(MAP).forEach(lang => {
-      this.translate.getNgxTranslateService().setTranslation(lang, MAP[this.translate.getCurrentLang()], true); // `true` => merge
-    });
-
+    if (!TranslateChartService.initialized) {
+      const lang = this.translate.getCurrentLang();
+      this.translate.getNgxTranslateService().setTranslation(lang, MAP[lang], true); // `true` => merge
+      TranslateChartService.initialized = true;
+    }
   }
 
 }
