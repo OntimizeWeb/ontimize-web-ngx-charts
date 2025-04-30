@@ -13,7 +13,7 @@ import {
   OFormComponent,
   OntimizeMatIconRegistry,
   OntimizePreferencesService,
-  OntimizeQueryArgumentsAdapter,
+  OntimizeRequestArgumentsAdapter,
   OntimizeService,
   OPreference,
   OQueryParams,
@@ -132,7 +132,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
   }
 
   public configureAdapter() {
-    this.queryRequestAdapter = this.injector.get(OntimizeQueryArgumentsAdapter);
+    this.queryRequestAdapter = this.injector.get(OntimizeRequestArgumentsAdapter);
   }
 
   ngOnInit(): void {
