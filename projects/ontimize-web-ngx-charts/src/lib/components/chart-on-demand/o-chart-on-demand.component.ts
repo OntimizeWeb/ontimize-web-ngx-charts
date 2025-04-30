@@ -6,14 +6,14 @@ import domtoimage from 'dom-to-image';
 import {
   AppConfig,
   AppearanceService,
-  BaseQueryArgument,
+  BaseRequestArgument,
   DialogService,
   OColumn,
   OConfigureServiceArgs,
   OFormComponent,
   OntimizeMatIconRegistry,
   OntimizePreferencesService,
-  OntimizeQueryArgumentsAdapter,
+  OntimizeRequestArgumentsAdapter,
   OntimizeService,
   OPreference,
   OQueryParams,
@@ -99,7 +99,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
   protected translateService: OTranslateService;
   protected dialogService: DialogService;
   protected appConfig: AppConfig;
-  protected queryArgumentAdapter: BaseQueryArgument;
+  protected queryRequestAdapter: BaseRequestArgument;
   protected querySubscription: Subscription;
   constructor(
     private ontimizeService: OntimizeService,
@@ -132,7 +132,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
   }
 
   public configureAdapter() {
-    this.queryArgumentAdapter = this.injector.get(OntimizeQueryArgumentsAdapter);
+    this.queryRequestAdapter = this.injector.get(OntimizeRequestArgumentsAdapter);
   }
 
   ngOnInit(): void {
@@ -207,7 +207,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
           this.showPlaceholder = true;
           let filter: object = {};
           const queryArgs = this.getQueryArgumentsByFilterData(filter);
-          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.requestArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -220,7 +220,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
           const queryArgs = this.getQueryArgumentsByAllData();
-          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.queryArgumentAdapter.parseQueryParameters(queryArgs))
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.requestArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
