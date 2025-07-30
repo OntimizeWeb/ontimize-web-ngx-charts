@@ -8,6 +8,7 @@ import {
   AppearanceService,
   BaseRequestArgument,
   DialogService,
+  FactoryUtil,
   OColumn,
   OConfigureServiceArgs,
   OFormComponent,
@@ -128,7 +129,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   public configurePrefereceService(): void {
     let configureServiceArgs: OConfigureServiceArgs = { injector: this.injector, baseService: OntimizePreferencesService, entity: 'preferences', service: 'preferences', serviceType: null };
-    this.preferencesService = Util.configureService(configureServiceArgs);
+    this.preferencesService = FactoryUtil.configureService(configureServiceArgs);
   }
 
   public configureAdapter() {
@@ -416,7 +417,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   applyConfiguration(configuration: any) {
     this.currentConfiguration = configuration;
-    if (Util.isJsonApiService(this.injector)) {
+    if (FactoryUtil.isJsonApiService(this.injector)) {
       this.currentPreference = JSON.parse(atob(this.currentConfiguration.PREFERENCEPREFERENCES));
     } else {
       this.currentPreference = JSON.parse(this.currentConfiguration.PREFERENCEPREFERENCES);
