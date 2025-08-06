@@ -1,3 +1,22 @@
+## 15.2.0 (2025-08-06)
+### Feature
+* Full adaptation to [JSON:API](https://jsonapi.org/) specification for improved interoperability. ([](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/)) Closes [#1525](https://github.com/OntimizeWeb/ontimize-web-ngx/issues/#1525)
+
+### DEPENDENCY UPDATES
+* **Updated**: ontimize-web-ngx@15.6.0
+
+## 15.2.0-next.4 (2025-07-30)
+* Use FactoryUtil instance of Util
+
+## 15.2.0-next.3 (2025-04-30)
+* Resolving breaking change: Renamed BaseQueryArgument with BaseRequestArgument
+
+## 15.2.0-next.2 (2025-04-16)
+* Fixed bug where translations were not loading properly when changing the language
+
+## 15.2.0-next.1 (2025-04-10)
+* Replaced oChartTranslate with oTranslate
+
 ## 15.1.6 (2025-04-08)
 ### Bug Fixes
 * **o-chart**:
