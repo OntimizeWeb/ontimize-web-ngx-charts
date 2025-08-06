@@ -11,16 +11,8 @@ export function getChartServiceProvider() {
   return new ChartService();
 }
 
-export function getTranslateChartServiceProvider(injector) {
-  return new TranslateChartService(injector);
-}
-
 export const OCHART_PROVIDERS: any = [{
   provide: ChartService,
   useFactory: getChartServiceProvider,
   deps: [Injector]
-},{
-  provide: TranslateChartService,
-  useFactory: getTranslateChartServiceProvider,
-  deps: [Injector]
-}];
+}, TranslateChartService];

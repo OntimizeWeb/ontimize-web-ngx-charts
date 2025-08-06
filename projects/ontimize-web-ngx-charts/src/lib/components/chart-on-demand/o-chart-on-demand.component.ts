@@ -1,21 +1,39 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, Type, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, OnDestroy, Type, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatRadioGroup } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import domtoimage from 'dom-to-image';
-import { AppearanceService, DialogService, OColumn, OFormComponent, OTableComponent, OTranslateService, OValueChangeEvent, OntimizeMatIconRegistry, OntimizeService, SQLTypes, SnackBarService, Util } from 'ontimize-web-ngx';
+import {
+  AppConfig,
+  AppearanceService,
+  BaseRequestArgument,
+  DialogService,
+  FactoryUtil,
+  OColumn,
+  OConfigureServiceArgs,
+  OFormComponent,
+  OntimizeMatIconRegistry,
+  OntimizePreferencesService,
+  OntimizeRequestArgumentsAdapter,
+  OntimizeService,
+  OPreference,
+  OQueryParams,
+  OTableComponent,
+  OTranslateService,
+  OValueChangeEvent,
+  SnackBarService,
+  SQLTypes,
+  Util
+} from 'ontimize-web-ngx';
 import { Subscription } from 'rxjs';
+
 import { DataAdapterUtils } from '../../adapters/data-adapter-utils';
-import { PreferencesService } from '../../services/preferences.service';
 import { DefaultOChartPreferences, OChartPreferences } from '../../types/chart-preferences.type';
-import { PreferencesConfiguration } from '../../types/preferences-configuration.type';
 import { Utils } from '../../util/utils';
 import { OChartComponent } from '../chart/o-chart.component';
 import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-preferences-dialog.component';
 import { OChartOnDemandUtils } from './o-chart-on-demand-utils';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
-
-
 
 const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
@@ -31,14 +49,14 @@ const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
 })
 
-export class OChartOnDemandComponent implements AfterViewInit {
+export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   public appliedConfiguration: boolean = false;
 
   protected snackBarService: SnackBarService;
   public currentPreference: OChartPreferences;
-  public currentConfiguration: PreferencesConfiguration;
-  public preferencesService: PreferencesService;
+  public currentConfiguration: OPreference;
+  public preferencesService: OntimizePreferencesService;
 
   showPlaceholder: boolean = true;
   dateXAxis: boolean = false;
@@ -51,9 +69,15 @@ export class OChartOnDemandComponent implements AfterViewInit {
     {
       value: 'palette1', colors: { domain: ['#003CC4', '#0058D2', '#006BDB', '#2681E0', '#4D97E6', '#80B5ED', '#B3D3F4', '#E0EDFB'] }
     },
-    { value: 'palette2', colors: { domain: ['#063679', '#0E5293', '#1464A5', '#377BB3', '#5B93C0', '#8AB2D2', '#B9D1E4', '#E3ECF4'] } },
-    { value: 'palette3', colors: { domain: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] } },
-    { value: 'palette4', colors: { domain: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] } }]
+    {
+      value: 'palette2', colors: { domain: ['#063679', '#0E5293', '#1464A5', '#377BB3', '#5B93C0', '#8AB2D2', '#B9D1E4', '#E3ECF4'] }
+    },
+    {
+      value: 'palette3', colors: { domain: ['#20217B', '#373995', '#4649A6', '#6264B3', '#7E80C1', '#A3A4D3', '#B9D1E4', '#E9E9F4'] }
+    },
+    {
+      value: 'palette4', colors: { domain: ['#04122E', '#0A2348', '#0E2F59', '#324E72', '#566D8B', '#8797AC', '#B7C1CD', '#E2E6EB'] }
+    }]
     ;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -75,6 +99,9 @@ export class OChartOnDemandComponent implements AfterViewInit {
   protected langSubscription: Subscription;
   protected translateService: OTranslateService;
   protected dialogService: DialogService;
+  protected appConfig: AppConfig;
+  protected queryRequestAdapter: BaseRequestArgument;
+  protected querySubscription: Subscription;
   constructor(
     private ontimizeService: OntimizeService,
     private cd: ChangeDetectorRef,
@@ -90,10 +117,23 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.entity = this.tableComp.entity;
     this.currentPreference.service = this.tableComp.service;
     this.sqlTypes = this.tableComp.getSqlTypes();
-    this.preferencesService = this.injector.get<PreferencesService>(PreferencesService);
+    this.preferencesService = this.injector.get<OntimizePreferencesService>(OntimizePreferencesService);
     this.ontimizeService.configureService(this.ontimizeService.getDefaultServiceConfiguration(this.currentPreference.service));
     this.translateService = this.injector.get(OTranslateService);
     this.snackBarService = this.injector.get(SnackBarService);
+    this.appConfig = this.injector.get(AppConfig);
+
+    this.configurePrefereceService();
+    this.configureAdapter();
+  }
+
+  public configurePrefereceService(): void {
+    let configureServiceArgs: OConfigureServiceArgs = { injector: this.injector, baseService: OntimizePreferencesService, entity: 'preferences', service: 'preferences', serviceType: null };
+    this.preferencesService = FactoryUtil.configureService(configureServiceArgs);
+  }
+
+  public configureAdapter() {
+    this.queryRequestAdapter = this.injector.get(OntimizeRequestArgumentsAdapter);
   }
 
   ngOnInit(): void {
@@ -121,7 +161,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
       });
     });
     this.comboData = columnTitles;
-    this.currentConfiguration = { ENTITY: this.currentPreference.entity };
+    this.currentConfiguration = { PREFERENCEENTITY: this.currentPreference.entity };
     this.cd.detectChanges();
   }
 
@@ -155,6 +195,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
   captureTypeChart(event: OValueChangeEvent) {
     this.currentPreference.selectedTypeChart = event.newValue;
   }
+
   captureDataTypeChart(adapter) {
     let data = [];
     switch (this.currentPreference.selectedDataTypeChart) {
@@ -166,8 +207,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
           let filter: object = {};
-          const queryArgs = this.tableComp.getQueryArguments(filter);
-          this.ontimizeService.query(queryArgs[0], this.getColumnsToQuery(), queryArgs[2], queryArgs[3])
+          const queryArgs = this.getQueryArgumentsByFilterData(filter);
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.requestArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -179,7 +220,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
 
         if (this.tableComp.pageable) {
           this.showPlaceholder = true;
-          this.ontimizeService.query(this.tableComp.getParentKeysValues(), this.getColumnsToQuery(), this.currentPreference.entity, this.tableComp.getSqlTypes())
+          const queryArgs = this.getQueryArgumentsByAllData();
+          this.querySubscription = this.ontimizeService['query'](...this.ontimizeService.requestArgumentAdapter.parseQueryParameters(queryArgs))
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
@@ -195,6 +237,20 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
   }
 
+  getQueryArgumentsByFilterData(filter: object) {
+    const queryArgs = this.tableComp.getQueryArguments(filter);
+    queryArgs.columns = this.getColumnsToQuery();
+    return queryArgs;
+  }
+
+  getQueryArgumentsByAllData(): OQueryParams {
+    return {
+      filter: this.tableComp.getParentKeysValues(),
+      columns: this.getColumnsToQuery(),
+      entity: this.currentPreference.entity,
+      sqlTypes: this.tableComp.getSqlTypes(),
+    };
+  }
 
   private getColumnsToQuery(): string[] {
     return [this.currentPreference.selectedXAxis, ...this.currentPreference.selectedYAxis];
@@ -289,8 +345,8 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
 
   updatePreferences(): void {
-    if (Util.isDefined(this.currentConfiguration.ID)) {
-      this.savePreferences({ name: this.currentConfiguration.NAME, description: this.currentConfiguration.DESCRIPTION }, true);
+    if (Util.isDefined(this.currentConfiguration.PREFERENCEID)) {
+      this.savePreferences({ preferencename: this.currentConfiguration.PREFERENCENAME, preferencedescription: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
     }
   }
   openSaveAsPreferencesDialog(): void {
@@ -308,8 +364,12 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
   savePreferences(data: any, update?: boolean) {
     let preference = {
-      "name": data.name, "description": data.description,
-      "entity": this.currentPreference.entity, "service": this.currentPreference.service, "type": "CHART", "params": {
+      "preferencename": data.name,
+      "preferencedescription": data.description,
+      "preferenceentity": this.currentPreference.entity,
+      "preferenceservice": this.currentPreference.service,
+      "preferencetype": "CHART",
+      "preferenceparameters": {
         "title": this.currentPreference.title,
         "subtitle": this.currentPreference.subtitle, "entity": this.currentPreference.entity, "service": this.currentPreference.service, "selectedXAxis": this.currentPreference.selectedXAxis,
         "selectedYAxis": this.currentPreference.selectedYAxis, "selectedXAxisType": this.currentPreference.selectedXAxisType, "selectedYAxisType": this.currentPreference.selectedYAxisType,
@@ -318,7 +378,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     }
 
     if (update) {
-      this.preferencesService.savePreferences(this.currentConfiguration.ID, preference).subscribe(res => {
+      this.preferencesService.savePreferences(this.currentConfiguration.PREFERENCEID, preference).subscribe(res => {
         this.showConfirmOperatinInSnackBar(res);
       });
     } else {
@@ -344,19 +404,26 @@ export class OChartOnDemandComponent implements AfterViewInit {
       panelClass: ['o-dialog-class', 'o-table-dialog'],
       data: { entity: this.currentPreference.entity, service: this.currentPreference.service },
     }).afterClosed()
-      .subscribe((data: PreferencesConfiguration) => {
-        if (Util.isDefined(data) && data) {
-          this.applyConfiguration(data);
-          this.appliedConfiguration = true;
-        }
-      }, _error => {
-        this.appliedConfiguration = false;
+      .subscribe({
+        next: (data: OPreference) => {
+          if (Util.isDefined(data) && data) {
+            this.applyConfiguration(data);
+            this.appliedConfiguration = true;
+          }
+        },
+        error: () => this.appliedConfiguration = false
       });
   }
+
   applyConfiguration(configuration: any) {
     this.currentConfiguration = configuration;
-    this.currentPreference = JSON.parse(this.currentConfiguration.PREFERENCES);
+    if (FactoryUtil.isJsonApiService(this.injector)) {
+      this.currentPreference = JSON.parse(atob(this.currentConfiguration.PREFERENCEPREFERENCES));
+    } else {
+      this.currentPreference = JSON.parse(this.currentConfiguration.PREFERENCEPREFERENCES);
+    }
   }
+
   setFullscreenDialog(): void {
     Utils.setFullscreenDialog(this.fullscreen, this.dialogRef);
     this.fullscreen = !this.fullscreen;
@@ -402,6 +469,7 @@ export class OChartOnDemandComponent implements AfterViewInit {
     this.currentPreference.selectedPalette = undefined;
     this.hideChart();
   }
+
   enabledPreview() {
     return (this.currentPreference.selectedXAxis != "" && this.currentPreference.selectedYAxis.length != 0 && this.currentPreference.selectedTypeChart && this.currentPreference.selectedDataTypeChart)
 
@@ -412,5 +480,11 @@ export class OChartOnDemandComponent implements AfterViewInit {
   }
   get chartClass(): string {
     return this.isDarkMode ? 'dark-sidenav-content' : 'title-sidenav-content';
+  }
+
+  ngOnDestroy(): void {
+    if (this.querySubscription) {
+      this.querySubscription.unsubscribe();
+    }
   }
 }
