@@ -9,7 +9,7 @@ export class LineChartConfiguration extends ChartConfiguration {
 
   public legend: ChartLegendConfiguration;
   public legendPosition: string = 'top';
-  public showLegend: boolean = true;
+
 
   public duration: number = 500;
   public useInteractiveGuideline: boolean = true;
