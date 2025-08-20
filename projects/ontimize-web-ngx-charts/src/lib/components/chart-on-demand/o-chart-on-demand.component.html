@@ -50,7 +50,7 @@
           <span class="section-title">{{ 'CHART_ON_DEMAND.PALETTE' | oTranslate }}</span>
           <mat-form-field>
             <mat-label>{{'CHART_ON_DEMAND.SELECT_PALETTE' | oTranslate}}</mat-label>
-            <mat-select [(ngModel)]="currentPreference.selectedPalette" (selectionChange)="captureValuePalette($event)">
+            <mat-select [(ngModel)]="currentPreference.selectedPalette" (selectionChange)="captureValuePalette($event)" [compareWith]="comparePalette">
               <mat-select-trigger *ngIf="currentPreference.selectedPalette">
                 <mat-icon class="palette_icon" [svgIcon]="getPaletteIcon()"></mat-icon>
               </mat-select-trigger>
@@ -58,6 +58,7 @@
                 <mat-icon class="palette_icon" svgIcon="ontimize:{{option.value}}"></mat-icon>
               </mat-option>
             </mat-select>
+
           </mat-form-field>
           <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oTranslate }}</span>
           <mat-form-field>
@@ -94,7 +95,7 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="sidenav-container-content" fxLayout="column" fxLayoutAlign="center center" fxFlex>
+      <div class="sidenav-container-content" fxLayout="column" fxFlex>
         <div>
           <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
             [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oTranslate"

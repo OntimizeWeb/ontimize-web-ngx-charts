@@ -43,6 +43,7 @@ export const MAP = {
     'CHART_ON_DEMAND.SELECT_PALETTE': 'Select the color palette',
     'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION': 'Load configuration',
     'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION': 'Select a configuration to apply to the chart',
+    'CHART_ON_DEMAND.DIALOG.NO_CONFIGURATION': 'No hay configuraciones almacenadas'
   },
 
   // Spanish
@@ -89,5 +90,6 @@ export const MAP = {
     'CHART_ON_DEMAND.SELECT_PALETTE': 'Selecciona la paleta de colores',
     'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION': 'Aplicar configuración',
     'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION': 'Seleccione una configuración para aplicar a la gráfica',
+    'CHART_ON_DEMAND.DIALOG.NO_CONFIGURATION': 'There are no stored settings'
   }
 };

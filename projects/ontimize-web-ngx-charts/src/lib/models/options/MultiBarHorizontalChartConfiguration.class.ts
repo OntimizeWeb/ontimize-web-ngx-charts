@@ -7,7 +7,6 @@ export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
 
   public readonly type: string = 'multiBarHorizontalChart';
 
-  public showLegend: boolean = true;
   public legend: ChartLegendConfiguration;
   /** Allow user to switch between "Grouped" and "Stacked" mode */
   public showControls: boolean = true;
