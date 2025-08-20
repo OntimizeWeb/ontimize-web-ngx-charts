@@ -19,6 +19,8 @@ export class CustomOntimizeService extends OntimizeService {
   }
 
   public configureService(config: any): void {
+    super.configureService(config);
+
     this._urlBase = './assets/dummy-data/';
 
     if (config.entity !== undefined) {
