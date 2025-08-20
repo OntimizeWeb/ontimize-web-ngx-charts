@@ -1,3 +1,18 @@
+## 15.2.1 (2025-08-20)
+### Features
+* **o-chart**:
+  * Added support to show/hide X and Y axes through the `showXAxisLabel` input, which was not previously possible ([fb8d350](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/fb8d350)) Closes [#327](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/327).
+  * Made `showLegend` property accessible for all chart types ([09b20ff](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/09b20ff)) Closes [#328](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/328).
+* **Chart on-demand**:
+  * Added message in the "Load configuration" dialog when no configurations exist ([397a1d1](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/397a1d1)) Closes [#316](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/316).
+
+### Bug Fixes
+* **Chart on-demand**:
+  * Fixed issue where filter button appeared centered; now correctly aligned to the left ([7bc0601](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/7bc0601)) Closes [#318](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/318).
+  * Fixed bug where color palette was not saved in preferences; chart configurations now store and recover the selected palette correctly ([5f9e275](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/5f9e275)) Closes [#319](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/319).
+  * Updated margins for title and subtitle so they now appear centered ([4b5228b](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/4b5228b)) Closes [#336](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/336).
+  * Fixed bug when updating a saved configuration where name and description were lost ([50a998c](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/50a998c)) Closes [#338](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/338).
+
 ## 15.2.0 (2025-08-06)
 > [!NOTE]
 > This version requires `ontimize-web-ngx` version `15.6.0` or higher.
