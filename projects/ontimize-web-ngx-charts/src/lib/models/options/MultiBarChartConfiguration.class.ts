@@ -10,7 +10,6 @@ export class MultiBarChartConfiguration extends ChartConfiguration {
 
   public margin: ChartMarginConfiguration;
 
-  public showLegend: boolean = true;
   public legend: ChartLegendConfiguration;
 
   public duration: number = 500;

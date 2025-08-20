@@ -21,6 +21,8 @@ export class ChartConfiguration {
 
   public showTooltip: boolean;
 
+  public showLegend: boolean;
+
   public color: {
     domain: string[]
   };

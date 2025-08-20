@@ -27,10 +27,10 @@
       </ng-template>
     </ngx-charts-pie-chart>
 
-    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel"
-      [results]="getAdaptData()" [xAxis]="true" [yAxis]="true" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
-      (deactivate)="deactivateChart($event)">
+    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel" [xAxis]="showXAxisLabel" [yAxis]="showYAxisLabel" [results]="getAdaptData()" [scheme]="color"
+      [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)"
+      (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
@@ -42,9 +42,9 @@
     </ngx-charts-bar-horizontal>
 
     <ngx-charts-bar-vertical #discreteBarChart *ngSwitchCase="'discreteBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
-      (deactivate)="deactivateChart($event)">
+      [yAxisLabel]="yAxisLabel" [xAxis]="showXAxisLabel" [yAxis]="showYAxisLabel" [results]="getAdaptData()" [scheme]="color"
+      [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)"
+      (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
@@ -55,9 +55,10 @@
       </ng-template>
     </ngx-charts-bar-vertical>
 
-    <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true"
-      [autoScale]="autoScale" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
-      [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
+    <ngx-charts-line-chart #lineChart *ngSwitchCase="'line'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxis]="showXAxisLabel"
+      [yAxis]="showYAxisLabel" [autoScale]="autoScale" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
+      (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
@@ -70,7 +71,7 @@
     </ngx-charts-line-chart>
 
     <ngx-charts-area-chart-stacked #stackedAreaChart *ngSwitchCase="'stackedAreaChart'" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-      [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
+      [xAxis]="showXAxisLabel" [yAxis]="showYAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
       [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
       (deactivate)="deactivateChart($event)">
 
@@ -84,9 +85,9 @@
     </ngx-charts-area-chart-stacked>
 
     <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel" [xAxis]="true" [yAxis]="true" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting"
-      [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
-      (deactivate)="deactivateChart($event)">
+      [yAxisLabel]="yAxisLabel" [xAxis]="showXAxisLabel" [yAxis]="showYAxisLabel" [results]="getAdaptData()" [scheme]="color"
+      [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass" (select)="selectChart($event)"
+      (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
       <ng-template #tooltipTemplate let-model="model" *ngIf="tooltipTemplateRef">
         <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>

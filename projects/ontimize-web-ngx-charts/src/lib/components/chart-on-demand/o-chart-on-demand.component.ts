@@ -346,7 +346,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   updatePreferences(): void {
     if (Util.isDefined(this.currentConfiguration.PREFERENCEID)) {
-      this.savePreferences({ preferencename: this.currentConfiguration.PREFERENCENAME, preferencedescription: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
+      this.savePreferences({ name: this.currentConfiguration.PREFERENCENAME, description: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
     }
   }
   openSaveAsPreferencesDialog(): void {
@@ -373,7 +373,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
         "title": this.currentPreference.title,
         "subtitle": this.currentPreference.subtitle, "entity": this.currentPreference.entity, "service": this.currentPreference.service, "selectedXAxis": this.currentPreference.selectedXAxis,
         "selectedYAxis": this.currentPreference.selectedYAxis, "selectedXAxisType": this.currentPreference.selectedXAxisType, "selectedYAxisType": this.currentPreference.selectedYAxisType,
-        "selectedTypeChart": this.currentPreference.selectedTypeChart, "selectedDataTypeChart": this.currentPreference.selectedDataTypeChart
+        "selectedTypeChart": this.currentPreference.selectedTypeChart, "selectedDataTypeChart": this.currentPreference.selectedDataTypeChart, "selectedPalette":this.currentPreference.selectedPalette
       }
     }
 
@@ -457,6 +457,10 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
       link.click();
     });
   }
+  comparePalette = (o1: any, o2: any): boolean => {
+    return JSON.stringify(o1?.domain) === JSON.stringify(o2?.domain);
+  };
+
   clearCurrentPreferences() {
     this.currentPreference.entity = this.tableComp.entity;
     this.currentPreference.service = this.tableComp.service;
@@ -475,7 +479,9 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   }
   getPaletteIcon() {
-    const foundObject = this.comboPalette.find(color => color.colors == this.currentPreference.selectedPalette)
+    const foundObject = this.comboPalette.find(
+      color => JSON.stringify(color.colors.domain) === JSON.stringify(this.currentPreference.selectedPalette.domain)
+    );
     return "ontimize:" + foundObject.value + "";
   }
   get chartClass(): string {
