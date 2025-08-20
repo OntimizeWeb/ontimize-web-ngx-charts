@@ -346,7 +346,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
 
   updatePreferences(): void {
     if (Util.isDefined(this.currentConfiguration.PREFERENCEID)) {
-      this.savePreferences({ preferencename: this.currentConfiguration.PREFERENCENAME, preferencedescription: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
+      this.savePreferences({ name: this.currentConfiguration.PREFERENCENAME, description: this.currentConfiguration.PREFERENCEDESCRIPTION }, true);
     }
   }
   openSaveAsPreferencesDialog(): void {
