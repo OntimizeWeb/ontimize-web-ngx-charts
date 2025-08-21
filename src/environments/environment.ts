@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   versions: {
-    core: '15.5.0',
-    charts: '15.1.4'
+    core: '15.6.1',
+    charts: '15.2.1'
   }
 };
