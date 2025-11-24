@@ -6,37 +6,40 @@ import { ChartControlConfiguration } from './ChartControlConfiguration.class';
 
 export class StackedAreaChartConfiguration extends ChartConfiguration {
   readonly type: string = 'stackedAreaChart';
+  // --- Exclusivos de Line Chart (no están en ChartConfiguration) ---
 
-  x1Axis: ChartAxisConfiguration;
-  showXAxis: boolean = true;
-  y1Axis: ChartAxisConfiguration;
-  showYAxis: boolean = true;
-  rightAlignYAxis: boolean = false;
+  /** Tipo de escala de color (‘ordinal’ o ‘linear’) */
+  public schemeType: 'ordinal' | 'linear' = 'ordinal';
 
-  legend: ChartLegendConfiguration;
-  showLegend: boolean = true;
+  /** Opacidad del área sombreada (para min/max range) */
+  public rangeFillOpacity: number = 0.15;
 
-  control: ChartControlConfiguration;
-  showControls: boolean = true;
+  /** Redondea dominios para alinear líneas de cuadrícula */
+  public roundDomains: boolean = false;
 
-  zoom: ChartZoomConfiguration;
+  /** Define si se muestra la línea de tiempo (solo escalas lineales o de tiempo) */
+  public timeline: boolean = false;
 
-  useInteractiveGuideline: boolean = true;
-  style: string = 'stack';
-  interactive: boolean = true;
-  useVoronoi: boolean = true;
-  showVoronoi: boolean = false;
+  /** Define la interpolación de la curva (acepta cualquier d3.curve) */
+  public curve?: any;
 
-  color: {
-    domain: []
-  };
+  /** Líneas de referencia */
+  public referenceLines?: { name: string; value: number }[];
+  public showRefLines: boolean = false;
+  public showRefLabels: boolean = true;
 
-  constructor() {
-    super();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.legend = new ChartLegendConfiguration();
-    this.control = new ChartControlConfiguration();
-    this.zoom = new ChartZoomConfiguration();
-  }
+  /** Escala mínima y máxima para ejes */
+  public xScaleMin?: any;
+  public xScaleMax?: any;
+  public yScaleMin?: number;
+  public yScaleMax?: number;
+
+  /** Configuración adicional de ticks */
+  public trimXAxisTicks: boolean = true;
+  public trimYAxisTicks: boolean = true;
+  public rotateXAxisTicks: boolean = true;
+  public maxXAxisTickLength: number = 16;
+  public maxYAxisTickLength: number = 16;
+  public wrapTicks: boolean = false;
+
 }

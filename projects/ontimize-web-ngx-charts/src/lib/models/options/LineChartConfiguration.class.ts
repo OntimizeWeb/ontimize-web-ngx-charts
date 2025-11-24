@@ -1,47 +1,45 @@
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
+import { TemplateRef } from '@angular/core';
 import { ChartConfiguration } from './ChartConfiguration.class';
-import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LineChartConfiguration extends ChartConfiguration {
 
   public readonly type: string = 'line';
 
-  public legend: ChartLegendConfiguration;
-  public legendPosition: string = 'top';
+  // --- Exclusivos de Line Chart (no están en ChartConfiguration) ---
 
+  /** Tipo de escala de color (‘ordinal’ o ‘linear’) */
+  public schemeType: 'ordinal' | 'linear' = 'ordinal';
 
-  public duration: number = 500;
-  public useInteractiveGuideline: boolean = true;
-  public interactive: boolean = true;
-  public margin: ChartMarginConfiguration;
+  /** Opacidad del área sombreada (para min/max range) */
+  public rangeFillOpacity: number = 0.15;
 
-  public isArea: boolean[] = null;
-  public strokeWidth: number[] = null;
-  public classed: string[] = null;
-  public color: {
-    domain: []
-  } = null;
+  /** Redondea dominios para alinear líneas de cuadrícula */
+  public roundDomains: boolean = false;
 
-  public showXAxis: boolean = true;
-  public showYAxis: boolean = true;
-  public x1Axis: ChartAxisConfiguration;
-  public y1Axis: ChartAxisConfiguration;
-  public rightAlignYAxis: boolean = false;
+  /** Define si se muestra la línea de tiempo (solo escalas lineales o de tiempo) */
+  public timeline: boolean = false;
 
-  public forceX: number[] = null;
-  public forceY: number[] = null;
+  /** Define la interpolación de la curva (acepta cualquier d3.curve) */
+  public curve?: any;
 
-  public focusEnable: boolean = false;
-  public focusShowAxisX: boolean = false;
-  public focusShowAxisY: boolean = false;
+  /** Líneas de referencia */
+  public referenceLines?: { name: string; value: number }[];
+  public showRefLines: boolean = false;
+  public showRefLabels: boolean = true;
 
-  constructor() {
-    super();
-    this.legend = new ChartLegendConfiguration();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.margin = new ChartMarginConfiguration();
-  }
+  /** Escala mínima y máxima para ejes */
+  public xScaleMin?: any;
+  public xScaleMax?: any;
+  public yScaleMin?: number;
+  public yScaleMax?: number;
+
+  /** Configuración adicional de ticks */
+  public trimXAxisTicks: boolean = true;
+  public trimYAxisTicks: boolean = true;
+  public rotateXAxisTicks: boolean = true;
+  public maxXAxisTickLength: number = 16;
+  public maxYAxisTickLength: number = 16;
+  public wrapTicks: boolean = false;
+
 
 }

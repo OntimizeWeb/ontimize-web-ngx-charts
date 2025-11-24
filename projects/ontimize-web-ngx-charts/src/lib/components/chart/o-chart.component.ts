@@ -153,7 +153,9 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'showXAxisLabel:show-x-axis-label',
   'showYAxisLabel:show-y-axis-label',
   'autoScale: auto-scale',
-  'showTooltip:show-tooltip'
+  'showTooltip:show-tooltip',
+  'gradient',
+  'activeEntries: active-entries'
 ];
 
 @Component({
@@ -202,7 +204,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @BooleanInputConverter()
   autoScale: boolean = false;
   @BooleanInputConverter()
+  gradient: boolean = false;
+  @BooleanInputConverter()
   showTooltip: boolean = false;
+  activeEntries: object[] = [];
   protected chartParameters: ChartConfiguration;
   xColumn: OColumn;
   yColumn: OColumn;
@@ -437,32 +442,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     return formattedDate;
   }
 
-  // ngAfterViewChecked(): void {
-  //   let color: string;
-  //   switch (this.type) {
-  //     case 'gaugeDashboardChart':
-  //       color = this.chartParameters && (this.chartParameters as GaugeDashboardChartConfiguration).color ? (this.chartParameters as GaugeDashboardChartConfiguration).color[0] : 'black';
-  //       break;
-  //     case 'gaugeSlimChart':
-  //       color = this.chartParameters && (this.chartParameters as GaugeSlimChartConfiguration).color ? (this.chartParameters as GaugeSlimChartConfiguration).color[0] : 'black';
-  //       break;
-  //     case 'gaugeSpaceChart':
-  //       color = this.chartParameters && (this.chartParameters as GaugeSpaceChartConfiguration).color ? (this.chartParameters as GaugeSpaceChartConfiguration).color : 'black';
-  //       break;
-  //     case 'radialPercentChart':
-  //       color = this.chartParameters && (this.chartParameters as RadialPercentChartConfiguration).color ? (this.chartParameters as RadialPercentChartConfiguration).color[0] : 'black';
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   if (color) {
-  //     const elements = document.getElementsByClassName('nv-pie-title');
-  //     for (let i = 0; i < elements.length; i++) {
-  //       (elements.item(i) as SVGTextElement).style.fill = color;
-  //     }
-  //   }
-  // }
-
   ngOnDestroy(): void {
     super.destroy();
     if (this.formDataSubcribe) {
@@ -490,23 +469,53 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
 
   getChartConfiguration(): ChartConfiguration {
     let chartConf: ChartConfiguration;
+
     if (this.chartParameters) {
       chartConf = this.chartParameters;
-      chartConf.showTooltip = this.showTooltip;
-      chartConf.height = chartConf.height ? chartConf.height : (this.cHeight !== -1) ? this.cHeight : null;
-      chartConf.width = chartConf.width ? chartConf.width : (this.cWidth !== -1) ? this.cWidth : null;
-      chartConf.xLabel = chartConf.xLabel ? chartConf.xLabel : this.xAxisLabel ? this.xAxisLabel : '';
-      chartConf.yLabel = chartConf.yLabel ? chartConf.yLabel : this.yAxisLabel ? this.yAxisLabel : '';
-      chartConf.xDataType = chartConf.xDataType ? chartConf.xDataType : this.xAxisDataType ? this.xAxisDataType : null;
-      chartConf.yDataType = chartConf.yDataType ? chartConf.yDataType : this.yAxisDataType ? this.yAxisDataType : null;
-      chartConf.xAxis = chartConf.xAxis ? chartConf.xAxis : this.xAxis ? this.xAxis : null;
-      chartConf.yAxis = chartConf.yAxis ? chartConf.yAxis : this.yAxisArray ? this.yAxisArray : null;
 
+      chartConf.showTooltip = chartConf.showTooltip ?? this.showTooltip;
+      chartConf.showLegend = chartConf.showLegend ?? this.showLegend;
+      chartConf.showGridLines = chartConf.showGridLines ?? this.showGridLines;
+      chartConf.showDataLabel = chartConf.showDataLabel ?? this.showDataLabel;
+      chartConf.showXAxisLabel = chartConf.showXAxisLabel ?? this.showXAxisLabel;
+      chartConf.showYAxisLabel = chartConf.showYAxisLabel ?? this.showYAxisLabel;
+
+      chartConf.height = chartConf.height ?? (this.cHeight !== -1 ? this.cHeight : null);
+      chartConf.width = chartConf.width ?? (this.cWidth !== -1 ? this.cWidth : null);
+
+      chartConf.xLabel = chartConf.xLabel ?? this.xAxisLabel;
+      chartConf.yLabel = chartConf.yLabel ?? this.yAxisLabel;
+
+      chartConf.xDataType = chartConf.xDataType ?? this.xAxisDataType;
+      chartConf.yDataType = chartConf.yDataType ?? this.yAxisDataType;
+
+      chartConf.xAxis = chartConf.xAxis ?? this.xAxis;
+      chartConf.yAxis = chartConf.yAxis ?? this.yAxisArray;
+
+      chartConf.legendPosition = chartConf.legendPosition ?? this.legendPosition;
+      chartConf.legendTitle = chartConf.legendTitle ?? this.legendTitle;
+
+      chartConf.xFormatting = chartConf.xFormatting ?? this.xFormatting;
+      chartConf.yFormatting = chartConf.yFormatting ?? this.yFormatting;
+
+      chartConf.autoScale = chartConf.autoScale ?? this.autoScale;
+      chartConf.gradient = this.gradient ?? chartConf.gradient;
+      chartConf.activeEntries = (this.activeEntries?.length ? this.activeEntries : chartConf.activeEntries);
+
+      chartConf.color = chartConf.color ?? this.color;
       chartConf.translateService = this.translateService;
-      chartConf.data = this.dataArray ? this.dataArray : null;
+      chartConf.data = chartConf.data ?? this.dataArray;
+
     } else {
       chartConf = ChartConfigurationUtils.getConfigurationForType(this.type);
+
       chartConf.showTooltip = this.showTooltip;
+      chartConf.showLegend = this.showLegend;
+      chartConf.showGridLines = this.showGridLines;
+      chartConf.showDataLabel = this.showDataLabel;
+      chartConf.showXAxisLabel = this.showXAxisLabel;
+      chartConf.showYAxisLabel = this.showYAxisLabel;
+
       chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
       chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
 
@@ -519,13 +528,23 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.xAxis = this.xAxis;
       chartConf.yAxis = this.yAxisArray;
 
-      chartConf.translateService = this.translateService;
+      chartConf.legendPosition = this.legendPosition;
+      chartConf.legendTitle = this.legendTitle;
 
+      chartConf.xFormatting = this.xFormatting;
+      chartConf.yFormatting = this.yFormatting;
+
+      chartConf.autoScale = this.autoScale;
+      chartConf.gradient = this.gradient;
+      chartConf.activeEntries = this.activeEntries;
+
+      chartConf.color = this.color;
+      chartConf.translateService = this.translateService;
       chartConf.data = this.dataArray;
     }
-
     return chartConf;
   }
+
 
   public setChartConfiguration(conf: ChartConfiguration): void {
     this.chartParameters = conf;
@@ -647,10 +666,15 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.setChartTooltip(chart, config);
     this.setChartColorScheme(chart, config);
     this.setChartGridLines(chart);
+    this.setChartGradientAndActiveEntries(chart, config);
+    if (this.type == 'pie' || this.type == 'donutChart') {
+      this.setChartPieConfiguration(chart, config);
+    }
 
     if (Util.isDefined(config['xDataType'])) {
       if (this.type != 'pie' && this.type != 'donutChart') {
         this.setChartAxisFormatting(chart, 'xAxisTickFormatting', config['xDataType'], this.xColumn);
+
       } else {
         this.setChartAxisFormatting(chart, 'labelFormatting', config['xDataType'], this.xColumn);
       }
@@ -661,6 +685,33 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.setChartAxisFormatting(chart, 'yAxisTickFormatting', config['yDataType'], this.yColumn);
       }
     }
+    if (this.type == 'line' || this.type == 'stackedAreaChart') {
+      this.setChartLineConfiguration(chart, config);
+    }
+  }
+  setChartLineConfiguration(chart, config) {
+
+    // chart.schemeType = config['schemeType'];
+    // chart.rangeFillOpacity = config['rangeFillOpacity'];
+    chart.roundDomains = config['roundDomains'];
+    // chart.timeline = config['timeline'];
+    chart.curve = config['curve'];
+
+    // chart.referenceLines = config['referenceLines'];
+    // chart.showRefLines = config['showRefLines'];
+    // chart.showRefLabels = config['showRefLabels'];
+
+    // chart.xScaleMin = config['xScaleMin'];
+    // chart.xScaleMax = config['xScaleMax'];
+    // chart.yScaleMin = config['yScaleMin'];
+    // chart.yScaleMax = config['yScaleMax'];
+
+    // chart.trimXAxisTicks = config['trimXAxisTicks'];
+    // chart.trimYAxisTicks = config['trimYAxisTicks'];
+    // chart.rotateXAxisTicks = config['rotateXAxisTicks'];
+    // chart.maxXAxisTickLength = config['maxXAxisTickLength'];
+    // chart.maxYAxisTickLength = config['maxYAxisTickLength'];
+    // chart.wrapTicks = config['wrapTicks'];
   }
 
   getChartByType() {
@@ -706,6 +757,22 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     if (chart.type != "pie" && chart.type != "donutChart") {
       chart.showGridLines = this.showGridLines;
     }
+  }
+  setChartGradientAndActiveEntries(chart, config) {
+    chart.gradient = (this.gradient !== undefined) ? this.gradient : config['gradient'];
+    chart.activeEntries = (this.activeEntries !== undefined) ? this.activeEntries : config['activeEntries'];
+  }
+
+  setChartPieConfiguration(chart, config) {
+
+    chart.showLabels = config['showLabels'];
+    chart.labelFormatting = config['labelFormatting'];
+    chart.trimLabels = config['trimLabels'];
+    chart.maxLabelLength = config['maxLabelLength'];
+    chart.showLabels = config['showLabels'];
+    chart.explodeSlices = config['explodeSlices'];
+    chart.arcWidth = config['donutRatio']
+
   }
 
   setChartAxisFormatting(chart, axis, dataType, column) {
