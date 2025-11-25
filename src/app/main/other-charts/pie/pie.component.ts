@@ -26,8 +26,8 @@ export class PieComponent {
     this.chartParameters1.legend.margin.bottom = 5;
 
     this.chartParameters2 = new PieChartConfiguration();
-    this.chartParameters2.width = 600;
-    this.chartParameters2.height = 600;
+    this.chartParameters2.width = 480;
+    this.chartParameters2.height = 480;
 
     this.chartParameters3 = new PieChartConfiguration();
     this.chartParameters3.legend.margin.top = 5;
@@ -137,9 +137,8 @@ export class PieComponent{
   constructor(protected http: HttpClient) {
 
     this.chartParameters2 = new PieChartConfiguration();
-    this.chartParameters2.width = 600;
-    this.chartParameters2.height = 600;
-
+    this.chartParameters2.width = 480;
+    this.chartParameters2.height = 480;
 
   }
 }

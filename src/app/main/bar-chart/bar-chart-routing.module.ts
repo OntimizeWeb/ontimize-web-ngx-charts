@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./discrete-bar/discrete-bar.module').then(m => m.DiscreteBarModule)
   },
   {
-    path: 'multi-bar',
+    path: 'multi-bar-vertical',
     loadChildren: () => import('./multi-bar/multi-bar.module').then(m => m.MultiBarModule)
   },
   {
