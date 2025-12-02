@@ -62,9 +62,6 @@ export class MultiBarHorizontalComponent {
       }
     }
   ];
-  constructor() {
-    this.chartParameters = new MultiBarHorizontalChartConfiguration();
-  }
 
   getBasicUsageFiles() {
     return {
