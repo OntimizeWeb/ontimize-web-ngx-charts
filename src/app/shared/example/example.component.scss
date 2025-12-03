@@ -1,6 +1,6 @@
 .example-comp {
   &>section {
-    margin: 12px;
+    margin: 0 12px 12px 12px;
 
     .mat-toolbar {
       padding: 0;
@@ -18,8 +18,8 @@
 
   .playground-toolbar.mat-toolbar-single-row {
     height: 100%;
-    min-height: 64px;
-    max-height: 64px;
+    min-height: 72px;
+    max-height: 72px;
     white-space: initial;
 
     .comp-description {

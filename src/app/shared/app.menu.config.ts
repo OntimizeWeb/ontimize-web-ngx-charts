@@ -14,7 +14,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: 'barchart', name: 'BARCHART', icon: 'bar_chart', opened: false, items: [
       { id: 'discrete_bar', name: 'DISCRETE_BAR', icon: 'bar_chart', route: '/main/bar-chart/discrete-bar' },
-      { id: 'multi_bar', name: 'MULTI_BAR', icon: 'insert_chart', route: '/main/bar-chart/multi-bar' },
+      { id: 'multi_bar', name: 'MULTI_BAR', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-vertical' },
       { id: 'multi_horizontal', name: 'MULTI_BAR_HORIZONTAL', icon: 'insert_chart', route: '/main/bar-chart/multi-bar-horizontal' },
       // { id: 'bullet', name: 'BULLET', icon: 'insert_chart', route: '/main/bar-chart/bullet' },
     ]
