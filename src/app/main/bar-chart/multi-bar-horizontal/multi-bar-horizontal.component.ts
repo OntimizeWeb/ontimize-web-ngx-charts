@@ -62,14 +62,6 @@ export class MultiBarHorizontalComponent {
       }
     }
   ];
-  constructor() {
-    this.chartParameters = new MultiBarHorizontalChartConfiguration();
-    this.chartParameters.margin.left = 100;
-    this.chartParameters.x1Axis.axisLabelDistance = 20;
-    this.chartParameters.legend.margin.top = 5;
-    this.chartParameters.legend.margin.bottom = 5;
-
-  }
 
   getBasicUsageFiles() {
     return {
