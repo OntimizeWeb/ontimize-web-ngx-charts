@@ -14,7 +14,7 @@ export class ParallelCoordinatesChartOptions extends AbstractChartOptions {
       undefinedValuesLabel: conf.undefinedValueLabel,
       color: conf.color,
       lineTension: conf.lineTension,
-      noData: conf.noDataMessage
+
     }
     return chart;
   }

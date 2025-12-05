@@ -15,8 +15,7 @@ export class LineChartOptions extends AbstractChartOptions {
       type: this.getChartType(),
       x: this.getXValue(),
       y: this.getYValue(),
-    
-      noData: conf.noDataMessage
+
     };
     return chart;
   }

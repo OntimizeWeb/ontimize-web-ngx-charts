@@ -20,9 +20,6 @@ export class StackedAreaChartConfiguration extends ChartConfiguration {
   /** Define si se muestra la línea de tiempo (solo escalas lineales o de tiempo) */
   public timeline: boolean = false;
 
-  /** Define la interpolación de la curva (acepta cualquier d3.curve) */
-  public curve?: any;
-
   /** Líneas de referencia */
   public referenceLines?: { name: string; value: number }[];
   public showRefLines: boolean = false;
@@ -42,4 +39,7 @@ export class StackedAreaChartConfiguration extends ChartConfiguration {
   public maxYAxisTickLength: number = 16;
   public wrapTicks: boolean = false;
 
+  constructor() {
+    super();
+  }
 }

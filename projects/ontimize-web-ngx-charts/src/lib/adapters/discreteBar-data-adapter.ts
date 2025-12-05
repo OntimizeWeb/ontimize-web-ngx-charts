@@ -32,23 +32,13 @@ export class DiscreteBarDataAdapter implements ChartDataAdapter {
         itemLabel = self.chartConf.translateService.get(itemLabel);
       }
       const filtered = self.filterCategory(itemLabel, values);
-      if (params.agroup) {
-        if (filtered && filtered.length === 0) {
-          const val: ChartDataPoint = {
-            'name': itemLabel,
-            'value': item[self.yAxis]
-          };
-          values.push(val);
-        } else {
-          filtered[0]['value'] += item[self.yAxis];
-        }
-      } else {
-        const val: ChartDataPoint = {
-          'name': itemLabel,
-          'value': item[self.yAxis]
-        };
-        values.push(val);
-      }
+
+      const val: ChartDataPoint = {
+        'name': itemLabel,
+        'value': item[self.yAxis]
+      };
+      values.push(val);
+
     });
 
     return values;

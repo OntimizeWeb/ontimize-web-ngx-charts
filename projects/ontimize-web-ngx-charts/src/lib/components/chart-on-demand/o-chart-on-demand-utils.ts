@@ -52,7 +52,6 @@ export class OChartOnDemandUtils {
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
-    chartConf.agroup = true;
     chartConf.showLegend = false;
     chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);

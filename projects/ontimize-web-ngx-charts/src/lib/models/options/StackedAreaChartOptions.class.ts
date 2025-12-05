@@ -15,7 +15,7 @@ export class StackedAreaChartOptions extends AbstractChartOptions {
       type: this.getChartType(),
       height: this.getChartHeight(),
       width: this.chartConf.width,
-      noData: conf.noDataMessage
+
     };
 
     return chart;

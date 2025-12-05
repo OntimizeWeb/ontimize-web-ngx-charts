@@ -2,7 +2,7 @@ import { AbstractChartOptions } from './AbstractChartOptions.class';
 import { GaugeSlimChartConfiguration } from './GaugeSlimChartConfiguration.class';
 
 export class GaugeSlimChartOptions extends AbstractChartOptions {
- 
+
   protected getChartType(): string {
     return 'pieChart';
   }
@@ -29,7 +29,7 @@ export class GaugeSlimChartOptions extends AbstractChartOptions {
       x: function (d) { return d.x; },
       y: function (d) { return d.y; },
       color: conf.color,
-      noData: conf.noDataMessage
+
     }
 
     return chart;

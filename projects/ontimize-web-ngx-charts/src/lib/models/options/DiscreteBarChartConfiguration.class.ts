@@ -5,35 +5,35 @@ import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class DiscreteBarChartConfiguration extends ChartConfiguration {
   readonly type: string = 'discreteBar';
+  /** 'ordinal' | 'linear' */
+  public schemeType: 'ordinal' | 'linear' = 'ordinal';
 
-  showValues: boolean = true;
-  duration: number = 500;
+  /** Enable/disable animations */
+  public animations: boolean = true;
 
-  showLegend: boolean = false;
-  legend: ChartLegendConfiguration;
+  /** Round domains for aligned gridlines */
+  public roundDomains: boolean = false;
 
-  staggerLabels: boolean = false;
-  rotateLabels: number = 0;
-  wrapLabels: boolean = true;
+  /** Tick trimming and formatting */
+  public trimXAxisTicks: boolean = true;
+  public trimYAxisTicks: boolean = true;
+  public rotateXAxisTicks: boolean = true;
 
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  rightAlingYAxis: boolean = false;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
+  public maxXAxisTickLength: number = 16;
+  public maxYAxisTickLength: number = 16;
 
-  margin: ChartMarginConfiguration;
+  public wrapTicks: boolean = false;
 
-  agroup: boolean = false;
-  public color: {
-    domain: []
-  } = null;
+  /** Behavior */
+  public noBarWhenZero: boolean = true;
+  public roundEdges: boolean = true;
+  public barPadding: number = 8;
+
+  /** Scale limits */
+  public yScaleMin?: number;
+  public yScaleMax?: number;
 
   constructor() {
     super();
-    this.legend = new ChartLegendConfiguration();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.margin = new ChartMarginConfiguration();
   }
 }

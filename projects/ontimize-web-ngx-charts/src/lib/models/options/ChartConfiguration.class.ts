@@ -41,8 +41,6 @@ export class ChartConfiguration {
   public activeEntries: any[];
 
   public customColors?: any;
-  // Message to display if no data is provided
-  public noDataMessage: string;
 
   public callback: () => void;
 }

@@ -1,46 +1,38 @@
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
 import { ChartConfiguration } from './ChartConfiguration.class';
-import { ChartControlConfiguration } from './ChartControlConfiguration.class';
-import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class MultiBarChartConfiguration extends ChartConfiguration {
 
   public readonly type: string = 'multiBar';
 
-  public margin: ChartMarginConfiguration;
+  /** 'ordinal' | 'linear' */
+  public schemeType: 'ordinal' | 'linear' = 'ordinal';
 
-  public legend: ChartLegendConfiguration;
+  /** Enable/disable animations */
+  public animations: boolean = true;
 
-  public duration: number = 500;
-  public stacked: boolean = true;
-  public hideable: boolean = false;
-  public groupSpacing: number = 0.1;
-  public reduceXTicks: boolean = true;
+  /** Round domains for aligned gridlines */
+  public roundDomains: boolean = false;
 
-  public showControls: boolean = true;
-  public control: ChartControlConfiguration;
+  /** Tick trimming and formatting */
+  public trimXAxisTicks: boolean = true;
+  public trimYAxisTicks: boolean = true;
+  public rotateXAxisTicks: boolean = true;
 
-  public rotateLabels: number = 0;
-  public wrapLabels: boolean = false;
+  public maxXAxisTickLength: number = 16;
+  public maxYAxisTickLength: number = 16;
 
-  public showXAxis: boolean = true;
-  public showYAxis: boolean = true;
-  public rightAlignYAxis: boolean = false;
-  public x1Axis: ChartAxisConfiguration;
-  public y1Axis: ChartAxisConfiguration;
+  public wrapTicks: boolean = false;
 
-  public color: {
-    domain: []
-  } = null;
+  /** Behavior */
+  public noBarWhenZero: boolean = true;
+  public roundEdges: boolean = true;
+  public barPadding: number = 8;
+
+  /** Scale limits */
+  public yScaleMin?: number;
+  public yScaleMax?: number;
 
   constructor() {
     super();
-    this.margin = new ChartMarginConfiguration();
-    this.legend = new ChartLegendConfiguration();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.control = new ChartControlConfiguration();
   }
-
 }

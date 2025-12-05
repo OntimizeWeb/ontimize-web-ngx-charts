@@ -47,6 +47,12 @@ export class LineDataAdapter implements ChartDataAdapter {
         };
 
         const index = this.yAxis.indexOf(name);
+
+
+        if (config.color?.[index]) {
+          lineChartSeries.color = config.color[index];
+        }
+
         let key = name;
         if (config.translateService) {
           key = config.translateService.get(key);

@@ -30,7 +30,7 @@ export class ScatterChartOptions extends AbstractChartOptions {
       margin: conf.margin.getMarginOptions(),
       clipEdge: conf.clipEdge,
       color: conf.color,
-      noData: conf.noDataMessage
+
     };
     return chart;
   }

@@ -194,7 +194,7 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   yFormatting: any;
   yAxisDataType: string;
   @BooleanInputConverter()
-  showGridLines: boolean = false;
+  showGridLines: boolean;
   @BooleanInputConverter()
   showDataLabel: boolean = true;
   @BooleanInputConverter()
@@ -202,9 +202,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @BooleanInputConverter()
   showYAxisLabel: boolean = true;
   @BooleanInputConverter()
-  autoScale: boolean = false;
+  autoScale: boolean;
   @BooleanInputConverter()
-  gradient: boolean = false;
+  gradient: boolean;
   @BooleanInputConverter()
   showTooltip: boolean = false;
   activeEntries: object[] = [];
@@ -665,12 +665,17 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     this.setChartLabelsAndLegend(chart, config);
     this.setChartTooltip(chart, config);
     this.setChartColorScheme(chart, config);
-    this.setChartGridLines(chart);
+    this.setChartGridLines(chart, config);
     this.setChartGradientAndActiveEntries(chart, config);
     if (this.type == 'pie' || this.type == 'donutChart') {
       this.setChartPieConfiguration(chart, config);
     }
-
+    if (this.type == 'line' || this.type == 'stackedAreaChart') {
+      this.setChartLineConfiguration(chart, config);
+    }
+    if (this.type == 'multiBar' || this.type == 'multiBarHorizontalChart' || this.type == 'discreteBar') {
+      this.setChartMultiBarConfiguration(chart, config);
+    }
     if (Util.isDefined(config['xDataType'])) {
       if (this.type != 'pie' && this.type != 'donutChart') {
         this.setChartAxisFormatting(chart, 'xAxisTickFormatting', config['xDataType'], this.xColumn);
@@ -685,33 +690,55 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
         this.setChartAxisFormatting(chart, 'yAxisTickFormatting', config['yDataType'], this.yColumn);
       }
     }
-    if (this.type == 'line' || this.type == 'stackedAreaChart') {
-      this.setChartLineConfiguration(chart, config);
-    }
   }
+
+  setChartMultiBarConfiguration(chart, config) {
+
+    chart.schemeType = config['schemeType'];
+    chart.animations = config['animations'];
+    chart.roundDomains = config['roundDomains'];
+
+    // Ticks
+    chart.trimXAxisTicks = config['trimXAxisTicks'];
+    chart.trimYAxisTicks = config['trimYAxisTicks'];
+    chart.rotateXAxisTicks = config['rotateXAxisTicks'];
+    chart.maxXAxisTickLength = config['maxXAxisTickLength'];
+    chart.maxYAxisTickLength = config['maxYAxisTickLength'];
+    chart.wrapTicks = config['wrapTicks'];
+
+    // Behavior
+    chart.noBarWhenZero = config['noBarWhenZero'];
+    chart.roundEdges = config['roundEdges'];
+    chart.barPadding = config['barPadding'];
+
+    // Scale limits
+    chart.yScaleMin = config['yScaleMin'];
+    chart.yScaleMax = config['yScaleMax'];
+  }
+
+
   setChartLineConfiguration(chart, config) {
 
-    // chart.schemeType = config['schemeType'];
-    // chart.rangeFillOpacity = config['rangeFillOpacity'];
+    chart.schemeType = config['schemeType'];
+    chart.rangeFillOpacity = config['rangeFillOpacity'];
     chart.roundDomains = config['roundDomains'];
-    // chart.timeline = config['timeline'];
-    chart.curve = config['curve'];
+    chart.timeline = config['timeline'];
 
-    // chart.referenceLines = config['referenceLines'];
-    // chart.showRefLines = config['showRefLines'];
-    // chart.showRefLabels = config['showRefLabels'];
+    chart.referenceLines = config['referenceLines'];
+    chart.showRefLines = config['showRefLines'];
+    chart.showRefLabels = config['showRefLabels'];
 
-    // chart.xScaleMin = config['xScaleMin'];
-    // chart.xScaleMax = config['xScaleMax'];
-    // chart.yScaleMin = config['yScaleMin'];
-    // chart.yScaleMax = config['yScaleMax'];
+    chart.xScaleMin = config['xScaleMin'];
+    chart.xScaleMax = config['xScaleMax'];
+    chart.yScaleMin = config['yScaleMin'];
+    chart.yScaleMax = config['yScaleMax'];
 
-    // chart.trimXAxisTicks = config['trimXAxisTicks'];
-    // chart.trimYAxisTicks = config['trimYAxisTicks'];
-    // chart.rotateXAxisTicks = config['rotateXAxisTicks'];
-    // chart.maxXAxisTickLength = config['maxXAxisTickLength'];
-    // chart.maxYAxisTickLength = config['maxYAxisTickLength'];
-    // chart.wrapTicks = config['wrapTicks'];
+    chart.trimXAxisTicks = config['trimXAxisTicks'];
+    chart.trimYAxisTicks = config['trimYAxisTicks'];
+    chart.rotateXAxisTicks = config['rotateXAxisTicks'];
+    chart.maxXAxisTickLength = config['maxXAxisTickLength'];
+    chart.maxYAxisTickLength = config['maxYAxisTickLength'];
+    chart.wrapTicks = config['wrapTicks'];
   }
 
   getChartByType() {
@@ -734,14 +761,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   }
 
   setChartLabelsAndLegend(chart, config) {
-    chart.labels = config['showLabels'];
     chart.legend = this.showLegend || config?.showLegend;
     chart.legendPosition = this.legendPosition ?? config['legendPosition'];
-    chart.legendTitle = this.legendTitle;
-    chart.showXAxisLabel = this.showXAxisLabel;
-    chart.showYAxisLabel = this.showYAxisLabel;
-    chart.xAxisLabel = this.xAxisLabel;
-    chart.yAxisLabel = this.yAxisLabel;
+    chart.legendTitle = this.legendTitle ?? config['legendTitle'];
+    chart.showXAxisLabel = this.showXAxisLabel ?? config['showXAxisLabel'];
+    chart.showYAxisLabel = this.showYAxisLabel ?? config['showYAxisLabel'];
+    chart.xAxisLabel = this.xAxisLabel ?? config['xAxisLabel'];
+    chart.yAxisLabel = this.yAxisLabel ?? config['yAxisLabel'];
   }
 
   setChartTooltip(chart, config) {
@@ -753,14 +779,15 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chart['scheme'] = config['color'];
     }
   }
-  setChartGridLines(chart) {
+  setChartGridLines(chart, config) {
     if (chart.type != "pie" && chart.type != "donutChart") {
-      chart.showGridLines = this.showGridLines;
+      chart.showGridLines = (this.showGridLines !== undefined) ? this.showGridLines : config['showGridLines']
     }
   }
   setChartGradientAndActiveEntries(chart, config) {
     chart.gradient = (this.gradient !== undefined) ? this.gradient : config['gradient'];
     chart.activeEntries = (this.activeEntries !== undefined) ? this.activeEntries : config['activeEntries'];
+    chart.autoScale = (this.autoScale !== undefined) ? this.autoScale : config['autoScale'];
   }
 
   setChartPieConfiguration(chart, config) {
@@ -769,7 +796,6 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     chart.labelFormatting = config['labelFormatting'];
     chart.trimLabels = config['trimLabels'];
     chart.maxLabelLength = config['maxLabelLength'];
-    chart.showLabels = config['showLabels'];
     chart.explodeSlices = config['explodeSlices'];
     chart.arcWidth = config['donutRatio']
 

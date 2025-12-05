@@ -26,7 +26,6 @@ export class PieChartOptions extends AbstractChartOptions {
 
       callback: conf.callback,
 
-      noData: conf.noDataMessage,
       activeEntries: conf.activeEntries,
       gradient: conf.gradient
     };

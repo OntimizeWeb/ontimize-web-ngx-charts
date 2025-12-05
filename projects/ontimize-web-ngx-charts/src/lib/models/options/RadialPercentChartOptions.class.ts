@@ -25,7 +25,7 @@ export class RadialPercentChartOptions extends AbstractChartOptions {
       x: this.getXValue(),
       y: this.getYValue(),
       color: conf.color,
-      noData: conf.noDataMessage
+
     }
 
     return chart;

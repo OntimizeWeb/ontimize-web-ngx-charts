@@ -1,5 +1,8 @@
 import { TemplateRef } from '@angular/core';
 import { ChartConfiguration } from './ChartConfiguration.class';
+import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
+import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
+import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
 
 export class LineChartConfiguration extends ChartConfiguration {
 
@@ -18,9 +21,6 @@ export class LineChartConfiguration extends ChartConfiguration {
 
   /** Define si se muestra la línea de tiempo (solo escalas lineales o de tiempo) */
   public timeline: boolean = false;
-
-  /** Define la interpolación de la curva (acepta cualquier d3.curve) */
-  public curve?: any;
 
   /** Líneas de referencia */
   public referenceLines?: { name: string; value: number }[];
@@ -42,4 +42,8 @@ export class LineChartConfiguration extends ChartConfiguration {
   public wrapTicks: boolean = false;
 
 
+
+  constructor() {
+    super();
+  }
 }

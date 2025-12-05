@@ -27,7 +27,7 @@ export class CandlestickChartOptions extends AbstractChartOptions {
       useInteractiveGuideline: conf.useInteractiveGuideline,
       padData: conf.padData,
       clipEdge: conf.clidEdge,
-      noData: conf.noDataMessage
+
     };
 
     return chart;
