@@ -198,9 +198,9 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @BooleanInputConverter()
   showDataLabel: boolean = true;
   @BooleanInputConverter()
-  showXAxisLabel: boolean = true;
+  showXAxisLabel: boolean;
   @BooleanInputConverter()
-  showYAxisLabel: boolean = true;
+  showYAxisLabel: boolean;
   @BooleanInputConverter()
   autoScale: boolean;
   @BooleanInputConverter()
