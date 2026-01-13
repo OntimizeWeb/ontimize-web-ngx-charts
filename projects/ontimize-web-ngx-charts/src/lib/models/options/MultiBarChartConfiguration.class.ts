@@ -4,33 +4,13 @@ export class MultiBarChartConfiguration extends ChartConfiguration {
 
   public readonly type: string = 'multiBar';
 
-  /** 'ordinal' | 'linear' */
-  public schemeType: 'ordinal' | 'linear' = 'ordinal';
-
   /** Enable/disable animations */
   public animations: boolean = true;
-
-  /** Round domains for aligned gridlines */
-  public roundDomains: boolean = false;
-
-  /** Tick trimming and formatting */
-  public trimXAxisTicks: boolean = true;
-  public trimYAxisTicks: boolean = true;
-  public rotateXAxisTicks: boolean = true;
-
-  public maxXAxisTickLength: number = 16;
-  public maxYAxisTickLength: number = 16;
-
-  public wrapTicks: boolean = false;
 
   /** Behavior */
   public noBarWhenZero: boolean = true;
   public roundEdges: boolean = true;
   public barPadding: number = 8;
-
-  /** Scale limits */
-  public yScaleMin?: number;
-  public yScaleMax?: number;
 
   constructor() {
     super();

@@ -26,6 +26,9 @@ export class ChartConfiguration {
   public showXAxisLabel: boolean;
   public showYAxisLabel: boolean;
 
+  public showXAxis: boolean;
+  public showYAxis: boolean;
+
   public legendPosition: string;
   public legendTitle: string;
 

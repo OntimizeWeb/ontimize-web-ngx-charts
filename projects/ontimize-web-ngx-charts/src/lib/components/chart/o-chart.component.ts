@@ -152,6 +152,8 @@ export const DEFAULT_INPUTS_O_CHART: any = [
   'yFormatting:y-formatting',
   'showXAxisLabel:show-x-axis-label',
   'showYAxisLabel:show-y-axis-label',
+  'showXAxis:show-x-axis',
+  'showYAxis:show-y-axis',
   'autoScale: auto-scale',
   'showTooltip:show-tooltip',
   'gradient',
@@ -198,9 +200,13 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
   @BooleanInputConverter()
   showDataLabel: boolean = true;
   @BooleanInputConverter()
-  showXAxisLabel: boolean;
+  showXAxisLabel: boolean = true;
   @BooleanInputConverter()
-  showYAxisLabel: boolean;
+  showYAxisLabel: boolean = true;
+  @BooleanInputConverter()
+  showXAxis: boolean = true;
+  @BooleanInputConverter()
+  showYAxis: boolean = true;
   @BooleanInputConverter()
   autoScale: boolean;
   @BooleanInputConverter()
@@ -479,6 +485,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.showDataLabel = chartConf.showDataLabel ?? this.showDataLabel;
       chartConf.showXAxisLabel = chartConf.showXAxisLabel ?? this.showXAxisLabel;
       chartConf.showYAxisLabel = chartConf.showYAxisLabel ?? this.showYAxisLabel;
+      chartConf.showXAxis = chartConf.showXAxis ?? this.showXAxis;
+      chartConf.showYAxis = chartConf.showXAxis ?? this.showXAxis;
 
       chartConf.height = chartConf.height ?? (this.cHeight !== -1 ? this.cHeight : null);
       chartConf.width = chartConf.width ?? (this.cWidth !== -1 ? this.cWidth : null);
@@ -515,6 +523,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.showDataLabel = this.showDataLabel;
       chartConf.showXAxisLabel = this.showXAxisLabel;
       chartConf.showYAxisLabel = this.showYAxisLabel;
+      chartConf.showXAxis = this.showXAxis;
+      chartConf.showYAxis = this.showYAxis;
 
       chartConf.height = this.cHeight !== -1 ? this.cHeight : 0;
       chartConf.width = this.cWidth !== -1 ? this.cWidth : 0;
@@ -764,8 +774,10 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     chart.legend = this.showLegend || config?.showLegend;
     chart.legendPosition = this.legendPosition ?? config['legendPosition'];
     chart.legendTitle = this.legendTitle ?? config['legendTitle'];
-    chart.showXAxisLabel = this.showXAxisLabel ?? config['showXAxisLabel'];
+    chart.showXAxisLabel = config['showXAxisLabel'] == false ? false : this.showXAxisLabel;
     chart.showYAxisLabel = this.showYAxisLabel ?? config['showYAxisLabel'];
+    chart.xAxis = config['showXAxis'] == false ? false : this.showXAxis;
+    chart.yAxis = this.showYAxis ?? config['showYAxis'];
     chart.xAxisLabel = this.xAxisLabel ?? config['xAxisLabel'];
     chart.yAxisLabel = this.yAxisLabel ?? config['yAxisLabel'];
   }
