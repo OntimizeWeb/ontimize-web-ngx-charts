@@ -1,4 +1,4 @@
-import { ChartConfiguration } from "../ChartConfiguration.class";
+import { ChartConfiguration } from "./ChartConfiguration.class";
 
 export class DefaultChartConfiguration extends ChartConfiguration {
 
