@@ -1,6 +1,6 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
+import { DefaultChartConfiguration } from './DefaultChartConfiguration.class';
 
-export class StackedAreaChartConfiguration extends ChartConfiguration {
+export class StackedAreaChartConfiguration extends DefaultChartConfiguration {
   readonly type: string = 'stackedAreaChart';
 
   /** Opacidad del área sombreada (para min/max range) */

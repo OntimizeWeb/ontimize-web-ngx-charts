@@ -27,7 +27,7 @@
       </ng-template>
     </ngx-charts-pie-chart>
 
-    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+    <ngx-charts-bar-horizontal #horizontalBarChart *ngSwitchCase="'multiBarHorizontalChart'"  [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
       [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
@@ -40,7 +40,7 @@
       </ng-template>
     </ngx-charts-bar-horizontal>
 
-    <ngx-charts-bar-vertical #discreteBarChart *ngSwitchCase="'discreteBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+    <ngx-charts-bar-vertical #discreteBarChart *ngSwitchCase="'discreteBar'"  [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
       [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
@@ -80,7 +80,7 @@
       </ng-template>
     </ngx-charts-area-chart-stacked>
 
-    <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'" [showDataLabel]="showDataLabel" [xAxisLabel]="xAxisLabel"
+    <ngx-charts-bar-vertical-stacked #multiBarChart *ngSwitchCase="'multiBar'"  [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
       [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 

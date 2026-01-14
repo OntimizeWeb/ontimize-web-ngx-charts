@@ -1,6 +1,6 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
+import { DefaultChartConfiguration } from './DefaultChartConfiguration.class';
 
-export class MultiBarHorizontalChartConfiguration extends ChartConfiguration {
+export class MultiBarHorizontalChartConfiguration extends DefaultChartConfiguration {
 
   public readonly type: string = 'multiBarHorizontalChart';
 
