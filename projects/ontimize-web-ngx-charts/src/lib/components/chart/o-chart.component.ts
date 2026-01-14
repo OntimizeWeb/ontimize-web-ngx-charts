@@ -793,14 +793,15 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     }
   }
   setChartGridLines(chart, config) {
-    if (chart.type != "pie" && chart.type != "donutChart") {
-      chart.showGridLines = (this.showGridLines !== undefined) ? this.showGridLines : config['showGridLines']
+    if (chart.type !== "pie" && chart.type !== "donutChart") {
+      chart.showGridLines = this.showGridLines ?? config['showGridLines'];
     }
   }
+
   setChartGradientAndActiveEntries(chart, config) {
-    chart.gradient = (this.gradient !== undefined) ? this.gradient : config['gradient'];
-    chart.activeEntries = (this.activeEntries !== undefined) ? this.activeEntries : config['activeEntries'];
-    chart.autoScale = (this.autoScale !== undefined) ? this.autoScale : config['autoScale'];
+    chart.gradient = this.gradient ?? config['gradient'];
+    chart.activeEntries = this.activeEntries ?? config['activeEntries'];
+    chart.autoScale = this.autoScale ?? config['autoScale'];
   }
 
   setChartPieConfiguration(chart, config) {
