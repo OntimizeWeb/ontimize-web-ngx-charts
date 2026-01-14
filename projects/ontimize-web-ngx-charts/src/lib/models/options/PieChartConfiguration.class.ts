@@ -1,6 +1,4 @@
-import { OColorData } from '../../types/color-data.type';
 import { ChartConfiguration } from './ChartConfiguration.class';
-import { TemplateRef } from '@angular/core';
 
 export class PieChartConfiguration extends ChartConfiguration {
 
