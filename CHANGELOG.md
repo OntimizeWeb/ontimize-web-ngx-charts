@@ -1,3 +1,9 @@
+## 15.3.0 (2026-01-14)
+### Features
+* **o-chart**:
+  * Added new configuration variables allowing charts to be more configurable and customizable. ([673f6b9](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/commit/673f6b9)) Closes [#285](https://github.com/OntimizeWeb/ontimize-web-ngx-charts/issues/285).
+
+
 ## 15.2.1 (2025-08-20)
 ### Features
 * **o-chart**:
