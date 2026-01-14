@@ -33,8 +33,8 @@ export class AbstractChartOptions {
       x: this.getXValue(),
       y: this.getYValue(),
       xAxis: this.getXAxisConfiguration(),
-      yAxis: this.getYAxisConfiguration(),
-      noData : this.chartConf.noDataMessage
+      yAxis: this.getYAxisConfiguration()
+
     };
   }
 

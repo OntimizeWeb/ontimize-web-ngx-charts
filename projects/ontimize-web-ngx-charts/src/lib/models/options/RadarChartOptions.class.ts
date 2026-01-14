@@ -20,7 +20,7 @@ export class RadarChartOptions extends AbstractChartOptions {
       opacityArea: conf.opacityArea,
       legend: conf.legend.getLegendOptions(),
       showLegend: conf.showLegend,
-      noData: conf.noDataMessage
+
     }
     return chart;
   }

@@ -1,7 +1,6 @@
 import { AdaptedDataItem } from '../interfaces/ChartData.interface';
 import { ChartDataAdapter } from '../interfaces/ChartDataAdapterFactory.interface';
 import { ChartConfiguration } from '../models/ChartConfiguration.class';
-import { PieChartConfiguration } from '../models/options/PieChartConfiguration.class';
 
 export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAdapter {
 
@@ -35,17 +34,6 @@ export class PieDataAdapter<T extends ChartConfiguration> implements ChartDataAd
           name: itemLabel,
           value: value
         };
-
-        // Specify color for each value
-        if (self.chartConf instanceof PieChartConfiguration) {
-          const config = (self.chartConf as PieChartConfiguration);
-          if (config.colorData && config.colorData.length) {
-            const colorDataItem = config.colorData.find(c => c.value.toLowerCase() === item[self.xAxis].toLowerCase());
-            if (colorDataItem) {
-              adaptedItem.color = colorDataItem.color;
-            }
-          }
-        }
 
         adaptedData.push(adaptedItem);
       } else {

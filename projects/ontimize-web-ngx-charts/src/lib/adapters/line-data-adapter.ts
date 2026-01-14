@@ -47,18 +47,12 @@ export class LineDataAdapter implements ChartDataAdapter {
         };
 
         const index = this.yAxis.indexOf(name);
-        if (config.isArea?.[index]) {
-          lineChartSeries.area = config.isArea[index];
-        }
+
+
         if (config.color?.[index]) {
           lineChartSeries.color = config.color[index];
         }
-        if (config.strokeWidth?.[index]) {
-          lineChartSeries.strokeWidth = config.strokeWidth[index];
-        }
-        if (config.classed?.[index]) {
-          lineChartSeries.classed = config.classed[index];
-        }
+
         let key = name;
         if (config.translateService) {
           key = config.translateService.get(key);
