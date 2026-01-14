@@ -774,11 +774,11 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
     chart.legend = this.showLegend || config?.showLegend;
     chart.legendPosition = this.legendPosition ?? config['legendPosition'];
     chart.legendTitle = this.legendTitle ?? config['legendTitle'];
-    chart.showXAxisLabel = config['showXAxisLabel'] == false ? false : this.showXAxisLabel;
-    chart.showYAxisLabel = config['showYAxisLabel'] == false ? false : this.showYAxisLabel;
-    chart.xAxis = config['showXAxis'] == false ? false : this.showXAxis;
-    chart.yAxis = config['showYAxis'] == false ? false : this.showYAxis;
-    chart.showDataLabel = config['showDataLabel'] == false ? false : this.showDataLabel;
+    chart.showXAxisLabel = config['showXAxisLabel'] !== false && this.showXAxisLabel;
+    chart.showYAxisLabel = config['showYAxisLabel'] !== false && this.showYAxisLabel;
+    chart.xAxis = config['showXAxis'] !== false && this.showXAxis;
+    chart.yAxis = config['showYAxis'] !== false && this.showYAxis;
+    chart.showDataLabel = config['showDataLabel'] !== false && this.showDataLabel;
     chart.xAxisLabel = this.xAxisLabel ?? config['xAxisLabel'];
     chart.yAxisLabel = this.yAxisLabel ?? config['yAxisLabel'];
   }
