@@ -36,7 +36,7 @@ export class LinePlusBarFocusChartOptions extends AbstractChartOptions {
       focusEnable: conf.focusEnable,
       focusShowAxisX: conf.focusShowAxisX,
       focusShowAxisY: conf.focusShowAxisY,
-      noData: conf.noDataMessage
+
     };
     return chart;
   }

@@ -1,42 +1,21 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
-import { ChartZoomConfiguration } from './ChartZoomConfiguration.class';
-import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartControlConfiguration } from './ChartControlConfiguration.class';
+import { DefaultChartConfiguration } from './DefaultChartConfiguration.class';
 
-export class StackedAreaChartConfiguration extends ChartConfiguration {
+export class StackedAreaChartConfiguration extends DefaultChartConfiguration {
   readonly type: string = 'stackedAreaChart';
 
-  x1Axis: ChartAxisConfiguration;
-  showXAxis: boolean = true;
-  y1Axis: ChartAxisConfiguration;
-  showYAxis: boolean = true;
-  rightAlignYAxis: boolean = false;
+  /** Opacidad del área sombreada (para min/max range) */
+  public rangeFillOpacity: number = 0.15;
 
-  legend: ChartLegendConfiguration;
-  showLegend: boolean = true;
+  /** Define si se muestra la línea de tiempo (solo escalas lineales o de tiempo) */
+  public timeline: boolean = false;
 
-  control: ChartControlConfiguration;
-  showControls: boolean = true;
+  /** Líneas de referencia */
+  public referenceLines?: { name: string; value: number }[];
+  public showRefLines: boolean = false;
+  public showRefLabels: boolean = true;
 
-  zoom: ChartZoomConfiguration;
-
-  useInteractiveGuideline: boolean = true;
-  style: string = 'stack';
-  interactive: boolean = true;
-  useVoronoi: boolean = true;
-  showVoronoi: boolean = false;
-
-  color: {
-    domain: []
-  };
 
   constructor() {
     super();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.legend = new ChartLegendConfiguration();
-    this.control = new ChartControlConfiguration();
-    this.zoom = new ChartZoomConfiguration();
   }
 }

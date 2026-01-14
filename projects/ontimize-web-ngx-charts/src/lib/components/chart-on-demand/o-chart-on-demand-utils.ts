@@ -52,7 +52,6 @@ export class OChartOnDemandUtils {
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configureDiscreteBarChart(chartConf: DiscreteBarChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
-    chartConf.agroup = true;
     chartConf.showLegend = false;
     chartConf.color = preferences.selectedPalette;
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
@@ -66,12 +65,7 @@ export class OChartOnDemandUtils {
     this.configureAxisFormat(chartConf, preferences, oTableOptions);
   }
   protected static configurePieChart(chartConf: PieChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {
-    chartConf.labelType = 'value';
     chartConf.color = preferences.selectedPalette;
-    const formatCallback = OChartOnDemandUtils.getAxisFormatCallback(preferences.selectedYAxisType, preferences.selectedYAxis[0], oTableOptions);
-    if (formatCallback != undefined) {
-      chartConf.valueType = formatCallback;
-    }
   }
 
   private static configureAxisFormat(chartConf: ChartConfiguration, preferences: OChartPreferences, oTableOptions: OTableOptions): void {

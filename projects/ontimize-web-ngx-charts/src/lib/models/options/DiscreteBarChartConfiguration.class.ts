@@ -1,39 +1,17 @@
-import { ChartConfiguration } from './ChartConfiguration.class';
-import { ChartLegendConfiguration } from './ChartLegendConfiguration.class';
-import { ChartAxisConfiguration } from './ChartAxisConfiguration.class';
-import { ChartMarginConfiguration } from './ChartMarginConfiguration.class';
+import { DefaultChartConfiguration } from './DefaultChartConfiguration.class';
 
-export class DiscreteBarChartConfiguration extends ChartConfiguration {
+export class DiscreteBarChartConfiguration extends DefaultChartConfiguration {
   readonly type: string = 'discreteBar';
 
-  showValues: boolean = true;
-  duration: number = 500;
+  /** Enable/disable animations */
+  public animations: boolean = true;
 
-  showLegend: boolean = false;
-  legend: ChartLegendConfiguration;
-
-  staggerLabels: boolean = false;
-  rotateLabels: number = 0;
-  wrapLabels: boolean = true;
-
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  rightAlingYAxis: boolean = false;
-  x1Axis: ChartAxisConfiguration;
-  y1Axis: ChartAxisConfiguration;
-
-  margin: ChartMarginConfiguration;
-
-  agroup: boolean = false;
-  public color: {
-    domain: []
-  } = null;
+  /** Behavior */
+  public noBarWhenZero: boolean = true;
+  public roundEdges: boolean = true;
+  public barPadding: number = 8;
 
   constructor() {
     super();
-    this.legend = new ChartLegendConfiguration();
-    this.x1Axis = new ChartAxisConfiguration();
-    this.y1Axis = new ChartAxisConfiguration();
-    this.margin = new ChartMarginConfiguration();
   }
 }

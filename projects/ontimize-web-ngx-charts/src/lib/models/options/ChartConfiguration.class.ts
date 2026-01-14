@@ -20,15 +20,30 @@ export class ChartConfiguration {
   public data: Object;
 
   public showTooltip: boolean;
-
   public showLegend: boolean;
+  public showGridLines: boolean;
+  public showDataLabel: boolean;
+  public showXAxisLabel: boolean;
+  public showYAxisLabel: boolean;
 
-  public color: {
-    domain: string[]
-  };
-  // Message to display if no data is provided
-  public noDataMessage: string;
+  public showXAxis: boolean;
+  public showYAxis: boolean;
+
+  public legendPosition: string;
+  public legendTitle: string;
+
+  public xFormatting: any;
+  public yFormatting: any;
+
+  public autoScale: boolean;
+  public chartParameters: any;
+
+  public color: { domain: string[] } | object;
+
+  public gradient: boolean;
+  public activeEntries: any[];
+
+  public customColors?: any;
 
   public callback: () => void;
-
 }

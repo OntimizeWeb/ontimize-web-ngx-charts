@@ -24,7 +24,7 @@ export class ForceDirectedGraphOptions extends AbstractChartOptions {
       theta: conf.theta,
       alpha: conf.alpha,
       radius: conf.radius,
-      noData: conf.noDataMessage
+
     };
     return chart;
   }

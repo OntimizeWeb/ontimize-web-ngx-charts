@@ -23,7 +23,7 @@ export class GaugeSimpleChartOptions extends AbstractChartOptions {
       max: conf.max,
       zoneLimit1: conf.zoneLimit1,
       zoneLimit2: conf.zoneLimit2,
-      noData: conf.noDataMessage
+
     }
 
     return chart;
