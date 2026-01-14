@@ -488,9 +488,8 @@ export class OChartComponent extends OServiceBaseComponent implements OnInit {
       chartConf.showXAxis = chartConf.showXAxis ?? this.showXAxis;
       chartConf.showYAxis = chartConf.showYAxis ?? this.showYAxis;
 
-      chartConf.height = chartConf.height ?? (this.cHeight !== -1 ? this.cHeight : null);
-      chartConf.width = chartConf.width ?? (this.cWidth !== -1 ? this.cWidth : null);
-
+      chartConf.height = chartConf.height ?? (this.cHeight === -1 ? null : this.cHeight);
+      chartConf.width = chartConf.width ?? (this.cWidth === -1 ? null : this.cWidth);
       chartConf.xLabel = chartConf.xLabel ?? this.xAxisLabel;
       chartConf.yLabel = chartConf.yLabel ?? this.yAxisLabel;
 
