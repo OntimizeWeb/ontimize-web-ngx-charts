@@ -3,7 +3,6 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { DialogService } from 'ontimize-web-ngx';
 import { DataInputDialogComponent } from '../data-input-dialog/data-input-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ExampleComponent } from '../../shared/example/example.component';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
@@ -27,6 +26,8 @@ export class CustomChartComponent {
   defaultDataChanged = false;
   public showXAxis: boolean = true;
   public showYAxis: boolean = true;
+  public showXAxisLabel: boolean = true;
+  public showYAxisLabel: boolean = true;
   public showGridLines: boolean = false;
   public showLegend: boolean = true;
   defaultData = this.getData();
@@ -53,9 +54,10 @@ export class CustomChartComponent {
   <o-chart type="` + this.currentPreference.selectedTypeChart + `" service="yourService" entity="yourEntity"
       color="` + this.currentPreference.selectedPalette + `"` + (this.showXAxis ? ` x-label="` + this.currentPreference.x_axis + `"` : ``) + (this.showYAxis ? ` y-label="` + this.currentPreference.y_axis + `"` : ``) + `
       x-data-type="` + this.currentPreference.selectedXAxisType + `" y-data-type="` + this.currentPreference.selectedYAxisType + `"
-      ` + (this.currentPreference.width != undefined ? `chart-width="` + this.currentPreference.width + `" ` : ``) + (this.currentPreference.height != undefined ? `chart-height="` + this.currentPreference.height + `"` : ``) + ` show-legend="` + this.showLegend + `"
-      show-x-axis-label="` + this.showXAxis + `" show-y-axis-label="` + this.showYAxis + `"` + (this.showLegend == true ? ` legend-position="` + this.currentPreference.legendPosition + `"` : ``) +
-      (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? ` legend-title="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `show-grid-lines="` + this.showGridLines + `"></o-chart>
+      ` + (this.currentPreference.width != undefined ? `chart-width="` + this.currentPreference.width + `" ` : ``) + (this.currentPreference.height != undefined ? `chart-height="` + this.currentPreference.height + `"` : ``) + ` show-legend="` + this.showLegend + `" show-x-axis="` + this.showXAxis + `" show-x-axis-label="` + this.showXAxisLabel + `"
+       show-y-axis="` + this.showYAxis + `" show-y-axis-label="` + this.showYAxisLabel + `"` +
+    (this.showLegend == true ? ` legend-position="` + this.currentPreference.legendPosition + `"` : ``) +
+    (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? ` legend-title="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `show-grid-lines="` + this.showGridLines + `"></o-chart>
   `;
 
   typescriptData = `
@@ -184,7 +186,7 @@ export class CustomChartComponent {
       color="` + this.currentPreference.selectedPalette + `"` + (this.showXAxis ? ` x-label="` + this.currentPreference.x_axis + `"` : ``) + (this.showYAxis ? ` y-label="` + this.currentPreference.y_axis + `"` : ``) + `
       x-data-type="` + this.currentPreference.selectedXAxisType + `" y-data-type="` + this.currentPreference.selectedYAxisType + `"
       ` + (this.currentPreference.width != undefined ? `chart-width="` + this.currentPreference.width + `" ` : ``) + (this.currentPreference.height != undefined ? `chart-height="` + this.currentPreference.height + `"` : ``) + ` show-legend="` + this.showLegend + `"
-      show-x-axis-label="` + this.showXAxis + `" show-y-axis-label="` + this.showYAxis + `"` + (this.showLegend == true ? ` legend-position="` + this.currentPreference.legendPosition + `"` : ``) +
+      show-x-axis="` + this.showXAxis + `" show-x-axis-label="` + this.showXAxisLabel + `" show-y-axis="` + this.showYAxis + `" show-y-axis-label="` + this.showYAxisLabel + `"` + (this.showLegend == true ? ` legend-position="` + this.currentPreference.legendPosition + `"` : ``) +
       (this.showLegend == true ? (this.currentPreference.legendTitle != "" ? ` legend-title="` + this.currentPreference.legendTitle + `" ` : ``) : ``) + `show-grid-lines="` + this.showGridLines + `"></o-chart>
   `;
     this.JsonData = this.getJsonData();
