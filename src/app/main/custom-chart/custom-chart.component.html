@@ -97,6 +97,10 @@
                   <mat-checkbox [(ngModel)]="showYAxis" (change)="updateChart()">{{ 'SHOW_Y_AXIS' | oTranslate}}</mat-checkbox>
                 </div>
                 <div fxLayout="column" fxLayoutGap="10px">
+                  <mat-checkbox [(ngModel)]="showXAxisLabel" (change)="updateChart()">{{ 'SHOW_X_AXIS_LABEL' | oTranslate}}</mat-checkbox>
+                  <mat-checkbox [(ngModel)]="showYAxisLabel" (change)="updateChart()">{{ 'SHOW_Y_AXIS_LABEL' | oTranslate}}</mat-checkbox>
+                </div>
+                <div fxLayout="column" fxLayoutGap="10px">
                   <mat-checkbox [(ngModel)]="showGridLines" (change)="updateChart()">{{ 'SHOW_GRID_LINES' | oTranslate}}</mat-checkbox>
                   <mat-checkbox [(ngModel)]="showLegend" (change)="updateChart()">{{ 'SHOW_LEGEND' | oTranslate}}</mat-checkbox>
                 </div>
@@ -135,7 +139,8 @@
                   [color]="currentPreference.selectedPalette" [x-label]="currentPreference.x_axis" [y-label]="currentPreference.y_axis"
                   [x-data-type]="currentPreference.selectedXAxisType" [y-data-type]="currentPreference.selectedYAxisType"
                   [chart-width]="currentPreference.width" [chart-height]="currentPreference.height" [show-legend]="showLegend"
-                  [show-x-axis-label]="showXAxis" [show-y-axis-label]="showYAxis" [legend-position]="currentPreference.legendPosition"
+                  [show-x-axis]="showXAxis" [show-x-axis-label]="showXAxisLabel" [show-y-axis]="showYAxis" [show-y-axis-label]="showYAxisLabel"
+                  [legend-position]="currentPreference.legendPosition"
                   [legend-title]="currentPreference.legendTitle" [show-grid-lines]="showGridLines"></o-chart>
               </div>
             </div>
