@@ -62,6 +62,9 @@ export class MultiBarHorizontalComponent {
       }
     }
   ];
+  constructor() {
+
+  }
 
   getBasicUsageFiles() {
     return {
