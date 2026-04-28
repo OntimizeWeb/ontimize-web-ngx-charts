@@ -1,11 +1,16 @@
 import { Component, Injector } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { OTableBaseDialogClass } from 'ontimize-web-ngx';
+import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { OntimizeWebModule, OTableBaseDialogClass } from 'ontimize-web-ngx';
 
 @Component({
+  standalone: true,
   selector: 'app-save-preferences-dialog',
-  templateUrl: './save-preferences-dialog.component.html'
+  templateUrl: './save-preferences-dialog.component.html',
+  imports: [MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, OntimizeWebModule]
 })
 
 export class SavePreferencesDialogComponent extends OTableBaseDialogClass {
