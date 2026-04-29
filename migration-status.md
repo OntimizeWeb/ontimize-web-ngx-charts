@@ -9,7 +9,8 @@ Migración incremental Angular 15 → 18. Cada fase se publica en su propia rama
 | `15.x.x` | 15 | ✅ Base (intocable) | — |
 | `migration/16.x.x` | 16 | ✅ Completada | `13f151c` |
 | `migration/17.x.x` | 17 | ✅ Completada | `c33a1ce` |
-| `migration/18.x.x` | 18 | ✅ Completada | `93e5027` |
+| `migration/18.x.x` | 18 | ✅ Completada | `fba2d70` |
+| `18.x.x` | 18 | ✅ Rama destino (copia de 15.x.x) | — |
 
 ---
 
@@ -75,8 +76,15 @@ Los NgModules wrapper (`OChartComponentModule`, `OChartOnDemandComponentModule`)
 - `comboData` tipado como `Array<{key: number; value: string}>` (antes `Array<Object>`) para pasar el template type checking
 - `array` tipado como `Array<{key: any; value: string}>` en `OChartOnDemandComponent`
 
+### Correcciones de dependencias — commits posteriores
+
+| Commit | Cambio |
+|--------|--------|
+| `7c86f09` | `karma-jasmine-html-reporter` `~2.0.0` → `~2.1.0` (peer conflict con `jasmine-core ~5.1.0`) |
+| `fba2d70` | Versión de la librería `18.0.0-SNAPSHOT-0` → `18.0.0-next.0` · peer dep `ontimize-web-ngx` `^18.0.0` → `^18.0.0-next.0` |
+
 ---
 
 ## Pendiente
 
-- **Aplicación quickstart**: La rama `quickstart-15.x.x-develop` no se ha incorporado al monorepo `migration/18.x.x`. Está planificado añadirla como proyecto adicional en `angular.json` para verificación visual con Angular 18.
+Ninguno — migración completa ✅
