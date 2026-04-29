@@ -39,7 +39,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@swimlane/ngx-charts": "^20.5.0",
+    "@swimlane/ngx-charts": "^21.1.3",
     "dom-to-image": "^2.6.0",
     "ontimize-web-ngx": "^18.0.0-next.0",
     "rxjs": "~7.8.0",
