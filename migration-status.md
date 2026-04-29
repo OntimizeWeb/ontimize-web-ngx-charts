@@ -85,6 +85,17 @@ Los NgModules wrapper (`OChartComponentModule`, `OChartOnDemandComponentModule`)
 
 ---
 
+### Corrección de build — commit `cc77f8a` (29 abril 2026)
+
+| Fichero | Cambio |
+|---|---|
+| `package.json` | `copy-files` reemplazado: `copyfiles` → `node scripts/copy-assets.js` |
+| `scripts/copy-assets.js` | Nuevo script Node.js para copiar assets a `dist/` |
+
+**Causa**: `copyfiles` con globs entre comillas simples falla silenciosamente en Windows. El script Node.js usa `fs.copyFileSync` directamente.
+
+---
+
 ## Pendiente
 
 Ninguno — migración completa ✅
