@@ -1,0 +1,36 @@
+{
+  "name": "ontimize-web-ngx-charts",
+  "version": "15.4.0-SNAPSHOT-0",
+  "description": "An implementation of ngx-charts for Ontimize Web",
+  "keywords": [
+    "angular",
+    "ontimize-web-ngx",
+    "ontimize-web-ngx-charts",
+    "charts",
+    "ngx-charts"
+  ],
+  "author": "IMATIA S.L.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OntimizeWeb/ontimize-web-ngx-charts.git"
+  },
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "main": "./bundles/ontimize-web-ngx-charts.umd.js",
+  "metadata": "./index.metadata.json",
+  "module": "./index.js",
+  "es2015": "./esm2015/ontimize-web-ngx-charts.js",
+  "typings": "./index.d.ts",
+  "scripts": {
+    "test": "karma start",
+    "test-watch": "karma start --singleRun=false --autoWatch=true"
+  },
+  "dependencies": {
+    "dom-to-image": "^2.6.0",
+    "@swimlane/ngx-charts": "^20.5.0",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "ontimize-web-ngx": "^15.6.0"
+  }
+}
