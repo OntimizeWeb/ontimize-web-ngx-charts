@@ -1,4 +1,4 @@
-<div mat-dialog-title class="dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
+<div mat-dialog-title class="dialog-title o-flex-row o-layout-align-sb-center">
   {{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oTranslate }}
   <div>
     <mat-icon svgIcon="ontimize:settings" #configurationMenuButton [matMenuTriggerFor]="menu"></mat-icon>
@@ -25,13 +25,13 @@
 </div>
 
 <div #dialog mat-dialog-content class="dialog-container">
-  <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" fxFill>
+  <mat-sidenav-container class="mat-sidenav-container o-flex-fill" [class.opened]="opened">
     <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
-      <div fxLayout="column" fxFill>
+      <div class="o-flex-column o-flex-fill">
         <o-button *ngIf="opened" o-button (click)="opened=!opened" (keyup)="opened=!opened" icon="menu" type="ICON" label=""
           [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oTranslate">
         </o-button>
-        <div fxLayout="column" *ngIf="opened" class="container-title" fxLayoutGap="10px">
+        <div class="o-flex-column container-title" style="gap: 10px" *ngIf="opened">
           <mat-form-field>
             <input [(ngModel)]="currentPreference.title" matInput placeholder="{{ 'CHART_ON_DEMAND.CHART_TITLE' | oTranslate }}">
           </mat-form-field>
@@ -39,9 +39,9 @@
             <input [(ngModel)]="currentPreference.subtitle" matInput placeholder="{{ 'CHART_ON_DEMAND.CHART_SUBTITLE' | oTranslate }}">
           </mat-form-field>
         </div>
-        <div fxLayout="column" *ngIf="opened" class="data_options" fxLayoutGap="10px">
+        <div class="o-flex-column data_options" style="gap: 10px" *ngIf="opened">
           <span class="section-first-title">{{ 'CHART_ON_DEMAND.CHART_TYPE' | oTranslate }}</span>
-          <mat-radio-group name="chartType" [(ngModel)]="currentPreference.selectedTypeChart" fxLayout="column" fxLayoutGap="12px">
+          <mat-radio-group name="chartType" [(ngModel)]="currentPreference.selectedTypeChart" class="o-flex-column" style="gap: 12px">
             <mat-radio-button *ngFor="let type of types" name="chartType" [value]="type.key"
               [checked]="currentPreference.selectedTypeChart === type.key" (change)="captureTypeChart($event)">
               {{ type.value | oTranslate}}
@@ -58,7 +58,6 @@
                 <mat-icon class="palette_icon" svgIcon="ontimize:{{option.value}}"></mat-icon>
               </mat-option>
             </mat-select>
-
           </mat-form-field>
           <span class="section-title">{{ 'CHART_ON_DEMAND.X_AXIS' | oTranslate }}</span>
           <mat-form-field>
@@ -79,14 +78,14 @@
             </mat-select>
           </mat-form-field>
           <span class="section-title">{{ 'CHART_ON_DEMAND.CHART_DATA_TYPE' | oTranslate }}</span>
-          <mat-radio-group name="DataType" [(ngModel)]="currentPreference.selectedDataTypeChart" fxLayout="column" fxLayoutGap="12px">
+          <mat-radio-group name="DataType" [(ngModel)]="currentPreference.selectedDataTypeChart" class="o-flex-column" style="gap: 12px">
             <mat-radio-button *ngFor="let dataType of dataTypes" name="DataType" [value]="dataType.key"
               [checked]="currentPreference.selectedDataTypeChart === dataType.key">
               {{ dataType.value | oTranslate}}
             </mat-radio-button>
           </mat-radio-group>
         </div>
-        <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center" *ngIf="opened">
+        <div mat-dialog-actions class="o-flex-row o-layout-align-center-center" *ngIf="opened">
           <button type="button" mat-stroked-button class="chart-clear-button" (click)="clearCurrentPreferences()">
             {{'CHART_ON_DEMAND.CLEAR' | oTranslate }}</button>
           <button type="button" mat-stroked-button class="mat-primary" (click)="showChart()" [disabled]="!enabledPreview()">
@@ -95,27 +94,25 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="sidenav-container-content" fxLayout="column" fxFlex>
+      <div class="sidenav-container-content o-flex-column o-flex">
         <div>
           <o-button o-button *ngIf="!opened" class="sidenav-toggle-button" (click)="opened=!opened" icon="menu" type="ICON" label=""
             [matTooltip]="(sidenav.opened?'CHART_ON_DEMAND.HIDE_FILTERS':'CHART_ON_DEMAND.SHOW_FILTERS') | oTranslate"
             matTooltipPosition="below" (keyup)="opened=!opened">
           </o-button>
         </div>
-        <div fxLayout="column" id="sidenav-container-content" fxFlex="1 1 auto" [ngClass]="chartClass" fxLayoutAlign="center center">
+        <div class="o-flex-column o-layout-align-center-center o-flex-auto" id="sidenav-container-content" [ngClass]="chartClass">
           <img *ngIf="showPlaceholder" class="animation" alt="graph image" src="./assets/chart_animation.svg" />
-          <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!showPlaceholder">
+          <div class="o-flex-column o-layout-align-center-center" *ngIf="!showPlaceholder">
             <h2 class="title">{{currentPreference.title}}</h2>
             <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
           </div>
-          <div [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'" fxFlex="1 1 auto"
-            fxLayoutAlign="center center">
-            <o-chart #chart fxFlex type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
+          <div [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'" class="o-flex-auto o-layout-align-center-center">
+            <o-chart #chart class="o-flex" type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
             </o-chart>
           </div>
         </div>
       </div>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

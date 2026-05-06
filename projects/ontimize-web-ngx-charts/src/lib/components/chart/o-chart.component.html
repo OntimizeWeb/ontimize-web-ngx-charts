@@ -1,7 +1,7 @@
 <div>
   <ng-container [ngSwitch]="type">
 
-    <ngx-charts-pie-chart #pieChart *ngSwitchCase="'pie'" fxFlexFill class="chart" [results]="getAdaptData()" [labels]="true" [doughnut]="false"
+    <ngx-charts-pie-chart #pieChart *ngSwitchCase="'pie'" class="chart o-flex-fill" [results]="getAdaptData()" [labels]="true" [doughnut]="false"
       [scheme]="color" [labelFormatting]="xFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
       (deactivate)="deactivateChart($event)">
 
@@ -14,7 +14,7 @@
       </ng-template>
     </ngx-charts-pie-chart>
 
-    <ngx-charts-pie-chart #donutChart *ngSwitchCase="'donutChart'" fxFlexFill class="chart" [results]="getAdaptData()" [labels]="true"
+    <ngx-charts-pie-chart #donutChart *ngSwitchCase="'donutChart'" class="chart o-flex-fill" [results]="getAdaptData()" [labels]="true"
       [doughnut]="true" [ngClass]="chartClass" [scheme]="color" [labelFormatting]="xFormatting" (select)="selectChart($event)"
       (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
 
