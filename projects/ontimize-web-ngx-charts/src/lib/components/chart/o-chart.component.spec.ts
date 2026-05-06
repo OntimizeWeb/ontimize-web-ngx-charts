@@ -7,6 +7,7 @@ import { Injector } from '@angular/core';
 import { APP_CONFIG, AppConfig, appConfigFactory, ONTIMIZE_PROVIDERS } from 'ontimize-web-ngx';
 
 import { OChartComponent } from './o-chart.component';
+import { OCHART_PROVIDERS } from '../../o-services';
 
 describe('OChartComponent', () => {
   let component: OChartComponent;
@@ -31,7 +32,8 @@ describe('OChartComponent', () => {
           }
         },
         { provide: AppConfig, useFactory: appConfigFactory, deps: [Injector] },
-        ...ONTIMIZE_PROVIDERS
+        ...ONTIMIZE_PROVIDERS,
+        ...OCHART_PROVIDERS
       ]
     }).compileComponents();
   }));
