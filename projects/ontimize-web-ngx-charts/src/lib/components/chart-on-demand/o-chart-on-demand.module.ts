@@ -6,6 +6,9 @@ import { LoadPreferencesDialogComponent } from './load-preferences-dialog/load-p
 import { OChartOnDemandComponent } from './o-chart-on-demand.component';
 import { SavePreferencesDialogComponent } from './save-preferences-dialog/save-preferences-dialog.component';
 
+/**
+ * @deprecated Use `OChartOnDemandComponent` directly (standalone). This module will be removed in a future version.
+ */
 @NgModule({
   imports: [OChartOnDemandComponent, SavePreferencesDialogComponent, LoadPreferencesDialogComponent],
   exports: [OChartOnDemandComponent],
