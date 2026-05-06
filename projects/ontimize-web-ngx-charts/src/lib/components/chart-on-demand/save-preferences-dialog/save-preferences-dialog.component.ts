@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,11 +17,9 @@ export class SavePreferencesDialogComponent extends OTableBaseDialogClass {
   public name: string;
   public description: string;
 
-  public formGroup: UntypedFormGroup = new UntypedFormGroup({
-    name: new UntypedFormControl('', [
-      Validators.required
-    ]),
-    description: new UntypedFormControl('')
+  public formGroup = new FormGroup({
+    name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+    description: new FormControl<string>('', { nonNullable: true })
   });
 
   constructor(
