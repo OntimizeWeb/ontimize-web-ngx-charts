@@ -96,6 +96,56 @@ Los NgModules wrapper (`OChartComponentModule`, `OChartOnDemandComponentModule`)
 
 ---
 
+### Typed Forms — punto 3.4 (6 mayo 2026)
+
+`save-preferences-dialog.component.ts`: migrado `UntypedFormGroup`/`UntypedFormControl` a `FormGroup`/`FormControl<string>` tipados con `nonNullable: true`.
+
+---
+
+### Compilación partial + NgModules @deprecated — commits posteriores (6 mayo 2026)
+
+| Fichero | Cambio |
+|---|---|
+| `tsconfig.lib.json` | `"compilationMode": "partial"` añadido a `angularCompilerOptions` (requerido para publicación de librería en Angular 18) |
+| `o-chart.module.ts` | `@deprecated` JSDoc añadido a `OChartComponentModule` |
+| `o-chart-on-demand.module.ts` | `@deprecated` JSDoc añadido a `OChartOnDemandComponentModule` |
+
+---
+
+---
+
+## Punto 3.4 — Quickstart integrada en monorepo (6 mayo 2026)
+
+Aplicación de la rama `quickstart-15.x.x-develop` integrada en `projects/ontimize-web-ngx-charts-quickstart/` y migrada a Angular 18.
+
+### Cambios en el monorepo
+
+| Fichero | Cambio |
+|---|---|
+| `angular.json` | Proyecto `ontimize-web-ngx-charts-quickstart` añadido (builder `browser`, port 4807) |
+| `tsconfig.json` | `baseUrl: "."` + `paths` para resolver `ontimize-web-ngx-charts` desde source |
+| `package.json` | Scripts `start-quickstart`, `build-quickstart`, `build-quickstart-prod` añadidos |
+| `projects/ontimize-web-ngx-charts-quickstart/tsconfig.app.json` | `baseUrl: "src"` + paths hacia source de la librería |
+
+### Migraciones aplicadas a la quickstart
+
+| Fichero | Cambio |
+|---|---|
+| `src/index.html` | `Material Icons` → `Material Symbols Outlined` · CDN highlight.js eliminado |
+| `src/assets/css/app.scss` | Tema `ontimize-blue` · imports `@use` correctos · sin `@angular/flex-layout` |
+| `src/app/shared/example/example.theme.scss` | M2 `mat.get-color-from-palette()` → tokens CSS M3 `--o-*` |
+| `src/app/main/main-theme.scss` | M2 API → tokens CSS M3 `--o-*` |
+| `src/app/shared/example/example.component.html` | `fxLayout`/`fxFlex` → clases `o-flex-*` · `*ngIf`/`*ngFor` → `@if`/`@for` |
+| `src/app/shared/highlight/highlight.component.html` | `fxFill` → `o-flex-fill` · `[highlight]` → `{{ templateContent }}` |
+| `src/app/shared/highlight/highlight.component.ts` | `ngx-highlightjs` eliminado · stub `showTooltip()` |
+| `src/app/shared/switch-mode-theme/switch-mode-theme.component.html` | `*ngIf` → `@if` |
+| `src/app/shared/shared.module.ts` | `FlexLayoutModule`/`HighlightModule` eliminados · Material modules añadidos |
+| `src/app/app.module.ts` | `FlexLayoutModule`/`HighlightModule`/`HIGHLIGHT_OPTIONS` eliminados |
+| `src/app/main/about/about.component.html` | `fxLayout`/`fxFlex` → clases `o-flex-*` · `@` → `&#64;` |
+| `src/app/main/home/home.component.html` | `fxLayout`/`fxFlex` → clases `o-flex-*` |
+| `src/app/main/*/**.component.html` (23 templates) | `fxLayout`/`fxFlex`/`*ngIf`/`*ngFor` → sintaxis Angular 18 |
+| `src/main.ts` | Import `environment` corregido a ruta relativa |
+
 ## Pendiente
 
 Ninguno — migración completa ✅

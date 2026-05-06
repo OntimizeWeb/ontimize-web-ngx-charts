@@ -1,0 +1,17 @@
+@mixin main-theme($theme) {
+  .active,
+  .active.mdc-button {
+    border-color: var(--o-primary-500);
+    background-color: var(--o-primary-100);
+  }
+
+  layout-manager {
+    .left-border {
+      background-color: var(--o-bg-card);
+    }
+  }
+
+  o-column-collapsible.o-column-collapsible > .o-container.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header {
+    border-bottom-color: var(--o-fg-divider);
+  }
+}

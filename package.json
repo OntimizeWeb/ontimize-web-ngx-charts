@@ -19,11 +19,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
-    "build-prod": "ng build -c production && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
+    "start-quickstart": "ng serve ontimize-web-ngx-charts-quickstart --port 4807",
+    "build": "ng build ontimize-web-ngx-charts && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
+    "build-prod": "ng build ontimize-web-ngx-charts -c production && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
+    "build-quickstart": "ng build ontimize-web-ngx-charts-quickstart -c development",
+    "build-quickstart-prod": "ng build ontimize-web-ngx-charts-quickstart",
     "copy-files": "node scripts/copy-assets.js",
-    "test": "ng test --code-coverage",
-    "test-ci": "ng test --no-watch --code-coverage --browsers ChromeHeadless",
+    "test": "ng test ontimize-web-ngx-charts --code-coverage",
+    "test-ci": "ng test ontimize-web-ngx-charts --no-watch --code-coverage --browsers ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

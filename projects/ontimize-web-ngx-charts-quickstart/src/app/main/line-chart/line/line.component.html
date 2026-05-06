@@ -1,0 +1,18 @@
+<div class="bg-level-1 main-container o-flex-column">
+  <example-comp comp-name="LINE_CHART.LINE_BASIC" comp-desc="LINE_CHART.LINE_BASIC.DESC" [files]="getBasicUsageFiles()" layout-fill>
+    <o-chart type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" y-axis="MOVEMENT" x-data-type="time"
+      [color]="colorScheme"></o-chart>
+  </example-comp>
+
+  <example-comp comp-name="LINE_CHART.LINE_CUSTOM" comp-desc="LINE_CHART.LINE_CUSTOM.DESC" [files]="getBasicUsageConfFiles()" layout-fill>
+    <o-chart #lineChartBasic type="line" x-label="Time" y-label="Amount (€)" entity="EMovements" x-axis="DATE_" show-tooltip="true" y-axis="MOVEMENT"
+      x-data-type="time" [color]="colorScheme" (onActivate)="activate($event)" (onSelect)="activate($event)">
+      <ng-template #tooltip let-model="model">
+        <strong>Date:</strong> {{model?.name | oMoment : dateArgs}}<br>
+        <strong>Value:</strong> {{model?.value | oCurrency : currencyArgs}}
+      </ng-template>
+    </o-chart>
+  </example-comp>
+
+
+</div>

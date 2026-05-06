@@ -1,7 +1,7 @@
 <div mat-dialog-title class="dialog-title o-flex-row o-layout-align-sb-center">
   {{ 'CHART_ON_DEMAND.CHART_ON_DEMAND_TITLE' | oTranslate }}
   <div>
-    <mat-icon svgIcon="ontimize:settings" #configurationMenuButton [matMenuTriggerFor]="menu"></mat-icon>
+    <mat-icon #configurationMenuButton [matMenuTriggerFor]="menu">settings</mat-icon>
     <mat-icon aria-label="fullscreen dialog" (click)="setFullscreenDialog()">
       @if (fullscreen) {
         <ng-container>fullscreen_exit</ng-container>
@@ -10,7 +10,7 @@
         <ng-container>fullscreen</ng-container>
       }
     </mat-icon>
-    <mat-icon svgIcon="ontimize:close" [mat-dialog-close]="true"></mat-icon>
+    <mat-icon [mat-dialog-close]="true">close</mat-icon>
     <mat-menu #menu="matMenu" class="o-mat-menu">
       <button mat-menu-item [disabled]="!appliedConfiguration" (click)="updatePreferences()">
         <span>{{ 'CHART_ON_DEMAND.SAVE_CONFIGURATION_BUTTON' | oTranslate }}</span>
