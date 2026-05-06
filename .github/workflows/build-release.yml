@@ -44,7 +44,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-     - name: Configure Node
+      - name: Configure Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ vars.V18_NODE_VERSION }}

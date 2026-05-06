@@ -35,6 +35,5 @@ jobs:
 
       - name: npm install and npm run build
         run: |
-          rm -f package-lock.json
           npm i
           npm run build-prod
