@@ -1,0 +1,12 @@
+<div class="bg-level-1 main-container o-flex-row">
+
+  <example-comp comp-name="OTHER_CHARTS.DONUT_BASIC" comp-desc="OTHER_CHARTS.DONUT_BASIC.DESC" [files]="getBasicUsageFiles()" class="o-flex-50">
+    <o-chart type="donutChart" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT" show-legend="true"
+      [color]="colorScheme"></o-chart>
+  </example-comp>
+
+  <example-comp comp-name="OTHER_CHARTS.DONUT_CUSTOM" comp-desc="OTHER_CHARTS.DONUT_CUSTOM.DESC" [files]="getCustomConfigurationFiles()" class="o-flex-50">
+    <o-chart #donutConfig type="donutChart" chart-height="200" entity="EMovementTypesTotal" x-axis="MOVEMENTTYPES" y-axis="MOVEMENT"
+      [chart-parameters]="chartParameters2" show-legend="true" [color]="colorScheme"></o-chart>
+  </example-comp>
+</div>

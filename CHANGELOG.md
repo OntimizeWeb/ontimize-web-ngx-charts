@@ -1,3 +1,31 @@
+## 18.0.0-next.0 (2026-05-06)
+
+> [!NOTE]
+> This version requires `ontimize-web-ngx` version `18.0.0-next.0` or higher and Angular `18.2.x`.
+
+### BREAKING CHANGES
+* **Angular 18**: Upgraded from Angular 15 to Angular 18. Requires Node.js ≥ 18.13.
+* **Standalone components**: `OChartComponent`, `OChartOnDemandComponent`, `SavePreferencesDialogComponent` and `LoadPreferencesDialogComponent` are now `standalone: true`. NgModule wrappers (`OChartComponentModule`, `OChartOnDemandComponentModule`) are kept for backward compatibility but marked as `@deprecated`.
+* **flex-layout removed**: All `fxLayout`/`fxFlex` directives replaced by CSS utility classes (`o-flex-*`) provided by `ontimize-web-ngx`.
+* **ngx-highlightjs removed**: Dependency eliminated from the quickstart application.
+
+### Features
+* **Library compilation**: Added `compilationMode: "partial"` to `tsconfig.lib.json` as required for Angular 18 library publishing.
+* **Typed Forms**: Migrated `UntypedFormGroup`/`UntypedFormControl` to typed `FormGroup`/`FormControl<string>` with `nonNullable: true` in `save-preferences-dialog.component.ts`.
+* **Quickstart monorepo**: Integrated quickstart application from `quickstart-15.x.x-develop` branch into `projects/ontimize-web-ngx-charts-quickstart/` with full Angular 18 migration.
+
+### DEPENDENCY UPDATES
+* **Updated**: `@angular/*` `^15.x` → `^18.2.0`
+* **Updated**: `ng-packagr` `^15.x` → `^18.2.0`
+* **Updated**: `typescript` `~4.9.x` → `~5.5.4`
+* **Updated**: `zone.js` `~0.12.x` → `~0.14.0`
+* **Updated**: `@angular-eslint/*` → `18.3.1`
+* **Updated**: `ontimize-web-ngx` → `^18.0.0-next.0`
+* **Added**: `luxon ^3.4.0`, `@types/luxon ^3.4.0`
+* **Removed**: `@angular/flex-layout` / `@ngbracket/ngx-layout`
+
+---
+
 ## 15.3.0 (2026-01-14)
 ### Features
 * **o-chart**:

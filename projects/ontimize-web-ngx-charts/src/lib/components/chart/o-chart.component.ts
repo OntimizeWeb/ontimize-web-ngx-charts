@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, forwardRef, Inject, Injector, OnInit, Optional, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AreaChartStackedComponent,
   BarHorizontalComponent,
   BarVerticalComponent,
   BarVerticalStackedComponent,
   LineChartComponent,
+  NgxChartsModule,
   PieChartComponent
 } from '@swimlane/ngx-charts';
 import {
@@ -161,10 +163,12 @@ export const DEFAULT_INPUTS_O_CHART: any = [
 ];
 
 @Component({
+  standalone: true,
   selector: 'o-chart',
   templateUrl: './o-chart.component.html',
   styleUrls: ['./o-chart.component.scss'],
   inputs: DEFAULT_INPUTS_O_CHART,
+  imports: [NgClass, NgTemplateOutlet, NgxChartsModule],
   providers: [
     OntimizeServiceProvider,
     ComponentStateServiceProvider,

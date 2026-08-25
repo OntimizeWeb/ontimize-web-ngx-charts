@@ -30,6 +30,97 @@
           }
         }
       }
+    },
+    "ontimize-web-ngx-charts-quickstart": {
+      "projectType": "application",
+      "root": "projects/ontimize-web-ngx-charts-quickstart",
+      "sourceRoot": "projects/ontimize-web-ngx-charts-quickstart/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "dom-to-image",
+              "google-libphonenumber",
+              "moment"
+            ],
+            "outputPath": "dist/ontimize-web-ngx-charts-quickstart",
+            "index": "projects/ontimize-web-ngx-charts-quickstart/src/index.html",
+            "main": "projects/ontimize-web-ngx-charts-quickstart/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/ontimize-web-ngx-charts-quickstart/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ontimize-web-ngx-charts-quickstart/src/favicon.ico",
+              "projects/ontimize-web-ngx-charts-quickstart/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ontimize-web-ngx/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": [
+              "node_modules/ontimize-web-ngx/ontimize.scss",
+              "projects/ontimize-web-ngx-charts-quickstart/src/assets/css/app.scss",
+              "projects/ontimize-web-ngx-charts-quickstart/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules"]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ontimize-web-ngx-charts-quickstart/src/environments/environment.ts",
+                  "with": "projects/ontimize-web-ngx-charts-quickstart/src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ontimize-web-ngx-charts-quickstart:build:production"
+            },
+            "development": {
+              "buildTarget": "ontimize-web-ngx-charts-quickstart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "ontimize-web-ngx-charts-quickstart:build"
+          }
+        }
+      }
     }
   },
   "schematics": {

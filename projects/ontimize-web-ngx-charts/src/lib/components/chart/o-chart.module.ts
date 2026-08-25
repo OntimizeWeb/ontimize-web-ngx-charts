@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
 import { OChartComponent } from './o-chart.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
+/**
+ * @deprecated Use `OChartComponent` directly (standalone). This module will be removed in a future version.
+ */
 @NgModule({
-  imports: [CommonModule, NgxChartsModule],
-  declarations: [OChartComponent],
+  imports: [OChartComponent],
   exports: [OChartComponent]
 })
 export class OChartComponentModule { }

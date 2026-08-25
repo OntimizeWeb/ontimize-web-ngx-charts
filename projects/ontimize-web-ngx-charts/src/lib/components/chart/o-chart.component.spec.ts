@@ -1,38 +1,41 @@
-import { Injector } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppConfig, appConfigFactory, APP_CONFIG, OntimizeWebModule, ONTIMIZE_PROVIDERS, OPermissionsModule } from 'ontimize-web-ngx';
+import { TranslateModule } from '@ngx-translate/core';
+import { Injector } from '@angular/core';
+import { APP_CONFIG, AppConfig, appConfigFactory, ONTIMIZE_PROVIDERS } from 'ontimize-web-ngx';
 
-import { OChartModule } from '../../ontimize-web-ngx-charts.module';
 import { OChartComponent } from './o-chart.component';
+import { OCHART_PROVIDERS } from '../../o-services';
 
-describe('ChartComponent', () => {
+describe('OChartComponent', () => {
   let component: OChartComponent;
   let fixture: ComponentFixture<OChartComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        OntimizeWebModule,
-        OPermissionsModule,
+        OChartComponent,
+        HttpClientTestingModule,
         NoopAnimationsModule,
-        OChartModule
+        TranslateModule.forRoot()
       ],
       providers: [
+        provideRouter([]),
         {
-          provide: APP_CONFIG, useValue: {
+          provide: APP_CONFIG,
+          useValue: {
             uuid: 'com.ontimize.web.test',
             title: 'Ontimize Web Testing',
             locale: 'en'
           }
         },
         { provide: AppConfig, useFactory: appConfigFactory, deps: [Injector] },
-        ...ONTIMIZE_PROVIDERS
+        ...ONTIMIZE_PROVIDERS,
+        ...OCHART_PROVIDERS
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
