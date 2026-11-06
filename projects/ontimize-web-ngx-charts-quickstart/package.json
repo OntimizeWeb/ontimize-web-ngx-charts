@@ -1,15 +1,4 @@
 {
   "name": "ontimize-web-ngx-quickstart-charts",
-  "version": "18.0.0-SNAPSHOT-0",
-  "license": "MIT",
-  "private": true,
-  "engines": {
-    "node": "^18.10.0"
-  },
-  "dependencies": {
-    
-  },
-  "devDependencies": {
-    
-  }
+  "version": "18.0.0-SNAPSHOT-0"
 }
