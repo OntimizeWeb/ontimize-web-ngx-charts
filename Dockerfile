@@ -22,7 +22,7 @@ RUN npm run build-quickstart-prod
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist /usr/share/nginx/html
+COPY --from=build /usr/local/app/dist/ontimize-web-ngx-charts-quickstart /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
