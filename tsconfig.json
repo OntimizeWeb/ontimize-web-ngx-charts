@@ -2,6 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "baseUrl": ".",
+    "paths": {
+      "ontimize-web-ngx-charts": ["projects/ontimize-web-ngx-charts/src/public-api.ts"],
+      "ontimize-web-ngx-charts/*": ["projects/ontimize-web-ngx-charts/src/*"]
+    },
     "target": "ES2022",
     "module": "es2022",
     "moduleResolution": "node",

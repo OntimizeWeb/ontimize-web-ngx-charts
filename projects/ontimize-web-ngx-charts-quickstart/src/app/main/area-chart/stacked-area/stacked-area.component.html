@@ -1,0 +1,6 @@
+<div class="bg-level-1 main-container o-flex-column">
+  <example-comp comp-name="AREA_CHAR.STACKED" comp-desc="AREA_CHAR.STACKED.DESC" [files]="getFiles()" class="o-flex-100">
+    <o-chart #stackedAreaChart type="stackedAreaChart" x-label="Time" y-label="Amount (€)" entity="EMovementPercent" x-axis="DATE_"
+      y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"  [color]="colorScheme" show-legend="true" ></o-chart>
+  </example-comp>
+</div>
