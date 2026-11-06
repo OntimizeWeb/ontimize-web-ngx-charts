@@ -127,7 +127,7 @@
             </o-button>
           }
         </div>
-        <div class="o-flex-column o-layout-align-center-center o-flex-auto" id="sidenav-container-content" [ngClass]="chartClass">
+        <div class="o-flex-column o-layout-align-center-center o-flex-grow" id="sidenav-container-content" [ngClass]="chartClass">
           @if (showPlaceholder) {
             <img class="animation" alt="graph image" src="./assets/chart_animation.svg" />
           }
@@ -137,8 +137,8 @@
               <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
             </div>
           }
-          <div [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'" class="o-flex-auto o-layout-align-center-center">
-            <o-chart #chart class="o-flex" type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding class="chart">
+          <div [ngClass]="{'chartDiv': !showPlaceholder}" [style.display]="showPlaceholder ? 'none' : 'inherit'" class="o-flex-grow o-layout-align-center-center">
+            <o-chart #chart class="o-flex chart" type="currentPreference.selectedTypeChart" query-on-bind="no" query-on-init="no" layout-padding>
             </o-chart>
           </div>
         </div>
