@@ -1,7 +1,7 @@
 <div class="bg-level-1 main-container o-flex-column">
   <example-comp comp-name="CUSTOM_CHART_TITLE" [files]="getFiles()" layout-fill>
     <div #dialog class="dialog-container">
-      <mat-sidenav-container class="mat-sidenav-container" [class.opened]="opened" class="o-flex-fill">
+      <mat-sidenav-container class="mat-sidenav-container o-flex-fill" [class.opened]="opened">
         <mat-sidenav #sidenav [(opened)]="opened" mode="side" class="chart-on-demand-sidenav">
           <div class="o-flex-column o-flex-fill">
             @if (opened) {
@@ -32,9 +32,7 @@
                     }
                   </mat-select>
                 </mat-form-field>
-                <button mat-raised-button (click)="openDataInputDialog()">
-                  {{ 'CHART.OPEN_DATA_INPUT' | oTranslate }}
-                </button>
+                <o-button  (onClick)="openDataInputDialog()" label="CHART.OPEN_DATA_INPUT"></o-button>
                 <!-- <span class="section-title">{{ 'CHART.DATA' | oTranslate}}</span>
                 <div fxLayout="column" class="container-title" fxLayoutGap="10px">
                   <mat-form-field appearance="fill">
@@ -152,7 +150,7 @@
                 <h2 class="title">{{currentPreference.title}}</h2>
                 <h5 class="subtitle">{{currentPreference.subtitle}}</h5>
               </div>
-              <div style="justify-content: center; align-items: center; flex: 1 1 auto;">
+              <div style="display: flex; justify-content: center; align-items: center; flex: 1 1 auto; min-width: 0; min-height: 0;">
                 @if (showChart) {
                   <o-chart [type]="currentPreference.selectedTypeChart" [data]="currentPreference.data"
                     [color]="currentPreference.selectedPalette" [x-label]="currentPreference.x_axis" [y-label]="currentPreference.y_axis"

@@ -1,8 +1,8 @@
 @mixin main-theme($theme) {
   .active,
   .active.mdc-button {
-    border-color: var(--o-primary-500);
-    background-color: var(--o-primary-100);
+    border-color: var(--mat-sys-primary);
+    background-color: var(--mat-sys-primary-container);
   }
 
   layout-manager {

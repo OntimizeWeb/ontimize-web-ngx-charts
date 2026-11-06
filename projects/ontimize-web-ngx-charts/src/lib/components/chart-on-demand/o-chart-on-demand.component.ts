@@ -240,6 +240,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
+              this.triggerChartResize();
             });
         } else {
           data = this.tableComp.getAllValues();
@@ -253,6 +254,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
+              this.triggerChartResize();
             });
         }
         else {
@@ -262,7 +264,12 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     if (data != undefined) {
       this.chart.setDataArray(adapter.adaptResult(data));
       this.showPlaceholder = false;
+      this.triggerChartResize();
     }
+  }
+
+  private triggerChartResize(): void {
+    setTimeout(() => window.dispatchEvent(new Event('resize')));
   }
 
   getQueryArgumentsByFilterData(filter: object) {

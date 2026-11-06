@@ -1,3 +1,20 @@
+## 18.0.0-next.1 (2026-09-15)
+
+### Bug Fixes
+* **o-chart**:
+  * Chart now correctly fills its container (`:host` sizing + `o-flex-fill` wrapper) instead of collapsing to the browser's default dimensions.
+* **Chart on-demand**:
+  * Fixed `OChartOnDemandService` not being provided through the `O_CHART_ON_DEMAND_SERVICE` token (removed the duplicate/legacy provider registration and the deep import of `OTableBase`, now imported from the public `ontimize-web-ngx` API).
+  * Fixed the chart getting stuck at ngx-charts' default size (600x400) after loading data; the wrapping container relied on a non-existent `o-flex-auto` utility class (leftover from the `@angular/flex-layout` migration), now replaced by `o-flex-grow` so the chart correctly grows/shrinks with its container. The chart view is also explicitly refreshed (dispatching a `resize` event) once data is set.
+* **Quickstart**:
+  * Fixed the "Create your own chart" sidenav being clipped to Material 3's fixed 360px drawer width (`--mat-sidenav-container-width`); restored auto-sizing to content.
+  * Fixed the chart container layout (`custom-chart`) so the chart fills the available space instead of overflowing/scrolling.
+
+### Features
+* **Quickstart**: Migrated theme to `oxygen` (Material 3 tokens) with `ontimize-theme-density-extended(-4)` and neutral surfaces, replacing legacy `--o-primary-*` variables with `--mat-sys-*` tokens.
+
+---
+
 ## 18.0.0-next.0 (2026-05-06)
 
 > [!NOTE]

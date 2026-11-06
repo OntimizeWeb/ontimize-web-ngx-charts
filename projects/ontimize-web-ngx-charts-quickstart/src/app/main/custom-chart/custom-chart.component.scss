@@ -38,14 +38,16 @@
     z-index: 999;
     border: 0;
     background-color: transparent;
+    // Material 3 hardcodes --mat-sidenav-container-width to 360px (M2 used "auto").
+    // Restore the auto-sizing-to-content behaviour so the panel doesn't clip its fields.
+    --mat-sidenav-container-width: auto;
 
     .container-title {
       margin-top: 10px;
     }
 
     .data_options {
-      height: calc(100% - 150px);
-      overflow-y: scroll;
+      overflow-y: visible;
       margin-top: 10px;
       margin-bottom: 0;
       padding-right: 10px;
@@ -66,6 +68,10 @@
     .mat-mdc-radio-group {
       font-size: 14px;
       margin: 12px 12px 0;
+    }
+
+    mat-checkbox .mdc-form-field {
+      white-space: nowrap;
     }
 
     .section-title {
@@ -155,6 +161,7 @@
       height: 100%;
       border-radius: 4px;
       border: 1px solid #dddddd;
+      box-sizing: border-box;
       overflow: auto;
 
       .title {
@@ -190,4 +197,6 @@
 
 #sidenav-container-content {
   height: 100%;
+  min-height: 0;
+  min-width: 0;
 }
