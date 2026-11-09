@@ -1,13 +1,19 @@
 <span mat-dialog-title>{{ 'CHART_ON_DEMAND.BUTTONS.APPLY_CONFIGURATION' | oTranslate }}</span>
 <mat-dialog-content class="o-flex-column">
-  <div mat-subheader *ngIf="configurationListData?.length > 0">{{ 'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION' | oTranslate }}</div>
-  <div mat-subheader *ngIf="configurationListData?.length==0">{{ 'CHART_ON_DEMAND.DIALOG.NO_CONFIGURATION' | oTranslate }}</div>
+  @if (configurationListData?.length > 0) {
+    <div mat-subheader>{{ 'CHART_ON_DEMAND.DIALOG.APPLY_CONFIGURATION' | oTranslate }}</div>
+  }
+  @if (configurationListData?.length==0) {
+    <div mat-subheader>{{ 'CHART_ON_DEMAND.DIALOG.NO_CONFIGURATION' | oTranslate }}</div>
+  }
   <mat-selection-list #configurationList class="apply-configuration-dialog-list">
-    <mat-list-option (click)="onClickConfigurationList(configuration)" checkboxPosition="before" *ngFor="let configuration of configurationListData"
-      [value]="configuration">
-      <span matListItemTitle>{{ configuration.PREFERENCENAME }}</span>
-      <span matListItemLine>{{ configuration.PREFERENCEDESCRIPTION }}</span>
-    </mat-list-option>
+    @for (configuration of configurationListData; track configuration) {
+      <mat-list-option (click)="onClickConfigurationList(configuration)" checkboxPosition="before"
+        [value]="configuration">
+        <span matListItemTitle>{{ configuration.PREFERENCENAME }}</span>
+        <span matListItemLine>{{ configuration.PREFERENCEDESCRIPTION }}</span>
+      </mat-list-option>
+    }
   </mat-selection-list>
 </mat-dialog-content>
 

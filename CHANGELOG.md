@@ -1,3 +1,48 @@
+## 18.0.0-next.1 (2026-09-15)
+
+### Bug Fixes
+* **o-chart**:
+  * Chart now correctly fills its container (`:host` sizing + `o-flex-fill` wrapper) instead of collapsing to the browser's default dimensions.
+* **Chart on-demand**:
+  * Fixed `OChartOnDemandService` not being provided through the `O_CHART_ON_DEMAND_SERVICE` token (removed the duplicate/legacy provider registration and the deep import of `OTableBase`, now imported from the public `ontimize-web-ngx` API).
+  * Fixed the chart getting stuck at ngx-charts' default size (600x400) after loading data; the wrapping container relied on a non-existent `o-flex-auto` utility class (leftover from the `@angular/flex-layout` migration), now replaced by `o-flex-grow` so the chart correctly grows/shrinks with its container. The chart view is also explicitly refreshed (dispatching a `resize` event) once data is set.
+* **Quickstart**:
+  * Fixed the "Create your own chart" sidenav being clipped to Material 3's fixed 360px drawer width (`--mat-sidenav-container-width`); restored auto-sizing to content.
+  * Fixed the chart container layout (`custom-chart`) so the chart fills the available space instead of overflowing/scrolling.
+
+### Features
+* **Quickstart**: Migrated theme to `oxygen` (Material 3 tokens) with `ontimize-theme-density-extended(-4)` and neutral surfaces, replacing legacy `--o-primary-*` variables with `--mat-sys-*` tokens.
+
+---
+
+## 18.0.0-next.0 (2026-05-06)
+
+> [!NOTE]
+> This version requires `ontimize-web-ngx` version `18.0.0-next.0` or higher and Angular `18.2.x`.
+
+### BREAKING CHANGES
+* **Angular 18**: Upgraded from Angular 15 to Angular 18. Requires Node.js ≥ 18.13.
+* **Standalone components**: `OChartComponent`, `OChartOnDemandComponent`, `SavePreferencesDialogComponent` and `LoadPreferencesDialogComponent` are now `standalone: true`. NgModule wrappers (`OChartComponentModule`, `OChartOnDemandComponentModule`) are kept for backward compatibility but marked as `@deprecated`.
+* **flex-layout removed**: All `fxLayout`/`fxFlex` directives replaced by CSS utility classes (`o-flex-*`) provided by `ontimize-web-ngx`.
+* **ngx-highlightjs removed**: Dependency eliminated from the quickstart application.
+
+### Features
+* **Library compilation**: Added `compilationMode: "partial"` to `tsconfig.lib.json` as required for Angular 18 library publishing.
+* **Typed Forms**: Migrated `UntypedFormGroup`/`UntypedFormControl` to typed `FormGroup`/`FormControl<string>` with `nonNullable: true` in `save-preferences-dialog.component.ts`.
+* **Quickstart monorepo**: Integrated quickstart application from `quickstart-15.x.x-develop` branch into `projects/ontimize-web-ngx-charts-quickstart/` with full Angular 18 migration.
+
+### DEPENDENCY UPDATES
+* **Updated**: `@angular/*` `^15.x` → `^18.2.0`
+* **Updated**: `ng-packagr` `^15.x` → `^18.2.0`
+* **Updated**: `typescript` `~4.9.x` → `~5.5.4`
+* **Updated**: `zone.js` `~0.12.x` → `~0.14.0`
+* **Updated**: `@angular-eslint/*` → `18.3.1`
+* **Updated**: `ontimize-web-ngx` → `^18.0.0-next.0`
+* **Added**: `luxon ^3.4.0`, `@types/luxon ^3.4.0`
+* **Removed**: `@angular/flex-layout` / `@ngbracket/ngx-layout`
+
+---
+
 ## 15.3.0 (2026-01-14)
 ### Features
 * **o-chart**:

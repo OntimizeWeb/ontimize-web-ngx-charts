@@ -1,7 +1,16 @@
+import { NgClass } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, Injector, Input, OnDestroy, Type, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatRadioGroup } from '@angular/material/radio';
-import { MatSidenav } from '@angular/material/sidenav';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioGroup, MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import domtoimage from 'dom-to-image';
 import {
   AppConfig,
@@ -16,6 +25,7 @@ import {
   OntimizePreferencesService,
   OntimizeRequestArgumentsAdapter,
   OntimizeService,
+  OntimizeWebModule,
   OPreference,
   OQueryParams,
   OTableComponent,
@@ -39,14 +49,30 @@ const svgIcons = ['palette1', 'palette2', 'palette3', 'palette4'];
 
 
 @Component({
+  standalone: true,
   selector: 'o-chart-on-demand',
   templateUrl: './o-chart-on-demand.component.html',
   styleUrls: ['./o-chart-on-demand.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class.o-chart-on-demand]': 'true'
-  }
-
+  },
+  imports: [
+    NgClass,
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    OntimizeWebModule,
+    OChartComponent
+  ]
 })
 
 export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
@@ -64,7 +90,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
   multiSelectionCombo: boolean = false;
   dataTypes = this.getDataType();
   types = this.getDataArrayRadioGraphics();
-  comboData: Array<Object>;
+  comboData: Array<{ key: number; value: string }>;
   comboPalette = [
     {
       value: 'palette1', colors: { domain: ['#003CC4', '#0058D2', '#006BDB', '#2681E0', '#4D97E6', '#80B5ED', '#B3D3F4', '#E0EDFB'] }
@@ -212,6 +238,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
+              this.triggerChartResize();
             });
         } else {
           data = this.tableComp.getAllValues();
@@ -225,6 +252,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
             .subscribe(response => {
               this.chart.setDataArray(adapter.adaptResult(response.data));
               this.showPlaceholder = false;
+              this.triggerChartResize();
             });
         }
         else {
@@ -234,7 +262,12 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     if (data != undefined) {
       this.chart.setDataArray(adapter.adaptResult(data));
       this.showPlaceholder = false;
+      this.triggerChartResize();
     }
+  }
+
+  private triggerChartResize(): void {
+    setTimeout(() => window.dispatchEvent(new Event('resize')));
   }
 
   getQueryArgumentsByFilterData(filter: object) {
@@ -290,7 +323,7 @@ export class OChartOnDemandComponent implements AfterViewInit, OnDestroy {
     return this._arrayColumns;
   }
 
-  array: Array<Object> = [];
+  array: Array<{ key: any; value: string }> = [];
 
   getDataArrayRadioGraphics() {
     this.array = [];

@@ -1,0 +1,14 @@
+<div class="o-flex-column o-flex-fill" style="flex: 1 1 calc(100% - 56px); max-width: calc(100% - 56px);">
+  <h1 mat-dialog-title>{{ 'CHART.DATA_INPUT' | oTranslate }}</h1>
+  <div mat-dialog-content class="o-flex-grow">
+    <mat-form-field appearance="fill">
+      <textarea matInput [(ngModel)]="data" placeholder="{{ 'CHART.DATA' | oTranslate }}"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-stroked-button class="mat-primary o-button-default" [mat-dialog-close]="false" (click)="onCancel()">
+      {{ 'CANCEL' | oTranslate }}</button>
+    <button type="button" mat-stroked-button class="mat-primary" (click)="onSave()" [mat-dialog-close]="true">
+      {{ 'SAVE' | oTranslate }}</button>
+  </mat-dialog-actions>
+</div>

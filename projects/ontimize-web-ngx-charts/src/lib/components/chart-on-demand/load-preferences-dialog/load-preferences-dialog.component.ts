@@ -1,13 +1,16 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { DialogService, OntimizePreferencesService, OPreference, Util } from 'ontimize-web-ngx';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatListModule, MatListOption, MatSelectionList } from '@angular/material/list';
+import { DialogService, OntimizePreferencesService, OntimizeWebModule, OPreference, Util } from 'ontimize-web-ngx';
 
 
 @Component({
+  standalone: true,
   selector: 'load-preferences-dialog',
-  templateUrl: './load-preferences-dialog.component.html'
+  templateUrl: './load-preferences-dialog.component.html',
+  imports: [MatDialogModule, MatListModule, MatButtonModule, OntimizeWebModule]
 })
 
 export class LoadPreferencesDialogComponent implements OnInit {

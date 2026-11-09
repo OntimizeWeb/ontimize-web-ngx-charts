@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["src/app/*"],
+      "environments/*": ["src/environments/*"],
+      "assets/*": ["src/assets/*"],
+      "ontimize-web-ngx-charts": ["../../projects/ontimize-web-ngx-charts/src/public-api.ts"],
+      "ontimize-web-ngx-charts/*": ["../../projects/ontimize-web-ngx-charts/src/*"]
+    },
+    "types": []
+  },
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}

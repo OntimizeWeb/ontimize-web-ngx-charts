@@ -10,9 +10,9 @@ env:
 on:
   push:
     branches:
-      - main.15.x
-      - 15.x.x
-      - hotfix/15.*
+      - main.18.x
+      - 18.x.x
+      - hotfix/18.*
   pull_request:
     types: [opened, synchronize, reopened, labeled]
 jobs:
@@ -20,22 +20,22 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: 'Cache node modules'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Node 18.x
-        uses: actions/setup-node@v4
+      - name: Configure Node
+        uses: actions/setup-node@v6
         with:
-          node-version: 18.10.0
+          node-version: ${{ vars.V18_NODE_VERSION }}
 
       - name: Setup Node registry
         if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'snapshot')

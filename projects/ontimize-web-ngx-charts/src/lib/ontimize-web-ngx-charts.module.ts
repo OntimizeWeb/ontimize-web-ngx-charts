@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { OCHART_MODULES } from './o-components';
+import { OChartComponent } from './components/chart/o-chart.component';
+import { OChartOnDemandComponent } from './components/chart-on-demand/o-chart-on-demand.component';
 import { OCHART_PROVIDERS } from './o-services';
-import { OChartOnDemandService } from './services/chart-on-demand.service';
 import { TranslateChartService } from './services/translate-chart.service';
 
 /**
@@ -14,10 +14,12 @@ export * from './o-adapters';
 export * from './o-interfaces';
 export * from './o-services';
 
+const OCHART_STANDALONE = [OChartComponent, OChartOnDemandComponent];
+
 @NgModule({
-  imports: OCHART_MODULES,
-  exports: OCHART_MODULES,
-  providers: [OCHART_PROVIDERS, OChartOnDemandService]
+  imports: OCHART_STANDALONE,
+  exports: OCHART_STANDALONE,
+  providers: [OCHART_PROVIDERS]
 })
 
 export class OChartModule {
