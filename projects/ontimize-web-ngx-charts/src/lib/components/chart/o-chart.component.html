@@ -5,17 +5,11 @@
       <ngx-charts-pie-chart #pieChart class="chart o-flex-fill" [results]="getAdaptData()" [labels]="true" [doughnut]="false"
         [scheme]="color" [labelFormatting]="xFormatting" [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)"
         (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-pie-chart>
     }
@@ -24,17 +18,11 @@
       <ngx-charts-pie-chart #donutChart class="chart o-flex-fill" [results]="getAdaptData()" [labels]="true"
         [doughnut]="true" [ngClass]="chartClass" [scheme]="color" [labelFormatting]="xFormatting" (select)="selectChart($event)"
         (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-pie-chart>
     }
@@ -43,17 +31,11 @@
       <ngx-charts-bar-horizontal #horizontalBarChart [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
         [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-bar-horizontal>
     }
@@ -62,17 +44,11 @@
       <ngx-charts-bar-vertical #discreteBarChart [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
         [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-bar-vertical>
     }
@@ -81,17 +57,11 @@
       <ngx-charts-line-chart #lineChart [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [autoScale]="autoScale"
         [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass"
         (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-line-chart>
     }
@@ -100,17 +70,11 @@
       <ngx-charts-area-chart-stacked #stackedAreaChart [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
         [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting" [ngClass]="chartClass"
         (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-area-chart-stacked>
     }
@@ -119,17 +83,11 @@
       <ngx-charts-bar-vertical-stacked #multiBarChart [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" [results]="getAdaptData()" [scheme]="color" [xAxisTickFormatting]="xFormatting" [yAxisTickFormatting]="yFormatting"
         [ngClass]="chartClass" (select)="selectChart($event)" (activate)="activateChart($event)" (deactivate)="deactivateChart($event)">
-
         @if (tooltipTemplateRef) {
-          <ng-template #tooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #tooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="tooltipTemplateRef; context: { model: model }" /></ng-template>
         }
-
         @if (seriesTooltipTemplateRef) {
-          <ng-template #seriesTooltipTemplate let-model="model">
-            <ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }"></ng-container>
-          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model"><ng-container *ngTemplateOutlet="seriesTooltipTemplateRef; context: { model: model }" /></ng-template>
         }
       </ngx-charts-bar-vertical-stacked>
     }
