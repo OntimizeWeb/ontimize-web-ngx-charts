@@ -1,5 +1,5 @@
 ---
-name: Build Release
+name: Build Library Release
 
 on:
   pull_request:
@@ -31,13 +31,13 @@ jobs:
           echo "BASELINE_BRANCH=${{ github.event.inputs.BASELINE || github.ref }}" >> $GITHUB_ENV
 
       - name: Checkout merge commit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ env.BASELINE_BRANCH }}
           fetch-depth: 0
 
       - name: 'Cache node modules'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -45,7 +45,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Configure Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ vars.V18_NODE_VERSION }}
 

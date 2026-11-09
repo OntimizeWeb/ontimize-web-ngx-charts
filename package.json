@@ -23,7 +23,7 @@
     "build": "ng build ontimize-web-ngx-charts && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
     "build-prod": "ng build ontimize-web-ngx-charts -c production && scss-bundle -c scss-bundle-ontimize-charts.config.json && npm run copy-files",
     "build-quickstart": "ng build ontimize-web-ngx-charts-quickstart -c development",
-    "build-quickstart-prod": "ng build ontimize-web-ngx-charts-quickstart",
+    "build-quickstart-prod": "ng build ontimize-web-ngx-charts-quickstart --base-href=/v18/charts/",
     "copy-files": "node scripts/copy-assets.js",
     "test": "ng test ontimize-web-ngx-charts --code-coverage",
     "test-ci": "ng test ontimize-web-ngx-charts --no-watch --code-coverage --browsers ChromeHeadless",
